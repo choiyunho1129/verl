@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $4820\\cos 300^\\circ$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{4820}{2}}",
+    "is_static": false
+}

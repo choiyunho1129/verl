@@ -1,0 +1,7 @@
+{
+    "problem": "The foci of a certain ellipse are at $(435,255 + \\sqrt{1426512})$ and $(435,255 - \\sqrt{1426512}).$  The endpoints of one of the axes are $(98,255)$ and $(772,255).$  Find the semi-major axis.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{1241}",
+    "is_static": false
+}

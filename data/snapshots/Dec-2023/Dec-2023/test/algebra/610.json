@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the product ${973(x+932)(x+89)}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{973x^2 + 993433x + 80708404}",
+    "is_static": false
+}

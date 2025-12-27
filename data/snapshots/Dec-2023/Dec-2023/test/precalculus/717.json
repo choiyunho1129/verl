@@ -1,0 +1,7 @@
+{
+    "problem": "The first two terms of a sequence are $a_1 = 1$ and $a_2 = \\frac {1}{\\sqrt3}$. For $n\\ge1$, \\begin{align*} a_{n + 2} = \\frac {a_n + a_{n + 1}}{1 - a_na_{n + 1}}. \\end{align*}What is $a_{5014}$?",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

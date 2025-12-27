@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ which satisfies $\\sqrt[17]{x^8\\sqrt{x}}=50$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{2500}",
+    "is_static": false
+}

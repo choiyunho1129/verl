@@ -1,0 +1,7 @@
+{
+    "problem": "Find $\\left(\\frac{25}{6}\\right)^{3}\\left(\\frac{7}{25}\\right)^{3}$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{343}{216}}",
+    "is_static": false
+}

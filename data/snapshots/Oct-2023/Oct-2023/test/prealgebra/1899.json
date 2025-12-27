@@ -1,0 +1,7 @@
+{
+    "problem": "A freshly-painted circular emblem on a football field is completely covered by the smallest possible square tarp. The tarp covers an area of 400 square feet. In square feet, what is the area of the circular emblem? Express your answer in terms of $\\pi$.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{100\\pi}",
+    "is_static": false
+}

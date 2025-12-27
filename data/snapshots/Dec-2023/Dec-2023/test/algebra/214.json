@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of $y=ax^2 + bx + c$ is a parabola with vertical axis of symmetry.  The vertex of this parabola is $(14,15)$ and the parabola contains the point $(16,16)$.  Find the value of $y$ when $x=16$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

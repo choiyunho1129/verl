@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $561\\sin 120^\\circ$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{561\\sqrt{3}}{2}}",
+    "is_static": false
+}

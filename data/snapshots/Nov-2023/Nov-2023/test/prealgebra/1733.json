@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $$1 + 4 + 3 - 14 + 7 + 20$$is equivalent to 21. If we add parentheses in various locations, we can change this value. For example, $1+4+3-(14+7)+20=1+4+3-21+20=8-21+20=7$. If we only add parentheses (and not rearrange the order of the terms), what is the minimum possible value this expression can obtain? (For the purposes of this problem, we cannot change addition or subtraction into multiplication. For example, $ (1+4+3)(-14)+7+20 $ is not a valid placement of parentheses.)\n\nEnter your answer as a single value.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-33}",
+    "is_static": false
+}

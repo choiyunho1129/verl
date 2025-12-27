@@ -1,0 +1,7 @@
+{
+    "problem": "If $(x,y) = (16,10)$, what is $y^2 - 19xy + 43$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-2897}",
+    "is_static": false
+}

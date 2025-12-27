@@ -1,0 +1,7 @@
+{
+    "problem": "Jack drives at 20 mph for an hour, then at 44 mph for an hour.  What is his average speed?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{32\\text{ mph}}",
+    "is_static": false
+}

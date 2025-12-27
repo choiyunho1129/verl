@@ -1,0 +1,7 @@
+{
+    "problem": "Lucia flips a coin fourteen times. What is the probability that she gets Head-Tail-Tail-Head-Tail-Head-Head-Head-Head-Tail-Head-Tail-Tail-Head, in that order? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{1}{16384}}",
+    "is_static": false
+}

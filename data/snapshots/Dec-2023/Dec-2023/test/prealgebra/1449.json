@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $x$: $\\frac{x}{5}+\\frac{x}{3}=16$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{30}",
+    "is_static": false
+}

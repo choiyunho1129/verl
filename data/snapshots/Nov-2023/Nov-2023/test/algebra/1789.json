@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $\\frac{6^10-6^9}{6^9-6^8}$",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

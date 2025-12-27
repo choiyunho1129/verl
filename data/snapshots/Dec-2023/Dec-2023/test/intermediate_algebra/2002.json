@@ -1,0 +1,7 @@
+{
+    "problem": "Let\n\\[f(x) = \\left\\{\n\\begin{array}{cl}\n37x & \\text{if $0 \\le x < 5$}, \\\\\n61 - 74x & \\text{if $5 \\le x \\le 36$}.\n\\end{array}\n\\right.\\]Find the maximum value of the function.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{185}",
+    "is_static": false
+}

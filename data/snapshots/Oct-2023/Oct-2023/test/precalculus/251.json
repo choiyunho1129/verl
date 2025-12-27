@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{v}$ and $\\mathbf{w}$ be vectors such that\n\\[\\operatorname{proj}_{\\mathbf{w}} \\mathbf{v} = \\begin{pmatrix} 190 \\\\ 757 \\end{pmatrix}.\\]Find\n\\[\\operatorname{proj}_{\\mathbf{w}} \\begin{pmatrix} 190 \\\\ 757 \\end{pmatrix}.\\]",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 190 \\\\ 757 \\end{pmatrix}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is an integer and $x^6-2x^5+2x^3-2x+1=197617$, find $x$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $$\\sum_{n=1}^{\\infty} \\left( \\frac{939n}{940^n} - \\frac{632}{633^n} \\right).$$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{1}{939}}",
+    "is_static": false
+}

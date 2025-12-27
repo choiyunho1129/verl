@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a}$ and $\\mathbf{b}$ be two nonzero vectors such that $476 \\mathbf{a} + 605 \\mathbf{b}$ and $\\mathbf{b}$ are orthogonal, and $449 \\mathbf{a} + 18593988 \\mathbf{b}$ and $\\mathbf{a}$ are orthogonal.  Find $\\frac{\\|\\mathbf{a}\\|}{\\|\\mathbf{b}\\|}.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\sqrt{52635}}",
+    "is_static": false
+}

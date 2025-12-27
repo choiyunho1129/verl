@@ -1,0 +1,7 @@
+{
+    "problem": "Compute \\[\\log_{\\log_{\\log_3 6561} 512} 6561.\\]",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

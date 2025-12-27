@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest multiple of 768 which is less than 8833?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{8448}",
+    "is_static": false
+}

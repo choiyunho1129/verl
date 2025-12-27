@@ -1,0 +1,7 @@
+{
+    "problem": "Find $\\begin{pmatrix} 662 & -881 \\\\ 974 & -322 \\end{pmatrix} + \\begin{pmatrix} 260 & -121 \\\\ -774 & 408 \\end{pmatrix}.$",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 922 & -1002 \\\\ 200 & 86 \\end{pmatrix}}",
+    "is_static": false
+}

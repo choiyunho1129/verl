@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $\\frac{18!\\cdot2!}{16!}$",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{612}",
+    "is_static": false
+}

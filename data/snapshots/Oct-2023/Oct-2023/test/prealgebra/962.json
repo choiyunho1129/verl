@@ -1,0 +1,7 @@
+{
+    "problem": "A number is selected at random from 1 through 198, inclusive.  What is the probability that the number is a perfect square?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\dfrac{7}{99}}",
+    "is_static": false
+}

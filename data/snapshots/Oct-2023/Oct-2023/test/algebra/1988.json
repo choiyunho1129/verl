@@ -1,0 +1,7 @@
+{
+    "problem": "If $x-y=19$ and $x^2+y^2=4505$, find $x^3-y^3$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{124963}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the maximum number of square inches in the area of a rectangle with a perimeter of 356 inches?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{7921}",
+    "is_static": false
+}

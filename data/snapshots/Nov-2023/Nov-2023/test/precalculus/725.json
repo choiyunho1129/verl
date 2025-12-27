@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\begin{pmatrix} 348 \\\\ 573 \\end{pmatrix} \\cdot \\begin{pmatrix} -81 \\\\ -788 \\end{pmatrix}$.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-479712}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In a $1600$ meter track event, Alice runs at a constant speed and crosses the finish line $4$ seconds before Beatrice does. If it took Beatrice $108$ seconds to complete the race, how many seconds would it take Alice to run $200$ meters?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ in the equation $3x - 2x + 4(1-6x) = 326$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-14}",
+    "is_static": false
+}

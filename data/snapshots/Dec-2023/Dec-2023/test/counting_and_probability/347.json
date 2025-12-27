@@ -1,0 +1,7 @@
+{
+    "problem": "How many unique diagonals can be drawn in a forty-five-sided convex polygon?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{945}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $36x^2 + 3x + c = 0.$ What value of $c$ will give us exactly one solution for $x$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\dfrac{1}{16}}",
+    "is_static": false
+}

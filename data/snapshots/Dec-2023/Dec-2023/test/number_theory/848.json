@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest odd integer that is a factor of $9!$ ?  (Reminder: For a positive integer $n$, the expression $n!$ stands for the product of the integers from 1 up to (and including) $n$.)",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{2835}",
+    "is_static": false
+}

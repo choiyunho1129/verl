@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $70158\\div70158-70158+70158\\times70158$.",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4922074807}",
+    "is_static": false
+}

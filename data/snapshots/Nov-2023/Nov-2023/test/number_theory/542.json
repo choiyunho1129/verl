@@ -1,0 +1,7 @@
+{
+    "problem": "Find the positive base $b$ in which the equation $2 \\cdot 44 = 132$ is valid.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $m$ and $n$ satisfy $mn=3952$ and $m+n=-128$. What is $|m-n|$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{24}",
+    "is_static": false
+}

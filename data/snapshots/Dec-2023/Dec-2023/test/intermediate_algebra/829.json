@@ -1,0 +1,7 @@
+{
+    "problem": "Solve  \\[\\frac{5x+8}{x-7}=6\\]for $x$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{50}",
+    "is_static": false
+}

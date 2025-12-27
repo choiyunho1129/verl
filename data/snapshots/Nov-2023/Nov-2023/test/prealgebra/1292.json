@@ -1,0 +1,7 @@
+{
+    "problem": "How many distinct diagonals of a convex 37-gon can be drawn?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{629}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of the first $N$ positive odd numbers is 900. What is the value of $N$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{30}",
+    "is_static": false
+}

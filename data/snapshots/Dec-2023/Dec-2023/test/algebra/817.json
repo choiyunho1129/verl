@@ -1,0 +1,7 @@
+{
+    "problem": "There are numbers $A$ and $B$ for which  \\[\\frac A{x-100}+\\frac B{x+100}=\\frac{x+1400}{x^2-10000}\\]for every number $x\\neq\\pm1$.  Find $A-B$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

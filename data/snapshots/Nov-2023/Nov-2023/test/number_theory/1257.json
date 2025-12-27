@@ -1,0 +1,7 @@
+{
+    "problem": "Express the quotient $112053_7 \\div 45_7$ in base 7.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{1522_7}",
+    "is_static": false
+}

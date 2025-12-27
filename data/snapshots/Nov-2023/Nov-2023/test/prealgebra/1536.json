@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest multiple of 486 greater than 6707?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6804}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive multiples of $13$ are less than $128$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

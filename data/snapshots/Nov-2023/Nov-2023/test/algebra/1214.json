@@ -1,0 +1,7 @@
+{
+    "problem": "Find $k$, if ${(71^k)}^78=71^624$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

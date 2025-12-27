@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest prime factor of 123?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{41}",
+    "is_static": false
+}

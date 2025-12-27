@@ -1,0 +1,7 @@
+{
+    "problem": "What is $\\left(16200 \\cdot \\left(\\frac{9}{10}\\right)^2 \\cdot \\left(\\frac{7}{81}\\right)^2 \\cdot \\frac{10}{49}\\right)^8$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{25600000000}",
+    "is_static": false
+}

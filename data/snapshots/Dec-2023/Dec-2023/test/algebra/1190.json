@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is an integer, what is the smallest value of the expression $x^2 - 14x +63$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

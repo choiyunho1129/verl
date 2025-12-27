@@ -1,0 +1,7 @@
+{
+    "problem": "In a class of 50 students, 25 participate in MATHCOUNTS, 30 participate in science club, and 5 students participate in neither. How many students participate in both MATHCOUNTS and science club?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

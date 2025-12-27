@@ -1,0 +1,7 @@
+{
+    "problem": "The complex numbers $a$ and $b$ satisfy\n\\[a + \\overline{b} = -78 - 99i.\\]Find $\\overline{a} + b.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-78 + 99i}",
+    "is_static": false
+}

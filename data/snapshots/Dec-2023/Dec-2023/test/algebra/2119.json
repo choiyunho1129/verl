@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $f(x)$ is a polynomial that has degree $26$ and $g(x)$ is a polynomial that has degree $13$. If $h(x)$ is also a polynomial such that $f(g(x)) + g(h(x)) + h(f(x))$ is a polynomial of degree $169$, then what is the degree of the polynomial $h$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

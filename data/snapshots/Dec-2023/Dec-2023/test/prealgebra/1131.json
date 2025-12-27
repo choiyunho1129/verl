@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\sqrt{9^5}$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{243}",
+    "is_static": false
+}

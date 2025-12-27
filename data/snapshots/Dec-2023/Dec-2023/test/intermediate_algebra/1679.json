@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $z$ is a complex number such that $z^3 = 1086652+7567755i$.  Find $|z|$.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{197}",
+    "is_static": false
+}

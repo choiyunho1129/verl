@@ -1,0 +1,7 @@
+{
+    "problem": "Compute the positive integer $x$ such that\n\\[263x^3 - 85153x^2 + 65892x = 229976152.\\]",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{331}",
+    "is_static": false
+}

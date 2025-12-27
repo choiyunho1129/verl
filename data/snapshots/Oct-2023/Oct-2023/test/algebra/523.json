@@ -1,0 +1,7 @@
+{
+    "problem": "If $|847x+8|=197$ and $x<0$, what is the value of $x$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-0.24203069657615112}",
+    "is_static": false
+}

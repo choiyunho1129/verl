@@ -1,0 +1,7 @@
+{
+    "problem": "Three concentric circles are shown. The two largest circles have radii of $16$ and $20.$ If the area of the ring between the two largest circles equals the area of the smallest circle, determine the radius of the smallest circle.\n\n[asy]\nimport graph;\nfilldraw(circle((0,0),12), lightgray, black+linewidth(1));\nfilldraw(circle((0,0),10), white, black+linewidth(1));\nfilldraw(circle((0,0),6), gray, black+linewidth(1));\ndot((0,0));\n[/asy]",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

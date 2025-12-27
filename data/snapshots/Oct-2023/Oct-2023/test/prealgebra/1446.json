@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest multiple of 266 which is less than 2686?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2660}",
+    "is_static": false
+}

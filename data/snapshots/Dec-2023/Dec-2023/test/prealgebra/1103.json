@@ -1,0 +1,7 @@
+{
+    "problem": "Hadley scored 13, 52, 100, and 9 points on the first four tests of the quarter. There is one test remaining. What is the minimum number of points that Hadley must score on the final test in order to have a mean of 47 points for the five tests?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{61}",
+    "is_static": false
+}

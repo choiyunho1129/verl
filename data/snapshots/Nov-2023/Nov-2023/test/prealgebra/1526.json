@@ -1,0 +1,7 @@
+{
+    "problem": "How many multiples of 8 are greater than -72, but less than 72?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{17 \\text{ multiples}}",
+    "is_static": false
+}

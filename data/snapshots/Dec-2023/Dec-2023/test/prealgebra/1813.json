@@ -1,0 +1,7 @@
+{
+    "problem": "If $y^2= 3721$, what is the greatest possible value of $y^3$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{226981}",
+    "is_static": false
+}

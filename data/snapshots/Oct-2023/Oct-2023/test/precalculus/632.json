@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $5\\arctan 1 + \\arctan \\frac{1}{2} + \\arctan \\frac{1}{3}.$  Express your answer in radians.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{3\\pi}{2}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the units digit of the product of the first 1399 prime numbers plus 9475?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

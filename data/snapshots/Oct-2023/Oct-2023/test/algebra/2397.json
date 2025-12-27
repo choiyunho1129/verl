@@ -1,0 +1,7 @@
+{
+    "problem": "Heisenberg's Uncertainty Principle says that the product of the error in the measurement of a particle's momentum and the error in the measurement of a particle's position must be at least Planck's constant divided by $4\\pi$. Suppose the error in the measurement of the momentum of a particle is 3 times halved. By how many percent does the minimum error in the measurement of its position increase?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{500\\%}",
+    "is_static": false
+}

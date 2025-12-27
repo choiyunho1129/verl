@@ -1,0 +1,7 @@
+{
+    "problem": "A positive integer $M$ divided by six gives a remainder of five. Another positive integer $N$ divided by six gives a remainder of three. What is the remainder when the sum $M+N$ is divided by six?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

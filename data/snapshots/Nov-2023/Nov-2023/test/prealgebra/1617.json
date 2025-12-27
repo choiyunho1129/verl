@@ -1,0 +1,7 @@
+{
+    "problem": "At the candy store, a chocolate bar costs $c$ dollars and a vanilla bar costs $58$ dollars more than a chocolate bar. Jamie buys twenty-seven chocolate bars and ten vanilla bars, and Kevin buys forty chocolate bars. How much money, in total, do Jamie and Kevin spend at the candy store in terms of $c$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{77c+580}",
+    "is_static": false
+}

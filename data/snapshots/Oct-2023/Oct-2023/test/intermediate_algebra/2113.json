@@ -1,0 +1,7 @@
+{
+    "problem": "Find \\[\\left|\\left(1-2\\sqrt2i\\right)^7\\right|\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2187}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\sqrt{45}\\cdot\\sqrt{50}$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{5\\sqrt{90}}",
+    "is_static": false
+}

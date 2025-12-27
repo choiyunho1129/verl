@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers $n$ satisfy $15<n<81$ and $4n\\equiv 2\\pmod 6?$",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

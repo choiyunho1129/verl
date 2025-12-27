@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 99x-244$ and $g(x) = x+814$. What is the value of $g(f(965)-67)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{96038}",
+    "is_static": false
+}

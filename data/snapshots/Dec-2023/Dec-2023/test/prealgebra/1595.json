@@ -1,0 +1,7 @@
+{
+    "problem": "Three positive integers $a$, $b,$ and $x$ form an O'Hara triple $(a,b,x)$ if $\\sqrt{a}+\\sqrt{b}=x.$ For example, $(1,4,3)$ is an O'Hara triple because $\\sqrt{1}+\\sqrt{4}=3.$\n\nIf $(a,484,42)$ is an O'Hara triple, determine the value of $a.$",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{400}",
+    "is_static": false
+}

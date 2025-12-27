@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of \\[3x^2 - 10x + 24 = y^2 - 30y\\]is a hyperbola. Find the coordinates of its center.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\left(\\frac106,15\\right)}",
+    "is_static": false
+}

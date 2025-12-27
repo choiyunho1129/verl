@@ -1,0 +1,7 @@
+{
+    "problem": "What is the average of integers $a$, $b$ and $c$ if the average of the two numbers $a$ and $2b$ is 51 and the average of the two numbers $a$ and $2c$ is 12?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{21}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $$\n(24x-2)(6x+1)-(24x-2)6x+1\n$$ when $x=6$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{143}",
+    "is_static": false
+}

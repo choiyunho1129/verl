@@ -1,0 +1,7 @@
+{
+    "problem": "There exist constants $a$, $b$, $c$, and $d$ such that\n\\[(\\sin x)^3 = a \\sin 3x + b \\sin x\\]for all angles $x$.  Find $b$.",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{3}{4}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "A positive integer $M$ divided by seventeen gives a remainder of ten. Another positive integer $N$ divided by seventeen gives a remainder of nine. What is the remainder when the sum $M+N$ is divided by seventeen?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

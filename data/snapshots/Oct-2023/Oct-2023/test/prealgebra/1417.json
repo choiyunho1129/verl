@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\sqrt{29\\cdot1537\\cdot1537\\cdot145\\cdot185\\cdot62197}$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{338086205}",
+    "is_static": false
+}

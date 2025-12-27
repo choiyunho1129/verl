@@ -1,0 +1,7 @@
+{
+    "problem": "Two fair 2-sided dice are rolled.  What is the probability the sum rolled is 2?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\dfrac{1}{4}}",
+    "is_static": false
+}

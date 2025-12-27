@@ -1,0 +1,7 @@
+{
+    "problem": "The quadratic $4x^2+2x-28$ can be written in the form $a(x+b)^2+c$, where $a$, $b$, and $c$ are constants. What is $a+b+c$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-24}",
+    "is_static": false
+}

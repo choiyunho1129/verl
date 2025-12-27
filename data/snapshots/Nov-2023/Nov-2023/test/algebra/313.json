@@ -1,0 +1,7 @@
+{
+    "problem": "Complex numbers are often used when dealing with alternating current (AC) circuits. In the equation $V = IZ$, $V$ is voltage, $I$ is current, and $Z$ is a value known as impedance. If $V = 46+4i$ and $Z=25-90i$, find $I$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{ \\frac{790}{8725} + \\frac{4240}{8725}i }",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{371}{2}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{68635}",
+    "is_static": false
+}

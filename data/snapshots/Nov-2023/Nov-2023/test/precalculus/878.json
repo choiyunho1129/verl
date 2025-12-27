@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $6\\tan 135^\\circ$.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{-6}",
+    "is_static": false
+}

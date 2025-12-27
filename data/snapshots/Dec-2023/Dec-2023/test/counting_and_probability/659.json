@@ -1,0 +1,7 @@
+{
+    "problem": "Find the coefficient of $x^3$ in the expansion of \\[\\left(x+\\frac{1}{x}\\right)^7.\\]",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{21}",
+    "is_static": false
+}

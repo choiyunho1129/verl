@@ -1,0 +1,7 @@
+{
+    "problem": "How many ordered pairs, $(x, y)$, of positive integers satisfy the equation $xy = 486$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

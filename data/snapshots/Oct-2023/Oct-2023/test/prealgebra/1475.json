@@ -1,0 +1,7 @@
+{
+    "problem": "Each good worker can paint my new house alone in 342 hours.  Each bad worker can paint my house alone in 6156 hours.  I need my house painted in 18 hours.  If I can only find 18 good workers, how many bad workers must I also find in order to have my house painted on time?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $|z| = 13$, what is $|\\overline{z}^2|$?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{169}",
+    "is_static": false
+}

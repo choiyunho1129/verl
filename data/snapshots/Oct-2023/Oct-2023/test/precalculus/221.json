@@ -1,0 +1,7 @@
+{
+    "problem": "Find the cross product of $\\begin{pmatrix} 25 \\\\ 36 \\\\ 32 \\end{pmatrix}$ and $\\begin{pmatrix} 48 \\\\ 14 \\\\ 43 \\end{pmatrix}.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 1100 \\\\ 461 \\\\ -1378 \\end{pmatrix}}",
+    "is_static": false
+}

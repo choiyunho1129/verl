@@ -1,0 +1,7 @@
+{
+    "problem": "What integer $x$ satisfies the equation: $5^{x + 2} = 125$ ?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

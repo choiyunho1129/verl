@@ -1,0 +1,7 @@
+{
+    "problem": "Each of six hundred and seventy-six circles has a radius of 41 inches. A larger circle has an area equal to the total area of the six hundred and seventy-six smaller circles. What is the length of the radius, in inches, of the larger circle?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1066}",
+    "is_static": false
+}

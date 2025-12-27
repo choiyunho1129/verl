@@ -1,0 +1,7 @@
+{
+    "problem": "Bob can travel $m$ miles in $h$ hours on his bicycle. At this rate, how many hours would it take him to travel $97h$ miles? Express your answer in terms of $m$ and $h$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{97h^2}{m}}",
+    "is_static": false
+}

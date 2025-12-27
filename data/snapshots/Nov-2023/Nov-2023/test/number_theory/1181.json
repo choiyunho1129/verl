@@ -1,0 +1,7 @@
+{
+    "problem": "How many factors of $2^6\\cdot3^27$ are perfect squares?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{56}",
+    "is_static": false
+}

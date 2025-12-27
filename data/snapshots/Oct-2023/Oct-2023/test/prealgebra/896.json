@@ -1,0 +1,7 @@
+{
+    "problem": "There is a number $C$. The number $C$ is a multiple of 196, but is NOT a multiple of 393. The number $C$ is greater than 32505658, but less than 32506114. What is this number $C$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{32506012}",
+    "is_static": false
+}

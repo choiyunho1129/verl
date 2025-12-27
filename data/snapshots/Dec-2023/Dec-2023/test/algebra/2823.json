@@ -1,0 +1,7 @@
+{
+    "problem": "What is the slope of a line perpendicular to the line whose equation is $\\frac{x}{45}-\\frac{y}{87}=1$? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-\\frac{15}{29}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Expand $(x+66)^2$",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{x^2 + 132x + 4356}",
+    "is_static": false
+}

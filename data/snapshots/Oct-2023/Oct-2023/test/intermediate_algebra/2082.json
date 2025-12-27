@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $3x^3 - 9x^2 + 6x$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{3x(x-1)(x-2)}",
+    "is_static": false
+}

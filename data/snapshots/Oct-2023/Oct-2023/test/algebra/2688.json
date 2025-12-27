@@ -1,0 +1,7 @@
+{
+    "problem": "Expand $(x+26)^2$",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{x^2 + 52x + 676}",
+    "is_static": false
+}

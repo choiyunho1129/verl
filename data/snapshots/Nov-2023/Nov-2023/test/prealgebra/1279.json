@@ -1,0 +1,7 @@
+{
+    "problem": "Square tiles measuring 7 inches on each side will be used to tile a 7-foot by 7-foot area. How many of these tiles are needed?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{144}",
+    "is_static": false
+}

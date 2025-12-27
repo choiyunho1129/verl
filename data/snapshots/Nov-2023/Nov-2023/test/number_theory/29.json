@@ -1,0 +1,7 @@
+{
+    "problem": "What is the last digit of the base $4$ representation of the base ten integer $246$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

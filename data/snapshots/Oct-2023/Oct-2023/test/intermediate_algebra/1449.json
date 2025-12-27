@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $512^a = 1566005248351$, $1566005248351^b = 2152616484320$, $2152616484320^c = 3636617316629$, and $3636617316629^d = 4398046511104$. What is $a \\cdot b \\cdot c \\cdot d$?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{14}{3}}",
+    "is_static": false
+}

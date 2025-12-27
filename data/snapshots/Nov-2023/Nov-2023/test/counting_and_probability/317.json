@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{4}{2}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

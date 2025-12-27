@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{16}{11}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{4368}",
+    "is_static": false
+}

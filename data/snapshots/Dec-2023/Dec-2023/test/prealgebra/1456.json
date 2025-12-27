@@ -1,0 +1,7 @@
+{
+    "problem": "Ed takes five 100-point tests in his algebra class. He scores 79, 76 and 78 points on the first three tests. If the scores of his last two tests differ by six points and he has a $81\\%$ average on his five tests, what was his highest test score?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{89}",
+    "is_static": false
+}

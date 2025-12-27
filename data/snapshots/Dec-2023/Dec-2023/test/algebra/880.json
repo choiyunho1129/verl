@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of $y=ax^2+bx+c$ passes through points $(0,51)$, $(1,54)$, and $(2,73)$. Find $a+b+c$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{54}",
+    "is_static": false
+}

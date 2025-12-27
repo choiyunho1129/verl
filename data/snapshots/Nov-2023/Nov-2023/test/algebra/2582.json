@@ -1,0 +1,7 @@
+{
+    "problem": "Expand $(-10q-8)(5r+1)$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-50qr - 10q - 40r -8}",
+    "is_static": false
+}

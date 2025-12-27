@@ -1,0 +1,7 @@
+{
+    "problem": "Find all values of $x$ that satisfy the equation $x = \\!\\sqrt{26-2x} + 9$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{x=11}",
+    "is_static": false
+}

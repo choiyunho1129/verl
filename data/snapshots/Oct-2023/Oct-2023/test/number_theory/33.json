@@ -1,0 +1,7 @@
+{
+    "problem": "Find an integer $n$ such that $0\\leq n<751$ and $n$ is a multiplicative inverse to 16 modulo 751.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{47}",
+    "is_static": false
+}

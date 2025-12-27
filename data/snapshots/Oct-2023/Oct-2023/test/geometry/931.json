@@ -1,0 +1,7 @@
+{
+    "problem": "The perimeter of a sector of a circle is the sum of the two sides formed by the radii and the length of the included arc. A sector of a particular circle has a perimeter of 304 cm and an area of 5776 sq cm. What is the length of the arc of this sector?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{152}",
+    "is_static": false
+}

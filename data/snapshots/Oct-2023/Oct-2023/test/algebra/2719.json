@@ -1,0 +1,7 @@
+{
+    "problem": "Let the roots of the polynomial $x^2 + 93x - 19$ be $\\alpha$ and $\\beta.$ Evaluate $\\alpha^2 + \\beta^2.$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{8687}",
+    "is_static": false
+}

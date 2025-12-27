@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all values of $x$ for which $|x-6| + |6-x| -1 = 57$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

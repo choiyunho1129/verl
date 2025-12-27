@@ -1,0 +1,7 @@
+{
+    "problem": "If we flip 15 coins, what is the probability of getting at least 4 heads?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{32192}{32768}}",
+    "is_static": false
+}

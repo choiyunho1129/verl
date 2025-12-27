@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\displaystyle\\frac{x}{y} = 16$, $\\displaystyle\\frac{y}{z} = 16$, and $\\displaystyle \\frac{z}{w} = \\frac{3}{8}$, then what is $\\displaystyle\\frac{w}{x}$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{96}}",
+    "is_static": false
+}

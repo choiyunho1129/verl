@@ -1,0 +1,7 @@
+{
+    "problem": "A line parallel to $y = 39x + 53$ passes through $(-50, 44)$. What is the $y$-coordinate of the point where this line crosses the $y$-axis?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{1994}",
+    "is_static": false
+}

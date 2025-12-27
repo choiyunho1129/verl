@@ -1,0 +1,7 @@
+{
+    "problem": "If $9 + m + n - 7 = 10$ and $m = 1n$, then what is the value of $n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

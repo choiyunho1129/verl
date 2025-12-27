@@ -1,0 +1,7 @@
+{
+    "problem": "Find the point of intersection of the line\n\\[\\frac{x - 888}{596} = \\frac{y + 253}{180} = \\frac{z - 755}{758}\\]and $x - y + z = 1896.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{(888,-253,755)}",
+    "is_static": false
+}

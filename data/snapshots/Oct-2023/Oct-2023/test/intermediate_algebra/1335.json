@@ -1,0 +1,7 @@
+{
+    "problem": "If the number \\[\\frac{1}{2} \\left(\\frac{2697}{\\sqrt[3]{1783} + \\sqrt[3]{914}} + \\frac{869}{\\sqrt[3]{1783} -\\sqrt[3]{914}}\\right)\\]can be expressed in the form $\\sqrt[3]{a} + \\sqrt[3]{b},$ where $a$ and $b$ are integers, compute $a+b.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{4014485}",
+    "is_static": false
+}

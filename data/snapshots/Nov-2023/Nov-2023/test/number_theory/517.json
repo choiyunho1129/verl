@@ -1,0 +1,7 @@
+{
+    "problem": "Find the modulo 8 residue of $433 \\cdot 434 \\cdot 435 \\cdot 436 \\cdot 437 \\cdot 438$.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

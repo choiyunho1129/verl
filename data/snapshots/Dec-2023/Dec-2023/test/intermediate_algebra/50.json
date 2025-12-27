@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d$ be positive real numbers such that $a + b + c + d = 1.$  Find the minimum value of\n\\[\\frac{4562a}{b + c + d} + \\frac{4562b}{a + c + d} + \\frac{4562c}{a + b + d} + \\frac{4562d}{a + b + c}.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{18248}{3}}",
+    "is_static": false
+}

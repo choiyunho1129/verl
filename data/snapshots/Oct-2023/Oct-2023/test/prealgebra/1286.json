@@ -1,0 +1,7 @@
+{
+    "problem": "How many multiples of $29$ are greater than $-985$ and less than $985$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{67}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Convert $\\frac{2613}{3200}$ to a terminating decimal.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{.8165625}",
+    "is_static": false
+}

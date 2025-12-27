@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil\\left(\\frac{28}{25}\\right)^2\\right\\rceil^2$",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

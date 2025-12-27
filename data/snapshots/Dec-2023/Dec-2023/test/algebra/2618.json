@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\displaystyle\\frac{91t^{13}}{98t^7}\\cdot \\frac{23t^{13}}{51t^{19}}$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{299t^0}{714}}",
+    "is_static": false
+}

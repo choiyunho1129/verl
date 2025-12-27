@@ -1,0 +1,7 @@
+{
+    "problem": "For $y=\\frac{32x-79}{45x-2835}$ and $x\\neq 63$, what is the value of $y$ that is not attainable? Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{32}{45}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can 4 students be selected from a group of 82 students to serve on a chalkboard-cleaning team?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{1749060}",
+    "is_static": false
+}

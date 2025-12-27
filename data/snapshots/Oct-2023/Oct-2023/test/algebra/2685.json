@@ -1,0 +1,7 @@
+{
+    "problem": "Which of the following points is farthest from the origin: $(-9,-20)$, $(-3,-17)$, $(-5,-15)$, $(-18,0)?$",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{(-9,-20)}",
+    "is_static": false
+}

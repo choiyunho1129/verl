@@ -1,0 +1,7 @@
+{
+    "problem": "Find the integer $n,$ $0 \\le n \\le 180,$ such that $\\cos n^\\circ = \\cos 31572^\\circ.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{108}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $\\sin D = 0.833$ in the diagram below. What is $DE$? [asy]\npair D,E,F;\nF = (0,0);\nD = (sqrt(306111),833);\nE = (0,833);\ndraw(D--E--F--D);\ndraw(rightanglemark(D,E,F,15));\nlabel(\"$D$\",D,NE);\nlabel(\"$E$\",E,NW);\nlabel(\"$F$\",F,SW);\nlabel(\"$833$\",(E+F)/2,W);\n[/asy]",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\sqrt{306111}}",
+    "is_static": false
+}

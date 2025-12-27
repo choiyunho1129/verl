@@ -1,0 +1,7 @@
+{
+    "problem": "What value of $x$ will give the minimum value for $x^2- 14x + 32$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

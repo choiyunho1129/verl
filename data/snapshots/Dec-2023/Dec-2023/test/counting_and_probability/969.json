@@ -1,0 +1,7 @@
+{
+    "problem": "Two real numbers are chosen at random between $0$ and $8.$ What is the probability that the sum of their squares is no more than $1?$ Express your answer as a common fraction in terms of $\\pi$.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{\\pi}{256}}",
+    "is_static": false
+}

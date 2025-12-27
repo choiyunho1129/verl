@@ -1,0 +1,7 @@
+{
+    "problem": "The ratio of $x$ to $y$ is $8$ to $64$. What is the value of $x$ if $y=17x-108$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

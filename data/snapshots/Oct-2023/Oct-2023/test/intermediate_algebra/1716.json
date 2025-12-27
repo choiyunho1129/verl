@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c$ be positive real numbers.  Find the minimum value of\n\\[\\frac{(81a + 4b)(16a + 36c)(9b + 9c)}{abc}.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{31104}",
+    "is_static": false
+}

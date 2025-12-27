@@ -1,0 +1,7 @@
+{
+    "problem": "If $x = 21$ and $y = 9$, then what is the value of $\\frac{9x^3-21y^2}{189}$ ?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{432}",
+    "is_static": false
+}

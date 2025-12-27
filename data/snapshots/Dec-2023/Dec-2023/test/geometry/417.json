@@ -1,0 +1,7 @@
+{
+    "problem": "What is the area, in square units, of the square with the four vertices at $(-11, 11), (11, -11), (-11, -33)$, and $(-33, -11)$?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{968}",
+    "is_static": false
+}

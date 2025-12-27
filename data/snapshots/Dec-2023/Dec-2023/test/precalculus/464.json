@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $FGH$ with $\\angle H = 90^\\circ$, we have $FG = 281$ and $HG = 231$.  Find $\\sin G$.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{160}{281}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "For $x > 0$, the area of the triangle with vertices $(0, 0), (x, 0)$ and $(x, 11)$ is 330 square units. What is the value of $x$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{60}",
+    "is_static": false
+}

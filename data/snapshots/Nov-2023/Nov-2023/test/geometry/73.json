@@ -1,0 +1,7 @@
+{
+    "problem": "A cylindrical beaker is 978 cm high and has a radius of 1194138 cm. How many such beakers of water will it take to fill a spherical tank of radius 2388276 cm?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{13024}",
+    "is_static": false
+}

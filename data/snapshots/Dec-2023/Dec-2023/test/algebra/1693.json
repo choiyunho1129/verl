@@ -1,0 +1,7 @@
+{
+    "problem": "For specific positive numbers $m$ and $n$, the quadratics $4x^2+60x+5$ and $(mx+n)^2$ differ only in their constant term. What is $mn$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{30}",
+    "is_static": false
+}

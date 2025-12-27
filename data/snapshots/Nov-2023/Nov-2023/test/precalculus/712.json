@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\det \\mathbf{A} = 444,$ then find $\\det (\\mathbf{244A}).$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{26433984}",
+    "is_static": false
+}

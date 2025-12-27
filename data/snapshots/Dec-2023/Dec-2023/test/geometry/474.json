@@ -1,0 +1,7 @@
+{
+    "problem": "An ice cream cone consists of a sphere of vanilla ice cream and a right circular cone that  has \\frac{1}{9} times diameter as the sphere. If the ice cream  melts, it will exactly fill the cone.  Assume that the melted ice cream occupies $75\\%$ of the volume of the frozen ice cream. What is the ratio of the cone's height to its radius? (Note: A cone with radius $r$ and height $h$ has volume $\\pi r^2 h/3$, and a sphere with radius $r$ has volume $4\\pi r^3/3$.)",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{243:1}",
+    "is_static": false
+}

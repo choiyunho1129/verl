@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when $1 + 2 + 3 + 4 + \\dots + 233 + 234$ is divided by 103?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{97}",
+    "is_static": false
+}

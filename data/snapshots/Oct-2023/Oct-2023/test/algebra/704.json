@@ -1,0 +1,7 @@
+{
+    "problem": "The graphs of $y = x^2 - 88x + 1894$ and the line $y = -33$ intersect at two points. What is the sum of the $x$-coordinates of these two points?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{88}",
+    "is_static": false
+}

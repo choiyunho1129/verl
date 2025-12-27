@@ -1,0 +1,7 @@
+{
+    "problem": "The parametric curve $(x,y) = (t^2 + t, 2t - 803),$ for real numbers $t,$ describes a parabola.  Find the vertex of the parabola.",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\left( -\\frac{1}{4}, -804 \\right)}",
+    "is_static": false
+}

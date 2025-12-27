@@ -16,6 +16,7 @@ Utilities to check if packages are available.
 We assume package availability won't change during runtime.
 """
 
+import hashlib
 import importlib
 import importlib.util
 import os
@@ -114,8 +115,25 @@ def load_module(module_path: str, module_name: Optional[str] = None) -> object:
         if not os.path.exists(module_path):
             raise FileNotFoundError(f"Custom module file not found: {module_path=}")
 
-        # Use the provided module_name for the spec, or derive a unique name to avoid collisions.
-        spec_name = module_name or f"custom_module_{hash(os.path.abspath(module_path))}"
+        abspath = os.path.abspath(module_path)
+        # Use a deterministic hash (not Python's randomized hash) so child processes can re-import.
+        path_digest = hashlib.sha1(abspath.encode()).hexdigest()
+        base_spec_name = module_name or f"custom_module_{path_digest}"
+
+        # If a module with this name is already loaded, reuse it when it comes from the same file.
+        import sys
+
+        existing = sys.modules.get(base_spec_name)
+        if existing is not None:
+            existing_file = getattr(existing, "__file__", None)
+            if existing_file and os.path.abspath(existing_file) == abspath:
+                if module_name and module_name not in sys.modules:
+                    sys.modules[module_name] = existing
+                return existing
+            # Name collision from another file: disambiguate with an alternate suffix.
+            base_spec_name = f"{base_spec_name}_alt"
+
+        spec_name = base_spec_name
         spec = importlib.util.spec_from_file_location(spec_name, module_path)
         if spec is None or spec.loader is None:
             raise ImportError(f"Could not load module from {module_path=}")
@@ -126,10 +144,17 @@ def load_module(module_path: str, module_name: Optional[str] = None) -> object:
         except Exception as e:
             raise RuntimeError(f"Error loading module from {module_path=}") from e
 
-        if module_name is not None:
-            import sys
+        # Register the loaded module so multiprocessing pickling can re-import it.
+        # Without this, objects defined here get a synthetic name like
+        # "custom_module_<hash>" that isn't importable in child processes.
+        if spec_name in sys.modules and sys.modules[spec_name] is not module:
+            raise RuntimeError(
+                f"Module name '{spec_name}' already in `sys.modules` and points to a different module."
+            )
+        sys.modules[spec_name] = module
 
-            # Avoid overwriting an existing module with a different object.
+        # If caller requested an explicit module_name, also register that alias.
+        if module_name is not None and module_name != spec_name:
             if module_name in sys.modules and sys.modules[module_name] is not module:
                 raise RuntimeError(
                     f"Module name '{module_name}' already in `sys.modules` and points to a different module."

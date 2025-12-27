@@ -1,0 +1,7 @@
+{
+    "problem": "One ticket to a show costs $\\$35$ at full price. Susan buys $2$ tickets using a coupon that gives her a $32\\%$ discount. Pam buys $2$ tickets using a coupon that gives her a $38\\%$ discount. How many more dollars does Pam pay than Susan?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-4.2}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If the sum of the squares of nonnegative real numbers $a,b,$ and $c$ is $134$, and $ab + bc + ca = 95$, then what is the sum of $a,b,$ and $c$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

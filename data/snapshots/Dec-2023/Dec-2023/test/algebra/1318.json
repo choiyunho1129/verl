@@ -1,0 +1,7 @@
+{
+    "problem": "For two real values of $n$, the equation $2x^2+nx+200=0$ has exactly one solution in $x$. What is the positive value of $n$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{40}",
+    "is_static": false
+}

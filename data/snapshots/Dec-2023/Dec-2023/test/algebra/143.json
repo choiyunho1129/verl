@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x) = x + 5036$ and $g(x) = x^2 + 1309$, what is the value of $f(g(8287))$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{68680714}",
+    "is_static": false
+}

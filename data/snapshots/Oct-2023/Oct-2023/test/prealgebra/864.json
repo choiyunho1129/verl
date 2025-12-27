@@ -1,0 +1,7 @@
+{
+    "problem": "The least common multiple of two integers is 392, and the greatest common divisor is 56. Given that one of the integers is 56, what is the other integer?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{392}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $173ab = 101032$, evaluate $314a^2b^2$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{107091584}",
+    "is_static": false
+}

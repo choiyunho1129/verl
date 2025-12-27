@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers between 200 and 600 have at least two 3s as digits?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

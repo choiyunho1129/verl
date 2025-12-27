@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the expression $$\\sqrt{\\dfrac{\\dfrac4{\\sqrt{792}}+\\dfrac{\\sqrt{186375031920000}}{9801}+\\sqrt{198}}{\\sqrt198}}.$$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

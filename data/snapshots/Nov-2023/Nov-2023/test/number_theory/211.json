@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers $n$ satisfy $28<n<126$ and $4n\\equiv 2\\pmod 6?$",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{33}",
+    "is_static": false
+}

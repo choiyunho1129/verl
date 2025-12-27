@@ -1,0 +1,7 @@
+{
+    "problem": "A square piece of paper is folded in half to form a rectangle. If the resulting rectangle has a perimeter of 66 inches, what is the area of the original square, in square inches?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{484}",
+    "is_static": false
+}

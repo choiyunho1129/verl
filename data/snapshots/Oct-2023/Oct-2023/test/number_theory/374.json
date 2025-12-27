@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $(b_a)^2=21_a$, where $a$ and $b$ represent two distinct digits. If $b=a-1$, find $a$.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

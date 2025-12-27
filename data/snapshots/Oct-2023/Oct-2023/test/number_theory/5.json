@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest integer greater than 28 that is both a perfect square and a perfect cube, multiplied by 581?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{37184}",
+    "is_static": false
+}

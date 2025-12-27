@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of the rational function $\\frac{q(x)}{x^{99}-4x^{54}+3x^{53}+x^{39}-1} $ has a horizontal asymptote. What is the largest possible degree of $q(x)$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{99}",
+    "is_static": false
+}

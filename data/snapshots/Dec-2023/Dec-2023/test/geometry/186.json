@@ -1,0 +1,7 @@
+{
+    "problem": "The point at $(a, b)$ on a Cartesian plane is reflected over the  $y$-axis to the point at $(j, k)$. If $a + j = 0$ and $b + k = 8$, what is the value of $b$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{b=4}",
+    "is_static": false
+}

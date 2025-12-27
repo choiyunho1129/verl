@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{286}{2}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{40755}",
+    "is_static": false
+}

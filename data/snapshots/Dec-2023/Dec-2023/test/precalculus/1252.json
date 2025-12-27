@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\omega$ be a complex number such that $\\omega^3 = 1.$  Find all possible values of\n\\[\\frac{34}{1 + \\omega} + \\frac{34}{1 + \\omega^2}.\\]Enter all the possible values, separated by commas.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{34}",
+    "is_static": false
+}

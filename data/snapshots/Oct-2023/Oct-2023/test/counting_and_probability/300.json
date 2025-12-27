@@ -1,0 +1,7 @@
+{
+    "problem": "How many distinct arrangements are there of EHCZEUYTRNLUKVSFDGBOI?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{12772735542927360000}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Right $\\Delta ABC$ has legs measuring 821 cm and 1974 cm. The triangle is rotated about one of its legs. What is the number of cubic centimeters in the maximum possible volume of the resulting solid? Express your answer in terms of $\\pi$.",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{1066390332\\pi}",
+    "is_static": false
+}

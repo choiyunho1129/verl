@@ -1,0 +1,7 @@
+{
+    "problem": "Find the matrix that corresponds to projecting onto the vector $\\begin{pmatrix} 47 \\\\ 57 \\end{pmatrix}.$",
+    "level": "Level 5",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 2209/5458 & 2679/5458 \\\\ 2679/5458 & 3249/5458 \\end{pmatrix}}",
+    "is_static": false
+}

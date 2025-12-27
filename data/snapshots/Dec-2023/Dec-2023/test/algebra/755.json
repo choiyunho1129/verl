@@ -1,0 +1,7 @@
+{
+    "problem": "A map of the town that Annie and Barbara live in can be represented by the Cartesian plane. Annie is located at $(-6,4)$ and Barbara says she is located at $(-5,-5)$. They agree to meet the midpoint of their current locations. However, it turns out that Barbara read the map wrong, and she is actually at $(-9,0)$. What is the positive difference in the $x$-coordinates of where they agreed to meet and where they should actually meet?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

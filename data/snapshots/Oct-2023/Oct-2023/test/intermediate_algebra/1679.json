@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $z$ is a complex number such that $z^3 = 16820+17661i$.  Find $|z|$.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

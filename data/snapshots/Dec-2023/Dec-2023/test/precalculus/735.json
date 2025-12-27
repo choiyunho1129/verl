@@ -1,0 +1,7 @@
+{
+    "problem": "A point has rectangular coordinates $(-1492, 1192, -358)$ and spherical coordinates $(\\rho, \\theta, \\phi).$  Find $\\tan \\theta.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{-\\frac{298}{373}}",
+    "is_static": false
+}

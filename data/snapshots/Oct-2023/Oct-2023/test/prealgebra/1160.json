@@ -1,0 +1,7 @@
+{
+    "problem": "Roslyn has sixty-five boxes. Thirty-nine of the boxes contain pencils, thirty-three of the boxes contain pens, and five of the boxes contain neither pens nor pencils. How many boxes contain both pens and pencils?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

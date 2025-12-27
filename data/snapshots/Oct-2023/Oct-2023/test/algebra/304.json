@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $33^2$ in your head.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{1089}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the area, in square units, of a square whose sides are the same length as the radius of a circle with a circumference of $4\\pi$ units?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

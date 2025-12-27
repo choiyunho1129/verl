@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers from $-100$ to $100$ are congruent to $1 \\pmod{19}?$",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{11 \\text{ integers}}",
+    "is_static": false
+}

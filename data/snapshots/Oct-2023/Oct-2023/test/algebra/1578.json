@@ -1,0 +1,7 @@
+{
+    "problem": "The average of Amy's, Ben's, and Chris's ages is 19. Twenty-Five years ago,  Chris was the same age as Amy is now. In twenty-five years, Ben's age will be $\\frac{35}{36}$ of Amy's age at that time. How many years old is Chris now?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{36}",
+    "is_static": false
+}

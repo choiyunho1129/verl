@@ -1,0 +1,7 @@
+{
+    "problem": "If $a = 17$, $b = 2$ and $c = 8$, what is the numerical value of the expression $(b-c)^2 + a(b+c)$ ?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{206}",
+    "is_static": false
+}

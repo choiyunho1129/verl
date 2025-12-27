@@ -1,0 +1,7 @@
+{
+    "problem": "When counting from $3$ to $108$, $92$ is the $90^\\mathrm{st}$ number counted. When counting backwards from $108$ to $3$, $92$ is the $n^\\mathrm{th}$ number counted. What is $n$?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{17}",
+    "is_static": false
+}

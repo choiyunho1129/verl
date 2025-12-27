@@ -1,0 +1,7 @@
+{
+    "problem": "If $456299 = 4.56299 \\times 10^{\\square}$, then what is the value that should go in the $\\square$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

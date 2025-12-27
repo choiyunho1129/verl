@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(19x+35)-(3x+43)$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{16x-8}",
+    "is_static": false
+}

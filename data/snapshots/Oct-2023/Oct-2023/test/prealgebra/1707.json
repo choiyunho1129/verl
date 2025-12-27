@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $405+286-508\\times 605\\div (335+465).$",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{306.825}",
+    "is_static": false
+}

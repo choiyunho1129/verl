@@ -1,0 +1,7 @@
+{
+    "problem": "There are real numbers $A$ and $B$ such that\n\\[\\frac{9x-1}{x^2-21x+38}=\\frac{A}{x-2}+\\frac{B}{x-19}.\\]Find $A+B$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

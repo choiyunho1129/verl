@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive integers less than 753 and divisible by 10 are also divisible by 13?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

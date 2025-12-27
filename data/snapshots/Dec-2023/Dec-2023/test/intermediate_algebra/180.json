@@ -1,0 +1,7 @@
+{
+    "problem": "If the function $f$ defined by\n\\[f(x) = \\frac{cx}{298x + 126},\\]where $c$ is a constant and $x \\neq -\\frac{126}{298},$ satisfies $f(f(x)) = x$ for all $x \\neq -\\frac{126}{298},$ then find $c.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-126}",
+    "is_static": false
+}

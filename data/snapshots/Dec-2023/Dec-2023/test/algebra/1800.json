@@ -1,0 +1,7 @@
+{
+    "problem": "If a drip of water is equivalent to $\\frac{1}{12}$ of a milliliter, how many drips are in a liter of water? Note: 1 liter = 1000 milliliters.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{12000}",
+    "is_static": false
+}

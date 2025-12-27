@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least common multiple of $6$, $18$, and $28$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{252}",
+    "is_static": false
+}

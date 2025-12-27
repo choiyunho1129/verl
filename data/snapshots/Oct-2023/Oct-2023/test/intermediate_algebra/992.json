@@ -1,0 +1,7 @@
+{
+    "problem": "What is the equation of the oblique asymptote of the graph of $\\frac{643250x^2+1605x-398157}{775x-774}$?\n\nEnter your answer in the form $y = mx + b.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{y = 830x+831}",
+    "is_static": false
+}

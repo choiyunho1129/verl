@@ -1,0 +1,7 @@
+{
+    "problem": "A line parallel to $3x-16y = 24$ passes through the point $(64,18)$ and $(0,K)$. What is the value of K?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

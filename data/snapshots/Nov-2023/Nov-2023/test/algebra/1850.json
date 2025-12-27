@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $p$ and $q$ are inversely proportional. If $p=120776$ when $q=222908$, find the value of $p$ when $q=408106$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{65968}",
+    "is_static": false
+}

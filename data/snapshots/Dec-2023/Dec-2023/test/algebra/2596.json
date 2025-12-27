@@ -1,0 +1,7 @@
+{
+    "problem": "Find all values of $x$ such that $\\displaystyle\\frac{64}{x-1} + \\frac{64x}{x - 1} = 68$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{33}",
+    "is_static": false
+}

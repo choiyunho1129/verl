@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\log_{\\sqrt[13]{15}}11390625$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{x=78}",
+    "is_static": false
+}

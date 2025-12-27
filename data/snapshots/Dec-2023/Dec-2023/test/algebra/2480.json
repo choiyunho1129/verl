@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $\\dfrac{2^{18}-2^6}{2^5-2^4}$. Express your answer in simplest form.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{16380}",
+    "is_static": false
+}

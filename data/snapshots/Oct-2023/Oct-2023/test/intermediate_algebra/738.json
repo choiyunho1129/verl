@@ -1,0 +1,7 @@
+{
+    "problem": "Find $w$ if $|24-16i+w|=0$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-24+16i}",
+    "is_static": false
+}

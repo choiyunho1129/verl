@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\sqrt[3]{1296}\\times \\sqrt[3]{2000}\\times \\sqrt[3]{10125}\\times \\sqrt[3]{750}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{27000}",
+    "is_static": false
+}

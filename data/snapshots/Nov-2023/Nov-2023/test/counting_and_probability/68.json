@@ -1,0 +1,7 @@
+{
+    "problem": "I want to read 29 books over the next month.  My bookshelf has 45 different books.  In how many ways can I choose which books to read over the next month, without regard to the order that I read them?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{646626422970}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many edges does seven octagonal prism have?",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{168}",
+    "is_static": false
+}

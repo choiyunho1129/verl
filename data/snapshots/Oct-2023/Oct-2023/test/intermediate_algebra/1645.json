@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c$ be positive real numbers such that $a + b + c = 49abc.$  Find the maximum value of\n\\[\\frac{31 \\sqrt{a} + 108 \\sqrt{b} + 12 \\sqrt{c}}{\\sqrt{abc}}.\\]",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{791}",
+    "is_static": false
+}

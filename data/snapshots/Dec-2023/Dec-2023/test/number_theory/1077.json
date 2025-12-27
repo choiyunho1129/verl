@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the base-3 geometric series $0.1_3-0.01_3+0.001_3-0.0001_3+0.00001_3\\ldots$; give your answer as a fraction in which the numerator and denominator are both expressed in base 10.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac{1}{4}}",
+    "is_static": false
+}

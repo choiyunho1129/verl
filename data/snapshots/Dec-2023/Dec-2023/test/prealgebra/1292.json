@@ -1,0 +1,7 @@
+{
+    "problem": "How many distinct diagonals of a convex 821-gon can be drawn?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{335789}",
+    "is_static": false
+}

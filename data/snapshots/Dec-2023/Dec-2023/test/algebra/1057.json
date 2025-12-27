@@ -1,0 +1,7 @@
+{
+    "problem": "If $(6x+22)(x-4)=30$, find the sum of the possible values of $x$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{.33}",
+    "is_static": false
+}

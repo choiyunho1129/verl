@@ -1,0 +1,7 @@
+{
+    "problem": "Eighty-one pencils and a jumbo eraser cost $\\$5832.7$. Sixty-six pencils and a jumbo eraser cost $\\$4770.7$. No prices include tax. In cents, what is the cost of a pencil?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{7080}",
+    "is_static": false
+}

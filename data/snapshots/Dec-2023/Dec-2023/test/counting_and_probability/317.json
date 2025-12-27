@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{90}{66}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{4399019937598588626825}",
+    "is_static": false
+}

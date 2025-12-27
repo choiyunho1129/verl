@@ -1,0 +1,7 @@
+{
+    "problem": "How many ways are there to arrange 17 people around a circular table with 18 seats?  (Two seatings are considered the same if one is a rotation of the other.)",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{355687428096000}",
+    "is_static": false
+}

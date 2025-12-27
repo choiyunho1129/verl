@@ -1,0 +1,7 @@
+{
+    "problem": "Find the remainder when $x^3-26x^2-676x+17584$ is divided by $x-26$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\displaystyle \\left(\\frac{17}{3}\\right)^x=\\frac{289}{9}$, what must $x$ be?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "A bin has 4 white balls and $k$ black balls in it, where $k$ is an unknown positive integer.  A ball is drawn at random from the bin.  If a white ball is drawn, the player wins 1 dollar, but if a black ball is drawn, the player loses 1 dollar.  If the expected $\\textit{loss}$ for playing the game is 50 cents, then what is $k$?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{k = 12}",
+    "is_static": false
+}

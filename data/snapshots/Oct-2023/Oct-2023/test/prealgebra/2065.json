@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $\\sqrt{54 \\cdot 108 \\cdot 72}$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{648}",
+    "is_static": false
+}

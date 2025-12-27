@@ -1,0 +1,7 @@
+{
+    "problem": "If $32x - 80 = 8$, what is the value of $32x + 80$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{168}",
+    "is_static": false
+}

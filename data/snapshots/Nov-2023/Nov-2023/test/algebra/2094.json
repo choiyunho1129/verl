@@ -1,0 +1,7 @@
+{
+    "problem": "In a round-robin tournament with $n$ teams, the number of games that must be played is $(n^2-n)/2$. How many teams are in a round-robin tournament in which 5253 games are played?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{103}",
+    "is_static": false
+}

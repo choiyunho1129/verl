@@ -1,0 +1,7 @@
+{
+    "problem": "A positive integer $X$ is 2 more than a multiple of 3. Its units digit is the same as the units digit of a number that is 1 more than a multiple of 5. What is the smallest possible value of $X$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

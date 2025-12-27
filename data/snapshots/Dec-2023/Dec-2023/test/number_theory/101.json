@@ -1,0 +1,7 @@
+{
+    "problem": "Find the modulo 6 residue of $80 \\cdot 57$.",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

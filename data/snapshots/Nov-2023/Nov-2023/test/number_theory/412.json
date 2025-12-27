@@ -1,0 +1,7 @@
+{
+    "problem": "If $x \\equiv 8 \\pmod{41}$ and $y \\equiv 15 \\pmod{41}$, then find the remainder when $(x + 7)^6 (y + 9)^5$ is divided by 41.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

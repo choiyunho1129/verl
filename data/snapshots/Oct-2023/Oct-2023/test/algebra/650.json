@@ -1,0 +1,7 @@
+{
+    "problem": "If $(2^x-2)(5\\cdot2^x+10)=3\\cdot4^x+562949953421292$, what is $x$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{24}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $|\\sqrt{192}+8i|$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

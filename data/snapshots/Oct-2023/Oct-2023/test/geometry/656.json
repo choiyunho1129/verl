@@ -1,0 +1,7 @@
+{
+    "problem": "In the triangle, $\\angle A=\\angle B$. What is $x$? [asy]\n\ndraw((.5,0)--(3,2)--(0,1)--cycle);\n\nlabel(\"$A$\",(.5,0),S);\n\nlabel(\"$B$\",(0,1),W);\n\nlabel(\"$C$\",(3,2),NE);\n\nlabel(\"$913x-62834$\",(1.75,1),SE);\n\nlabel(\"$55x+9238$\",(1.5,1.5),NNW);\n\nlabel(\"$x+4$\",(.25,.5),WSW);\n\n[/asy]",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{84}",
+    "is_static": false
+}

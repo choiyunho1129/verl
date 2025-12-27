@@ -1,0 +1,7 @@
+{
+    "problem": "A triangle with sides measuring 5, 12 and 13 units is inscribed in a circle. What is the radius of the circle, in units? Express your answer as a decimal to the nearest tenth.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{6.5}",
+    "is_static": false
+}

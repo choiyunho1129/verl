@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\log_{x-1}(290-2x)=2$, find $x$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{17}",
+    "is_static": false
+}

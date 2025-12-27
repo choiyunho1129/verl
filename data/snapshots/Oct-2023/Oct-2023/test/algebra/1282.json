@@ -1,0 +1,7 @@
+{
+    "problem": "For how many real values of $x$ is $\\sqrt{370-\\sqrt{x}}$ an integer?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

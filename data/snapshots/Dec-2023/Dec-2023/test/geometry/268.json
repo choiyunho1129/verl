@@ -1,0 +1,7 @@
+{
+    "problem": "Let $v$, $w$, $x$, $y$, and $z$ be the degree measures of the five angles of a pentagon.  Suppose $v<w<x<y<z$ and $v$, $w$, $x$, $y$, and $z$ form an arithmetic sequence. Find the value of 95 times $x$.",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{10260}",
+    "is_static": false
+}

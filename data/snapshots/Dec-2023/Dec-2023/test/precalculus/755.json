@@ -1,0 +1,7 @@
+{
+    "problem": "Find the matrix that corresponds to projecting onto the vector $\\begin{pmatrix} 21 \\\\ 83 \\end{pmatrix}.$",
+    "level": "Level 5",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 441/7330 & 1743/7330 \\\\ 1743/7330 & 6889/7330 \\end{pmatrix}}",
+    "is_static": false
+}

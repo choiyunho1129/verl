@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive divisors do 2545, 4845, and 520 have in common?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

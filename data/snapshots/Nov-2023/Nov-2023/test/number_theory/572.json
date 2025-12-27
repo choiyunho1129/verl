@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive whole-number divisors does 157351936 have?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{85}",
+    "is_static": false
+}

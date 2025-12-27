@@ -1,0 +1,7 @@
+{
+    "problem": "Find the positive solution to\n\\[\\frac 1{x^2-24x--80}+\\frac1{x^2-24x-410}-\\frac 2{x^2-24x-508}=0.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{34}",
+    "is_static": false
+}

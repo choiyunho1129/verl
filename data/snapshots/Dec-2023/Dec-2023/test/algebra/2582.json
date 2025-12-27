@@ -1,0 +1,7 @@
+{
+    "problem": "Expand $(-7q-7)(-1r+9)$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{7qr - 63q + 7r -63}",
+    "is_static": false
+}

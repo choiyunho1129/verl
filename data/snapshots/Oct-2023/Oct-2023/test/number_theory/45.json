@@ -1,0 +1,7 @@
+{
+    "problem": "What is the result when the greatest common factor of 13212 and 132 is increased by 44?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{56}",
+    "is_static": false
+}

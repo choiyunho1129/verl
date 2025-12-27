@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers between 101 and 256 are perfect squares?",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

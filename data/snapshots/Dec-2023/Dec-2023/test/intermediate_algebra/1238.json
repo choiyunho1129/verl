@@ -1,0 +1,7 @@
+{
+    "problem": "If $|z| = 81$, express $\\overline{z}$ as a simplified fraction in terms of $z$.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{6561}{z}}",
+    "is_static": false
+}

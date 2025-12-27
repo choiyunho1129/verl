@@ -1,0 +1,7 @@
+{
+    "problem": "Tim is doing a cakewalk with $5$ steps. He takes his first step on step $1$ and takes a total of $3813$ steps, walking in a circle (so that after the 5th step he reaches the first step again). Which step of the cakewalk does he end on?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

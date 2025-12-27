@@ -1,0 +1,7 @@
+{
+    "problem": "For the eight counties listed below, what was the median number of students in $2005?$\n\n\\begin{tabular}[t]{|l|c|c|c|c|c|}\n\\multicolumn{6}{c}{\\textbf{Number of Students per County}}\\\\\\hline\n\\textbf{COUNTY}&\\textbf{$2001$}&\\textbf{$2002$}&\\textbf{$2003$}&\\textbf{$2004$}&\\textbf{$2005$}\\\\\\hline\nAiken&124&141&130&143&148\\\\\\hline\nBamberg&17&15&15&14&16\\\\\\hline\nBarnwell&25&22&26&28&45\\\\\\hline\nBerkeley&583&557&554&553&534\\\\\\hline\nCalhoun&15&12&10&18&10\\\\\\hline\nCherokee&19&13&18&13&12\\\\\\hline\nChesterfield&46&18&13&22&45\\\\\\hline\nColleton&64&49&52&46&55\\\\\\hline\n\\end{tabular}",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{45}",
+    "is_static": false
+}

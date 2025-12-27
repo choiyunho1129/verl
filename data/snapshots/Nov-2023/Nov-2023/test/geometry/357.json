@@ -1,0 +1,7 @@
+{
+    "problem": "The sides of the base of a triangular pyramid are -3996, 1280 and 4196 feet and the altitude is 1000 feet. What is the number of cubic feet in the volume of the pyramid?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{-852480000}",
+    "is_static": false
+}

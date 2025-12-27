@@ -1,0 +1,7 @@
+{
+    "problem": "The range of the function $f(x)$ is $[-702,535].$  Let $g(x) = [f(x)]^2.$  Find the range of the function $g(x).$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{[0,492804]}",
+    "is_static": false
+}

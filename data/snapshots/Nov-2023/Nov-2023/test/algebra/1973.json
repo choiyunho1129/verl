@@ -1,0 +1,7 @@
+{
+    "problem": "If a recipe for a seven-pound cake requires 34.1 cups of flour, how many cups are needed for 175 seven-pound cakes?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{5967.5}",
+    "is_static": false
+}

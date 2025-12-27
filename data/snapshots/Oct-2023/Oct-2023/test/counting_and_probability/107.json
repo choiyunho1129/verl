@@ -1,0 +1,7 @@
+{
+    "problem": "My school's math team has 86 members and my coach needs to select 1 of them for a particular contest. In how many ways can she do that?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{86}",
+    "is_static": false
+}

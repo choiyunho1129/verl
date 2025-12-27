@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $a+b=9$ and $a^2+b^2=41$, find $a^3+b^3$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{189}",
+    "is_static": false
+}

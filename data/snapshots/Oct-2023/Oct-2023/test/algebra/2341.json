@@ -1,0 +1,7 @@
+{
+    "problem": "A function is defined as $f(x) = x^2 - 15x + 11$. What expression can be used to describe $f(16x)$? Express your answer in simplified form in terms of $x$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{256x^2 - 240x + 11}",
+    "is_static": false
+}

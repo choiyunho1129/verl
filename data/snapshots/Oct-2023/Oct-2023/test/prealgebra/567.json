@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\sqrt{12\\cdot24\\cdot20\\cdot30\\cdot33\\cdot176}$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{31680}",
+    "is_static": false
+}

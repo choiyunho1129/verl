@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $$\\sum_{n=0}^{\\infty}\\frac{n}{n^4+443n^2+49284}.$$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{1}{444}}",
+    "is_static": false
+}

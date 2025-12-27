@@ -1,0 +1,7 @@
+{
+    "problem": "In a convex heptagon, the degree measures of the interior angles are $x, ~x, ~x-7, ~x-7,\n~x + 7, ~x + 7$ and $x + 46$ degrees. What is the degree measure of the largest interior angle?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{168}",
+    "is_static": false
+}

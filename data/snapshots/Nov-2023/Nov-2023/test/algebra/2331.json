@@ -1,0 +1,7 @@
+{
+    "problem": "Find the positive difference between the solutions for $|x + 57| = 38$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{76}",
+    "is_static": false
+}

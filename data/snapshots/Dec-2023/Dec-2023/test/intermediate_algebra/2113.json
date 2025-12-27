@@ -1,0 +1,7 @@
+{
+    "problem": "Find \\[\\left|\\left(84-\\sqrt{1969}i\\right)^2\\right|\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{9025}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The number 5655 can be expressed as the product of two 2-digit whole numbers. What is the sum of these two numbers?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{152}",
+    "is_static": false
+}

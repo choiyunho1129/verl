@@ -1,0 +1,7 @@
+{
+    "problem": "A palindrome is a number which reads the same forward as backward. How many fifteen-digit palindromes can be made from the digits 1, 2, and 9?  (Each digit may be used more than once.)",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{6561}",
+    "is_static": false
+}

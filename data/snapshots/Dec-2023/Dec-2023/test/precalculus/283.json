@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\mathbf{v} \\times \\mathbf{w} = \\begin{pmatrix} 7 \\\\ 2 \\\\ 5 \\end{pmatrix},$ then find $\\mathbf{w} \\times \\mathbf{v}.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} - 7 \\\\ -2 \\\\ -5 \\end{pmatrix}}",
+    "is_static": false
+}

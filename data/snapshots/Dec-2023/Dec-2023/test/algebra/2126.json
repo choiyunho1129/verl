@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $x$ is a solution to $x^2 + 1 = 799x$. What is the sum of $x$ and its reciprocal?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{799}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Given $f(x)=cx^3-23x+18$ and $f(17)=156843$, find the value of $c$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{32}",
+    "is_static": false
+}

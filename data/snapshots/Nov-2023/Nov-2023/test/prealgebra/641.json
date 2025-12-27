@@ -1,0 +1,7 @@
+{
+    "problem": "In the diagram, the perimeter of the rectangle is 328. What is its area?\n\n[asy]\nunitsize(1inch);\n\npair A, B,C,D;\nA =(0,0);\nB= (1,0);\nD = (0,0.8);\nC = B+D;\ndraw(A--B--C--D--A);\nlabel(\"$x+1$\",B/2,S);\nlabel(\"$x-1$\",D/2,W);\n[/asy]",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6723}",
+    "is_static": false
+}

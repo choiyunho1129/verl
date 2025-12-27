@@ -1,0 +1,7 @@
+{
+    "problem": "If the number \\[\\frac{1}{2} \\left(\\frac{994}{\\sqrt[3]{931} + \\sqrt[3]{63}} + \\frac{868}{\\sqrt[3]{931} -\\sqrt[3]{63}}\\right)\\]can be expressed in the form $\\sqrt[3]{a} + \\sqrt[3]{b},$ where $a$ and $b$ are integers, compute $a+b.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{870730}",
+    "is_static": false
+}

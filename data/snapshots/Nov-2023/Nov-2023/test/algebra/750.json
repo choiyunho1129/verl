@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lfloor\\frac{368}{72}\\right\\rfloor$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "When all the girls at Madeline's school line up in rows of one hundred and seventy, there are one hundred and sixty-nine left over.\n\nIf instead they line up in rows of eighty-five, how many are left over?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{84}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the diameter of the incircle for a triangle whose side lengths are 20, 99, and 101.",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

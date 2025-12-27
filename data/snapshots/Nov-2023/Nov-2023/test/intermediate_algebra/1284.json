@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of all the roots of\n\\[\\frac{x^2 - 1165x + 250800}{x^2 - 1159x + 245520} = 0.\\]",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{285}",
+    "is_static": false
+}

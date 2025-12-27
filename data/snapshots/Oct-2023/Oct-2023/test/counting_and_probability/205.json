@@ -1,0 +1,7 @@
+{
+    "problem": "In the row of Pascal's triangle that starts 1, 18, what is the eleventh number?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{43758}",
+    "is_static": false
+}

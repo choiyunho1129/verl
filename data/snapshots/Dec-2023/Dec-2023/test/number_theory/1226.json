@@ -1,0 +1,7 @@
+{
+    "problem": "Find the smallest positive integer $n$ such that $$ 30n \\equiv 168n \\pmod{30}. $$",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

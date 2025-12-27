@@ -1,0 +1,7 @@
+{
+    "problem": "If $j$ is a positive integer and the expression $(25j+41)$ is multiplied by 41 and then divided by 25, what is the remainder?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

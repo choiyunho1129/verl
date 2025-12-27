@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $PABCD$ is a right square pyramid with apex $P$ and base $ABCD$.  If $PBD$ is an equilateral triangle with side length 1920, then what is the volume of $PABCD$?",
+    "level": "Level 5",
+    "type": "Geometry",
+    "solution": "\\boxed{589824000\\sqrt{3}}",
+    "is_static": false
+}

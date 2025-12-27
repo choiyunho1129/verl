@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of \\[4x^2 - 6x + 5 = y^2 - 160y\\]is a hyperbola. Find the coordinates of its center.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\left(\\frac34,80\\right)}",
+    "is_static": false
+}

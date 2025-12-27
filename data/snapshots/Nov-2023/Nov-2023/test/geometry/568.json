@@ -1,0 +1,7 @@
+{
+    "problem": "A square with sides of 2 units is inscribed in a circle. What is the value of $K$ if the area of the circle is $K\\pi$ square units?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

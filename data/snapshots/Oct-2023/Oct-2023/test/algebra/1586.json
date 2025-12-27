@@ -1,0 +1,7 @@
+{
+    "problem": "You connect the points (0, 0) and (60, 105) with a line segment. Starting at (0, 0), you move $\\frac{1}{15}$ of the way along the segment. What is the sum of the coordinates of the point you land upon?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

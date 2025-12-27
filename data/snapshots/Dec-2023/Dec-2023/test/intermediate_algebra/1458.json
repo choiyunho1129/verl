@@ -1,0 +1,7 @@
+{
+    "problem": "Let $P$ be a point on the curve $xyz^2 = 57122$ in three-dimensional space.  Find the minimum distance between $P$ and the origin.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{26}",
+    "is_static": false
+}

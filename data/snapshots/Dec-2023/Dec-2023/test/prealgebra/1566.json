@@ -1,0 +1,7 @@
+{
+    "problem": "How many four-digit integers are less than 7765 and greater than 6003?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1761}",
+    "is_static": false
+}

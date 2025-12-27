@@ -1,0 +1,7 @@
+{
+    "problem": "In triangle $ABC$, medians $\\overline{AD}$ and $\\overline{BE}$ are perpendicular.  If $AC = 19$ and $BC = 62$, then find $AB$.",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

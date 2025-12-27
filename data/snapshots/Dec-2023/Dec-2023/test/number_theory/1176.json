@@ -1,0 +1,7 @@
+{
+    "problem": "How many factors of 1702320 can be divided by 328 without a remainder?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

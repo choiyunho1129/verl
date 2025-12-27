@@ -1,0 +1,7 @@
+{
+    "problem": "How many diagonals does pentagon $ABCDE$ have?\n\n[asy]size(101);\nstring[] labels = {\"$B$\",\"$A$\",\"$E$\",\"$D$\",\"$C$\"};\npath p;\nfor(int i = 0; i<5; ++i)\n{\np = p--dir(360*i/5);\nlabel(labels[i],dir(360*i/5),dir(360*i/5),fontsize(10pt));\n}\ndraw(p--cycle);\nlabel(\"1\",(0,1.03),fontsize(10));[/asy]",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

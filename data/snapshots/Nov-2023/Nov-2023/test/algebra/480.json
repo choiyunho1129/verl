@@ -1,0 +1,7 @@
+{
+    "problem": "Let \\[f(x) = \\begin{cases}\n-x^2 - 338 &\\text{if }x<-959, \\\\\n-161&\\text{if }-959 \\le x< -899, \\\\\n\\sqrt{x}&\\text{if }x \\ge -899.\n\\end{cases}\n\\]Find $f(\\pi)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1.772004514666935}",
+    "is_static": false
+}

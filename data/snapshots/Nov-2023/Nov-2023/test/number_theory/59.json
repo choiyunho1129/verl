@@ -1,0 +1,7 @@
+{
+    "problem": "February $1$, $2044$ is a Monday.  The last Monday of February $2044$ will be February $x$, $2044$.  If $2044$ is a leap year, what is the value of $x$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

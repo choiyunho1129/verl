@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers from $-1500$ to $1500$ are congruent to $7 \\pmod{11}?$",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{273 \\text{ integers}}",
+    "is_static": false
+}

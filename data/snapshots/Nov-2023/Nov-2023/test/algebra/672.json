@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil {-\\!\\sqrt{379}}\\right\\rceil$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-19}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The function $f(n)$ satisfies $f(1) = 24$ and $f(7n + 60) = f(n) + 42$ for $n \\ge 0.$  Find $f(3763).$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{150}",
+    "is_static": false
+}

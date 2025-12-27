@@ -1,0 +1,7 @@
+{
+    "problem": "In China, spheres are used to exercise a person's hands. If the diameter of a sphere is 18 inches, how many square inches are in its surface area? Express your answer in terms of $\\pi$.",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{324\\pi}",
+    "is_static": false
+}

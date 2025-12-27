@@ -1,0 +1,7 @@
+{
+    "problem": "Blake and Jenny each took four 100-point tests.  Blake averaged 64 on the four tests.  Jenny scored 1 points higher than Blake on the first test, 1 points lower than him on the second test, and 24 points higher on both the third and fourth tests. What is the difference between Jenny's average and Blake's average on these four tests?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

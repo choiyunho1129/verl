@@ -1,0 +1,7 @@
+{
+    "problem": "A right square pyramid's base has edges measuring 997 feet each. If the pyramid's height is 672 feet, what is its volume, in cubic feet?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{222658016}",
+    "is_static": false
+}

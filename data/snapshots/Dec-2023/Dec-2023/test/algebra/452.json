@@ -1,0 +1,7 @@
+{
+    "problem": "The thirteenth and forty-fifth terms of an arithmetic sequence are $\\frac7{11}$ and $\\frac15$, respectively. What is the twenty-ninth term?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{23}{55}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive perfect cube that can be written as the sum of eleven consecutive integers?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{1331}",
+    "is_static": false
+}

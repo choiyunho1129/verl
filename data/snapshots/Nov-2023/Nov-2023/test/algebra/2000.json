@@ -1,0 +1,7 @@
+{
+    "problem": "Janaina is trying to solve the following equation by completing the square: $$x^2+332x-560 = 0.$$She successfully rewrites the above equation in the following form: $$(x + b)^2 = c,$$where $b$ and $c$ are integers. What is the value of $c$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{28116}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{x}{y}= 3$ and $\\frac{z}{x}= 5$, what is the value of $\\frac{z}{y}$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

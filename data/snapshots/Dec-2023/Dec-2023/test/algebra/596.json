@@ -1,0 +1,7 @@
+{
+    "problem": "Find the smallest integer that satisfies the inequality: \\[\n(x-3)(x+37)<0.\n\\]",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-36}",
+    "is_static": false
+}

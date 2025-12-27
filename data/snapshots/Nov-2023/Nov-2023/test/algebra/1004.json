@@ -1,0 +1,7 @@
+{
+    "problem": "If $2^36=16^x$, what is the value of $x$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the number of ways to arrange the letters of the word HXTZTNWIWAUC.",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{119,\\!750,\\!400}",
+    "is_static": false
+}

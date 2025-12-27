@@ -1,0 +1,7 @@
+{
+    "problem": "How many perfect squares are factors of $432 \\times 18 \\times 108 \\times 48 \\times 864 \\times 540?$",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{80}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "There are real numbers $A$ and $B$ such that\n\\[\\frac{19x-2}{x^2-17x+42}=\\frac{A}{x-3}+\\frac{B}{x-14}.\\]Find $A+B$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{19}",
+    "is_static": false
+}

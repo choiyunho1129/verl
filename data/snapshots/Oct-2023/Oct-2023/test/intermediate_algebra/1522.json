@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ and $c$ be real numbers such that $a + b + c = 0$ and $a^2 + b^2 + c^2 = 8.$  Find $a^4 + b^4 + c^4.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{32}",
+    "is_static": false
+}

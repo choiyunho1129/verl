@@ -1,0 +1,7 @@
+{
+    "problem": "The range of the function $f(x)$ is $[15,22].$  Let $h(x) = 3f(x) - 37.$  Find the range of the function $h(x).$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{[8,29]}",
+    "is_static": false
+}

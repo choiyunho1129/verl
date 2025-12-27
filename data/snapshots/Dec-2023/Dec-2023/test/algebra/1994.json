@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\displaystyle\\frac{x}{y} = 5$, $\\displaystyle\\frac{y}{z} = 96$, and $\\displaystyle \\frac{z}{w} = \\frac{5}{12}$, then what is $\\displaystyle\\frac{w}{x}$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{200}}",
+    "is_static": false
+}

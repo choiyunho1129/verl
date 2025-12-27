@@ -1,0 +1,7 @@
+{
+    "problem": "99 people attend a party. During the party everyone shakes hands with everyone else. How many handshakes take place at the party?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{4851}",
+    "is_static": false
+}

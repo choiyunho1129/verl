@@ -1,0 +1,7 @@
+{
+    "problem": "For which value of $x$ does the function $f(x) = \\frac{982x-500820}{x^3 - 184x^2 - 500x + 243}$ cross its horizontal asymptote?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{510}",
+    "is_static": false
+}

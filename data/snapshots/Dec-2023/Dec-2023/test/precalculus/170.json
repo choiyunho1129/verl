@@ -1,0 +1,7 @@
+{
+    "problem": "Triangle $ABC$ has angle bisectors $\\overline{AD},$ $\\overline{BE},$ and $\\overline{CF}.$  Given that $\\angle EDF = 90^\\circ,$ enter all possible values of $823\\angle BAC$ (in degrees), separated by commas.",
+    "level": "Level 5",
+    "type": "Precalculus",
+    "solution": "\\boxed{98760^\\circ}",
+    "is_static": false
+}

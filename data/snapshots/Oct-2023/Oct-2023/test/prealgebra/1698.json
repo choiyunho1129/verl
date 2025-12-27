@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate: $[16-(-1)^{13}]^2.$",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{289}",
+    "is_static": false
+}

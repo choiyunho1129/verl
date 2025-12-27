@@ -1,0 +1,7 @@
+{
+    "problem": "In the row of Pascal's triangle that starts 1, 6, what is the fifth number?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

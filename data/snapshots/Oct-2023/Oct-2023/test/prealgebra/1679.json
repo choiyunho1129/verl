@@ -1,0 +1,7 @@
+{
+    "problem": "What is 3 times the smallest prime number that is the sum of two other distinct prime numbers?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $z$ is a complex number such that $z^2 = 3660 + 671i.$  Find $|z|.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{61}",
+    "is_static": false
+}

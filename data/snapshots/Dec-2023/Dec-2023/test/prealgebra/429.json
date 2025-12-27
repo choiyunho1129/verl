@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive multiple of $35$ that is greater than $15542?$",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{15575}",
+    "is_static": false
+}

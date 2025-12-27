@@ -1,0 +1,7 @@
+{
+    "problem": "Express $18^5\\div18^4-18^3+18^2\\cdot18^1$ as an integer.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

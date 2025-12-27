@@ -1,0 +1,7 @@
+{
+    "problem": "What is the result when the greatest common factor of 79632 and 132 is increased by 4?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

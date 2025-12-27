@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\lceil\\sqrt{929}\\rceil+ \\lfloor\\sqrt{929}\\rfloor$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{61}",
+    "is_static": false
+}

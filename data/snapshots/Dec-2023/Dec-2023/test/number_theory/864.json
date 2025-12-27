@@ -1,0 +1,7 @@
+{
+    "problem": "Find the product of $4_6 \\cdot 4_6.$ Express your answer in base $6.$",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{24_6}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the base-71 geometric series $0.1_71-0.01_71+0.001_71-0.0001_71+0.00001_71\\ldots$; give your answer as a fraction in which the numerator and denominator are both expressed in base 10.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac{1}{72}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "$P$ and $Q$ represent numbers, and $P \\ast Q$ means $\\cfrac{P+Q}{2}$. What is the value of $40 \\ast (436 \\ast 342)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{214}",
+    "is_static": false
+}

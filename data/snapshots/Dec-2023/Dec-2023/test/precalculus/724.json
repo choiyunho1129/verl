@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $ABC$, we have $AB = 396$, $BC = 80$, and $\\angle ABC = 90^\\circ$. If $M$ is on $\\overline{AC}$ such that $\\overline{BM}$ is an altitude of $\\triangle ABC$, then what is $\\cos \\angle ABM$?",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{20}{101}}",
+    "is_static": false
+}

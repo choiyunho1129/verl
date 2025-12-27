@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x) = x + 3632$ and $g(x) = x^2 + 6969$, what is the value of $f(g(7919))$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{62721162}",
+    "is_static": false
+}

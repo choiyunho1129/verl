@@ -1,0 +1,7 @@
+{
+    "problem": "Find the smallest positive integer $n$ such that $$ 490n \\equiv 3076n \\pmod{66}. $$",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

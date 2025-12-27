@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{4x^2-28x+24}{x-6}=m$, and $x$ can be any real number except $6$, what real values can $m$ NOT have?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

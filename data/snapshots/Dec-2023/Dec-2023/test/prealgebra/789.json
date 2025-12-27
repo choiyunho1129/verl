@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $14500\\div14500-14500+14500\\times14500$.",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{210235501}",
+    "is_static": false
+}

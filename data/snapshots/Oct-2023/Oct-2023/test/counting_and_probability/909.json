@@ -1,0 +1,7 @@
+{
+    "problem": "There are 494 people on the beach.  252 are wearing sunglasses, 128 are wearing bathing suits, and 268 are wearing a hat.  Everyone is wearing at least one of these items. 83 are wearing both bathing suits and sunglasses. 116 are wearing both bathing suits and a hat. 32 are wearing both sunglasses and a hat.  How many people are wearing all three items?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{77}",
+    "is_static": false
+}

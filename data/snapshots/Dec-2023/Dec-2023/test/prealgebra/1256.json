@@ -1,0 +1,7 @@
+{
+    "problem": "If $(x - 11) + (x - 18) + (x - 18) + (x - 17) = x$, then what is $x$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{64}{3}}",
+    "is_static": false
+}

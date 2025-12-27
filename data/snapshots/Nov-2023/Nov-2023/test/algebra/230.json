@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x)$ is a polynomial of degree 4, and $g(x)$ is a polynomial of degree 7, then what is the degree of polynomial $33f(x) + 21g(x)$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

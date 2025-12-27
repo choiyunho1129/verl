@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a}$ be a unit vector.  Compute\n\\[\\|\\mathbf{2a} \\times \\mathbf{4i}\\|^2 + \\|\\mathbf{2a} \\times \\mathbf{4j}\\|^2 + \\|\\mathbf{a} \\times \\mathbf{8k}\\|^2.\\]",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{128}",
+    "is_static": false
+}

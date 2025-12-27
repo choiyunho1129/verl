@@ -1,0 +1,7 @@
+{
+    "problem": "Think of a number. Double the number. Add 216. Divide the answer by 4. Subtract one-half the original number. What is the value of the result?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{54}",
+    "is_static": false
+}

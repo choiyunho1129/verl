@@ -1,0 +1,7 @@
+{
+    "problem": "The vertex of the parabola described by the equation $y=-34x^2-1088x-4765$ is $(m,n)$. What is $m+n$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{3923}",
+    "is_static": false
+}

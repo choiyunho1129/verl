@@ -1,0 +1,7 @@
+{
+    "problem": "Express in simplest form: $\\sqrt[140]{12157665459056928801^7}$",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

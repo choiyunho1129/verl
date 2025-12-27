@@ -1,0 +1,7 @@
+{
+    "problem": "Points $X$ and $Y$ lie on sides $AB$ and $AC$ respectively of triangle $ABC$. If $AB=470$, $AC=44$, $AX=270$ and $AY=26$, what is the ratio of the area of triangle $AXY$ to the area of triangle $ABC$?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{351}{1034}}",
+    "is_static": false
+}

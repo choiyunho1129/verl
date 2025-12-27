@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{(132r^633)(270600r^670)}{275r^142}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{129888r^1161}",
+    "is_static": false
+}

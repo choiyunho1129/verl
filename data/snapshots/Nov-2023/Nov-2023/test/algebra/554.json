@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all the odd integers between $262$ and $1872$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{858935}",
+    "is_static": false
+}

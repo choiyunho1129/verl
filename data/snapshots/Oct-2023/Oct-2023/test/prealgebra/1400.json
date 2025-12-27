@@ -1,0 +1,7 @@
+{
+    "problem": "A stock loses $50\\%$ of its value on Monday.  On Tuesday it loses  $30\\%$ of the value it had at the end of the day on Monday.  What is  the overall percent loss in value from the beginning of Monday to  the end of Tuesday?  Enter the answer as a percent.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{65\\%}",
+    "is_static": false
+}

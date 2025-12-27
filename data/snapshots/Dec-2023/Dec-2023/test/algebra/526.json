@@ -1,0 +1,7 @@
+{
+    "problem": "Rationalize the denominator: $\\frac{880}{\\sqrt{89}}$ .",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{880\\sqrt{89}}{89}}",
+    "is_static": false
+}

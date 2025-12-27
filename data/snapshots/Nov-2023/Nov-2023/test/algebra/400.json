@@ -1,0 +1,7 @@
+{
+    "problem": "Five plus $1000\\%$ of $1$ is the same as $480\\%$ of what number?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{3.125}",
+    "is_static": false
+}

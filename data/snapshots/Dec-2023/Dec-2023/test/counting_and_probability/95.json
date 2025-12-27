@@ -1,0 +1,7 @@
+{
+    "problem": "What is the probability that flipping a fair coin eight times produces fewer than two heads? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{9}{256}}",
+    "is_static": false
+}

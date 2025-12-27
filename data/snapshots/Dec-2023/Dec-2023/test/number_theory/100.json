@@ -1,0 +1,7 @@
+{
+    "problem": "Find $n$ if $\\gcd(n,16) = 2$ and $\\mathop{\\text{lcm}}[n,16] = 176$.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

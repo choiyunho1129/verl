@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest integer $n$ such that $74n + 77 > 19$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

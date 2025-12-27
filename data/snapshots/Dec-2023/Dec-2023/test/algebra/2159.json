@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $$\n(6x-4)(18x+1)-(6x-4)18x+1\n$$ when $x=18$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{105}",
+    "is_static": false
+}

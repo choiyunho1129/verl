@@ -1,0 +1,7 @@
+{
+    "problem": "Mrs. Read can knit one pair of children's mittens with a ball of yarn seven hundred and forty-nine inches in diameter. How many pairs of identical mittens can she knit with a ball of yarn two hundred and sixty thousand, six hundred and fifty-two inches in diameter? Assume that the balls of yarn are rolled consistently.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{42144192}",
+    "is_static": false
+}

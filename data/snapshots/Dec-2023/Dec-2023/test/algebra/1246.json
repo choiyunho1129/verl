@@ -1,0 +1,7 @@
+{
+    "problem": "If $a = 3$, $b = 15$ and $c = 10$, what is the numerical value of the expression $(b-c)^2 + a(b+c)$ ?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{100}",
+    "is_static": false
+}

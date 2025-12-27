@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $f(x)$ is an invertible function, and suppose that $f(67)=f^{-1}(67)=73$.\n\nWhat is the value of $f(f(67))$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{67}",
+    "is_static": false
+}

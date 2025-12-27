@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil{\\frac{66}{44}}\\right\\rceil^2+\\left\\lceil{\\left(\\frac{66}{44}\\right)^2}\\right\\rceil$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

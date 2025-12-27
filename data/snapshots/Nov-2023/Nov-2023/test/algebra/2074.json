@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 7x + 66$ and $g(x) = 1/f(x)$. What is $g(f(-11))$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-0.090909}",
+    "is_static": false
+}

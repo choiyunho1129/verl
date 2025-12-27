@@ -1,0 +1,7 @@
+{
+    "problem": "Points $A$, $B$, and $C$ are on a circle such that $AB = 25$, $BC = 312$, and $AC = 313$.  Find the radius of the circle.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{313}{2}}",
+    "is_static": false
+}

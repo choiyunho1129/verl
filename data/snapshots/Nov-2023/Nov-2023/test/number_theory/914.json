@@ -1,0 +1,7 @@
+{
+    "problem": "How many elements are in the intersection of the set of all the prime numbers less than 89 and the set of all the odd numbers greater than zero?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Two ropes, 2760 meters in length and 5968 meters in length, need to be cut into pieces which are all the same length. What is the greatest possible length of each piece?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

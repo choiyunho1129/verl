@@ -1,0 +1,7 @@
+{
+    "problem": "Let $S$ be the set of points $z$ in the complex plane such that $|z - 15 + 5i| \\le 20.$  Find the area of $S.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{400 \\pi}",
+    "is_static": false
+}

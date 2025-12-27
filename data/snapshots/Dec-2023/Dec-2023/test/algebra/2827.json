@@ -1,0 +1,7 @@
+{
+    "problem": "The first term of an arithmetic sequence is $53$. The sum of the thirty-sixth and the one hundred and seventy-fourth terms is $4266$. What is the thirty-fourth term?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{713}",
+    "is_static": false
+}

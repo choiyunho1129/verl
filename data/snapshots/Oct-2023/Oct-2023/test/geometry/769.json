@@ -1,0 +1,7 @@
+{
+    "problem": "Points $A$, $B$, and $C$ are on a circle such that $AB = 15$, $BC = 112$, and $AC = 113$.  Find the radius of the circle.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{113}{2}}",
+    "is_static": false
+}

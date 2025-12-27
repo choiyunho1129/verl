@@ -1,0 +1,7 @@
+{
+    "problem": "A rectangular prism with integer side lengths has a height of $26$. If the surface area of the prism is equal to $1374$, then what is the volume of the prism?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{1638}",
+    "is_static": false
+}

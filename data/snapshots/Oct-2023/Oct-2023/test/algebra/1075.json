@@ -1,0 +1,7 @@
+{
+    "problem": "If $289^{16n}=4913^{736}$, find $n$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{69}",
+    "is_static": false
+}

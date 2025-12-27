@@ -1,0 +1,7 @@
+{
+    "problem": "Solve the following equation for $x$: \\[ \\ \\frac{15}{22} = \\frac{75}{x-76}.\\]",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{186}",
+    "is_static": false
+}

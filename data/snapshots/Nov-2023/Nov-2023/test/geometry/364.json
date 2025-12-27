@@ -1,0 +1,7 @@
+{
+    "problem": "Points $A(5234,25)$ and $B(8150,25)$ are the endpoints of a diameter of a circle graphed in a coordinate plane. How many square units are in the area of the circle? Express your answer in terms of $\\pi$.",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{2125764\\pi}",
+    "is_static": false
+}

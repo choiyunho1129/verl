@@ -1,0 +1,7 @@
+{
+    "problem": "Factor the following expression: $260z^{86}+13z^{85}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{13z^{85}(20z+1)}",
+    "is_static": false
+}

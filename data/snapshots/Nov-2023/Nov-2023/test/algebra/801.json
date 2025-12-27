@@ -1,0 +1,7 @@
+{
+    "problem": "For complex numbers $z$, let \\[f(z) = \\left\\{\n\\begin{array}{cl}\nz^{2}&\\text{ if }z\\text{ is not real}, \\\\\nz+2 &\\text{ if }z\\text{ is real}.\n\\end{array}\n\\right.\\]Find $f(72i)+f(72)+f(-72)+f(-72i)$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-10364}",
+    "is_static": false
+}

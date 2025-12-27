@@ -1,0 +1,7 @@
+{
+    "problem": "The angle measures of the three angles of a triangle are in the ratio $5:6:1$. What is the number of degrees in the measure of the largest angle?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{90^\\circ}",
+    "is_static": false
+}

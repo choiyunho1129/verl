@@ -1,0 +1,7 @@
+{
+    "problem": "A number is doubled, then decreased by $968.21$.  The result is greater than $763.91$. What is the smallest integer that satisfies this condition?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{867}",
+    "is_static": false
+}

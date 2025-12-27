@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can I arrange five different books on a shelf?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{120}",
+    "is_static": false
+}

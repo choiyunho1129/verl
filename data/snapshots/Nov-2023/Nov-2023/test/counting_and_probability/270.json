@@ -1,0 +1,7 @@
+{
+    "problem": "If six standard six-sided dice are tossed, what is the probability that a 4 is rolled on at least one of the two dice? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{31031}{46656}}",
+    "is_static": false
+}

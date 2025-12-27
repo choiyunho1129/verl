@@ -1,0 +1,7 @@
+{
+    "problem": "Consider two infinite geometric series. The first has leading term $49a,$ common ratio $49b,$ and sum $S.$ The second has a leading term $49b,$ common ratio $49a,$ and sum $1/S.$ Find the value of $a+b.$",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{49}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "$23!$ has 23 digits, the last 22 of which are 5852016738884976640000. What is the first digit?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

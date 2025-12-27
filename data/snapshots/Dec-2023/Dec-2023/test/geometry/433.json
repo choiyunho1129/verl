@@ -1,0 +1,7 @@
+{
+    "problem": "Two sides of an isosceles triangle are 106 cm and 820 cm. What is the greatest possible perimeter of this triangle, in centimeters?",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{1746}",
+    "is_static": false
+}

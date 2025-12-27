@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d$ be positive real numbers such that $a + b + c + d = 1.$  Find the minimum value of\n\\[\\frac{9434a}{b + c + d} + \\frac{9434b}{a + c + d} + \\frac{9434c}{a + b + d} + \\frac{9434d}{a + b + c}.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{37736}{3}}",
+    "is_static": false
+}

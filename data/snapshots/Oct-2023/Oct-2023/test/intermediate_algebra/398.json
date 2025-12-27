@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d$ be the roots of\n\\[8x^4 - 32x^3 + 16 = 0.\\]Find $a + b + c + d.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

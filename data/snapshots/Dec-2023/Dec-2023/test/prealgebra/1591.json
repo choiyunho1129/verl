@@ -1,0 +1,7 @@
+{
+    "problem": "The area of rectangle $ABCD$ is 216. If point $A$ and the midpoints of $\\overline{BC}$ and $\\overline{CD}$ are joined to form a triangle, what is the area of the triangle?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{81}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "For how many real values of $x$ is $\\sqrt{195-\\sqrt{x}}$ an integer?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

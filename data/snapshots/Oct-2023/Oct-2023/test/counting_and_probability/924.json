@@ -1,0 +1,7 @@
+{
+    "problem": "A nursery employee wishes to plant 14 identical Golden Delicious apple trees and 25 identical Bartlett pear trees in one row. How many distinct arrangements are possible?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{15084504396}",
+    "is_static": false
+}

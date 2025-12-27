@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{k-65}{5} + 16k+1+\\frac{14k+60}{5}$.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{19k}",
+    "is_static": false
+}

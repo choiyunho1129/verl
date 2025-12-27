@@ -1,0 +1,7 @@
+{
+    "problem": "If $x=\\frac{40}{78}$ and $y=\\frac{40}{26}$, what is $\\frac{x}{y}$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{26}{78}}",
+    "is_static": false
+}

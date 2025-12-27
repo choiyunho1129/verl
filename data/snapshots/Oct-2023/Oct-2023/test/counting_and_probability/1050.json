@@ -1,0 +1,7 @@
+{
+    "problem": "Six hundred and ninety-one balls are numbered with the integers 1 through 691 and placed in a jar. Six hundred and eighty-nine are drawn without replacement. What is the probability that the sum of the three integers on the balls is odd? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{345}{691}}",
+    "is_static": false
+}

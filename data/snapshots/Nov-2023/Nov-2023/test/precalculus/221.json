@@ -1,0 +1,7 @@
+{
+    "problem": "Find the cross product of $\\begin{pmatrix} 20 \\\\ 50 \\\\ 7 \\end{pmatrix}$ and $\\begin{pmatrix} 50 \\\\ 14 \\\\ 11 \\end{pmatrix}.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 452 \\\\ 130 \\\\ -2220 \\end{pmatrix}}",
+    "is_static": false
+}

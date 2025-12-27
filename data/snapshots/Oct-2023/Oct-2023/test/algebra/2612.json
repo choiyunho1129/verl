@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $y=7$, evaluate $(94+y)^y$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{107213535210701}",
+    "is_static": false
+}

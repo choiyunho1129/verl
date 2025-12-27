@@ -1,0 +1,7 @@
+{
+    "problem": "A line is parameterized by\n\\[\\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ -6 \\end{pmatrix} + t \\begin{pmatrix} 4 \\\\ 5 \\end{pmatrix}.\\]The equation of the line can be expressed in the form $y = mx + b.$  Enter the ordered pair $(m,b).$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\left( \\frac{5}{4}, -11 \\right)}",
+    "is_static": false
+}

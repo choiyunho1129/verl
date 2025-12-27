@@ -1,0 +1,7 @@
+{
+    "problem": "How many digits are in the whole-number representation of $10^{105}-9^{105}$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{105}",
+    "is_static": false
+}

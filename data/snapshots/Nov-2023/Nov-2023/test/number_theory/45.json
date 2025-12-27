@@ -1,0 +1,7 @@
+{
+    "problem": "What is the result when the greatest common factor of 84060 and 132 is increased by 49?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{61}",
+    "is_static": false
+}

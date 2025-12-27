@@ -1,0 +1,7 @@
+{
+    "problem": "The positive integers up to 267 are alternately subtracted and added:\n\\[1 - 2 + 3 - 4 + \\cdots + 261 - 262 + 263 - 264 + 265 - 266 + 267.\\]What is the value of the expression?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{134}",
+    "is_static": false
+}

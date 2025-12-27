@@ -1,0 +1,7 @@
+{
+    "problem": "When the expression $-4x^2-32x-9$ is written in the form $a(x+d)^2+e$, where $a$, $d$, and $e$ are constants, what is the sum $a+d+e$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{55}",
+    "is_static": false
+}

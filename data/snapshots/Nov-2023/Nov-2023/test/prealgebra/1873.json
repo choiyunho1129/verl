@@ -1,0 +1,7 @@
+{
+    "problem": "The circumference of Earth is 40,000 kilometers. How many trips around Earth could you take if you travel twenty billion meters?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{500}",
+    "is_static": false
+}

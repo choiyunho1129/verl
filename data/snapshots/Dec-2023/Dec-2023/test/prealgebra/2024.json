@@ -1,0 +1,7 @@
+{
+    "problem": "Given the three digits 7, 8, and 6, how many different positive two-digit integers can be formed using these digits if a digit can be repeated in an integer?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

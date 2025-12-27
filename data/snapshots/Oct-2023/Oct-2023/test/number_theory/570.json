@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least positive integer value of $n$ such that $528n$ is divisible by $752401$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{752401}",
+    "is_static": false
+}

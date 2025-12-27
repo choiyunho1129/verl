@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of the rational function $\\frac{q(x)}{x^{29}-4x^{16}+3x^{20}+x^2-1} $ has a horizontal asymptote. What is the largest possible degree of $q(x)$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

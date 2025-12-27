@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $\\displaystyle{(8^30)}^{\\frac{9}{6}}$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{43556142965880123323311949751266331066368}",
+    "is_static": false
+}

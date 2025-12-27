@@ -1,0 +1,7 @@
+{
+    "problem": "Let $z$ and $w$ be complex numbers such that $|z| = 63$ and $|w| = 40.$  Find the largest possible value of $|z + w|.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{103}",
+    "is_static": false
+}

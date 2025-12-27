@@ -1,0 +1,7 @@
+{
+    "problem": "Find the integer $n$, $0 \\le n \\le 70$, that satisfies \\[n \\equiv 9648 \\pmod{71}.\\]",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{63}",
+    "is_static": false
+}

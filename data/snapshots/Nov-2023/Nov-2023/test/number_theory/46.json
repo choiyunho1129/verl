@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $30_6 - 10_6.$ Express your answer in base $6.$",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{20_6}",
+    "is_static": false
+}

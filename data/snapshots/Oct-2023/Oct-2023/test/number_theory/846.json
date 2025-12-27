@@ -1,0 +1,7 @@
+{
+    "problem": "Your friend has an egg collection comprising at least $5559$ eggs. He wants to store them in dozen-egg containers. After filling as many containers as possible, the last container had $2$ egg left over. He then decided to store his eggs in customized baker-dozen-egg containers, where each container can hold $13$ eggs. It turns out that, after filling as many of these containers as possible, he still has $2$ egg left over. What is the minimum number of eggs that your friend could have?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{5618}",
+    "is_static": false
+}

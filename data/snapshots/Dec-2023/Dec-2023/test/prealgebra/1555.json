@@ -1,0 +1,7 @@
+{
+    "problem": "Express $6^5\\div6^4-6^3+6^2\\cdot6^1$ as an integer.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

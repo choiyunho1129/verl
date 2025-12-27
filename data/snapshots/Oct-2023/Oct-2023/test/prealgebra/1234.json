@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive integer with factors of 100, 45, and 11?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{9900}",
+    "is_static": false
+}

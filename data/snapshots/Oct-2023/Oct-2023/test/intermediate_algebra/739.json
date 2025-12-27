@@ -1,0 +1,7 @@
+{
+    "problem": "Let $z$ and $w$ be complex numbers such that $|z| = 47$ and $|w| = 87.$  Find the smallest possible value of $|w - z|.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{40}",
+    "is_static": false
+}

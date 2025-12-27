@@ -1,0 +1,7 @@
+{
+    "problem": "In triangle $ABC$, $M$ and $N$ are the midpoints of $BC$ and $AC$, respectively.  The perpendicular bisectors of $BC$ and $AC$ intersect at a point $O$ inside the triangle.  If $\\angle C = 35^\\circ$, then find the measure of $\\angle MON$, in degrees.",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{145^\\circ}",
+    "is_static": false
+}

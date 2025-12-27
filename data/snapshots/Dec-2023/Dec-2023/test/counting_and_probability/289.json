@@ -1,0 +1,7 @@
+{
+    "problem": "Ben flips a fair nickel twenty-three times. What is the probability that Ben flips Head, Tail, Head, Tail,\\ldots in that order? Express your answer as a common fraction.",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{1}{8388608}}",
+    "is_static": false
+}

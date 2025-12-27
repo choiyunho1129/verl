@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the remainder when $$2+29+301+5605+70914+324185+104628+25202567$$is divided by $2$.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

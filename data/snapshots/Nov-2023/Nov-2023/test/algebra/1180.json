@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of the two $5$-digit numbers $AMC10$ and $AMC12$ is $166422.$ What is $A + M + C?$",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

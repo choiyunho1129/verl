@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $f$ is a polynomial such that \\[(37x^7+25x^6+13x^5+41x^4+19x^3+42x^2+6x-35)\\cdot f(x)=20x^8-32x^7+3x^6+42x^5+47x^4+6x^3 - 4x^2 +46x -4.\\]What is the degree of $f$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

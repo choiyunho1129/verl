@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $84^{-1} \\equiv 167 \\pmod{169}$, find $6^{-1} \\pmod{169}$ as a residue modulo 169.  (Give an answer between 0 and 168, inclusive.)",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{141}",
+    "is_static": false
+}

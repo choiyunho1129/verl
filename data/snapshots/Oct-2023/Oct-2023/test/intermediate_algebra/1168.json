@@ -1,0 +1,7 @@
+{
+    "problem": "Riproarin' Ringo was roping a recalcitrant dogie. Ringo decided to give the dogie a reprieve by calculating \\[|(43-37i)^4|\\]before riding after the dogie. What answer should Ringo have found?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{10355524}",
+    "is_static": false
+}

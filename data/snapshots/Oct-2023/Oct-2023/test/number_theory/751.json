@@ -1,0 +1,7 @@
+{
+    "problem": "When a number is divided by $6$, the quotient is $32$ and the remainder is $3$. What is the number?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{195}",
+    "is_static": false
+}

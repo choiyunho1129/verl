@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $a+b=18$ and $a^2+b^2=162$, find $a^3+b^3$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{1458}",
+    "is_static": false
+}

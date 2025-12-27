@@ -1,0 +1,7 @@
+{
+    "problem": "Nineteen thousand, six hundred and eighty-three solid gold spherical beads each of radius 27 are melted down and recast into a larger, solid gold sphere. How many units are in the radius of this larger gold sphere?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{729}",
+    "is_static": false
+}

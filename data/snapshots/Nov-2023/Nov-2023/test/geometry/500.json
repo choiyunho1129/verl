@@ -1,0 +1,7 @@
+{
+    "problem": "Points $A(0,0), B(9,6)$ and $C(6,12)$ are vertices of triangle $ABC$. Point $D$ is on segment $AB$ such that $641(AD) = DB$, point $E$ is on segment $BC$ such that $641(BE) = EC$ and point $F$ is on segment $CA$ such that $641(CF) = FA$. What is the ratio of the area of triangle $DEF$ to the area of triangle $ABC$? Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{136747}{137388}}",
+    "is_static": false
+}

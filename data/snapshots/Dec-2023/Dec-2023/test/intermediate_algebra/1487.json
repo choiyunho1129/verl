@@ -1,0 +1,7 @@
+{
+    "problem": "Let $p(x)$ be quadratic with rational coefficients.  If $p(\\sqrt{423}) = 341683$ and $p(\\sqrt{1337}) = 1078367,$ then find $p(\\sqrt{1409}).$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{1136399}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the real roots of $x^4 - 5120x - 9216 = 0.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

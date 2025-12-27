@@ -1,0 +1,7 @@
+{
+    "problem": "Ray will choose at random an integer $Q$, such that $257 < Q < 276$. What is the probability that Ray will choose a prime number? Express your answer as a common fraction.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac{1}{6}}",
+    "is_static": false
+}

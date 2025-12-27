@@ -1,0 +1,7 @@
+{
+    "problem": "Let \\[f(n) =\n\\begin{cases}\n-27n-360 &\\text{if }n<a, \\\\\n-77n-60 &\\text{if }n\\ge{a}.\n\\end{cases}\n\\]Find $a$ if the graph of $y=f(n)$ is continuous.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the smallest integer $x$ where the expression $\\frac{\\sqrt{x-12}}{x^2+12x-288}$ is defined.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

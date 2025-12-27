@@ -1,0 +1,7 @@
+{
+    "problem": "Let\n\\[f(x) = \\frac{cx}{11x + 85}.\\]Find the constant $c$ so that $f^{-1}(x) = f(x).$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-85}",
+    "is_static": false
+}

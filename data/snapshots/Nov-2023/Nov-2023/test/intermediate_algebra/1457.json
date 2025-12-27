@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a$ and $b$ be positive real numbers.  Find the minimum value of\n\\[\\frac{a}{b} + \\frac{10b}{a}.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2 \\sqrt{10}}",
+    "is_static": false
+}

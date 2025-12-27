@@ -1,0 +1,7 @@
+{
+    "problem": "Eleven construction workers that work at the same rate can build a house in 83.9 days.  How long does it take 13 construction workers, working at the same rate, to finish building a house?  Express your answer as a fraction in lowest terms.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{5546274038461539}{78125000000000}}",
+    "is_static": false
+}

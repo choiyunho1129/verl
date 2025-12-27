@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify: $\\displaystyle \\frac{\\frac 14\\times 0.0625}{0.125\\times 2^{100}}$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{2^{-103}}",
+    "is_static": false
+}

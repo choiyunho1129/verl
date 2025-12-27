@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of all solutions of the equation $|669-x|= 221$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1338}",
+    "is_static": false
+}

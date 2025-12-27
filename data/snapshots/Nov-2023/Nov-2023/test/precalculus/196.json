@@ -1,0 +1,7 @@
+{
+    "problem": "The dilation, centered at the origin, with scale factor $-3,$ takes $9 - 8i$ to which complex number?",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-27 + 24i}",
+    "is_static": false
+}

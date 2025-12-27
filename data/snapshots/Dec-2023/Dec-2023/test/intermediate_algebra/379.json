@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c$ be real numbers such that $a + b + c = 41.$  Find the minimum value of $2a^2 + 3b^2 + 6c^2.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{1681}",
+    "is_static": false
+}

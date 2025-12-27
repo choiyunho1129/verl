@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate\n\\[\\begin{vmatrix} 699x & 699\\sin \\theta & 699\\cos \\theta \\\\ -249\\sin \\theta & -249x & 249 \\\\ 919\\cos \\theta & 919 & 919x \\end{vmatrix}.\\]",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{-159952869x^3}",
+    "is_static": false
+}

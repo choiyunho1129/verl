@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can  6 students be selected from a group of 93 students?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{762245484}",
+    "is_static": false
+}

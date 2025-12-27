@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 103x+25$ and $g(x) = 25x+6$ whenever $x$ is a positive integer. Define $h(x)$ to be the greatest common divisor of $f(x)$ and $g(x)$. What is the sum of all possible values of $h(x)$?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

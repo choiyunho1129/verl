@@ -1,0 +1,7 @@
+{
+    "problem": "If the function $j(x)$ is defined only on domain $[-7,11]$, and is defined on this domain by the formula $$j(x) = 5x^2+59,$$ then what is the range of $j(x)$? Express your answer as an interval or as a union of intervals.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{[59,664]}",
+    "is_static": false
+}

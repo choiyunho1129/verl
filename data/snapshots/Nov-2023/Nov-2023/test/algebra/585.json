@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of the odd integers between 76 and 103?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1157}",
+    "is_static": false
+}

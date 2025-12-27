@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose we have 2 fair 6-sided dice numbered from 1 to 6.  If we roll them both, what is the probability that the two numbers shown sum to 8?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{5}{36}}",
+    "is_static": false
+}

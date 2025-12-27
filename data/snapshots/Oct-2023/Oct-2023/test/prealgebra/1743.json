@@ -1,0 +1,7 @@
+{
+    "problem": "For how many two-digit primes is the sum of the digits equal to 14?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

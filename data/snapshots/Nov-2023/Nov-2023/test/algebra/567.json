@@ -1,0 +1,7 @@
+{
+    "problem": "Find the largest value of $x$ that satisfies the equation $|3x-1|=2x+2$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

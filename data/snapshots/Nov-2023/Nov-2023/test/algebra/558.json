@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{z}$, find the value of $y$ when $x = 4610$ and $z = 4609$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{21247490}",
+    "is_static": false
+}

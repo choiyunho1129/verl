@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $JKL$ with $\\angle JLK = 90^\\circ$, we have $KL = 8$ and $\\tan K = \\frac{17}{8}$.  Find $JL$.",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{17}",
+    "is_static": false
+}

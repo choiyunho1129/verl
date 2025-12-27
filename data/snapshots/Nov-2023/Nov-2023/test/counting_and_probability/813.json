@@ -1,0 +1,7 @@
+{
+    "problem": "How many distinct ten-letter rearrangements of the word ``Madagascar\" can I form?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{907200}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of all solutions of the equation $|718-x|= 843$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1436}",
+    "is_static": false
+}

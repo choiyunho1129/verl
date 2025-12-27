@@ -1,0 +1,7 @@
+{
+    "problem": "What is the last digit of the base $8$ representation of the base ten integer $161$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

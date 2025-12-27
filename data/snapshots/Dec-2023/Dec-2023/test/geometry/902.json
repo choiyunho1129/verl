@@ -1,0 +1,7 @@
+{
+    "problem": "Two circles are centered at the origin, as shown.  The point $P(143,24)$ is on the larger circle and the point $S(0,k)$ is on the smaller circle.  If $QR=35$, what is the value of $k$? [asy]\ndefaultpen(linewidth(.7pt)+fontsize(10pt));\ndotfactor=4;\ndraw(Circle((0,0),110)); draw(Circle((0,0),145));\ndot((0,0)); dot((110,0)); dot((145,0)); dot((0,110)); dot((143,24));\ndraw((0,0)--(143,24));\nlabel(\"$S (0,k)$\",(0,7.5),W);\ndraw((148,0)--(0,0)--(0,148),Arrows(TeXHead));\ndraw((-148,0)--(0,0)--(0,-148));\n\nlabel(\"$x$\",(148,0),E); label(\"$y$\",(0,148),N); label(\"$P(143,24)$\",(143,24),NE);\n\nlabel(\"$O$\",(0,0),SW); label(\"$Q$\",(110,0),SW); label(\"$R$\",(145,0),SE);\n\n[/asy]",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{110}",
+    "is_static": false
+}

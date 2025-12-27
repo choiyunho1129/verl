@@ -1,0 +1,7 @@
+{
+    "problem": "How many edges does six hexagonal prism have?",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{108}",
+    "is_static": false
+}

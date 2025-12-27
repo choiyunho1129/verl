@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of two numbers is 110 and their difference is 80. What is the smaller of the two numbers?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

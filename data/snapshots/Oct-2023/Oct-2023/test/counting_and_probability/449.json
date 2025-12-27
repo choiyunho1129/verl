@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers between 322 and 656 are perfect squares?",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

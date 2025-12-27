@@ -1,0 +1,7 @@
+{
+    "problem": "The least common multiple of two numbers is 5740, and their greatest common divisor is 45. Given that one of the numbers is 205, what is the other number?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{1260}",
+    "is_static": false
+}

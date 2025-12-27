@@ -1,0 +1,7 @@
+{
+    "problem": "What is the domain of the function $$k(y) = \\frac{1}{29y+27}~?$$ Express your answer in interval notation.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\left(-\\infty,-\\frac {27}{29}\\right)\\cup \\left(-\\frac {27}{29},\\infty\\right)}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $|z| = 20$, what is $|\\overline{z}^2|$?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{400}",
+    "is_static": false
+}

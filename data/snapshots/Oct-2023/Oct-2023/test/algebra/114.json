@@ -1,0 +1,7 @@
+{
+    "problem": "If $a = 125$, what is the value of $\\left(1220703125\\sqrt[3]{a^2}\\right)^{\\frac 13}$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{3125}",
+    "is_static": false
+}

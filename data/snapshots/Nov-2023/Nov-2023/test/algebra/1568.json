@@ -1,0 +1,7 @@
+{
+    "problem": "The points $(-20,16)$ and $(-16,20)$ lie on a circle whose center is on the $x$-axis. What is the radius of the circle?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\sqrt{656}}",
+    "is_static": false
+}

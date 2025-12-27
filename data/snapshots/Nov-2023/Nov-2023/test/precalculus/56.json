@@ -1,0 +1,7 @@
+{
+    "problem": "Compute\n\\[\\begin{vmatrix} 25 & 29 \\\\ 7 & 42 \\end{vmatrix}.\\]",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{847}",
+    "is_static": false
+}

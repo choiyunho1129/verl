@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all values of $x$ for which the expression $\\frac{x-13}{86x^2-16x+11}$ is undefined?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{0.18604651162790697}",
+    "is_static": false
+}

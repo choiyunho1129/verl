@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest integer $n$ such that $38n + 84 > 90$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The first term of an arithmetic sequence is $36$. The sum of the fourth and the one hundred and twenty-second terms is $1808$. What is the one hundred and eighty-fifth term?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{2612}",
+    "is_static": false
+}

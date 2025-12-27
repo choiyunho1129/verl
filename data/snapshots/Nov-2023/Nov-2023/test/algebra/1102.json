@@ -1,0 +1,7 @@
+{
+    "problem": "Factor the following expression: $10x^2-7$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{10(x+0) (x-0)}",
+    "is_static": false
+}

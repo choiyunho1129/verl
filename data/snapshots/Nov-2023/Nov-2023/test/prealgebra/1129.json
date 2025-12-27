@@ -1,0 +1,7 @@
+{
+    "problem": "An integer is randomly selected from the integers 34 through 445, inclusive. What is the probability that the integer is in the range 391 through 400, inclusive? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{5}{206}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\&x$ is defined as $\\&x = x + 1704$ and $\\#x$ is defined as $\\#x = x^2$ , what is the value of $\\#(\\&7728)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{88962624}",
+    "is_static": false
+}

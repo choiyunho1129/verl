@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $2z^2+66z+364$ can be written as $(z + a)(2z + b),$ where $a$ and $b$ are integers. What is $2a + b$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{66}",
+    "is_static": false
+}

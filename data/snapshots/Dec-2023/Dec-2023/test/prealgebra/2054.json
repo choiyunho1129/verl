@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is a positive number, by how much does $81x+13$ exceed $13-81x$? Express your answer in terms of $x$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{162x}",
+    "is_static": false
+}

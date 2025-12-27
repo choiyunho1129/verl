@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $e$, given that $20d$ is $220$ less than $140e$, and $3e$ is $3829$ less than $d$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{960}",
+    "is_static": false
+}

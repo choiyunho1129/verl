@@ -1,0 +1,7 @@
+{
+    "problem": "The matrix for projecting onto a certain line $\\ell,$ which passes through the origin, is given by\n\\[\\begin{pmatrix} \\frac{1}{2305} & \\frac{48}{2305} \\\\ \\frac{48}{2305} & \\frac{2304}{2305} \\end{pmatrix}.\\]Find the direction vector of line $\\ell.$  Enter your answer in the form $\\begin{pmatrix} a \\\\ b \\end{pmatrix},$ where $a,$ and $b$ are integers, $a > 0,$ and $\\gcd(|a|,|b|) = 1.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 1 \\\\ 48 \\end{pmatrix}}",
+    "is_static": false
+}

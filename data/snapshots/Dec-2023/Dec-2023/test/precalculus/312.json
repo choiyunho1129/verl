@@ -1,0 +1,7 @@
+{
+    "problem": "A rotation centered at the origin takes $\\begin{pmatrix} -535 \\\\ 536 \\end{pmatrix}$ to $\\begin{pmatrix} 809 \\\\ 810 \\end{pmatrix}.$  Which vector does the rotation take $\\begin{pmatrix} 6 \\\\ 2 \\end{pmatrix}$ to?",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 3.0374092666179617 \\\\ -9.065324547836958 \\end{pmatrix}}",
+    "is_static": false
+}

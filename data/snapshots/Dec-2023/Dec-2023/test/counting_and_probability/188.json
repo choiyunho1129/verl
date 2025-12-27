@@ -1,0 +1,7 @@
+{
+    "problem": "Two numbers, $x$ and $y$ are selected at random from the interval $(0,83)$.  What is the probability that a triangle with sides of length 27, $x$, and $y$ exists?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{7001}{13778}}",
+    "is_static": false
+}

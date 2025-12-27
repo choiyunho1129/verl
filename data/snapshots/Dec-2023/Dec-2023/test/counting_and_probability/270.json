@@ -1,0 +1,7 @@
+{
+    "problem": "If five standard six-sided dice are tossed, what is the probability that a 6 is rolled on at least one of the two dice? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{4651}{7776}}",
+    "is_static": false
+}

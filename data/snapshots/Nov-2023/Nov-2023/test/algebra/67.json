@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 9x+12$ and $g(x)=x^2-1$. What is $g(f(-20))$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{28223}",
+    "is_static": false
+}

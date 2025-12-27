@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a_1,$ $a_2,$ $\\dots,$ $a_{169}$ be real numbers such that $a_1 + a_2 + \\dots + a_{169} = 381.$  Find the minimum value of\n\\[a_1^2 + a_2^2 + \\dots + a_{169}^2.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{145161}{169}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "A palindrome is a number which reads the same forward as backward. If a three-digit palindrome is randomly chosen, what is the probability that it is a multiple of 14?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac{1}{18}}",
+    "is_static": false
+}

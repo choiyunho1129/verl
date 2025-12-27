@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $40^{-1} \\equiv 157 \\pmod{161}$, find $2^{-1} \\pmod{161}$ as a residue modulo 161.  (Give an answer between 0 and 160, inclusive.)",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{81}",
+    "is_static": false
+}

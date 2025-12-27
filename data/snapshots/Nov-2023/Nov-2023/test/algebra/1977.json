@@ -1,0 +1,7 @@
+{
+    "problem": "Find the constant $a$ such that \\[(x^2 - 12x + 20)(18x^2 +ax + 4) = 18x^4 --227x^3 +496x^2 --268x +80.\\]",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

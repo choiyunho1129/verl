@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\left(\\sqrt{49797}\\right)^2$.",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{49797}",
+    "is_static": false
+}

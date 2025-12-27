@@ -1,0 +1,7 @@
+{
+    "problem": "Two concentric circular regions have radii of 6 inches and 26 inches. What is the area, in square inches, outside the smaller region, but inside the larger region? Express your answer in terms of $\\pi$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{640\\pi \\text{ square inches}}",
+    "is_static": false
+}

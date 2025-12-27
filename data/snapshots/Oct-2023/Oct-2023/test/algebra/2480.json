@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $\\dfrac{2^{15}-2^8}{2^7-2^6}$. Express your answer in simplest form.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{508}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the hundreds digit in the following product: $5 \\times 2 \\times 7 \\times 6 \\times 7 \\times 10$ ?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $ \\frac{1}{40} \\div \\frac{1}{1960} $.",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{49}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x)=9x^{19}+8x^7+15x^2-2x+c$. For what value of $c$ is $f(-1)=-4$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-4}",
+    "is_static": false
+}

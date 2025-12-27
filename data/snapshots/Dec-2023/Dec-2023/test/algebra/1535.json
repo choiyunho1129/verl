@@ -1,0 +1,7 @@
+{
+    "problem": "If the parabola $y_1 = x^2 + 20x + 28$ and the line $y_2 = 8x + b$ intersect at only one point, what is the value of $b$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-8}",
+    "is_static": false
+}

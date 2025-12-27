@@ -1,0 +1,7 @@
+{
+    "problem": "Find the smallest integer $x$ where the expression $\\frac{\\sqrt{x-4}}{x^2+3x-28}$ is defined.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

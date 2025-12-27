@@ -1,0 +1,7 @@
+{
+    "problem": "Seventy-Two-digit integers are formed using the digits 2, 3, 4 and 5. Any of the digits can be used any number of times. How many such seventy-two-digit integers are palindromes? Palindromes read the same forward and backward.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{4722366482869645213696}",
+    "is_static": false
+}

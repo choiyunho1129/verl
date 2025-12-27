@@ -1,0 +1,7 @@
+{
+    "problem": "Factor the following expression: $72z^{12}+9z^{11}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{9z^{11}(8z+1)}",
+    "is_static": false
+}

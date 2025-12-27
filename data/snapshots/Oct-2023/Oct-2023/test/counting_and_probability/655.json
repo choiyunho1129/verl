@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\displaystyle \\binom{30}{25}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{142506}",
+    "is_static": false
+}

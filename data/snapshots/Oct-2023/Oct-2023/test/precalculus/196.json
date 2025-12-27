@@ -1,0 +1,7 @@
+{
+    "problem": "The dilation, centered at the origin, with scale factor $-4,$ takes $10 - 2i$ to which complex number?",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-40 + 8i}",
+    "is_static": false
+}

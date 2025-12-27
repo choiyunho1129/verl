@@ -1,0 +1,7 @@
+{
+    "problem": "In the arrow-shaped polygon shown below, the angles at vertices $A$, $C$, $D$, $E$, and $F$ are right angles, $BC = FG = 368$, $CD = FE = 254$, $DE = 254$, and $AB = AG$.  Find the area of polygon $ABCDEFG$.\n\n[asy]\nunitsize(1.5 cm);\n\npair A, B, C, D, E, F, G;\n\nA = (0,0);\nB = (1,1);\nC = (1,0.5);\nD = (2.5,0.5);\nE = (2.5,-0.5);\nF = (1,-0.5);\nG = (1,-1);\n\ndraw(A--B--C--D--E--F--G--cycle);\n\nlabel(\"$A$\", A, W);\nlabel(\"$B$\", B, NE);\nlabel(\"$C$\", C, S);\nlabel(\"$D$\", D, NE);\nlabel(\"$E$\", E, SE);\nlabel(\"$F$\", F, N);\nlabel(\"$G$\", G, SE);\nlabel(\"$5$\", (B + C)/2, dir(0));\nlabel(\"$20$\", (C + D)/2, N);\nlabel(\"$10$\", (D + E)/2, dir(0));\nlabel(\"$20$\", (E + F)/2, S);\nlabel(\"$5$\", (F + G)/2, dir(0));\n[/asy]",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{309541}",
+    "is_static": false
+}

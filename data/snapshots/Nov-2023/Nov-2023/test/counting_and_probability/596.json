@@ -1,0 +1,7 @@
+{
+    "problem": "How many numbers are in the list $$ 12,22,32,\\ldots,102,112? $$",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

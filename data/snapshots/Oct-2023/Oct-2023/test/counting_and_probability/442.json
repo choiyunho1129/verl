@@ -1,0 +1,7 @@
+{
+    "problem": "A particular committee needs five $7^{\\mathrm{th}}$-grader and ten $8^{\\mathrm{th}}$-graders. If there are fourteen $7^{\\mathrm{th}}$-graders and sixteen $8^{\\mathrm{th}}$-graders applying to the committee, in how many ways can the committee be filled?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{16032016}",
+    "is_static": false
+}

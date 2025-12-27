@@ -1,0 +1,7 @@
+{
+    "problem": "How many different combinations of $\\$9$ bills and $\\$2$ bills can be used to make a total of $\\$73$?  Order does not matter in this problem.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "When a spaceship full of scientists landed on Planet Q, they found that $\\frac{8}{13}$ of the $169$ aliens had $3$ eyes.  How many aliens had $3$ eyes?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{104}",
+    "is_static": false
+}

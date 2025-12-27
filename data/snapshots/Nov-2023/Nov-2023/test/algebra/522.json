@@ -1,0 +1,7 @@
+{
+    "problem": "In the polynomial $(ax^{15}+bx^{24}+cx^6+d)(x^8+ex^2+f)(x^{17}+gx^8+h)$, letters $a$ through $h$ are all nonzero constants. What is the degree of the polynomial?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{49}",
+    "is_static": false
+}

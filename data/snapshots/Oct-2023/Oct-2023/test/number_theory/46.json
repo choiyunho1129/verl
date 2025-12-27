@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $21_4 - 10_4.$ Express your answer in base $4.$",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{11_4}",
+    "is_static": false
+}

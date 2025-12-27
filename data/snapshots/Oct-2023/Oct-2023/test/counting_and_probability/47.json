@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $65^{3} - 3 \\cdot 65^{2} + 3 \\cdot 65 -1$?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{262144}",
+    "is_static": false
+}

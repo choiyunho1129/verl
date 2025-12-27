@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $\\Join$ is an operation defined by $x \\Join y = (x+19)(y-41)$. What is $((t+44) \\Join (t)) - ((t+22) \\Join (t+22))$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-1804}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate: $357^2 - 227^2$",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{75920}",
+    "is_static": false
+}

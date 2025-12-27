@@ -1,0 +1,7 @@
+{
+    "problem": "If $49a+48b=40$ and $a+b=20$, what is the ordered pair $(a,b)$ that satisfies both equations?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{(-920,940)}",
+    "is_static": false
+}

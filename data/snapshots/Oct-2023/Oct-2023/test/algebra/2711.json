@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $531^2$ in your head.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{281961}",
+    "is_static": false
+}

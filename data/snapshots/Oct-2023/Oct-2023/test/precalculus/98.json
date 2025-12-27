@@ -1,0 +1,7 @@
+{
+    "problem": "Given $\\|\\mathbf{v}\\| = 309$ and $\\|\\mathbf{w}\\| = 656,$ find the largest possible value of\n\\[\\|\\operatorname{proj}_{\\mathbf{w}} \\mathbf{v}\\|.\\]",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{309}",
+    "is_static": false
+}

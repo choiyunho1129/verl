@@ -1,0 +1,7 @@
+{
+    "problem": "Compute the positive integer $x$ such that\n\\[177x^3 - 4442x^2 + 425x = 2900208.\\]",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{37}",
+    "is_static": false
+}

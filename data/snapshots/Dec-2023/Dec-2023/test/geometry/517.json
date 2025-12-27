@@ -1,0 +1,7 @@
+{
+    "problem": "A cylinder has a height of 896 and a radius of 414.  Determine the volume of the cylinder.",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{153570816\\pi}",
+    "is_static": false
+}

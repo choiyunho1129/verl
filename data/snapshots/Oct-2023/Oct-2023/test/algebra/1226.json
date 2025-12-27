@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $3869x^3-318x^2+2279x$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{53x(73x^2-6x+43)}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What real values of $x$ are not in the domain of\n\n$f(x)=\\frac{1}{|x^2+1390x+430584|+|x^2+245x-627396|}$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-924}",
+    "is_static": false
+}

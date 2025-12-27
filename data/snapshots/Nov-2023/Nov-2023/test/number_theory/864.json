@@ -1,0 +1,7 @@
+{
+    "problem": "Find the product of $2_5 \\cdot 3_5.$ Express your answer in base $5.$",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{11_5}",
+    "is_static": false
+}

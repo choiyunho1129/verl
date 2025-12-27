@@ -1,0 +1,7 @@
+{
+    "problem": "A certain ellipse is defined by\n\\[PF_1 + PF_2 = d.\\]The equation of the ellipse is $5184x^2 - 5660928x + y^2 + 236y - 19523655836 = 0.$  Find $d.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{290304}",
+    "is_static": false
+}

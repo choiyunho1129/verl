@@ -1,0 +1,7 @@
+{
+    "problem": "If $j$ and $k$ are inversely proportional and $j = 35$ when $k = 34371$, what is the value of $j$ when $k = 603$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1995}",
+    "is_static": false
+}

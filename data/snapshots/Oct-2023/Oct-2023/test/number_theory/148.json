@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $b$ and $c$ are positive integers.\n\nWhen $b^2$ is written in base $c$, the result is $121_c$. When $c^2$ is written in base $b$, the result is $11_b$.\n\nWhat is $b+c$?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

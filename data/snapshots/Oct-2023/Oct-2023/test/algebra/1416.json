@@ -1,0 +1,7 @@
+{
+    "problem": "Find the domain of $\\sqrt{416-19x-x^2}$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{[-32,13]}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $x \\geq 0$ and $y \\geq 0$, how many lattice points does the line $y = -40x + 2760$ pass through? (A lattice point is a point with integer coordinates.)",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{70}",
+    "is_static": false
+}

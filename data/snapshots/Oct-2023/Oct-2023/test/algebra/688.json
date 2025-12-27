@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of the 499 smallest positive multiples of eight hundred and ninety-four?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{111526500}",
+    "is_static": false
+}

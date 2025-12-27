@@ -1,0 +1,7 @@
+{
+    "problem": "If $x-y=50$ and $x^2+y^2=3298$, find $x^3-y^3$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{184850}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the minimum value of the expression $x^2+y^2-38x+38y-70$ for real $x$ and $y$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-792}",
+    "is_static": false
+}

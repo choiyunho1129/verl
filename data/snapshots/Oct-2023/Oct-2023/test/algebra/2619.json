@@ -1,0 +1,7 @@
+{
+    "problem": "Given that the absolute value of the difference of the two roots of $ax^2 + 35x - 32 = 0$ is $\\frac{\\sqrt{1353}}{1}$, and $a$ is positive, what is the value of $a$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

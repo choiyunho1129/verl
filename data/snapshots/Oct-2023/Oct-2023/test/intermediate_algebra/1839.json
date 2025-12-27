@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a = 222 + 1229i$ and $b = 447 + 257i.$  The complex number $c$ lies on the line segment connecting $a$ and $b$ so that the distance between $a$ and $c$ is equal to twice the distance between $c$ and $b.$  Find $c.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{372 + 581i}",
+    "is_static": false
+}

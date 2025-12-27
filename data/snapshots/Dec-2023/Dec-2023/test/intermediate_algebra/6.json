@@ -1,0 +1,7 @@
+{
+    "problem": "For how many integer values of $k$ do the graphs of $x^2+y^2=98k^2$ and $xy = 916k$ not intersect?",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{36}",
+    "is_static": false
+}

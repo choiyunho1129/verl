@@ -1,0 +1,7 @@
+{
+    "problem": "The function $f(n)$ satisfies $f(1) = 6$ and $f(15n + 24) = f(n) + 73$ for $n \\ge 0.$  Find $f(9159).$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{225}",
+    "is_static": false
+}

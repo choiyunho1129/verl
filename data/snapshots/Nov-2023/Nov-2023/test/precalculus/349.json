@@ -1,0 +1,7 @@
+{
+    "problem": "The projection of $\\begin{pmatrix} a \\\\ 7 \\end{pmatrix}$ onto $\\begin{pmatrix} -5 \\\\ 391 \\end{pmatrix}$ is\n\\[\\frac{1392}{152906} \\begin{pmatrix} -5 \\\\ 391 \\end{pmatrix}.\\]Find $a.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{269}",
+    "is_static": false
+}

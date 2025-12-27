@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive multiple of $46$ that is greater than $14190?$",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{14214}",
+    "is_static": false
+}

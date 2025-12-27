@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil -\\frac{3768}{45}\\right\\rceil$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-83}",
+    "is_static": false
+}

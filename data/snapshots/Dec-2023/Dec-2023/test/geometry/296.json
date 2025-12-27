@@ -1,0 +1,7 @@
+{
+    "problem": "The perimeter of $\\triangle ABC$ is $18.$ If $\\angle ABC=\\angle ACB$ and $BC=10,$ what is the length of $AB?$\n\n[asy]\ndraw((0,0)--(10,0)--(5,10)--cycle,black+linewidth(1));\nMarkAngle((10,0),(0,0),(5,10),1,black+linewidth(1));\nMarkAngle((5,10),(10,0),(0,0),1,black+linewidth(1));\nlabel(\"$A$\",(5,10),N);\nlabel(\"$B$\",(0,0),W);\nlabel(\"$C$\",(10,0),E);\nlabel(\"10\",(0,0)--(10,0),S);\n[/asy]",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

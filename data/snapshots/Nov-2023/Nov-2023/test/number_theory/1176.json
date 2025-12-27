@@ -1,0 +1,7 @@
+{
+    "problem": "How many factors of 944540 can be divided by 166 without a remainder?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

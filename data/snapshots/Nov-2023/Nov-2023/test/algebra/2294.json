@@ -1,0 +1,7 @@
+{
+    "problem": "Consider two infinite geometric series. The first has leading term $10a,$ common ratio $10b,$ and sum $S.$ The second has a leading term $10b,$ common ratio $10a,$ and sum $1/S.$ Find the value of $a+b.$",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{10}}",
+    "is_static": false
+}

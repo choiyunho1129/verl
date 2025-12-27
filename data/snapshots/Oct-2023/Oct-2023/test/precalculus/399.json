@@ -1,0 +1,7 @@
+{
+    "problem": "Find $\\begin{pmatrix} -2 & 683 \\\\ -307 & 506 \\end{pmatrix} + \\begin{pmatrix} 973 & -651 \\\\ 244 & 532 \\end{pmatrix}.$",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 971 & 32 \\\\ -63 & 1038 \\end{pmatrix}}",
+    "is_static": false
+}

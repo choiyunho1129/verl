@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $\\displaystyle{(9^20)}^{\\frac{6}{10}}$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{282429536481}",
+    "is_static": false
+}

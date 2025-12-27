@@ -1,0 +1,7 @@
+{
+    "problem": "If $a=9$ and $b=17$, what is the number of even positive integers less than $ab$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{76}",
+    "is_static": false
+}

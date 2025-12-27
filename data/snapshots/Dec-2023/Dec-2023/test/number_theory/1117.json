@@ -1,0 +1,7 @@
+{
+    "problem": "Find the remainder when $100188^{1894} - 17316^{1894} + 1408$ is divided by 816.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{1408}",
+    "is_static": false
+}

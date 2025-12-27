@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ and $b$ are acute angles such that $\\cos a = \\frac{147}{245}$ and $\\cos b = \\frac{396}{404},$ then find $\\cos (a + b).$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{217}{505}}",
+    "is_static": false
+}

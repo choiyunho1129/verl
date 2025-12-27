@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $|{-32+i\\sqrt59}|$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{32.909}",
+    "is_static": false
+}

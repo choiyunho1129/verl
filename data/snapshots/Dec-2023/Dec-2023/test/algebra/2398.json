@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate the infinite geometric series: $$1-\\frac{8}{9}+\\frac{64}{81}-\\frac{512}{729}+\\dots$$",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{9}{17}}",
+    "is_static": false
+}

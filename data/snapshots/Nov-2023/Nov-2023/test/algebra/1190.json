@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is an integer, what is the smallest value of the expression $x^2 - 8x +27$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

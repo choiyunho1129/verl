@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $11\\cos 60^\\circ$.",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{11}{2}}",
+    "is_static": false
+}

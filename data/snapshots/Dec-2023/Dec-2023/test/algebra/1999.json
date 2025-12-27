@@ -1,0 +1,7 @@
+{
+    "problem": "Given two real numbers $p>1$ and $q>1$ so that $\\frac{5684}{p} + \\frac{8721}{q} = 66980$, what is the value of $(66980p-5684)(66980q-8721)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{49570164}",
+    "is_static": false
+}

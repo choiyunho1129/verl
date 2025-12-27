@@ -1,0 +1,7 @@
+{
+    "problem": "For how many different digits $n$ is the two-digit number $\\underline{7}\\underline{n}$ divisible by $n$? (The expression $\\underline{7}\\underline{n}$ should be interpreted as a two-digit integer with tens digit 7 and units digit $n$, not as 7 times $n$.)",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

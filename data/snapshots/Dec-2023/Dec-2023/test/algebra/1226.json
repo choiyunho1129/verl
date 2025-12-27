@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $4366x^3-767x^2+5251x$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{59x(74x^2-13x+89)}",
+    "is_static": false
+}

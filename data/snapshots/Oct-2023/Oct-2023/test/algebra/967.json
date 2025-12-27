@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the expression $(6x^4+5x^3+6)+(8x^4+10x^7+10)$. Express your answer as a polynomial with terms arranged in decreasing order of degree.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{10x^7+14x^4+5x^3+16}",
+    "is_static": false
+}

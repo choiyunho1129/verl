@@ -1,0 +1,7 @@
+{
+    "problem": "If $a = 8$, what is the value of $\\left(2\\sqrt[3]{a^2}\\right)^{\\frac 13}$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Reversing the digits in John's age results in his father's age. The positive difference between their ages is 54 years. If the sum of the digits in each age is 8, what is the number of years in John's father's age?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{71}",
+    "is_static": false
+}

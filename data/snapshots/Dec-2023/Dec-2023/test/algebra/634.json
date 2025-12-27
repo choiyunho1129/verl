@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $r$ such that $$\\frac{154r^2 -361r - 344}{14r-43} = 7r-4.$$",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-3}",
+    "is_static": false
+}

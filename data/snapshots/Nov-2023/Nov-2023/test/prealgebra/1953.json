@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $\\frac{340}{342}+\\frac{665}{853}$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{517450}{291726}}",
+    "is_static": false
+}

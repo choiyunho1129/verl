@@ -1,0 +1,7 @@
+{
+    "problem": "What is the number of units in the distance from the origin to the point $(152615,670032)$ in a coordinate system?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{687193}",
+    "is_static": false
+}

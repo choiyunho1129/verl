@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $\\sqrt{14 \\cdot 77 \\cdot 22}$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{154}",
+    "is_static": false
+}

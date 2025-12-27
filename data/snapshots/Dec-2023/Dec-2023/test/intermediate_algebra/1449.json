@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $128^a = 23049191499$, $23049191499^b = 53245744930$, $53245744930^c = 57443979590$, and $57443979590^d = 68719476736$. What is $a \\cdot b \\cdot c \\cdot d$?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{36}{7}}",
+    "is_static": false
+}

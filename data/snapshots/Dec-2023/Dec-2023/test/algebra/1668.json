@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of the coordinates of the midpoint of a line segment with endpoints at $(588,221)$ and $(982,691)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1241}",
+    "is_static": false
+}

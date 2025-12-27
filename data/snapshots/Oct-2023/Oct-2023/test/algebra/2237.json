@@ -1,0 +1,7 @@
+{
+    "problem": "You have linear functions $p(x)$ and $q(x)$. You know $p(22)=23$, and $p(q(x))=9x+5$ for all $x$. Find $q(2)$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

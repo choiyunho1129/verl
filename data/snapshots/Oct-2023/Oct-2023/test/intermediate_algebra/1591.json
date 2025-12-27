@@ -1,0 +1,7 @@
+{
+    "problem": "For which value of $x$ does the function $f(x) = \\frac{708x-687468}{x^3 - 655x^2 - 714x + 767}$ cross its horizontal asymptote?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{971}",
+    "is_static": false
+}

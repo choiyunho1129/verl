@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $141^{33} - 213^{33}$ modulo 5.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $P(x)$ be a polynomial of degree 3965 such that $P(1) = 0,$ $P(2) = 1,$ $P(4) = 2,$ $\\dots,$ $P(2^{3965}) = 3965.$  Then the coefficient of $x$ in $P(x)$ can be expressed in the form\n\\[a - \\frac{1}{b^c},\\]where $a,$ $b,$ $c$ are positive integers, and $b$ is prime.  Find $a + b + c.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{3968}",
+    "is_static": false
+}

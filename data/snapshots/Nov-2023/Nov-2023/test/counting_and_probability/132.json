@@ -1,0 +1,7 @@
+{
+    "problem": "There are twelve red balls and four white balls in a jar. One ball is randomly removed and replaced with a ball of the opposite color. The jar is then shaken and one ball is randomly selected. What is the probability that this ball is red? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{23}{32}}",
+    "is_static": false
+}

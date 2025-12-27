@@ -1,0 +1,7 @@
+{
+    "problem": "Kim has exactly enough money to buy 305406 oranges at $399x$ cents each. If the price rose to $846x$ cents per orange, how many oranges could she buy?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{144039}",
+    "is_static": false
+}

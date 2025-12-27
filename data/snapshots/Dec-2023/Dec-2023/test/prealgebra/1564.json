@@ -1,0 +1,7 @@
+{
+    "problem": "Daphne has a rope that is 42 meters long. She wants to use it to mark the boundary of a circle whose radius is an integer. What's the largest possible radius for her circle, in meters?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

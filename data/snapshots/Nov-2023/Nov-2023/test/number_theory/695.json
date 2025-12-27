@@ -1,0 +1,7 @@
+{
+    "problem": "Convert $264_7$ to a base 10 integer.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{144}",
+    "is_static": false
+}

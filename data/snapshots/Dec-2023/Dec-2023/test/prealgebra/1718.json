@@ -1,0 +1,7 @@
+{
+    "problem": "Seventeen horses eat 34 bales of hay in 34 hours. At the same rate, how many hours will 102 bales of hay last 34 horses?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{51\\text{ hours}}",
+    "is_static": false
+}

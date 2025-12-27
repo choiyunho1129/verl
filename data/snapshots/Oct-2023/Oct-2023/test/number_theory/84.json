@@ -1,0 +1,7 @@
+{
+    "problem": "What is the digit in the hundredths place of the decimal equivalent of $\\frac{174}{20}$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

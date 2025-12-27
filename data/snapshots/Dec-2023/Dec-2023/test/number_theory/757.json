@@ -1,0 +1,7 @@
+{
+    "problem": "For how many integers $a$ satisfying $1 \\le a \\le 35$ is it true that $a^{-1} \\equiv a \\pmod{36}$?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

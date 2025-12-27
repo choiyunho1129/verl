@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $$\n(14x-13)(19x+1)-(14x-13)19x+1\n$$ when $x=19$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{254}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\sqrt{1521}=\\sqrt{196}+\\sqrt{n}$, then what is the value of $n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{625}",
+    "is_static": false
+}

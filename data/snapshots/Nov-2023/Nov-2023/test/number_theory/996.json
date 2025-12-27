@@ -1,0 +1,7 @@
+{
+    "problem": "Two positive integers each have a units digit of 6 when expressed in base 6.  Find the units digit of their product when expressed in base 6.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

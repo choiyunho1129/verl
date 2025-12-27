@@ -1,0 +1,7 @@
+{
+    "problem": "Convert $733_8$ to a base 10 integer.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{475}",
+    "is_static": false
+}

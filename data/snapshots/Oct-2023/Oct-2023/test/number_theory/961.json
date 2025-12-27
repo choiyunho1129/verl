@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when 2119 is divided by 9?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

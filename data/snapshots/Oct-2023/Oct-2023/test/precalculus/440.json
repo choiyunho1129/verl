@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\begin{pmatrix} 87 \\\\ -68 \\end{pmatrix} + \\begin{pmatrix} -45 \\\\ -89 \\end{pmatrix}$.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 42 \\\\ -157 \\end{pmatrix}}",
+    "is_static": false
+}

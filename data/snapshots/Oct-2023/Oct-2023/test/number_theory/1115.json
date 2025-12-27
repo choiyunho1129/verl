@@ -1,0 +1,7 @@
+{
+    "problem": "Find the units digit of the following:  \\begin{align*}\n& (741 - 174)(844 - 438)(1196 - 467) \\\\\n&\\qquad+ (1407 - 736)(1525 - 722)(1345 - 878) - (594 - 412)^3\n\\end{align*}",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

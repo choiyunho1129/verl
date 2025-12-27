@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest number $k$ less than 79099615 such that the remainder is 1 when $k$ is divided by each of 29, 23, 4, 22, and 10?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{79092861}",
+    "is_static": false
+}

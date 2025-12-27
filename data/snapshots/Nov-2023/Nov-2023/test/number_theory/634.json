@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $893^{-1}$ modulo $900$. Express your answer as an integer from $0$ to $899$.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{257}",
+    "is_static": false
+}

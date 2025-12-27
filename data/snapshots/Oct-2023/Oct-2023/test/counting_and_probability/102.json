@@ -1,0 +1,7 @@
+{
+    "problem": "How many prime numbers less than 88 have a units digit of 3?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of the first fifty-one positive odd integers?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{2601}",
+    "is_static": false
+}

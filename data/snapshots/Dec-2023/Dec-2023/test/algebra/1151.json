@@ -1,0 +1,7 @@
+{
+    "problem": "The ratio of two numbers is $18:365$. When 215 is subtracted from the lesser of the two numbers and 5738 is added to the larger of the two, the new ratio is $109:12308$. What is the greater of the two numbers before 5738 is added to it?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{6570}",
+    "is_static": false
+}

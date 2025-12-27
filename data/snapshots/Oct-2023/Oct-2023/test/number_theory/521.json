@@ -1,0 +1,7 @@
+{
+    "problem": "The product of two consecutive positive even integers is 7224. What is the greater of the two integers?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{86}",
+    "is_static": false
+}

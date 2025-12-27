@@ -1,0 +1,7 @@
+{
+    "problem": "Every student in the senior class is taking history or science. There are $153$ seniors in the class. If there are $93$ seniors taking history and $89$ seniors taking science, how many students are taking both history and science?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

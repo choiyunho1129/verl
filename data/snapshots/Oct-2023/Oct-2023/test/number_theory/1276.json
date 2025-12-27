@@ -1,0 +1,7 @@
+{
+    "problem": "How many digits are in the whole-number representation of $10^{122}-9^{122}$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{122}",
+    "is_static": false
+}

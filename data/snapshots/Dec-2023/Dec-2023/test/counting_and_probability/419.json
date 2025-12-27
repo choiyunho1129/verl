@@ -1,0 +1,7 @@
+{
+    "problem": "Harold tosses a nickel twenty-four times.  What is the probability that he gets at least as many heads as tails?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{4870343}{8388608}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Linda, Sherry, June, and Connie walked around their neighborhoods selling girl scout cookies. Linda earned $\\$98.75$, Sherry earned $\\$65.41$, June earned $\\$50.58$, and Connie earned $\\$37.57$. After the sale, they pooled their money together and went to the bank to convert the coins into dollars. How much money, in cents, was left after they converted as many of the coins into bills as they could?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{31}",
+    "is_static": false
+}

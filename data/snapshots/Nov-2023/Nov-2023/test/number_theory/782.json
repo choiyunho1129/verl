@@ -1,0 +1,7 @@
+{
+    "problem": "Express $0.\\overline{8}$ as a common fraction.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac{8}{9}}",
+    "is_static": false
+}

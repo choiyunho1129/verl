@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $48^2 + 2(48) + 1$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{2401}",
+    "is_static": false
+}

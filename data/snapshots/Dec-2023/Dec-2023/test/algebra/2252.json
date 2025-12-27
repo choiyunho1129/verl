@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ for which $$\\sqrt{x + \\sqrt{x + \\sqrt{x + \\ldots}}} = 31?$$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{930}",
+    "is_static": false
+}

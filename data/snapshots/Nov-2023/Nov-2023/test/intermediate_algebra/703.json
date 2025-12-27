@@ -1,0 +1,7 @@
+{
+    "problem": "The numbers $\\sin x,$ $\\cos x,$ $\\tan x$ form a geometric sequence.  Find\n\\[66\\cos^3 x + 66\\cos^2 x.\\]",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{66}",
+    "is_static": false
+}

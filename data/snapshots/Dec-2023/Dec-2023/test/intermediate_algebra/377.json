@@ -1,0 +1,7 @@
+{
+    "problem": "The sequence $(a_n)$ is defined by $a_1 = 1,$ $a_2 = 2,$ and\n\\[a_n^2 - a_{n - 1} a_{n + 1} = 1\\]for all $n \\ge 2.$  Find $a_{190}.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{190}",
+    "is_static": false
+}

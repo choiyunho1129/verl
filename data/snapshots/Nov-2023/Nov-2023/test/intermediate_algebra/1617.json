@@ -1,0 +1,7 @@
+{
+    "problem": "A polynomial with integer coefficients is of the form\n\\[278x^4 + a_3 x^3 + a_2 x^2 + a_1 x - 112034 = 0.\\]Find the number of different possible rational roots of this polynomial.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{72}",
+    "is_static": false
+}

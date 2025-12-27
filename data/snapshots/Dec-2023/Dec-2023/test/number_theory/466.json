@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when $1 + 2 + 3 + 4 + \\dots + 217 + 218$ is divided by 118?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{35}",
+    "is_static": false
+}

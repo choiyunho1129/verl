@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ and $c$ be distinct complex numbers such that\n\\begin{align*}\na^3 &= 39a + 21, \\\\\nb^3 &= 39b + 21, \\\\\nc^3 &= 39c + 21.\n\\end{align*}Find $a^3 + b^3 + c^3.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{63}",
+    "is_static": false
+}

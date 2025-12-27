@@ -1,0 +1,7 @@
+{
+    "problem": "Three congruent isosceles triangles $DAO$, $AOB$ and $OBC$ have $AD=AO=OB=BC=2362282$ and $AB=DO=OC=4028364$.  These triangles are arranged to form trapezoid $ABCD$, as shown.  Point $P$ is on side $AB$ so that $OP$ is perpendicular to $AB$.\n\n[asy]\n\npair A, B, C, D, O, P;\n\nA= (6, 8);\n\nB=(18, 8);\n\nC=(24, 0);\n\nD=(0,0);\n\nO=(12,0);\n\nP=(12,8);\n\ndraw(A--B--C--D--A);\n\ndraw(A--O--B);\n\ndraw(O--P, dashed);\n\nlabel(\"A\", A, NW);\n\nlabel(\"B\", B, NE);\n\nlabel(\"C\", C, SE);\n\nlabel(\"D\", D, SW);\n\nlabel(\"O\", O, S);\n\nlabel(\"P\", P, N);\n\nlabel(\"4028364\", (D+O)/2, S);\n\nlabel(\"4028364\", (O+C)/2, S);\n\nlabel(\"2362282\", (A+D)/2, NW);\n\nlabel(\"2362282\", (B+C)/2, NE);\n\n[/asy]\n\nWhat is the area of trapezoid $ABCD$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{7458193676880}",
+    "is_static": false
+}

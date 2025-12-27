@@ -1,0 +1,7 @@
+{
+    "problem": "Each successive term in the sequence $816, 408, x,\ny, 51, \\ldots$ is obtained by multiplying the previous term by a constant. What is the value of $x + y$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{306}",
+    "is_static": false
+}

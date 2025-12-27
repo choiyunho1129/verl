@@ -1,0 +1,7 @@
+{
+    "problem": "What is the positive difference between the greatest and the least member of the set $\\left\\{\\frac{9}{13},\\frac{19}{17},\\frac{526}{49},\\frac{36}{49}\\right\\}$? Express your answer in simplest form.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

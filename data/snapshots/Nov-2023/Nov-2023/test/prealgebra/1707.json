@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $643+362-25\\times 716\\div (55+578).$",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{976.7219589257504}",
+    "is_static": false
+}

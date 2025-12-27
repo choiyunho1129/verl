@@ -1,0 +1,7 @@
+{
+    "problem": "A right triangle has a hypotenuse of length 17 units and a leg of length 8 units. How many square units is the area of the triangle?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{60}",
+    "is_static": false
+}

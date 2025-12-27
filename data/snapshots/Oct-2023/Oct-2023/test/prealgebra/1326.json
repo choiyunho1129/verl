@@ -1,0 +1,7 @@
+{
+    "problem": "The mean of the increasing ordered set of numbers, $\\{32, x, 48\\}$, is equal to the median. What is the value of $x$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{40}",
+    "is_static": false
+}

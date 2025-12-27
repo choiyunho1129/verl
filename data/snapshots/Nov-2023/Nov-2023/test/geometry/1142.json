@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $793\\cos 225^\\circ$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{-\\frac{793\\sqrt{2}}{2}}",
+    "is_static": false
+}

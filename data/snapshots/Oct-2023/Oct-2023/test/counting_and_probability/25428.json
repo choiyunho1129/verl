@@ -1,0 +1,7 @@
+{
+    "problem": "A standard deck of cards has 26 cards which are considered \"red\" (the 'hearts' and 'diamonds') and 26 which are considered \"black\" (the 'spades' and 'clubs'). In how many different ways can we choose thirteen red cards from the deck? (Note: Order matters in the sense that drawing an ace of hearts followed by jack of diamonds is different than drawing a jack of diamonds followed by ace of hearts, for instance.)",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{64764752532480000}",
+    "is_static": false
+}

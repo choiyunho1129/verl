@@ -1,0 +1,7 @@
+{
+    "problem": "The complex numbers $7 + 14i,$ $7 + 13i,$ and $15 + 13i$ are three vertices of a rectangle.  Find the fourth vertex.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{15 + 14i}",
+    "is_static": false
+}

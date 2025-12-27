@@ -1,0 +1,7 @@
+{
+    "problem": "If $n$ is a multiple of three, what is the remainder when $(n + 87) + (n + 34) + (n + 92)$ is divided by $9$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

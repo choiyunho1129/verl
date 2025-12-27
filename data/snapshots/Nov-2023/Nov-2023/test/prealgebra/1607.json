@@ -1,0 +1,7 @@
+{
+    "problem": "What is the difference between the largest and smallest of the following numbers? \\[\n0.56 \\qquad 0.43 \\qquad 1.73 \\qquad 1.725\n\\]",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1.3}",
+    "is_static": false
+}

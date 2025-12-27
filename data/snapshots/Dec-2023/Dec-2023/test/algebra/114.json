@@ -1,0 +1,7 @@
+{
+    "problem": "If $a = 1000$, what is the value of $\\left(10000000000\\sqrt[3]{a^2}\\right)^{\\frac 13}$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{10000}",
+    "is_static": false
+}

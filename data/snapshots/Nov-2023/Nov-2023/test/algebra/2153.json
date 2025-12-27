@@ -1,0 +1,7 @@
+{
+    "problem": "The vertex of the parabola described by the equation $y=-24x^2-912x-6249$ is $(m,n)$. What is $m+n$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{2396}",
+    "is_static": false
+}

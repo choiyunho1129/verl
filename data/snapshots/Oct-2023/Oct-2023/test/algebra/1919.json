@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\sqrt{81}=\\sqrt{49}+\\sqrt{n}$, then what is the value of $n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

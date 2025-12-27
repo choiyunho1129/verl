@@ -1,0 +1,7 @@
+{
+    "problem": "A fraction is equivalent to $\\frac{7}{8}.$ Its denominator and numerator add up to $210.$ What is the difference between the denominator and numerator of this fraction?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

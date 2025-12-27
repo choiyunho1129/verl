@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest multiple of 567 which is less than 10453?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{10206}",
+    "is_static": false
+}

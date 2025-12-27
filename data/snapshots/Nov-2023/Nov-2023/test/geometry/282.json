@@ -1,0 +1,7 @@
+{
+    "problem": "The set of all solutions of the system  \\[ \\begin{cases}& 984x+298y \\le 293232 \\\\& x+y \\ge 1 \\\\& x \\ge 0 \\\\& y \\ge 0 \\end{cases} \\] is a quadrilateral region. If the number of units in the length of the longest side is $a\\sqrt{b}$ (expressed in simplest radical form), find $a+b$.",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{264267}",
+    "is_static": false
+}

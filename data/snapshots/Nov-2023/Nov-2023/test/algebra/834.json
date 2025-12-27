@@ -1,0 +1,7 @@
+{
+    "problem": "If $898ab = 880938$, evaluate $125a^2b^2$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{120295125}",
+    "is_static": false
+}

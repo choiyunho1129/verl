@@ -1,0 +1,7 @@
+{
+    "problem": "The function $f(x)$ is graphed below.  Each small box has width and height 1.\n\n[asy]\nsize(150);\nimport TrigMacros;\nrr_cartesian_axes(-1,17,-1,17);\n\ndot((1,13),red+5bp);\ndot((2,9),red+5bp);\ndot((3,5),red+5bp);\ndot((4,1),red+5bp);\ndot((5,14),red+5bp);\ndot((6,10),red+5bp);\ndot((7,6),red+5bp);\ndot((8,2),red+5bp);\ndot((9,15),red+5bp);\ndot((10,11),red+5bp);\ndot((11,7),red+5bp);\ndot((12,3),red+5bp);\ndot((13,16),red+5bp);\ndot((14,12),red+5bp);\ndot((15,8),red+5bp);\ndot((16,4),red+5bp);\n[/asy]\nWhat is the value of $f(f(1))+f(f(2))+f(f(3))+f(f(4))+\\cdots+f(f(15))+f(f(16))$ ?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{136}",
+    "is_static": false
+}

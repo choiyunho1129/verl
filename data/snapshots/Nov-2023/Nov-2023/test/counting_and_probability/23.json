@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $\\binom{82}{44}=341906042875877359752600$, $\\binom{83}{45}=630626701304396019099240$, and $\\binom{83}{46}=520952492381892363603720$, find $\\binom{82}{46}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{232231833953373704257080}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Each edge of a cube has length 11 inches. What is the number of square inches in the cube's total surface area?",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{726}",
+    "is_static": false
+}

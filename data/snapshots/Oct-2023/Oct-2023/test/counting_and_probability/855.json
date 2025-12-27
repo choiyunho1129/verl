@@ -1,0 +1,7 @@
+{
+    "problem": "How many numbers can be expressed as the sum of two or more distinct elements of the set $\\{ 0, 1, 2, 4, 8, 16, 32 \\}$?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{63}",
+    "is_static": false
+}

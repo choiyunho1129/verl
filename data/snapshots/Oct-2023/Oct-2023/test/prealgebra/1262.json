@@ -1,0 +1,7 @@
+{
+    "problem": "John meant to divide a number by $2$, but he was careless and subtracted $2$ from the number instead.  He got an answer of $82$.  What would his answer have been had he actually divided by $2$ instead of subtracting $2$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{42}",
+    "is_static": false
+}

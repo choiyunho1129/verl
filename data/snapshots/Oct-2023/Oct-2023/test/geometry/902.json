@@ -1,0 +1,7 @@
+{
+    "problem": "Two circles are centered at the origin, as shown.  The point $P(224,30)$ is on the larger circle and the point $S(0,k)$ is on the smaller circle.  If $QR=113$, what is the value of $k$? [asy]\ndefaultpen(linewidth(.7pt)+fontsize(10pt));\ndotfactor=4;\ndraw(Circle((0,0),113)); draw(Circle((0,0),226));\ndot((0,0)); dot((113,0)); dot((226,0)); dot((0,113)); dot((224,30));\ndraw((0,0)--(224,30));\nlabel(\"$S (0,k)$\",(0,7.5),W);\ndraw((229,0)--(0,0)--(0,229),Arrows(TeXHead));\ndraw((-229,0)--(0,0)--(0,-229));\n\nlabel(\"$x$\",(229,0),E); label(\"$y$\",(0,229),N); label(\"$P(224,30)$\",(224,30),NE);\n\nlabel(\"$O$\",(0,0),SW); label(\"$Q$\",(113,0),SW); label(\"$R$\",(226,0),SE);\n\n[/asy]",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{113}",
+    "is_static": false
+}

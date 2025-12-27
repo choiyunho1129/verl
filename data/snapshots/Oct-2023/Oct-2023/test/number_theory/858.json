@@ -1,0 +1,7 @@
+{
+    "problem": "Wendy noticed when she stacked her quarters in piles of 7 she had 3 left over and when she stacked them in piles of 8 she had 7 left over. If she has less than sixteen dollars worth of quarters, how many quarters does she have?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{31}",
+    "is_static": false
+}

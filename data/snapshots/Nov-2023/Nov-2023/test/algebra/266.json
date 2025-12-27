@@ -1,0 +1,7 @@
+{
+    "problem": "If $(8,-13)$ and $(-6,22)$ are the coordinates of two opposite vertices of a square, what is the sum of the $y$-coordinates of the other two vertices?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $400^{14n}=8000^{1120}$, find $n$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{120}",
+    "is_static": false
+}

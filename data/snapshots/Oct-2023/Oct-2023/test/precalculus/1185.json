@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x$ be a real number such that $\\sec x - \\tan x = 7.$  Find $\\sec x + \\tan x.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{1}{7}}",
+    "is_static": false
+}

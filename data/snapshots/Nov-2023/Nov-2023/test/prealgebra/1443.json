@@ -1,0 +1,7 @@
+{
+    "problem": "Deanna has $59$ pieces of candy. What is the largest number of kids whom she can give an equal number of candies such that every kid gets at least $5$ pieces?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 1020x+1697$ and $g(x) = 101x+168$ whenever $x$ is a positive integer. Define $h(x)$ to be the greatest common divisor of $f(x)$ and $g(x)$. What is the sum of all possible values of $h(x)$?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{38}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $h(x)=f^{-1}(x)$. If $h(18)=34$, $h(34)=2$ and $h(2)=18$, what is $f(f(34))$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

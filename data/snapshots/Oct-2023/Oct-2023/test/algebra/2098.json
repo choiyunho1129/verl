@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all values of $x$ for which the expression $\\frac{x-96}{52x^2-74x+98}$ is undefined?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{1.4230769230769231}",
+    "is_static": false
+}

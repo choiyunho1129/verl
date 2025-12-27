@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $15\\sin 30^\\circ$.",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{15}{2}}",
+    "is_static": false
+}

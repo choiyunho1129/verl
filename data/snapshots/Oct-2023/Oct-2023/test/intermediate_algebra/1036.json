@@ -1,0 +1,7 @@
+{
+    "problem": "The complex numbers $a$ and $b$ satisfy\n\\[a + \\overline{b} = -54 - 93i.\\]Find $\\overline{a} + b.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-54 + 93i}",
+    "is_static": false
+}

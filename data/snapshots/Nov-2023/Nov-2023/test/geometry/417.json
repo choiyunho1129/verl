@@ -1,0 +1,7 @@
+{
+    "problem": "What is the area, in square units, of the square with the four vertices at $(-10, 10), (10, -10), (-10, -30)$, and $(-30, -10)$?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{800}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute 55 times $\\arctan \\left( -\\frac{1}{\\sqrt{3}} \\right).$  Express your answer in radians.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-\\frac{55\\pi}{6}}",
+    "is_static": false
+}

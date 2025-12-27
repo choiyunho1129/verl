@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least possible value of the sum $|x - 50.8| + |x - 154.3| + |x - 246.35|$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{195.54999999999998}",
+    "is_static": false
+}

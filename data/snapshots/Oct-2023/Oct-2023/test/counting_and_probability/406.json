@@ -1,0 +1,7 @@
+{
+    "problem": "A drawer contains 2 white balls and 84 black balls.  Two balls are drawn out of the box at random.  What is the probability that they both are white?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\dfrac{1}{3655}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $x$: $\\frac{x}{22}+\\frac{x}{82}=8-x$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{7216}{954}}",
+    "is_static": false
+}

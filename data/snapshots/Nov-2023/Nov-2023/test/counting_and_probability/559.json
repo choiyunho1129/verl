@@ -1,0 +1,7 @@
+{
+    "problem": "Coin $A$ is flipped three times and coin $B$ is flipped nine times. What is the probability that the number of heads obtained from flipping the two fair coins is the same?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{55}{1024}}",
+    "is_static": false
+}

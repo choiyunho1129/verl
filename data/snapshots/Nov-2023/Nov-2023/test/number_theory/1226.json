@@ -1,0 +1,7 @@
+{
+    "problem": "Find the smallest positive integer $n$ such that $$ 63n \\equiv 317n \\pmod{30}. $$",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

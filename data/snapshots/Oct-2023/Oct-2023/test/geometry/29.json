@@ -1,0 +1,7 @@
+{
+    "problem": "The largest interior angle in an isosceles trapezoid is 89 times the measure of the smallest interior angle. What is the measure, in degrees, of the smallest interior angle in the trapezoid?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

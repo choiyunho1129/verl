@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is a real number and $\\lfloor x \\rfloor = -83,$ how many possible values are there for $\\lfloor 20x \\rfloor$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

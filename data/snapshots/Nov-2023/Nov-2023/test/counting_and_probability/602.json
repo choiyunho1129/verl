@@ -1,0 +1,7 @@
+{
+    "problem": "If the numbers on the third diagonal of Pascal's Triangle are triangular numbers, what is the value of the $86$th triangular number? (The $n$th triangular number is $1+2+3+\\ldots+n$.)",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{3741}",
+    "is_static": false
+}

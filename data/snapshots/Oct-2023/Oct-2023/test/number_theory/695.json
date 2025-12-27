@@ -1,0 +1,7 @@
+{
+    "problem": "Convert $217_8$ to a base 10 integer.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{143}",
+    "is_static": false
+}

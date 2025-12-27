@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ and $c$ be distinct complex numbers such that\n\\begin{align*}\na^3 &= 44a + 17, \\\\\nb^3 &= 44b + 17, \\\\\nc^3 &= 44c + 17.\n\\end{align*}Find $a^3 + b^3 + c^3.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{51}",
+    "is_static": false
+}

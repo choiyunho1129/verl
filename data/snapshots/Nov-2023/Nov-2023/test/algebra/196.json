@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of all solutions of the equation $|528-x|= 423$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1056}",
+    "is_static": false
+}

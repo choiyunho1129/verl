@@ -1,0 +1,7 @@
+{
+    "problem": "If $a^2 + b^2 = 906$ and $c^2 + d^2 = 473$, find the value of\n\n$$(ac+bd)^2 + (bc - ad)^2.$$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{428538}",
+    "is_static": false
+}

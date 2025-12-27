@@ -1,0 +1,7 @@
+{
+    "problem": "What is the 8466th digit following the decimal point in the expansion of $\\frac{1}{47}$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

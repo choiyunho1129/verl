@@ -1,0 +1,7 @@
+{
+    "problem": "If the volume of a sphere inscribed in a cube is $\\frac{6705\\pi}{6}$ cubic inches, what is the number of cubic inches in the volume of the cube?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{6705}",
+    "is_static": false
+}

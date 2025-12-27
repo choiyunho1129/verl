@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d$ be the roots of\n\\[15x^4 - 75x^3 + 16 = 0.\\]Find $a + b + c + d.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

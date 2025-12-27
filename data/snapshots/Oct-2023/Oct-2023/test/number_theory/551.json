@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the remainder of 157 (mod 4).",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

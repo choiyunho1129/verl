@@ -1,0 +1,7 @@
+{
+    "problem": "Express $\\left(\\frac{67108864}{96889010407}\\right)^{\\frac113}$ a common fraction.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{4}{7}}",
+    "is_static": false
+}

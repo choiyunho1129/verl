@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $197^{-1}$ modulo $200$. Express your answer as an integer from $0$ to $199$.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{133}",
+    "is_static": false
+}

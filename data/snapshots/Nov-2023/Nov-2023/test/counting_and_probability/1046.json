@@ -1,0 +1,7 @@
+{
+    "problem": "How many ways are there for 18 people to sit around a circular table if none of Alice, Bob, and Eve (three of the 18 people) want to sit next to each other? Two seatings are considered the same if one is a rotation of the other.",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{237996734976000}",
+    "is_static": false
+}

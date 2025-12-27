@@ -1,0 +1,7 @@
+{
+    "problem": "Find the minimum value of $\\frac{49x^2\\sin^2 x + 36}{x\\sin x}$ for $0 < x < \\pi.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{84}",
+    "is_static": false
+}

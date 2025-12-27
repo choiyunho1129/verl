@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $y=7$, evaluate $(39+y)^y$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{435817657216}",
+    "is_static": false
+}

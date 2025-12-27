@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers are in the solution of the inequality $|x + 120|< 132$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{263}",
+    "is_static": false
+}

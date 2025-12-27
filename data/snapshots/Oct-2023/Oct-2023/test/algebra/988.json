@@ -1,0 +1,7 @@
+{
+    "problem": "Solve the following equation for $x$: \\[ \\ \\frac{21}{26} = \\frac{84}{x-31}.\\]",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{135}",
+    "is_static": false
+}

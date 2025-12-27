@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a},$ $\\mathbf{b},$ $\\mathbf{c}$ be three vectors with equal magnitudes, and such that any pair of them are orthogonal.  If $\\theta$ is the angle between $\\mathbf{a}$ and $\\mathbf{a} + \\mathbf{b} + \\mathbf{c},$ then find $74\\cos \\theta.$",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{74}{\\sqrt{3}}}",
+    "is_static": false
+}

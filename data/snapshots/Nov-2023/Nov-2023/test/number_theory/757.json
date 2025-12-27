@@ -1,0 +1,7 @@
+{
+    "problem": "For how many integers $a$ satisfying $1 \\le a \\le 419$ is it true that $a^{-1} \\equiv a \\pmod{420}$?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{140}",
+    "is_static": false
+}

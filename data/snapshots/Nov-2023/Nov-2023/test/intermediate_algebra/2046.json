@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $x: 3^{4x} + 247216580550943071199 = 110^x$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

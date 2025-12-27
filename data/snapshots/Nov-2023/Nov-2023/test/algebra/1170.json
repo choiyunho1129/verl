@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all of the multiples of 5 between 30 and 931?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{86850}",
+    "is_static": false
+}

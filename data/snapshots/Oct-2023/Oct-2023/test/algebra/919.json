@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $y$ such that $\\lceil y\\rceil+y=65.4?$",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{32.4}",
+    "is_static": false
+}

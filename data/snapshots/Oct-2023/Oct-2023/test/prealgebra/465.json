@@ -1,0 +1,7 @@
+{
+    "problem": "When converting $\\frac{868}{111111}$ to a decimal, the decimal turns out to be a repeating decimal. How many digits repeat in this repeating decimal?\n\nFor example, if you get the repeating decimal $0.\\overline{123},$ then your answer should be $3,$ and if you get $0.436\\overline{7},$ your answer should be $1.$",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

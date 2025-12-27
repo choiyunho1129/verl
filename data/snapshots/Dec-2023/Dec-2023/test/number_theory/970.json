@@ -1,0 +1,7 @@
+{
+    "problem": "What is the units digit of $12^7$ when expressed as an integer?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

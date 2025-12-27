@@ -1,0 +1,7 @@
+{
+    "problem": "The integers 613 through 620 are each placed in the figure with one integer in each of the eight smallest triangles. The integers are placed so that the pairs of integers in each of the four smallest squares have the same sum. What is that sum?\n\n[asy]\nsize(101);\ndraw(unitsquare);\ndraw(shift(up)*shift(right)*unitsquare);\nfilldraw(shift(up)*unitsquare,gray(.6));\nfilldraw(shift(right)*unitsquare,gray(.6));\ndraw((0,0)--(2,2)^^(0,2)--(2,0));\n[/asy]",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1233}",
+    "is_static": false
+}

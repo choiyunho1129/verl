@@ -1,0 +1,7 @@
+{
+    "problem": "A horse 132765 feet from the center of a merry-go-round makes 162 revolutions. In order to travel the same distance, how many revolutions would a horse 835 feet from the center have to make?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{25758}",
+    "is_static": false
+}

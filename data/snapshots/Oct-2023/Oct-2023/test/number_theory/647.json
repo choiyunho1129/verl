@@ -1,0 +1,7 @@
+{
+    "problem": "Let $i$ be the smallest positive integer such that $3^i\\equiv 9\\pmod {11}.$ Let $j$ be the smallest positive integer such that $9^j\\equiv 3\\pmod {11}.$ What is the remainder when $ij$ is divided by $3?$",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

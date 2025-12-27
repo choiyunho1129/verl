@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\sqrt{7\\cdot329\\cdot1739\\cdot1517\\cdot451\\cdot15059}$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{203130851}",
+    "is_static": false
+}

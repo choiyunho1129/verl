@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\mathbf{v} \\times \\mathbf{w} = \\begin{pmatrix} 5 \\\\ 6 \\\\ 4 \\end{pmatrix},$ then find $\\mathbf{w} \\times \\mathbf{v}.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} - 5 \\\\ -6 \\\\ -4 \\end{pmatrix}}",
+    "is_static": false
+}

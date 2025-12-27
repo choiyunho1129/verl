@@ -1,0 +1,7 @@
+{
+    "problem": "Compute the area of the ellipse $49x^2 + y^2 = 2401.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{343\\pi}",
+    "is_static": false
+}

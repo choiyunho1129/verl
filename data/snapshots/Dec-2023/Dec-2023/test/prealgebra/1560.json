@@ -1,0 +1,7 @@
+{
+    "problem": "Ellen baked $14$ dozen cupcakes of which half contained chocolate, two-thirds contained raisins, one-fourth contained chocolate chips, and one-sixth contained nuts.  What is the largest possible number of cupcakes that had none of these ingredients?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{56}",
+    "is_static": false
+}

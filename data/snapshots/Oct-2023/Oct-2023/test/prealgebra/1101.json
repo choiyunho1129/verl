@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest possible area, in square centimeters, of a right triangle with one side of length 33 cm and another side of length 65 cm?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1072.5}",
+    "is_static": false
+}

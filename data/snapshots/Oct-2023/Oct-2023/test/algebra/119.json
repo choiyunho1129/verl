@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $e$, given that $4d$ is $8$ less than $852e$, and $6e$ is $72862$ less than $d$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{352}",
+    "is_static": false
+}

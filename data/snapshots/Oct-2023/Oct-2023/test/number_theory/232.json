@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $(23^{-1}+29^{-1})^{-1}\\pmod{519}$. Express your answer as an integer from $0$ to $518$, inclusive.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{442}",
+    "is_static": false
+}

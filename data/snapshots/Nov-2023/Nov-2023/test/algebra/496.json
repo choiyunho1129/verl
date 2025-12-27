@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ which satisfies $\\sqrt[19]{x^9\\sqrt{x}}=17$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{289}",
+    "is_static": false
+}

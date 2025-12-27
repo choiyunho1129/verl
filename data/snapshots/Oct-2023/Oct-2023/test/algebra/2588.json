@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x)$ is a polynomial of degree 8, and $g(x)$ is a polynomial of degree 6, then what is the degree of polynomial $f(x) - g(x)$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

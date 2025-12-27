@@ -1,0 +1,7 @@
+{
+    "problem": "How many isosceles triangles with whole-number length sides have a perimeter of 2380 units?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{594}",
+    "is_static": false
+}

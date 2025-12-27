@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest $n$ such that $a = 2^{189} \\cdot 3^{210}$ is a perfect $n$th power?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{21}",
+    "is_static": false
+}

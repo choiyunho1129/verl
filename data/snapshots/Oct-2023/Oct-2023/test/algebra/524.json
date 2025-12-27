@@ -1,0 +1,7 @@
+{
+    "problem": "What is the 963rd term of the sequence of odd numbers 213, 252, 291, 330, $\\dots$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{37731}",
+    "is_static": false
+}

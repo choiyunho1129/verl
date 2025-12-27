@@ -1,0 +1,7 @@
+{
+    "problem": "What number is $$\\frac{\\sqrt{219024-186624}}{\\sqrt{219024}-\\sqrt{186624}}$$equal to?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

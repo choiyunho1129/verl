@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $r$ such that $$\\frac{85r^2 +106r - 299}{17r-23} = 8r-17.$$",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

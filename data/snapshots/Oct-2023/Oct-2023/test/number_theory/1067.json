@@ -1,0 +1,7 @@
+{
+    "problem": "For how many integers $n$ from $1$ to $1889$ is the fraction $\\frac{n}{1890}$ a repeating decimal?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{1880}",
+    "is_static": false
+}

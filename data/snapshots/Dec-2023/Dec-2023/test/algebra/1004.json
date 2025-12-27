@@ -1,0 +1,7 @@
+{
+    "problem": "If $7^6=117649^x$, what is the value of $x$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If a certain number is multiplied by twenty, the result is the  same as eight hundred and sixty-four plus twice the original number.  What is the value of the original number?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{48}",
+    "is_static": false
+}

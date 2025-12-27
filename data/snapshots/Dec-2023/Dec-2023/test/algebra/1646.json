@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least value of $x$ that is a solution of $|{-x+288}|=897$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-609}",
+    "is_static": false
+}

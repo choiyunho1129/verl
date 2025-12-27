@@ -1,0 +1,7 @@
+{
+    "problem": "If a recipe for a three-pound cake requires 31.95 cups of flour, how many cups are needed for 63 thirty-one-pound cakes?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{20799.45}",
+    "is_static": false
+}

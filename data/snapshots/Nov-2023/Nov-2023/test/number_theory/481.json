@@ -1,0 +1,7 @@
+{
+    "problem": "How many more digits does the base-10 number 555 have when expressed in base 4 than when expressed in base 9?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

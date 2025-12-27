@@ -1,0 +1,7 @@
+{
+    "problem": "Find the remainder when $$31821^2 + 85736^2 + 91767^2 + 52317^2 + 45749^2$$is divided by 53.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{46}",
+    "is_static": false
+}

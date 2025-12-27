@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $PABCD$ is a right square pyramid with apex $P$ and base $ABCD$.  If $PBD$ is an equilateral triangle with side length 1026, then what is the volume of $PABCD$?",
+    "level": "Level 5",
+    "type": "Geometry",
+    "solution": "\\boxed{90003798\\sqrt{3}}",
+    "is_static": false
+}

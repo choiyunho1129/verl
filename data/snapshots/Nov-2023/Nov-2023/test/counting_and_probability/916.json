@@ -1,0 +1,7 @@
+{
+    "problem": "How many diagonals does octagon $ABCDEFGH$ have?\n\n[asy]size(101);\nstring[] labels = {\"$D$\",\"$C$\",\"$B$\",\"$A$\",\"$H$\",\"$G$\",\"$F$\",\"$E$\"};\npath p;\nfor(int i = 0; i<8; ++i)\n{\np = p--dir(360*i/8);\nlabel(labels[i],dir(360*i/8),dir(360*i/8),fontsize(10pt));\n}\ndraw(p--cycle);\nlabel(\"1\",(0,1.03),fontsize(10));[/asy]",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

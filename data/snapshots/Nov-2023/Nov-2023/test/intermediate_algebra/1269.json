@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ and $c$ be the roots of $x^3 - 767x - 391 = 0.$  Find $abc.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{391}",
+    "is_static": false
+}

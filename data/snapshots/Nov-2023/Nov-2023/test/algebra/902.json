@@ -1,0 +1,7 @@
+{
+    "problem": "Given x = 18 and y = 10, find the value of the expression $\\frac{8900x^2}{324y^2}$",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{89}",
+    "is_static": false
+}

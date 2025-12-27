@@ -1,0 +1,7 @@
+{
+    "problem": "Let $ABCD$ be a parallelogram. We have that $M$ is the midpoint of $AB$ and $N$ is the midpoint of $BC.$ The segments $DM$ and $DN$ intersect $AC$ at $P$ and $Q$, respectively. If $AC = 17817,$ what is $QA$? [asy]\npair A, B, C, D, pM, pN, O, P, Q;\nA = (25, 0) * dir(-20);\nB = (15, 0) * dir(60);\nC = (25, 0) * dir(160);\nD = (15, 0) * dir(-120);\npM = 0.5 * A + 0.5 * B;\npN = 0.5 * B + 0.5 * C;\nO = 0.25 * A + 0.25 * B + 0.25 * C + 0.25 * D;\nP = 0.33 * C + 0.67 * A;\nQ = 0.67 * C + 0.33 * A;\ndraw(A--B--C--D--cycle);\ndraw(A--C);\ndraw(pM--D);\ndraw(pN--D);\nlabel(\"$A$\", A, S);\nlabel(\"$B$\", B, NE);\nlabel(\"$C$\", C, NW);\nlabel(\"$D$\", D, S);\nlabel(\"$M$\", pM, NE);\nlabel(\"$N$\", pN, NW);\nlabel(\"$P$\", P, N);\nlabel(\"$Q$\", Q, NE);\n[/asy]",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{11878}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{w} = \\begin{pmatrix} -27 \\\\ -936 \\\\ -569 \\end{pmatrix}.$  The set of vectors $\\mathbf{v}$ such that\n\\[\\operatorname{proj}_{\\mathbf{w}} \\mathbf{v} = \\mathbf{0}\\]lie on a plane.  Enter the equation of this plane in the form\n\\[Ax + By + Cz + D = 0,\\]where $A,$ $B,$ $C,$ $D$ are integers such that $A > 0$ and $\\gcd(|A|,|B|,|C|,|D|) = 1.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{-27x - 936y - 569z = 0}",
+    "is_static": false
+}

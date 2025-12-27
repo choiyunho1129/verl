@@ -1,0 +1,7 @@
+{
+    "problem": "Find a non-zero value for $a$ such that $ax^2+304x+38=0$ has only one solution.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{608}",
+    "is_static": false
+}

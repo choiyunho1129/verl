@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$, $y$, and $z$ are positive integers such that $6xyz+126xy+69xz+4yz+1449x+84y+46z=30521$, find $x+y+z$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{30}",
+    "is_static": false
+}

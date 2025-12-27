@@ -1,0 +1,7 @@
+{
+    "problem": "Two numbers, $x$ and $y$ are selected at random from the interval $(0,85)$.  What is the probability that a triangle with sides of length 5, $x$, and $y$ exists?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{513}{578}}",
+    "is_static": false
+}

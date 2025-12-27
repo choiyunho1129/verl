@@ -1,0 +1,7 @@
+{
+    "problem": "How many multiples of $56$ are greater than $-839$ and less than $839$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

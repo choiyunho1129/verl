@@ -1,0 +1,7 @@
+{
+    "problem": "The digits 1, 2, 5 and 9 are each used once to form each of the possible four-digit positive integers. The four-digit integers are listed from greatest to least. Which integer is listed twenty-third?",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{1295}",
+    "is_static": false
+}

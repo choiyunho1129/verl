@@ -1,0 +1,7 @@
+{
+    "problem": "If the famous baseball player for the San Francisco Midgets, Larry Ponds, has a $\\frac{9}{62}$ chance of earning a walk on each plate appearance, what is the probability that he will earn a walk exactly once in his next two plate appearances? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{954}{3844}}",
+    "is_static": false
+}

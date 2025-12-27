@@ -1,0 +1,7 @@
+{
+    "problem": "The fifth and thirtieth terms of an arithmetic sequence are 62 and 487, respectively. What is the one hundred and ninety-eighth term?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{3343}",
+    "is_static": false
+}

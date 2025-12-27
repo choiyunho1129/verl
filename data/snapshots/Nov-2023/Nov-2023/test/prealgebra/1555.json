@@ -1,0 +1,7 @@
+{
+    "problem": "Express $22^5\\div22^4-22^3+22^2\\cdot22^1$ as an integer.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

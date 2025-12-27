@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x)=7x^{19}+9x^5+14x^2-2x+c$. For what value of $c$ is $f(-1)=7$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

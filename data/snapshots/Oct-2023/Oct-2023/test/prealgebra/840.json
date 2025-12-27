@@ -1,0 +1,7 @@
+{
+    "problem": "The capacity of a school is 5749 students and the current enrollment is 2821 students. If the student population increases at a rate of 13 percent per year, what is the smallest integer $n$ such that the enrollment will exceed the capacity in $n$ years?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

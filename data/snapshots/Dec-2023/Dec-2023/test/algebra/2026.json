@@ -1,0 +1,7 @@
+{
+    "problem": "The value of $\\log_{18}{940551591721118}$ is between the consecutive integers $a$ and $b$.  Find $a+b$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{23}",
+    "is_static": false
+}

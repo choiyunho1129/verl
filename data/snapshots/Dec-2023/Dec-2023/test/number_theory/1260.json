@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest common divisor of all of the members of the set containing all numbers that are the product of eight consecutive positive integers?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{40320}",
+    "is_static": false
+}

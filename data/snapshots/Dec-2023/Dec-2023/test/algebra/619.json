@@ -1,0 +1,7 @@
+{
+    "problem": "Kelly and Avril chose complex numbers to represent their songs' popularities. Kelly chose $2405+28i$. Avril chose $-2290+2319i$. What is the sum of their numbers?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{115+2347i}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\log_2 x + \\log _2 x^7 = 672,$ find the value of $x.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{19342813113834066795298816}",
+    "is_static": false
+}

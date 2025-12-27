@@ -1,0 +1,7 @@
+{
+    "problem": "An equilateral triangle has a side of length 20 inches. What is the area of the triangle, in square inches? Express your answer in simplest radical form.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{100\\sqrt{3}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let \\[f(x) =\n\\begin{cases}\n3x + 5 &\\text{if }x<-3, \\\\\n7-4x&\\text{if }x\\ge -3.\n\\end{cases}\n\\]Find $f(75)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-293}",
+    "is_static": false
+}

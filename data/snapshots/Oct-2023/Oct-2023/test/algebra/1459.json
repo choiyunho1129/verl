@@ -1,0 +1,7 @@
+{
+    "problem": "For what value of $n$ is $(2^95)^42 = 2^n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{3990}",
+    "is_static": false
+}

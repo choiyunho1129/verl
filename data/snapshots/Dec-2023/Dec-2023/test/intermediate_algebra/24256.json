@@ -1,0 +1,7 @@
+{
+    "problem": "For a complex number $z,$ find the minimum value of\n\\[|z - 15 + 2i|^2 + |z - 14 + 11i|^2 + |z - 16 + 14i|^2.\\]",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{296}",
+    "is_static": false
+}

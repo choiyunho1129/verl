@@ -1,0 +1,7 @@
+{
+    "problem": "An envelope contains eighteen bills: 5 ones, 9 fives, 2 tens, and 2 twenties. Two bills are drawn at random without replacement. What is the probability that their sum is $\\$20$ or more?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{2}{9}}",
+    "is_static": false
+}

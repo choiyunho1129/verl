@@ -1,0 +1,7 @@
+{
+    "problem": "Quadrilateral $ABCD$ is a trapezoid with $AB$ parallel to $CD$. We know $AB = 144$ and $CD = 76$. What is the ratio of the area of triangle $ACB$ to the area of the trapezoid $ABCD$? Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{36}{55}}",
+    "is_static": false
+}

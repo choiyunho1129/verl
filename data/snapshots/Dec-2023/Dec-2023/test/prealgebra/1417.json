@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\sqrt{41\\cdot697\\cdot901\\cdot1961\\cdot1369\\cdot81733}$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2376894763}",
+    "is_static": false
+}

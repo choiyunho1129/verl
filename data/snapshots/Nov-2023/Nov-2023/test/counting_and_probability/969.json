@@ -1,0 +1,7 @@
+{
+    "problem": "Two real numbers are chosen at random between $0$ and $7.$ What is the probability that the sum of their squares is no more than $16?$ Express your answer as a common fraction in terms of $\\pi$.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{4\\pi}{49}}",
+    "is_static": false
+}

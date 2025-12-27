@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $8z^3 - 32z^2 + 112z$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{8z(z^2 - 4z + 14)}",
+    "is_static": false
+}

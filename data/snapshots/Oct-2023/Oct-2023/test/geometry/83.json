@@ -1,0 +1,7 @@
+{
+    "problem": "Triangle $ABC$ is similar to triangle $XYZ$ with side $AB$ measuring 428606 units, side $BC$ measuring 726516 units and side $XY$ measuring 191780 units. What is the measure of side $YZ?$",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{325080}",
+    "is_static": false
+}

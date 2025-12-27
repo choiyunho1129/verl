@@ -1,0 +1,7 @@
+{
+    "problem": "Find the greatest common factor of 168 and 160.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

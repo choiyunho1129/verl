@@ -1,0 +1,7 @@
+{
+    "problem": "The positive difference between two consecutive perfect squares is 41. What is the greater of the two squares?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{441}",
+    "is_static": false
+}

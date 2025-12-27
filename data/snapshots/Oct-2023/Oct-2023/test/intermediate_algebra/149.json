@@ -1,0 +1,7 @@
+{
+    "problem": "Compute the product of the number $6+\\sqrt{3}$ and its radical conjugate.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{33}",
+    "is_static": false
+}

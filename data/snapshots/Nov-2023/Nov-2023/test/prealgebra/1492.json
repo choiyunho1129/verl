@@ -1,0 +1,7 @@
+{
+    "problem": "Sam the Sham is an unfair shoe salesman. He has a pair of shoes that was priced at $\\$75$ last week. To entice customers, he wants to put a \"$25\\%$ off'' tag on the shoes but he still wants the customer to pay $\\$75$ for the shoes. He raises the price of the shoes so that after the $25\\%$ discount the shoes will cost $\\$75$. In dollars, what must the new price of the shoes be before the discount?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{100}",
+    "is_static": false
+}

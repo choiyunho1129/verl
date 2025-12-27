@@ -1,0 +1,7 @@
+{
+    "problem": "A bottled-water company has designed a new cup for its dispenser. The cup will be a right circular cone with a one-inch radius. How tall will the cup need to be to hold $9 \\pi$ cubic inches of water?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{27}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "I have seventy-eight balls numbered 1 through 78 in a bin.  In how many ways can I select 2 balls, if the order in which I draw them doesn't matter?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{3003}",
+    "is_static": false
+}

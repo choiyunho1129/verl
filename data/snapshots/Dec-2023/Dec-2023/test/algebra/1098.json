@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $(4+20i)3-16i$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{12+44i}",
+    "is_static": false
+}

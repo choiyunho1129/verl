@@ -1,0 +1,7 @@
+{
+    "problem": "Find $\\left\\lceil \\sqrt[4]{43}\\right\\rceil$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

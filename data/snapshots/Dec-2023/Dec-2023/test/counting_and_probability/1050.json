@@ -1,0 +1,7 @@
+{
+    "problem": "Thirty-seven balls are numbered with the integers 1 through 37 and placed in a jar. Thirty-five are drawn without replacement. What is the probability that the sum of the three integers on the balls is odd? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{18}{37}}",
+    "is_static": false
+}

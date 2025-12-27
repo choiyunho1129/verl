@@ -1,0 +1,7 @@
+{
+    "problem": "The largest and smallest of three consecutive terms in an arithmetic sequence differ by 156. Half of the smallest term is added to each term and the sum of the resulting three numbers is 594. What is the value of the original smallest term?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{80}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In my neighborhood, there are three streets. There are 13 houses on each side of each street. No house faces two different streets. How many houses are in my neighborhood?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{78}",
+    "is_static": false
+}

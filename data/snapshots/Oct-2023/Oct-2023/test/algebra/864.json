@@ -1,0 +1,7 @@
+{
+    "problem": "Find the midpoint of the line segment between $(532,-8580)$ and $(-5826,698)$. Express your answer as an ordered pair, $(x,y)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{(-2647,-3941)}",
+    "is_static": false
+}

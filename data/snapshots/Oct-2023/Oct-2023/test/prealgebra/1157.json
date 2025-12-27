@@ -1,0 +1,7 @@
+{
+    "problem": "There are two pints in one quart and four quarts in one gallon. How many pints are there in $16\\frac{11}{12}$ gallons of milk?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{135.33333333333334}",
+    "is_static": false
+}

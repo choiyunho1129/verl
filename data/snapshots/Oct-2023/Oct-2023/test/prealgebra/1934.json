@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $\\sqrt{(\\sqrt{424})(\\sqrt{954})}$ can be simplified to $a\\sqrt b$, where $a$ and $b$ are integers and $b$ is not divisible by any perfect square greater than 1. What is $a+b$?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{161}",
+    "is_static": false
+}

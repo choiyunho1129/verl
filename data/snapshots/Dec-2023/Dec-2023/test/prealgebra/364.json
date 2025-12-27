@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $x$ that satisfies the equation $14x+34 = 16x+60$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-13}",
+    "is_static": false
+}

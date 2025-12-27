@@ -1,0 +1,7 @@
+{
+    "problem": "Find the integer $n$, $0 \\le n \\le 71$, that satisfies \\[n \\equiv 1228 \\pmod{72}.\\]",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "There is a number $C$. The number $C$ is a multiple of 569, but is NOT a multiple of 1139. The number $C$ is greater than 33052529, but less than 33053673. What is this number $C$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{33053210}",
+    "is_static": false
+}

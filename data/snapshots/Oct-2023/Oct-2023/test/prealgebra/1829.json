@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest multiple of 543 which is less than 5126?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4887}",
+    "is_static": false
+}

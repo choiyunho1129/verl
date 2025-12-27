@@ -1,0 +1,7 @@
+{
+    "problem": "A drawer contains 27 white balls and 76 black balls.  Two balls are drawn out of the box at random.  What is the probability that they both are white?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\dfrac{117}{1751}}",
+    "is_static": false
+}

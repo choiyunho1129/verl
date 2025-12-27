@@ -1,0 +1,7 @@
+{
+    "problem": "The polynomial $p(x) = x^2+ax+b$ has distinct roots $88a$ and $75b$. Find $a+b$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-2.8282828282828282e-05}",
+    "is_static": false
+}

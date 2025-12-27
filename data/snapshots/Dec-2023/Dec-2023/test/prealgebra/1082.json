@@ -1,0 +1,7 @@
+{
+    "problem": "A 1 inch by 1 inch square has its area increased by 15 square inches producing a new square. How many inches long is a side of the new square?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

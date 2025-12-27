@@ -1,0 +1,7 @@
+{
+    "problem": "The least common multiple of two integers is 1485, and the greatest common divisor is 15. Given that one of the integers is 135, what is the other integer?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{165}",
+    "is_static": false
+}

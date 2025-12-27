@@ -1,0 +1,7 @@
+{
+    "problem": "What is the shortest distance between the circles defined by $x^2-600x +y^2-800y+223104=0$ and $x^2+600x +y^2+800y+223104=0$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{672}",
+    "is_static": false
+}

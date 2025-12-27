@@ -1,0 +1,7 @@
+{
+    "problem": "How many of the 3801 integers from $-1900$ to $1900$ are congruent to $3 \\pmod{4}?$",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{950}",
+    "is_static": false
+}

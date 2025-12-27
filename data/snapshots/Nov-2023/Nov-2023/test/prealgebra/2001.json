@@ -1,0 +1,7 @@
+{
+    "problem": "How many numbers are in the list $121315, 121302, 121289, \\ldots, 25, 12?$",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{9332}",
+    "is_static": false
+}

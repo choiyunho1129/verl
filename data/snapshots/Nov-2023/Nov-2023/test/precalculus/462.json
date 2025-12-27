@@ -1,0 +1,7 @@
+{
+    "problem": "A translation of the plane takes $0 + 3i$ to $4 + 4i.$  Find the complex number that the translation takes $-5$ to.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-1 + 1i}",
+    "is_static": false
+}

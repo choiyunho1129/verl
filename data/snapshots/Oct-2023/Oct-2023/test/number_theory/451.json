@@ -1,0 +1,7 @@
+{
+    "problem": "A positive integer $n$ is nice if there is a positive integer $m$ with exactly four positive divisors (including $1$ and $m$) such that the sum of the four divisors is equal to $n.$ Find the sum of all the nice numbers in the set $\\{ 2226,2227,2228,\\dots,2235 \\}.$",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{2232}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Trae is searching for a treasure on the beach. From point $A$, he is told to walk twenty meters north, nine meters east, and then twenty meters north to point $B$. In meters, what is the length of $\\overline{AB}$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{41}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the distance between the vertex of the graph of the equation $f(x) = x^2 - 48x + 278$ and the point $(9, 4)$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{302.3723}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the following expression in $x$:\n\n$$13x + 40 - 41x + 18$$",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-28x + 58}",
+    "is_static": false
+}

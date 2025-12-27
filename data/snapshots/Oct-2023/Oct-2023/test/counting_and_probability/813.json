@@ -1,0 +1,7 @@
+{
+    "problem": "How many distinct nine-letter rearrangements of the word ``Hoogezand\" can I form?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{181440}",
+    "is_static": false
+}

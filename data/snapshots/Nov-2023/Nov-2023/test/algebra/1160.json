@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all possible values of $x$ such that $11x(x-22)=-1331$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

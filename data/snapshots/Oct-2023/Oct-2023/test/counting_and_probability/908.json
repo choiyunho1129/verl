@@ -1,0 +1,7 @@
+{
+    "problem": "Eleven cards each containing one of the following letters P, I, L, K, C, B, T, A, E, M and H are placed in a hat. Each letter is used only once. Stu will pull four cards out at random and without replacement. What is the probability that Stu pulls out M, A, T, H in this order? Express your answer as a common fraction.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{1}{7920}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $h(x) = \\sqrt{\\frac{x^3+34}{2}}+5$, what is the value of $h(4)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

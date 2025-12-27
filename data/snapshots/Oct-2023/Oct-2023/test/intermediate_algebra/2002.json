@@ -1,0 +1,7 @@
+{
+    "problem": "Let\n\\[f(x) = \\left\\{\n\\begin{array}{cl}\n85x & \\text{if $0 \\le x < 24$}, \\\\\n31 - 26x & \\text{if $24 \\le x \\le 72$}.\n\\end{array}\n\\right.\\]Find the maximum value of the function.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2040}",
+    "is_static": false
+}

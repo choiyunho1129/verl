@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{59}{0}+\\dbinom{59}{1}+\\dbinom{59}{2}+\\dbinom{59}{3}+\\dbinom{59}{4}+\\dbinom{59}{5}+\\dbinom{59}{6}+\\dbinom{59}{7}+\\dbinom{59}{8}+\\dbinom{59}{9}+\\dbinom{59}{10}+\\dbinom{59}{11}+\\dbinom{59}{12}+\\dbinom{59}{13}+\\dbinom{59}{14}+\\dbinom{59}{15}+\\dbinom{59}{16}+\\dbinom{59}{17}+\\dbinom{59}{18}+\\dbinom{59}{19}+\\dbinom{59}{20}+\\dbinom{59}{21}+\\dbinom{59}{22}+\\dbinom{59}{23}+\\dbinom{59}{24}+\\dbinom{59}{25}+\\dbinom{59}{26}+\\dbinom{59}{27}+\\dbinom{59}{28}+\\dbinom{59}{29}+\\dbinom{59}{30}+\\dbinom{59}{31}+\\dbinom{59}{32}+\\dbinom{59}{33}+\\dbinom{59}{34}+\\dbinom{59}{35}+\\dbinom{59}{36}+\\dbinom{59}{37}+\\dbinom{59}{38}+\\dbinom{59}{39}+\\dbinom{59}{40}+\\dbinom{59}{41}+\\dbinom{59}{42}+\\dbinom{59}{43}+\\dbinom{59}{44}+\\dbinom{59}{45}+\\dbinom{59}{46}+\\dbinom{59}{47}+\\dbinom{59}{48}+\\dbinom{59}{49}+\\dbinom{59}{50}+\\dbinom{59}{51}+\\dbinom{59}{52}+\\dbinom{59}{53}+\\dbinom{59}{54}+\\dbinom{59}{55}+\\dbinom{59}{56}+\\dbinom{59}{57}+\\dbinom{59}{58}+\\dbinom{59}{59}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{576460752303423488}",
+    "is_static": false
+}

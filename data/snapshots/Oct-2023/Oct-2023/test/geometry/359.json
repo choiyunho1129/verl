@@ -1,0 +1,7 @@
+{
+    "problem": "The height of a right cylinder is 22.5 times its radius. If the surface area of the cylinder is $12032\\pi\\text{ cm}^2$, what is the radius of the cylinder in centimeters?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

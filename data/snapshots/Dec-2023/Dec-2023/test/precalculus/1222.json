@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $|(20+10i)|\\cdot|(98-49i)|$.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{2450}",
+    "is_static": false
+}

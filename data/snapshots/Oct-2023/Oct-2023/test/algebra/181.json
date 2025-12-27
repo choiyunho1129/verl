@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\displaystyle\\frac{n+2}{n-5} = 2$ what is the value of $n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

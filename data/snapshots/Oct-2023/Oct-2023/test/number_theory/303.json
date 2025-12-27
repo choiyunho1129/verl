@@ -1,0 +1,7 @@
+{
+    "problem": "If $n>1$ is an integer, the notation $a\\equiv b\\pmod{n}$ means that $(a-b)$ is a multiple of $n$. Find the sum of all possible values of $n$ such that both of the following are true: $501\\equiv64\\pmod{n}$ and $5645\\equiv1275\\pmod{n}$.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{479}",
+    "is_static": false
+}

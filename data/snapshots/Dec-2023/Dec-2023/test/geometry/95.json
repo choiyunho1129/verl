@@ -1,0 +1,7 @@
+{
+    "problem": "In $\\triangle ABC$, $AC=BC$, and $m\\angle BAC=83^\\circ$. What is the number of degrees in angle $x$? [asy]\nsize(80);\ndraw((0,0)--(7,0));\ndraw((0,0)--(3,2)--(6,0));\nlabel(\"$A$\",(0,0),W);\nlabel(\"$B$\",(6,0),S);\nlabel(\"$C$\",(3,2),N);\nlabel(\"$x$\",(6,0),NE);\n[/asy]",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{97}",
+    "is_static": false
+}

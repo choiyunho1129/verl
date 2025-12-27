@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d,$ and $e$ be the distinct roots of the equation $x^5 + 98x^4 - 71 = 0.$  Find\n\\begin{align*}\n&\\frac{a^5}{(a - b)(a - c)(a - d)(a - e)} + \\frac{b^5}{(b - a)(b - c)(b - d)(b - e)} \\\\\n&\\quad + \\frac{c^5}{(c - a)(c - b)(c - d)(c - e)} + \\frac{d^5}{(d - a)(d - b)(d - c)(d - e)} \\\\\n&\\quad + \\frac{e^5}{(e - a)(e - b)(e - c)(e - d)}.\n\\end{align*}",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-98}",
+    "is_static": false
+}

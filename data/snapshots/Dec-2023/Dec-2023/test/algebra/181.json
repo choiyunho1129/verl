@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\displaystyle\\frac{n+5}{n-22} = 2$ what is the value of $n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{49}",
+    "is_static": false
+}

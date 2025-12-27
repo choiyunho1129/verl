@@ -1,0 +1,7 @@
+{
+    "problem": "If $F(a, b, c, d) = a^b + c ^ d$, what is the value of $b$ such that $F(12, b, 20, 8) = 25635831808$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Of all the primes in the prime factorization of \\begin{align*}\\gcd(&2^23^35^5, \\\\ &\\quad 2^53^35^2),\\end{align*}which prime appears with largest exponent?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

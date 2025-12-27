@@ -1,0 +1,7 @@
+{
+    "problem": "How many non-empty subsets of $\\{ 1 , 2, 3, 4, 5 \\}$ consist entirely of prime numbers?  (We form a subset of the group of numbers by choosing some number of them, without regard to order.  So, $\\{1,2,3\\}$ is the same as $\\{3,1,2\\}$.)",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

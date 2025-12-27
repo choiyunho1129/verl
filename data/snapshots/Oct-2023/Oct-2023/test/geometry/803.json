@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $975\\sin 120^\\circ$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{975\\sqrt{3}}{2}}",
+    "is_static": false
+}

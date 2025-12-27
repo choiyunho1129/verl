@@ -1,0 +1,7 @@
+{
+    "problem": "As $n$ ranges over the positive integers, what is the maximum possible value that the greatest common divisor of $549n + 608$ and $304n+544$ can take?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{113824}",
+    "is_static": false
+}

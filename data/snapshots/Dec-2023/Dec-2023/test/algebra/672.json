@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil {-\\!\\sqrt{229}}\\right\\rceil$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-15}",
+    "is_static": false
+}

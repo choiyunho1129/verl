@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the number of ways to arrange the letters of the word QLSRXGMWFXPPQDMOM.",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{7,\\!410,\\!154,\\!752,\\!000}",
+    "is_static": false
+}

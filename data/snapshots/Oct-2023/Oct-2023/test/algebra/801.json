@@ -1,0 +1,7 @@
+{
+    "problem": "For complex numbers $z$, let \\[f(z) = \\left\\{\n\\begin{array}{cl}\nz^{2}&\\text{ if }z\\text{ is not real}, \\\\\nz+11 &\\text{ if }z\\text{ is real}.\n\\end{array}\n\\right.\\]Find $f(33i)+f(33)+f(-33)+f(-33i)$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-2156}",
+    "is_static": false
+}

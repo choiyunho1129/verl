@@ -1,0 +1,7 @@
+{
+    "problem": "Mary has $7$ identical basil plants, and five different window sills she can put them on. How many ways are there for Mary to put the plants on the window sills?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{126}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate the sum $$966 + \\frac{1933}{968} + \\frac{2900}{937024} + \\frac{3867}{907039232} + \\frac{4834}{878013976576} + \\dotsb$$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{968}",
+    "is_static": false
+}

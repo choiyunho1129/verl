@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{3a^2b}{15ac}\\times\\frac{1170c}{18ab}$, given that $a,b,c\\neq0.$",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

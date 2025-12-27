@@ -1,0 +1,7 @@
+{
+    "problem": "Find the domain of $\\sqrt{1824-10x-x^2}$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{[-48,38]}",
+    "is_static": false
+}

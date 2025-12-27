@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $22222_8 - 5140_8$.  Express your answer in base 8.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{15062_8}",
+    "is_static": false
+}

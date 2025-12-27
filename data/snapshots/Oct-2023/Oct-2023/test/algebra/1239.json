@@ -1,0 +1,7 @@
+{
+    "problem": "Rationalize the denominator: $\\frac{273}{538\\sqrt{101}}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{273\\sqrt{101}}{54338}}",
+    "is_static": false
+}

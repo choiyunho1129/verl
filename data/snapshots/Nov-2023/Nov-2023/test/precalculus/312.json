@@ -1,0 +1,7 @@
+{
+    "problem": "A rotation centered at the origin takes $\\begin{pmatrix} -264 \\\\ 265 \\end{pmatrix}$ to $\\begin{pmatrix} 419 \\\\ 420 \\end{pmatrix}.$  Which vector does the rotation take $\\begin{pmatrix} 3 \\\\ 18 \\end{pmatrix}$ to?",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 28.562703239685252 \\\\ -4.670013793497759 \\end{pmatrix}}",
+    "is_static": false
+}

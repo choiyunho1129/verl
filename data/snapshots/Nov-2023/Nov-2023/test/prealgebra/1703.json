@@ -1,0 +1,7 @@
+{
+    "problem": "Two fair 5-sided dice are rolled.  What is the probability \"doubles\" are rolled (i.e., that the two dice show the same number)?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\dfrac{1}{5}}",
+    "is_static": false
+}

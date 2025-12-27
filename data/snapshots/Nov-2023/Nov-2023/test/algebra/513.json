@@ -1,0 +1,7 @@
+{
+    "problem": "If $37a+36b=42$ and $a+b=33$, what is the ordered pair $(a,b)$ that satisfies both equations?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{(-1146,1179)}",
+    "is_static": false
+}

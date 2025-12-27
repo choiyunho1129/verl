@@ -1,0 +1,7 @@
+{
+    "problem": "Let us have a triangle $\\triangle ABC$ and a point $D$ on $BC$ such that $BD = DC = DA.$ If $\\angle ABC = 36^\\circ,$ then how many degrees are in $\\angle ACB$?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{54^\\circ}",
+    "is_static": false
+}

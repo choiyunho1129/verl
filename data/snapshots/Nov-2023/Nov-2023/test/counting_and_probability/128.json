@@ -1,0 +1,7 @@
+{
+    "problem": "Without looking at the labels, Adrien placed ten CDs in ten cases. What is the probability that exactly two of the CDs are in the wrong cases? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\dfrac{1}{80640}}",
+    "is_static": false
+}

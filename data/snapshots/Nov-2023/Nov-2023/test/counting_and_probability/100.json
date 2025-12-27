@@ -1,0 +1,7 @@
+{
+    "problem": "Our club has 176 members, 91 boys and 85 girls.  In how many ways can we choose a president and a vice-president if we have no restrictions other than the same person can't hold both offices?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{30800}",
+    "is_static": false
+}

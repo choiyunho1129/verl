@@ -1,0 +1,7 @@
+{
+    "problem": "Find the positive solution to\n\\[\\frac 1{x^2-2x-330}+\\frac1{x^2-2x-555}-\\frac 2{x^2-2x-755}=0.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{23}",
+    "is_static": false
+}

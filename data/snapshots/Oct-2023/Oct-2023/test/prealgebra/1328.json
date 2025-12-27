@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{11m+16}{3}-\\frac{4-m}{3}$.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4m+4}",
+    "is_static": false
+}

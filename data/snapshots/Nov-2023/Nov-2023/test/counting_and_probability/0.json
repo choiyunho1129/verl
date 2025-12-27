@@ -1,0 +1,7 @@
+{
+    "problem": "The probability of rain tomorrow is $\\frac{129}{131}$.  What is the probability that it will not rain tomorrow?  Express your answer as a common fraction.",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{2}{131}}",
+    "is_static": false
+}

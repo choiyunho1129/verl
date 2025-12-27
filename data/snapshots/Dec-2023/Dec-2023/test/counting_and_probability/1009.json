@@ -1,0 +1,7 @@
+{
+    "problem": "Pat is to select eighty-five cookies from a tray containing only chocolate chip, oatmeal, and peanut butter cookies. There are at least eighty-five of each of these three kinds of cookies on the tray. How many different assortments of eighty-five cookies can be selected? (Note that cookies of the same type are not distinguishable.)",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{3741}",
+    "is_static": false
+}

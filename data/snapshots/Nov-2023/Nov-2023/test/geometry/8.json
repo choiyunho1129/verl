@@ -1,0 +1,7 @@
+{
+    "problem": "A sphere is inscribed inside a hemisphere of radius 4430.  What is the volume of this sphere?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{43469153500}{3}\\pi}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $p(x)$ be quadratic with rational coefficients.  If $p(\\sqrt{277}) = 166114$ and $p(\\sqrt{637}) = 381394,$ then find $p(\\sqrt{1159}).$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{693550}",
+    "is_static": false
+}

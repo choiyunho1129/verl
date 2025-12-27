@@ -1,0 +1,7 @@
+{
+    "problem": "For $y=\\frac{8x-39}{73x-4161}$ and $x\\neq 57$, what is the value of $y$ that is not attainable? Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac8{73}}",
+    "is_static": false
+}

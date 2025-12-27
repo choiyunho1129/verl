@@ -1,0 +1,7 @@
+{
+    "problem": "Delilah writes down the positive factors of $49$ on a piece of paper, which she gives to Ezekiel. Next to each factor, Ezekiel writes all of the positive integers that are less than or equal to that number and that share no divisors with the factor other than $1.$ (So, for example, Ezekiel will write $``1\"$ next to each of the factors Delilah writes.) How many numbers total does Ezekiel write?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{49}",
+    "is_static": false
+}

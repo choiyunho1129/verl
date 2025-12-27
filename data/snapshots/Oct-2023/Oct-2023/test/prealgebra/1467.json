@@ -1,0 +1,7 @@
+{
+    "problem": "In a class of $39$ students, exactly $15$ have been to Mexico and exactly $15$ have been to England. Of these $39$ students, $2$ have been to both Mexico and England. How many students in this class have not been to Mexico or England?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

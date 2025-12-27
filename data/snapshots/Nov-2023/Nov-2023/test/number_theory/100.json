@@ -1,0 +1,7 @@
+{
+    "problem": "Find $n$ if $\\gcd(n,24) = 3$ and $\\mathop{\\text{lcm}}[n,24] = 264$.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{33}",
+    "is_static": false
+}

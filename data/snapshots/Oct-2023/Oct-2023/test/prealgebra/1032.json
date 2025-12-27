@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\angle ABC$ is a straight angle, give the number of degrees in the measure of $\\angle ABD$. [asy] pair A,B,C,D; A = dir(180); D = dir(155); C = dir(0);\ndraw(B--1.2*A,EndArrow); draw(B--1.2*D,EndArrow); label(\"A\",A,S); dot(A);\nlabel(\"B\",B,S); draw(B--1.2*C,EndArrow); label(\"C\",C,S); label(\"D\",D,dir(135));\nlabel(\"$13x^{\\circ}$\",B,NW); label(\"$82x^{\\circ}$\",B+.1,NE); dot(D); dot(C);\n[/asy]",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{24.63157894736842^\\circ}",
+    "is_static": false
+}

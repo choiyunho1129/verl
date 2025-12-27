@@ -1,0 +1,7 @@
+{
+    "problem": "The vertex of the parabola described by the equation $y=75x^2-4950x+74$ is $(m,n)$. What is $m$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{33}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a = 557 + 1244i$ and $b = 347 + 548i.$  The complex number $c$ lies on the line segment connecting $a$ and $b$ so that the distance between $a$ and $c$ is equal to twice the distance between $c$ and $b.$  Find $c.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{417 + 780i}",
+    "is_static": false
+}

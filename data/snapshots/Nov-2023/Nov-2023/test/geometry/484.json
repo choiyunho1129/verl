@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $15\\tan 45^\\circ$.",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

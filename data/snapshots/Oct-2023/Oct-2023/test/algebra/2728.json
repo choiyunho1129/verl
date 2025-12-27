@@ -1,0 +1,7 @@
+{
+    "problem": "Define the operation $\\star$ by $a \\star b = (a + b)b$. What is $(34\\star1) - (1\\star34)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-1155}",
+    "is_static": false
+}

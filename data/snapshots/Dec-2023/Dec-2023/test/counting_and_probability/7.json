@@ -1,0 +1,7 @@
+{
+    "problem": "A 22-slice pizza was made with only pepperoni and mushroom toppings, and every slice has at least one topping. Only twenty slices have pepperoni, and exactly thirteen slices have mushrooms. How many slices have both pepperoni and mushrooms?",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can we seat 18 people around a round table if Fred and Gwen insist on sitting opposite each other?  (Two seatings are considered equivalent if one is a rotation of the other.)",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{20922789888000}",
+    "is_static": false
+}

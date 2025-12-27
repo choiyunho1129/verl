@@ -1,0 +1,7 @@
+{
+    "problem": "Given $f(x)=cx^3-18x+12$ and $f(9)=70563$, find the value of $c$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{97}",
+    "is_static": false
+}

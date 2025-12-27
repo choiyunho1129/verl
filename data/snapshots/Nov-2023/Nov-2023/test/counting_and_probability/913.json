@@ -1,0 +1,7 @@
+{
+    "problem": "A mathematical prodigy wishes to put 12 of his indistinguishable IMO gold medals and 20 of his indistinguishable IPhO gold medals in one row. How many distinct arrangements are possible?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{225792840}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $141_{a}$ is equal to the base 10 integer 622, find $a$ given that $a>0$.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{23}",
+    "is_static": false
+}

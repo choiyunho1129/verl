@@ -1,0 +1,7 @@
+{
+    "problem": "Given two real numbers $p>1$ and $q>1$ so that $\\frac{281}{p} + \\frac{4287}{q} = 56989$, what is the value of $(56989p-281)(56989q-4287)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1204647}",
+    "is_static": false
+}

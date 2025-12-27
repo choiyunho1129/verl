@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\log_58\\frac{1}{195112}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-3}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The radius of a circle is 34 inches. When the radius is doubled, by how many square inches is the area increased?  Express your  answer in terms of $\\pi$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{3468\\pi}",
+    "is_static": false
+}

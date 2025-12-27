@@ -1,0 +1,7 @@
+{
+    "problem": "What is the $y$-coordinate of the $y$-intercept of the line that passes through the point $(-5,6)$ and has slope $\\frac7{44}$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{6.795454545454546}",
+    "is_static": false
+}

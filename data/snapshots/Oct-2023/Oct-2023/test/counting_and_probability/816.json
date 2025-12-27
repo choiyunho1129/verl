@@ -1,0 +1,7 @@
+{
+    "problem": "When counting from $3$ to $157$, $95$ is the $93^\\mathrm{st}$ number counted. When counting backwards from $157$ to $3$, $95$ is the $n^\\mathrm{th}$ number counted. What is $n$?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{63}",
+    "is_static": false
+}

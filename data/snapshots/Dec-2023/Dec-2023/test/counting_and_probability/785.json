@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the number of ways to arrange the letters of the word BABGMFQ.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{2520}",
+    "is_static": false
+}

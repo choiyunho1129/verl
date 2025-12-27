@@ -1,0 +1,7 @@
+{
+    "problem": "What is the area of trapezoid $OBCD$ below? [asy]\nsize(200);\ndefaultpen(linewidth(0.8));\nxaxis(\"$x$\",-4,10);\nyaxis(\"$y$\",-3,5);\ndot(Label(\"$O$\",align=SW),(0,0));\ndot(Label(\"$D(234,606)$\",align=NW),(234,606));\ndot(Label(\"$C(254,606)$\",align=NE),(254,606));\ndot(Label(\"$B(9660,0)$\",align=S),(9660,0));\ndraw((0,0)--(234,606)--(254,606)--(9660,0));\n[/asy]",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{2933040}",
+    "is_static": false
+}

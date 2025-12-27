@@ -1,0 +1,7 @@
+{
+    "problem": "Jim and Martha are standing together at the corner of a rectangular field. Jim walks diagonally across the field. Martha gets to the same location by walking along its length and width. The field is 223200 feet wide and 127400 feet long. How many feet less than Martha does Jim walk?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{93600}",
+    "is_static": false
+}

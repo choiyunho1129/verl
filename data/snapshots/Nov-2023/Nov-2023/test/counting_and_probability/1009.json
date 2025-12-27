@@ -1,0 +1,7 @@
+{
+    "problem": "Pat is to select thirty-six cookies from a tray containing only chocolate chip, oatmeal, and peanut butter cookies. There are at least thirty-six of each of these three kinds of cookies on the tray. How many different assortments of thirty-six cookies can be selected? (Note that cookies of the same type are not distinguishable.)",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{703}",
+    "is_static": false
+}

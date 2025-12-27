@@ -1,0 +1,7 @@
+{
+    "problem": "$A$, $B$ and $C$ are circular regions as shown. There are 184 items in circle $C$. There are exactly 882 items in $A$ and 562 of those items are not in $B$. How many items are in $B$, but not in $C$?\n\n[asy]\ndraw(Circle((0,0),50));\nlabel(\"$A$\",(39,39));\ndraw(Circle((10,-10),32));\nlabel(\"$B$\",(-16,16));\ndraw(Circle((5,-5),20));\nlabel(\"$C$\",(22,-22));\n[/asy]",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{136}",
+    "is_static": false
+}

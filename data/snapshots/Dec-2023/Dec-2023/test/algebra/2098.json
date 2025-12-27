@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all values of $x$ for which the expression $\\frac{x-48}{82x^2-60x+46}$ is undefined?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{0.7317073170731707}",
+    "is_static": false
+}

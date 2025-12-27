@@ -1,0 +1,7 @@
+{
+    "problem": "Compute \\[\\log_{\\log_{\\log_2 64} 36} 64.\\]",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

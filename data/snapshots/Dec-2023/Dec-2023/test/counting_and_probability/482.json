@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{38}{35}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{8436}",
+    "is_static": false
+}

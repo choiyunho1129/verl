@@ -1,0 +1,7 @@
+{
+    "problem": "What is the domain of the function $$k(y) = \\frac{1}{21y+19}~?$$ Express your answer in interval notation.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\left(-\\infty,-\\frac {19}{21}\\right)\\cup \\left(-\\frac {19}{21},\\infty\\right)}",
+    "is_static": false
+}

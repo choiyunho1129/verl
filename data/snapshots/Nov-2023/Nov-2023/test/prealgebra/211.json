@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive multiple of $122$ that is also a multiple of $790$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{48190}",
+    "is_static": false
+}

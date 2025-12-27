@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that  $25^{a}=16606607427557$, $16606607427557^{b}=18236789770052$, $18236789770052^{c}=18503777725061,$ and  $18503777725061^{d}=19073486328125$. What is $a\\cdot b\\cdot c\\cdot d$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{19}{2}}",
+    "is_static": false
+}

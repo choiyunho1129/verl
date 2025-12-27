@@ -1,0 +1,7 @@
+{
+    "problem": "What is the simplified value of $\\frac{231! + 232! + 233!}{231! + 232!}$?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{233}",
+    "is_static": false
+}

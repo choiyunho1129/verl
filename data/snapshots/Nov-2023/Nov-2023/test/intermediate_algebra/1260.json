@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the real roots of the polynomial\n\\[x^6 + x^4 - 483735055x^3 + x^2 + 1 = 0.\\]",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{785}",
+    "is_static": false
+}

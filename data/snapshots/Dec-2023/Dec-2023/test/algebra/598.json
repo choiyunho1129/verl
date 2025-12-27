@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that  $4^{a}=73$, $73^{b}=85$, $85^{c}=110,$ and  $110^{d}=128$. What is $a\\cdot b\\cdot c\\cdot d$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{7}{2}}",
+    "is_static": false
+}

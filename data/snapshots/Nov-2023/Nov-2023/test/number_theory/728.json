@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $274^{37} - 305^{37}$ modulo 7.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

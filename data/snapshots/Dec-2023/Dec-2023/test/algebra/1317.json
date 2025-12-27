@@ -1,0 +1,7 @@
+{
+    "problem": "If the fifth term of a geometric sequence of real numbers is $176$ and the eleventh term is $11264,$ then what is the forty-first term?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{12094627905536}",
+    "is_static": false
+}

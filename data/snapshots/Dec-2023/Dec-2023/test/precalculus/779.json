@@ -1,0 +1,7 @@
+{
+    "problem": "A $90^\\circ$ rotation around the origin in the counter-clockwise direction is applied to $10 + 4i.$  What is the resulting complex number?",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-4 + 10i}",
+    "is_static": false
+}

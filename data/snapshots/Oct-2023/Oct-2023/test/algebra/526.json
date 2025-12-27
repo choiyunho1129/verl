@@ -1,0 +1,7 @@
+{
+    "problem": "Rationalize the denominator: $\\frac{358}{\\sqrt{741}}$ .",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{358\\sqrt{741}}{741}}",
+    "is_static": false
+}

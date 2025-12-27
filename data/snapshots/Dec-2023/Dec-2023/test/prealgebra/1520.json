@@ -1,0 +1,7 @@
+{
+    "problem": "What number is $$\\frac{\\sqrt{238144-230400}}{\\sqrt{238144}-\\sqrt{230400}}$$equal to?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

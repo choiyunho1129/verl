@@ -1,0 +1,7 @@
+{
+    "problem": "What number is $$\\frac{\\sqrt{443556-396900}}{\\sqrt{443556}-\\sqrt{396900}}$$equal to?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

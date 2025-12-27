@@ -1,0 +1,7 @@
+{
+    "problem": "In the magic square shown, the sums of the numbers in each row, column, and diagonal are the same. Five of these numbers are represented by $v$, $w$, $x$, $y$, and $z$. Find $y + z$.\n\n[asy] unitsize(10mm); defaultpen(linewidth(1pt)); for(int i=0; i<=3; ++i) { draw((0,i)--(3,i)); draw((i,0)--(i,3)); } label(\"$37$\",(0.5,0.5)); label(\"$z$\",(1.5,0.5)); label(\"$26$\",(2.5,0.5)); label(\"$43$\",(0.5,1.5)); label(\"$x$\",(1.5,1.5)); label(\"$y$\",(2.5,1.5)); label(\"$v$\",(0.5,2.5)); label(\"$90$\",(1.5,2.5)); label(\"$w$\",(2.5,2.5));[/asy]",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{83}",
+    "is_static": false
+}

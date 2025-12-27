@@ -1,0 +1,7 @@
+{
+    "problem": "A dilation centered at the origin takes $\\begin{pmatrix} 363 \\\\ 418 \\end{pmatrix}$ to $\\begin{pmatrix} 93291 \\\\ 107426 \\end{pmatrix}.$  Which vector does the dilation take $\\begin{pmatrix} -97 \\\\ 245 \\end{pmatrix}$ to?",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} -24929 \\\\ 62965 \\end{pmatrix}}",
+    "is_static": false
+}

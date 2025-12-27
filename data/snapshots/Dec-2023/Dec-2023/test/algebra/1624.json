@@ -1,0 +1,7 @@
+{
+    "problem": "What integer $x$ satisfies the equation: $6^{x + 8} = 216$ ?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-5}",
+    "is_static": false
+}

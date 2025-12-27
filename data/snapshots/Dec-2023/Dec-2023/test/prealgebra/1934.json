@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $\\sqrt{(\\sqrt{88})(\\sqrt{198})}$ can be simplified to $a\\sqrt b$, where $a$ and $b$ are integers and $b$ is not divisible by any perfect square greater than 1. What is $a+b$?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{35}",
+    "is_static": false
+}

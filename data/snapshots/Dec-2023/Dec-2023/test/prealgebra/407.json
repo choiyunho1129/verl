@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\sqrt{60\\cdot 60\\cdot 100}$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{600}",
+    "is_static": false
+}

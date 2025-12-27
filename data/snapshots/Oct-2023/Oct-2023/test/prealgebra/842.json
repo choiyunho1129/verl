@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can I choose 4 different officers (President, Vice President, Treasurer, and Secretary) from a club of 77 people?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{32478600}",
+    "is_static": false
+}

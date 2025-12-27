@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $187\\sin 120^\\circ$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{187\\sqrt{3}}{2}}",
+    "is_static": false
+}

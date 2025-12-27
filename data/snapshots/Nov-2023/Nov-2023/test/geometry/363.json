@@ -1,0 +1,7 @@
+{
+    "problem": "The measure of one of the smaller base angles of an isosceles trapezoid is $60^\\circ$. The shorter base is 4263 inches long and the altitude is $3653 \\sqrt{3}$ inches long. What is the number of inches in the perimeter of the trapezoid? [asy]\nimport markers;\nimport olympiad; size(150); import geometry; import graph; defaultpen(linewidth(0.8));\ndraw(origin--(11569,0)--(7916,3653*sqrt(3))--(3653,3653*sqrt(3))--cycle);\ndraw(Label(\"$3653\\sqrt{3}$\",align=E),(3653,3653*sqrt(3))--(3653,0),dashed);\nlabel(\"4263\",(7916,3653*sqrt(3))--(3653,3653*sqrt(3)),N);\nmarkangle(Label(\"$60^{\\circ}$\"),(11569,0),origin,(3653,3653*sqrt(3)),radius=10);\n[/asy]",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{30444}",
+    "is_static": false
+}

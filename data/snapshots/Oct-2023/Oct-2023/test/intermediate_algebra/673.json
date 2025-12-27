@@ -1,0 +1,7 @@
+{
+    "problem": "Find the largest positive real number $\\lambda$ such that for any nonnegative real numbers $x,$ $y,$ and $z$ such that $x^2 + y^2 + z^2 = 1,$ the inequality\n\\[\\lambda xy + yz \\le \\frac{\\sqrt{1850}}{2}\\]holds.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{43}",
+    "is_static": false
+}

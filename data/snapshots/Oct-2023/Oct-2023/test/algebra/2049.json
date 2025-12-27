@@ -1,0 +1,7 @@
+{
+    "problem": "Given $(a)$ x $(b) = a^2 + 2ab + b^2$, what is the value of $(a)$ x $(b)$ when $a = 8869$ and $b = 4113$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{168532324}",
+    "is_static": false
+}

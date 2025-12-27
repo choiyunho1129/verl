@@ -1,0 +1,7 @@
+{
+    "problem": "The midpoint of a line segment is located at $(2, 5)$. If one of the endpoints is $(-8, -3)$, what is the other endpoint? Express your answer as an ordered pair.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{(12, 13)}",
+    "is_static": false
+}

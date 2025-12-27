@@ -1,0 +1,7 @@
+{
+    "problem": "Marie is thinking of a multiple of 779, while Jay is thinking of a factor of 779. They happen to be thinking of the same number. There are two possibilities for the number that each of them is thinking of, one positive and one negative. Find the product of these two numbers.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-606841}",
+    "is_static": false
+}

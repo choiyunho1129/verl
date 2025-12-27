@@ -1,0 +1,7 @@
+{
+    "problem": "Point $A$ lies somewhere within or on the square which has opposite corners at $(11,12)$ and $(21,31)$. Point $B$ lies somewhere within or on the square which has opposite corners at points $(34,44)$ and $(42,54)$. What is the greatest possible value of the slope of the line containing points $A$ and $B$? Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{42}{13}}",
+    "is_static": false
+}

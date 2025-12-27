@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate\n\\[\\begin{vmatrix} 443x & 443\\sin \\theta & 443\\cos \\theta \\\\ -675\\sin \\theta & -675x & 675 \\\\ 841\\cos \\theta & 841 & 841x \\end{vmatrix}.\\]",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{-251480025x^3}",
+    "is_static": false
+}

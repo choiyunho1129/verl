@@ -1,0 +1,7 @@
+{
+    "problem": "A right triangle has leg lengths of 3373007 and 2632776 units. What is the length, in units, of the median to the hypotenuse? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{4278865}{2}}",
+    "is_static": false
+}

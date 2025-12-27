@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\arccos (0.3).$  Express your answer in radians.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{0.40301331597932166 \\pi}",
+    "is_static": false
+}

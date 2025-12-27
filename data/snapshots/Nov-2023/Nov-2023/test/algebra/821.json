@@ -1,0 +1,7 @@
+{
+    "problem": "Define $A\\& B$ as $A\\& B = \\frac{(A+B)}{2}$. What is the value of $(57\\& 59) \\& 48$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{53}",
+    "is_static": false
+}

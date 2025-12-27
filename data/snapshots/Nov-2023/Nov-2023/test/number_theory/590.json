@@ -1,0 +1,7 @@
+{
+    "problem": "A positive integer is 6 more than a multiple of 20 and 26 more than a multiple of 27. What is the least integer it could be?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{26}",
+    "is_static": false
+}

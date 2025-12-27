@@ -1,0 +1,7 @@
+{
+    "problem": "Find the modulo $13$ remainder of the sum $1+3+5+7+9+\\dots+1667+1669+1671.$",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

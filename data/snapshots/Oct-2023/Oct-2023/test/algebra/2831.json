@@ -1,0 +1,7 @@
+{
+    "problem": "Let $46 \\le a, b, c \\le 54$ be integers. For how many ordered triples $(a,b,c)$ is $a^2b+b^2c+c^2a-ab^2-bc^2-ca^2 = 0$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{225}",
+    "is_static": false
+}

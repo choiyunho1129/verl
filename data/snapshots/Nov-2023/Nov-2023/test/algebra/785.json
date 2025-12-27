@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\lceil\\sqrt{870}\\rceil+ \\lfloor\\sqrt{870}\\rfloor$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{59}",
+    "is_static": false
+}

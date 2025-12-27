@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{v}$ and $\\mathbf{w}$ be vectors such that $\\|\\mathbf{v}\\| = 868$ and $\\|\\mathbf{w}\\| = 116.$  Find the minimum value of $\\mathbf{v} \\cdot \\mathbf{w}.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{-100688}",
+    "is_static": false
+}

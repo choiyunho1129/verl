@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify: $\\displaystyle \\frac{\\frac 116\\times 2^{-56}}{2^{-51}\\times 2^{-22}}$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{2^{13}}",
+    "is_static": false
+}

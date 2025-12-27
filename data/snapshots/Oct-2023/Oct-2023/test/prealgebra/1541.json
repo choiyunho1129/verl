@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum $\\frac{5}{10}+\\frac{5}{1000}$, in decimal form to the nearest thousandth?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{0.505}",
+    "is_static": false
+}

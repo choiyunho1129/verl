@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $|(58+29i)|\\cdot|(86-43i)|$.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{6235}",
+    "is_static": false
+}

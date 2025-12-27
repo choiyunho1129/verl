@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ and $b$ are acute angles such that $\\cos a = \\frac{525}{533}$ and $\\cos b = \\frac{252}{260},$ then find $\\cos (a + b).$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{187}{205}}",
+    "is_static": false
+}

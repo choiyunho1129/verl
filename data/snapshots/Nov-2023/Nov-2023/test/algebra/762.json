@@ -1,0 +1,7 @@
+{
+    "problem": "Find the least value of $b$ such that $b^2+18b-403 \\le 0$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-31}",
+    "is_static": false
+}

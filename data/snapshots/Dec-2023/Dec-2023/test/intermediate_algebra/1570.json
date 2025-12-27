@@ -1,0 +1,7 @@
+{
+    "problem": "The positive integers up to 177 are alternately subtracted and added:\n\\[1 - 2 + 3 - 4 + \\cdots + 171 - 172 + 173 - 174 + 175 - 176 + 177.\\]What is the value of the expression?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{89}",
+    "is_static": false
+}

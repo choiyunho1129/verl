@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of the rational function $\\frac{125x^{12}-88x^5 + 685x^3 -440x+277}{q(x)} $ has a horizontal asymptote. What is the smallest possible degree of $q(x)$?",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

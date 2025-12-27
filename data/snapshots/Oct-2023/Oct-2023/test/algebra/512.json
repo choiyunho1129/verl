@@ -1,0 +1,7 @@
+{
+    "problem": "What is the minimum value of $a^2+6a-34$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-43}",
+    "is_static": false
+}

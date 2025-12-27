@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $11025-49x^2$ completely.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{49(15-x)(15+x)}",
+    "is_static": false
+}

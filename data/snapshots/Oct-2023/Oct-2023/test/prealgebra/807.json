@@ -1,0 +1,7 @@
+{
+    "problem": "Every student in a homeroom class takes a biology course or a Spanish course or both. If 15 take biology, 15 take Spanish and 8 take both, how many students are in the homeroom classroom?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

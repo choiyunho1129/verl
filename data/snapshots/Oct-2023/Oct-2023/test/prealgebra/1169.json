@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(4x+69)-(4x+70)$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{0x-1}",
+    "is_static": false
+}

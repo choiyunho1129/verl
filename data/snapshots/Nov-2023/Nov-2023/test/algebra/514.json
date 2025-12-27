@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $3z^2+72z+432$ can be written as $(z + a)(3z + b),$ where $a$ and $b$ are integers. What is $3a + b$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{72}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many digits does $660_{10}$ have when converted to base 9?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{3\\text{ digits}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the $2451^{\\text{st}}$ digit to the right of the decimal point in the decimal expansion of $\\frac{15}{7}$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

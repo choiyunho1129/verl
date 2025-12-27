@@ -1,0 +1,7 @@
+{
+    "problem": "How many unique diagonals can be drawn in a twelve-sided convex polygon?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{54}",
+    "is_static": false
+}

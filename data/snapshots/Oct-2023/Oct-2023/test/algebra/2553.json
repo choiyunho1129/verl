@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the expression $$\\sqrt{\\dfrac{\\dfrac4{\\sqrt{640}}+\\dfrac{\\sqrt{41929933824000}}{6400}+\\sqrt{160}}{\\sqrt160}}.$$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "For $x > 0$, the area of the triangle with vertices $(0, 0), (x, 0)$ and $(x, 3)$ is 6 square units. What is the value of $x$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

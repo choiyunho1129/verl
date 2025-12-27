@@ -1,0 +1,7 @@
+{
+    "problem": "If $16^{41n}=64^{1722}$, find $n$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{63}",
+    "is_static": false
+}

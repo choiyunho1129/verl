@@ -1,0 +1,7 @@
+{
+    "problem": "Of all the primes in the prime factorization of \\begin{align*}\\gcd(&2^23^35^57^711^{11}13^{13}17^{17}, \\\\ &\\quad 2^{17}3^{13}5^{11}7^711^513^317^2),\\end{align*}which prime appears with largest exponent?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

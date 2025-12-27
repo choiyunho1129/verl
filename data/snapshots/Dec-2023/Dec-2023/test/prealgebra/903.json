@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of the median and the mean of the set of numbers 14, 38, 39, 82 and -168?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{39}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $x,$ $y,$ and $z$ satisfy the equations\n\\begin{align*}\nxyz &= 216, \\\\\nx^3 + y^3 + z^3 &= 648, \\\\\nxy^2 + x^2 y + xz^2 + x^2 z + yz^2 + y^2 z &= 1296.\n\\end{align*}Calculate the value of $xy + yz + zx.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{108}",
+    "is_static": false
+}

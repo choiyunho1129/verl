@@ -1,0 +1,7 @@
+{
+    "problem": "Find $k$, if ${(9^k)}^62=9^496$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $\\sqrt{56-\\!\\sqrt{56-\\!\\sqrt{56-\\cdots}}}$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

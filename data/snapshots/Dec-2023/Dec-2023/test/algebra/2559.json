@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\log_95\\frac{1}{59873693923837890625}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-10}",
+    "is_static": false
+}

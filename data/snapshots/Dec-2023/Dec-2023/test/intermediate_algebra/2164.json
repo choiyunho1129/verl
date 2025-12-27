@@ -1,0 +1,7 @@
+{
+    "problem": "What real values of $x$ are not in the domain of\n\n$f(x)=\\frac{1}{|x^2+2232x+1185431|+|x^2+1182x-243619|}$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-1361}",
+    "is_static": false
+}

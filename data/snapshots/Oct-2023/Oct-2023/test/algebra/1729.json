@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of two numbers is 40 and their product is 391. What is the positive difference between the numbers?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

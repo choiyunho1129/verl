@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $10t+10-20t+9t-10$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-1t}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the first 19 prime numbers.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{568}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $x$: $\\frac{x}{9}+\\frac{x}{46}=1-x$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{414}{469}}",
+    "is_static": false
+}

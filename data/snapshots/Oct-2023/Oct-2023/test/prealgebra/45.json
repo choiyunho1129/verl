@@ -1,0 +1,7 @@
+{
+    "problem": "Find the greatest common factor of $3456$ and $10935$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{27}",
+    "is_static": false
+}

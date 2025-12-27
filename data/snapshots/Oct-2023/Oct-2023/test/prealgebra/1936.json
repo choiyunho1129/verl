@@ -1,0 +1,7 @@
+{
+    "problem": "When a spaceship full of scientists landed on Planet Q, they found that $\\frac{4}{5}$ of the $245$ aliens had $3$ eyes.  The rest of the aliens had 6 eyes. How many eyes total do the 245 aliens have?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{882}",
+    "is_static": false
+}

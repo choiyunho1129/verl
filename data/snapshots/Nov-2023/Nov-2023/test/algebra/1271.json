@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $4x - 5y = 10$ and $8x + 5y = 170$, what is the product of $x$ and $y$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{150}",
+    "is_static": false
+}

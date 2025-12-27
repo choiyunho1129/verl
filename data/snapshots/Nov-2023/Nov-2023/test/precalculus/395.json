@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\mathbf{a}$ and $\\mathbf{b}$ are vectors such that $\\|\\mathbf{a}\\| = 44$ and $\\|\\mathbf{b}\\| = 262$, then find the smallest possible value of $\\|\\mathbf{a} + \\mathbf{b}\\|$.",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{218}",
+    "is_static": false
+}

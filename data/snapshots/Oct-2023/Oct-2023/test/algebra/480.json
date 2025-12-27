@@ -1,0 +1,7 @@
+{
+    "problem": "Let \\[f(x) = \\begin{cases}\n-x^2 - -181 &\\text{if }x<456, \\\\\n-890&\\text{if }456 \\le x< 634, \\\\\n\\sqrt{x}&\\text{if }x \\ge 634.\n\\end{cases}\n\\]Find $f(\\pi)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{171.1404}",
+    "is_static": false
+}

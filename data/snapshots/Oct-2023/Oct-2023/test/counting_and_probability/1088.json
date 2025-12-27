@@ -1,0 +1,7 @@
+{
+    "problem": "A 50-sided die is rolled. What is the probability that the number shown is not an even prime?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{49}{50}}",
+    "is_static": false
+}

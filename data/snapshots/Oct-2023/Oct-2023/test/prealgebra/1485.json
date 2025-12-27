@@ -1,0 +1,7 @@
+{
+    "problem": "The diameter of a circle is 28. By what number must the radius be decreased in order to decrease the area of the circle by $160\\pi$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\displaystyle\\frac{7t^{16}}{55t^4}\\cdot \\frac{71t^{18}}{76t^3}$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{497t^{27}}{4180}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many seven-digit positive integers are there?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{9000000}",
+    "is_static": false
+}

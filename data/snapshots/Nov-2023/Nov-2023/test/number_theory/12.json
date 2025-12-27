@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers between 84 and 724 are divisible by 231?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

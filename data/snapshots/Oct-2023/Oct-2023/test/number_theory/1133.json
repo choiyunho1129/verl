@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ is a positive integer, then $14a^2+393a+2758$ and $a^2+28a+196$ are also positive integers. We define the function $f$ such that $f(a)$ is the greatest common divisor of  $14a^2+393a+2758$ and $a^2+28a+196$.  Find the maximum possible value of $f(a)- a$.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

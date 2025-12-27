@@ -1,0 +1,7 @@
+{
+    "problem": "What is the $2082^{\\text{nd}}$ digit to the right of the decimal point in the decimal expansion of $\\frac{64}{7}$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

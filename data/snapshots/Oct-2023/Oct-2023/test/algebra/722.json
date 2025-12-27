@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $9999^2+9999+49$ in your head.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{99990049}",
+    "is_static": false
+}

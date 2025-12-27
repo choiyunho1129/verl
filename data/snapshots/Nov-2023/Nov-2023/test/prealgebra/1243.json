@@ -1,0 +1,7 @@
+{
+    "problem": "Rebecca is thinking of a number greater than $4.32$ and less than $4.33.$ What is Rebecca's number rounded off to the nearest tenth?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4.3}",
+    "is_static": false
+}

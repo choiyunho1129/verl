@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{650}{648}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{210925}",
+    "is_static": false
+}

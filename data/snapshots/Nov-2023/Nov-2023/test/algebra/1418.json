@@ -1,0 +1,7 @@
+{
+    "problem": "A circle of radius 83 with its center at $(0,0)$ is drawn on a Cartesian coordinate system. How many lattice points (points with integer coordinates) lie within or on this circle?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{21629}",
+    "is_static": false
+}

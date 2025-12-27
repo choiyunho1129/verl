@@ -1,0 +1,7 @@
+{
+    "problem": "Given x = 9 and y = 18, find the value of the expression $\\frac{21384x^2}{81y^2}$",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{66}",
+    "is_static": false
+}

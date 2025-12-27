@@ -1,0 +1,7 @@
+{
+    "problem": "Ben rolls two fair seventeen-sided dice. What is the expected value of the larger of the two numbers rolled? Express your answer as a fraction.  (If the two numbers are the same, we take that number to be the \"larger\" number.)",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{3417}{289}}",
+    "is_static": false
+}

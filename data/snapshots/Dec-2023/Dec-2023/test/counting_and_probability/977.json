@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $2\\left(\\frac{38!}{3!35!}\\right)$",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{16872}",
+    "is_static": false
+}

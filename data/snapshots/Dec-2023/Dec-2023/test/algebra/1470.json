@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least possible value of the sum $|x - 68.95| + |x - 80.75| + |x - 184.45|$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{115.5}",
+    "is_static": false
+}

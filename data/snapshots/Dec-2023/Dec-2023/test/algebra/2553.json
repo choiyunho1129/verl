@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the expression $$\\sqrt{\\dfrac{\\dfrac4{\\sqrt{2584}}+\\dfrac{\\sqrt{733566223668329856}}{104329}+\\sqrt{646}}{\\sqrt646}}.$$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

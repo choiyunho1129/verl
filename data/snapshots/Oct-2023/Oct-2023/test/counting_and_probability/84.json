@@ -1,0 +1,7 @@
+{
+    "problem": "One Hundred And Fifty-Eight-digit integers are formed using the digits 2, 3, 4 and 5. Any of the digits can be used any number of times. How many such one hundred and fifty-eight-digit integers are palindromes? Palindromes read the same forward and backward.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{365375409332725729550921208179070754913983135744}",
+    "is_static": false
+}

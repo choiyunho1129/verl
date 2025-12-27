@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $x$, when $(2^{x+5})^3\\cdot 16^x=8796093022208$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

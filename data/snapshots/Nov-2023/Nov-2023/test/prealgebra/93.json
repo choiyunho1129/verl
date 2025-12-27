@@ -1,0 +1,7 @@
+{
+    "problem": "A world-record swimmer and a dolphin compete in a 36-meter race. The swimmer swims at a rate of 7 meters per second, and the dolphin swims at a rate of 63 meters per second. When the dolphin crosses the finish line, how many meters is the swimmer from the finish line?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{32}",
+    "is_static": false
+}

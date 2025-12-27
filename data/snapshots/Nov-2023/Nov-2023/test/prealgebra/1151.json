@@ -1,0 +1,7 @@
+{
+    "problem": "Spinner I is divided into four equal sections labeled 220, 652, 59820, 780, 965, 452, 988 and 943. Spinner II is divided into five equal sections labeled 211, 765, 291, 885 and 829. If each spinner is spun and the resulting numbers are multiplied, what is the probability that the product is a six-digit even number? Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{11}{10}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = x - 81$ and $q(x) = bx -78$.  If $f(q(3)) = 12$, what is $b$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{57}",
+    "is_static": false
+}

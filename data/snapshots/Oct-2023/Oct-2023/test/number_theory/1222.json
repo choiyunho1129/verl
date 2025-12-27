@@ -1,0 +1,7 @@
+{
+    "problem": "Let $M$ and $N$ denote the greatest and least positive two-digit multiples of 37. What is the value of $M + N$?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{111}",
+    "is_static": false
+}

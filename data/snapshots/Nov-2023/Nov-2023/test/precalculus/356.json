@@ -1,0 +1,7 @@
+{
+    "problem": "The set of vectors $\\mathbf{v}$ such that\n\\[\\operatorname{proj}_{\\begin{pmatrix} 504 \\\\ 36 \\end{pmatrix}} \\mathbf{v} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}\\]lie on a line.  Enter the equation of this line in the form \"$y = mx + b$\".",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{y = -14x}",
+    "is_static": false
+}

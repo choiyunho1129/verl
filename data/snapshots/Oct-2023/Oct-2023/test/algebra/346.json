@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 920x-929$ and $g(x) = x+763$. What is the value of $g(f(551)-757)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{505997}",
+    "is_static": false
+}

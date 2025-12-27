@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of\n\\[x^2 + 302x + y^2 - 798y + z^2 + 214z + 22023 = 0\\]is a sphere.  Find the center of the sphere.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{(-151,399,-107)}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $$\\sum_{n=1}^{\\infty} \\left( \\frac{498n}{499^n} - \\frac{462}{463^n} \\right).$$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{1}{498}}",
+    "is_static": false
+}

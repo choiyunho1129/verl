@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the geometric series $86+\\frac{7310}{a}+\\frac{621350}{a^2}+\\cdots$. If the sum is a perfect square, what is the smallest possible value of $a$ where $a$ is a positive integer?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{86}",
+    "is_static": false
+}

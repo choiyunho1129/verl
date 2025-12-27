@@ -1,0 +1,7 @@
+{
+    "problem": "The point $(a, b)$ lies on the line with the equation $174x + 893y = 280955.$ When $a = 501$, what is the value of $b$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{217}",
+    "is_static": false
+}

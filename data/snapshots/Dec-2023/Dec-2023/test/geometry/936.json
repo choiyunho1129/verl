@@ -1,0 +1,7 @@
+{
+    "problem": "If the volume of a 5-cm-by-5cm-by-5cm cube is increased by 91 cubic centimeters to form a larger cube, what is the length in centimeters of one edge of the new cube?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

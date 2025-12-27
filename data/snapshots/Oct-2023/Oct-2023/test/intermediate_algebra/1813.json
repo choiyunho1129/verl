@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = x^3 + bx + 3844c.$  If $(x - 62)^2$ is a factor of $f(x),$ then find the ordered pair $(b,c).$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(-11532,124)}",
+    "is_static": false
+}

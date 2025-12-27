@@ -1,0 +1,7 @@
+{
+    "problem": "Find the coefficient of $x^15y^1z^12$ in the expansion of $(x+y+z)^28$.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{486748080}",
+    "is_static": false
+}

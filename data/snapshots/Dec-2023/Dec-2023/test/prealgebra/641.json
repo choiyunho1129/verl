@@ -1,0 +1,7 @@
+{
+    "problem": "In the diagram, the perimeter of the rectangle is 112. What is its area?\n\n[asy]\nunitsize(1inch);\n\npair A, B,C,D;\nA =(0,0);\nB= (1,0);\nD = (0,0.8);\nC = B+D;\ndraw(A--B--C--D--A);\nlabel(\"$x+4$\",B/2,S);\nlabel(\"$x-4$\",D/2,W);\n[/asy]",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{768}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Convert $\\frac{438390}{500000}$ to a terminating decimal.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{.87678}",
+    "is_static": false
+}

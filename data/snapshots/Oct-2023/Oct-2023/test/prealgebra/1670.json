@@ -1,0 +1,7 @@
+{
+    "problem": "The five highest kick return averages, in yards, in the NFL's history were 27.1, 22.9, 27.0, 28.8 and 22.9. What is the median of these five averages? Express your answer as a decimal to the nearest tenth.",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{27.0}",
+    "is_static": false
+}

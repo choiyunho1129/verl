@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = x^{143} + ax^{109} + cx^{75}$  If $f(704) = -414,$ then find $f(-704).$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{414}",
+    "is_static": false
+}

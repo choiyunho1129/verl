@@ -1,0 +1,7 @@
+{
+    "problem": "A man nearing retirement wants to invest some money in a fund that compounds annually at a rate of 31 percent, so that in eight years, he will have at least $\\$892,000$.  How much money must he invest now to make that happen?  (Give your answer to the nearest dollar.)",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{102848}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the constant $k$ so that the graphs of the parabolas $y = x^2 + 591k$ and $x = y^2 + 591k$ are tangent to each other.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{1}{2364}}",
+    "is_static": false
+}

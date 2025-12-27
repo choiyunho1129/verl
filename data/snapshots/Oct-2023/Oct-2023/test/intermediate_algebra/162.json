@@ -1,0 +1,7 @@
+{
+    "problem": "Let $z$ and $w$ be complex numbers such that $|z| = 89$ and $|w| = 82.$  Find the largest possible value of $|z + w|.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{171}",
+    "is_static": false
+}

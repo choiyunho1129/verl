@@ -1,0 +1,7 @@
+{
+    "problem": "Let $p(x)$ be a monic polynomial of degree 4.  Three of the roots of $p(x)$ are 33, 34, and 35.  Find $p(0) + p(68).$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2670360}",
+    "is_static": false
+}

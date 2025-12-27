@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive perfect cube that can be written as the sum of seven consecutive integers?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{343}",
+    "is_static": false
+}

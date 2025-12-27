@@ -1,0 +1,7 @@
+{
+    "problem": "If $10^x - 5 = 5,$ what is $x$ equal to?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

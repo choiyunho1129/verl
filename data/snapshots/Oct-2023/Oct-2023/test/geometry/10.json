@@ -1,0 +1,7 @@
+{
+    "problem": "In $\\triangle{ABC}$, shown, $\\cos{B}=\\frac{243360}{568178}$.  What is $\\cos{C}$?\n\n[asy]\ndraw((0,0)--(4,0)--(0,3)--cycle,black+linewidth(1));\ndraw(rightanglemark((4,0),(0,0),(0,3),10),black+linewidth(1));\nlabel(\"$A$\",(0,0),W);\nlabel(\"$B$\",(0,3),W);\nlabel(\"$C$\",(4,0),E);\nlabel(\"40154400\",(0,0)--(0,3),W);\n[/asy]",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{1519}{1681}}",
+    "is_static": false
+}

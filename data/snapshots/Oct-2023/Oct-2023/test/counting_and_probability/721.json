@@ -1,0 +1,7 @@
+{
+    "problem": "Bin $A$ has sixty-eight white ball and ninety-nine black balls.  Bin $B$ has one balls labeled $\\$1$ and twenty-one ball labeled $\\$7$.  Bin $W$ has twenty-five balls labeled $\\$8$ and fifteen ball labeled $\\$500$.  A game is played as follows: a ball is randomly selected from bin $A$.  If it is black, then a ball is randomly selected from bin $B$; otherwise, if the original ball is white, then a ball is randomly selected from bin $W$.  You win the amount printed on the second ball selected.  What is your expected win?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\$82.37}",
+    "is_static": false
+}

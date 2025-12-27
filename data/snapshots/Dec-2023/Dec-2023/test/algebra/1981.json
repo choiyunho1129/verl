@@ -1,0 +1,7 @@
+{
+    "problem": "If ten cookies cost the same as 5 brownies, and five brownies cost the same as 15 cupcakes, how many cupcakes can Bob buy for the price of four cookies?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

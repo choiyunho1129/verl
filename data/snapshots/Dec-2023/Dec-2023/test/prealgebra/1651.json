@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $x = 6+6t$ and $y = t - 18$.  If $x = 72$, what is $y$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-7}",
+    "is_static": false
+}

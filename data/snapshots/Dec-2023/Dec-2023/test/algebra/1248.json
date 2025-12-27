@@ -1,0 +1,7 @@
+{
+    "problem": "Express $0.1\\overline{555}$ as a common fraction.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{7}{45}}",
+    "is_static": false
+}

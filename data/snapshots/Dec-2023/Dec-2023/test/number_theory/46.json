@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $20_5 - 10_5.$ Express your answer in base $5.$",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{10_5}",
+    "is_static": false
+}

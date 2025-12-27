@@ -1,0 +1,7 @@
+{
+    "problem": "Let $G$ and $H$ denote the centroid and orthocenter of triangle $ABC,$ respectively.   Let $F$ be the midpoint of $\\overline{GH}.$  Express $176AF^2 + 176BF^2 + 176CF^2$ in terms of the side lengths $a,$ $b,$ $c$ and circumradius $R$ of triangle $ABC.$",
+    "level": "Level 5",
+    "type": "Precalculus",
+    "solution": "\\boxed{528R^2}",
+    "is_static": false
+}

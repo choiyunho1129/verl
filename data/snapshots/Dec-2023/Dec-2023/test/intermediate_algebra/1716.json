@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c$ be positive real numbers.  Find the minimum value of\n\\[\\frac{(9a + 81b)(36a + 100c)(9b + 49c)}{abc}.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{272160}",
+    "is_static": false
+}

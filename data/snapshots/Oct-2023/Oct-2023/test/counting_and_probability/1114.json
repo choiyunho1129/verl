@@ -1,0 +1,7 @@
+{
+    "problem": "Two fair, 44-sided dice are thrown.  What is the probability that the product of the two numbers is a multiple of 43?  Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{87}{1936}}",
+    "is_static": false
+}

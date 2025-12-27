@@ -1,0 +1,7 @@
+{
+    "problem": "When a number is divided by 35, the remainder is 33. What is the remainder when twice the number is divided by 35?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{31}",
+    "is_static": false
+}

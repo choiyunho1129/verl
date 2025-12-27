@@ -1,0 +1,7 @@
+{
+    "problem": "If $A\\ \\spadesuit\\ B$ is defined as $A\\ \\spadesuit\\ B = A + B + 4$, what is the value of $A$ for which $A\\ \\spadesuit\\ 64 = 50$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-18}",
+    "is_static": false
+}

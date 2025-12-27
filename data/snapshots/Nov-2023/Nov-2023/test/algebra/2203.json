@@ -1,0 +1,7 @@
+{
+    "problem": "If $(56^15)^{(56^15)} = 56^N$, what is the value of $N$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{2505599560206773922708848640}",
+    "is_static": false
+}

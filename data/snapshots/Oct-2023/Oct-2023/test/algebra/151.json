@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil\\sqrt{206}\\right\\rceil - \\left\\lfloor\\sqrt{366}\\right\\rfloor$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-4}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $\\dfrac{2^{13}-2^4}{2^3-2^2}$. Express your answer in simplest form.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{2044}",
+    "is_static": false
+}

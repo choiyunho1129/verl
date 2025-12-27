@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $x = 3+3t$ and $y = t - 10$.  If $x = 36$, what is $y$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

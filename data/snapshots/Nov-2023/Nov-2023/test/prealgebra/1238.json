@@ -1,0 +1,7 @@
+{
+    "problem": "What integer $x$ satisfies $\\frac{1}{13}<\\frac{x}{193}<\\frac{1}{12}$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

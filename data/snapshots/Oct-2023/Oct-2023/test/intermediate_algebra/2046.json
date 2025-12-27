@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $x: 10^{5x} + 360057605376322572902744069898298982662144 = 100004^x$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

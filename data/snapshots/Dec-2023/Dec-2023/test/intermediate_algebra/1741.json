@@ -1,0 +1,7 @@
+{
+    "problem": "A certain ellipse is defined by\n\\[PF_1 + PF_2 = d.\\]The equation of the ellipse is $196x^2 - 215992x + y^2 + 1078y - -58413341 = 0.$  Find $d.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2352}",
+    "is_static": false
+}

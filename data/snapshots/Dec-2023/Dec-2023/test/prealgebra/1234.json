@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive integer with factors of 99, 60, and 15?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1980}",
+    "is_static": false
+}

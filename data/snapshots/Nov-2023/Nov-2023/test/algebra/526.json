@@ -1,0 +1,7 @@
+{
+    "problem": "Rationalize the denominator: $\\frac{569}{\\sqrt{437}}$ .",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{569\\sqrt{437}}{437}}",
+    "is_static": false
+}

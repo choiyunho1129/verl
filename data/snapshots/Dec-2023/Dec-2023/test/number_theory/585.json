@@ -1,0 +1,7 @@
+{
+    "problem": "When $5081^{4603}$ is written in decimal notation, what is its ones digit?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

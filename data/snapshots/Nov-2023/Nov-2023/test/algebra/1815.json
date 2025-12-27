@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ and $y$ are positive integers for which $7x + 4y + xy = 933$, then what is $x + y$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{51}",
+    "is_static": false
+}

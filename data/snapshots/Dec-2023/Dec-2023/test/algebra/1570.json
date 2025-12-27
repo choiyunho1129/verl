@@ -1,0 +1,7 @@
+{
+    "problem": "How many units long is a segment whose endpoints are $(-33,0)$ and $(0,56)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{65}",
+    "is_static": false
+}

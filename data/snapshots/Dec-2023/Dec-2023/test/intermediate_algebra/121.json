@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d$ be positive real numbers such that $a + b + c + d = 1.$  Find the minimum value of\n\\[\\frac{4}{a} + \\frac{100}{b} + \\frac{64}{c} + \\frac{16}{d}.\\]",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{576}",
+    "is_static": false
+}

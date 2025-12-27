@@ -1,0 +1,7 @@
+{
+    "problem": "Find $x$ such that $\\log_66(x531)=4$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{18974205}",
+    "is_static": false
+}

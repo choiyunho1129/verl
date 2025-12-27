@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x,$ $y,$ and $z$ be real numbers such that $x^2 + y^2 + z^2 = 49.$  Find the maximum value of\n\\[2x + 24y + 24z.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{238}",
+    "is_static": false
+}

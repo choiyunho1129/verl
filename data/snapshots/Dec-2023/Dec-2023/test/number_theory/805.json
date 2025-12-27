@@ -1,0 +1,7 @@
+{
+    "problem": "$13!$ has 10 digits, the last 9 of which are 227020800. What is the first digit?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

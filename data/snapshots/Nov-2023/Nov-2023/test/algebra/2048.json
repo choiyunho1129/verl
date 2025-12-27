@@ -1,0 +1,7 @@
+{
+    "problem": "A number $x$ is 2 larger than its reciprocal.  What is the value of $\\left(x-\\frac{1}{x}\\right)^4$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

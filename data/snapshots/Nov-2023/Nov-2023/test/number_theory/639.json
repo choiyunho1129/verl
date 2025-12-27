@@ -1,0 +1,7 @@
+{
+    "problem": "How many of the positive divisors of 190512 are even?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{72}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers between 300 and 800 have at least two 5s as digits?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{23}",
+    "is_static": false
+}

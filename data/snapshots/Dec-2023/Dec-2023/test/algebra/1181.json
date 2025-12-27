@@ -1,0 +1,7 @@
+{
+    "problem": "A recipe calls for $\\frac2{17}$ teaspoon of salt for each quart of water. How many quarts of water will be used for thirty-four teaspoons of salt?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{289}",
+    "is_static": false
+}

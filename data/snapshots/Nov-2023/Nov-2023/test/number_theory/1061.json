@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the number of solutions in $x$ of the congruence $138x\\equiv 2\\pmod {140}$ such that $0< x\\le 210$.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

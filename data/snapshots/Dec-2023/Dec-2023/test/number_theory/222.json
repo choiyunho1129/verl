@@ -1,0 +1,7 @@
+{
+    "problem": "The least common multiple of two numbers is 6080, and their greatest common divisor is 14. Given that one of the numbers is 304, what is the other number?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{280}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the domain of the function $f(x)=\\frac{x+3}{x^2-1x-2}$? Express your answer in interval notation.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{(-\\infty,-1)\\cup(-1,2)\\cup(2,\\infty)}",
+    "is_static": false
+}

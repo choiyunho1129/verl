@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $2\\left(\\frac{10!}{3!7!}\\right)$",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{240}",
+    "is_static": false
+}

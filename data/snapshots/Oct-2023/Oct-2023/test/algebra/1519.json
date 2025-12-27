@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the following:$$\\frac{11}{\\sqrt{1331}}$$",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{\\sqrt{11}}{11}}",
+    "is_static": false
+}

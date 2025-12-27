@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $x + y = 38$ and $x - y = 47$, find $2x^2 + 2y^2$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{3653}",
+    "is_static": false
+}

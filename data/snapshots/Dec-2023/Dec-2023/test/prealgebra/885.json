@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can a 2-person committee be chosen from a group of 50 people (where the order in which we choose the 2 people doesn't matter)?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1225}",
+    "is_static": false
+}

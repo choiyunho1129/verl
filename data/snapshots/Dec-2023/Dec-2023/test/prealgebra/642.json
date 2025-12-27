@@ -1,0 +1,7 @@
+{
+    "problem": "In Duck Creek, a bicycle license plate consists of five letter followed by two digit; for example, $ABCDE01$ or $ABCDE01$. How many different license plates are possible?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1188137600}",
+    "is_static": false
+}

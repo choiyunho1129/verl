@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $11x^3 - 33x^2 + 22x$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{11x(x-1)(x-2)}",
+    "is_static": false
+}

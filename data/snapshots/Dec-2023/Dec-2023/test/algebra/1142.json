@@ -1,0 +1,7 @@
+{
+    "problem": "Let $m$ and $n$ satisfy $mn=611$ and $m+n=60$. What is $|m-n|$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{34}",
+    "is_static": false
+}

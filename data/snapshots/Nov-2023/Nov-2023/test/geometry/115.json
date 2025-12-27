@@ -1,0 +1,7 @@
+{
+    "problem": "$ABCDEFGH$ shown below is a right rectangular prism.  If the volume of pyramid $ABCH$ is 990, then what is the volume of $ABCDEFGH$?\n\n[asy]\n\nimport three;\n\ntriple A,B,C,D,EE,F,G,H;\n\nA = (0,0,0);\n\nB = (5,0,0);\n\nC = (5,6,0);\n\nD= (0,6,0);\n\nEE = (0,0,4);\n\nF = B+EE;\n\nG = C + EE;\n\nH = D + EE;\n\ndraw(B--C--D);\n\ndraw(B--A--D,dashed);\n\ndraw(EE--F--G--H--EE);\n\ndraw(A--EE,dashed);\n\ndraw(B--F);\n\ndraw(C--G);\n\ndraw(D--H);\n\nlabel(\"$A$\",A,S);\n\nlabel(\"$B$\",B,W);\n\nlabel(\"$C$\",C,S);\n\nlabel(\"$D$\",D,E);\n\nlabel(\"$E$\",EE,N);\n\nlabel(\"$F$\",F,W);\n\nlabel(\"$G$\",G,SW);\n\nlabel(\"$H$\",H,E);\n\n[/asy]",
+    "level": "Level 5",
+    "type": "Geometry",
+    "solution": "\\boxed{5940}",
+    "is_static": false
+}

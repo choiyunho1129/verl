@@ -1,0 +1,7 @@
+{
+    "problem": "A function is defined as $f(x) = x^2 - 15x + 2$. What expression can be used to describe $f(17x)$? Express your answer in simplified form in terms of $x$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{289x^2 - 255x + 2}",
+    "is_static": false
+}

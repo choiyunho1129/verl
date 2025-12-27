@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $x$ such that $\\sqrt{x - 17} = 9$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{98}",
+    "is_static": false
+}

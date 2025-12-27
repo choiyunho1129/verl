@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the function $g(x)=100x+33$.  What is $g(47)$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{4733}",
+    "is_static": false
+}

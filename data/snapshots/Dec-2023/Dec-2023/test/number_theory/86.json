@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest integer $n$, greater than $1$, such that $n^{-1}\\pmod{692835}$ and $n^{-1}\\pmod{439138126}$ are both defined?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{43}",
+    "is_static": false
+}

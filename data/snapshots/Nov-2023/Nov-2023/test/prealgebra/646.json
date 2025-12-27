@@ -1,0 +1,7 @@
+{
+    "problem": "The temperature in a desert rose $1.5$ degrees in $15$ minutes.  If this rate of increase remains constant, how many degrees will the temperature rise in the next $6$ hours?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{36}",
+    "is_static": false
+}

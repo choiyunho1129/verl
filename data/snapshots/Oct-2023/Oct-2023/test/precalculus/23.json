@@ -1,0 +1,7 @@
+{
+    "problem": "When $-40 + 9i$ is converted to the exponential form $re^{i \\theta}$, what is $\\cos \\theta$?",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-\\frac{40}{41}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Given $(a)$ x $(b) = a^2 + 2ab + b^2$, what is the value of $(a)$ x $(b)$ when $a = 8398$ and $b = 5041$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{180606721}",
+    "is_static": false
+}

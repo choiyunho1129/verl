@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 12\\sqrt{26x - 79} - 6$.  Find $f(4)$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{54}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil {-\\!\\sqrt{115}}\\right\\rceil$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-10}",
+    "is_static": false
+}

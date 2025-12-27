@@ -1,0 +1,7 @@
+{
+    "problem": "The distance between two cities on a map is 48 centimeters. If the scale is 0.5 cm:10 km, how many kilometers apart are the actual cities?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{960}",
+    "is_static": false
+}

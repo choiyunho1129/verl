@@ -1,0 +1,7 @@
+{
+    "problem": "What is the equation of the oblique asymptote of the graph of $\\frac{618762x^2+1577x-290242}{843x-842}$?\n\nEnter your answer in the form $y = mx + b.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{y = 734x+735}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In this problem, $a$ and $b$ are positive integers.\n\nWhen $a$ is written in base $36$, its last digit is $14$.\n\nWhen $b$ is written in base $12$, its last two digits are $67$.\n\nWhen $a-b$ is written in base $6$, what are its last two digits?  Assume $a-b$ is positive.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x)=ax^4-bx^2+90x+32$ and $f(-67)=40,$ then what is the value of $f(67)$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{12100}",
+    "is_static": false
+}

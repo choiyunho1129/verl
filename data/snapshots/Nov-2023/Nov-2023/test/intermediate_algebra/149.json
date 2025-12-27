@@ -1,0 +1,7 @@
+{
+    "problem": "Compute the product of the number $7+\\sqrt{7}$ and its radical conjugate.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{42}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "I have a deck of $1182$ cards, and I deal all of the cards to $x$ players, with each player getting $y$ cards. If $x$ is at least $3$ and $y$ is at least $11$, then how many possible values of $x$ are there?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

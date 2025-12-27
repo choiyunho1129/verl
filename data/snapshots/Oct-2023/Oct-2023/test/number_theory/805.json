@@ -1,0 +1,7 @@
+{
+    "problem": "$16!$ has 14 digits, the last 13 of which are 0922789888000. What is the first digit?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

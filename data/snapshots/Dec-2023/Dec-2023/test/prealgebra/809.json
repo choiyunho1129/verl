@@ -1,0 +1,7 @@
+{
+    "problem": "If $x=\\frac{22}{89}$ and $y=\\frac{22}{60}$, what is $\\frac{x}{y}$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{60}{89}}",
+    "is_static": false
+}

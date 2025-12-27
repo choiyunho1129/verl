@@ -1,0 +1,7 @@
+{
+    "problem": "For the nonzero numbers $a$, $b$, and $c$, define \\[\\text{{D}}(a,b,c)=\\frac{abc}{a+b+c}.\\]Find $\\text{{D}}(21,42,63)$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{441}",
+    "is_static": false
+}

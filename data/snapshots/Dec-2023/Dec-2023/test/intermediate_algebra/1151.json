@@ -1,0 +1,7 @@
+{
+    "problem": "Find the maximum value of\n\\[f(x,y) = x \\sqrt{986049 - y^2} + y \\sqrt{986049 - x^2},\\]where $-986049 \\le x,$ $y \\le 986049.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{986049}",
+    "is_static": false
+}

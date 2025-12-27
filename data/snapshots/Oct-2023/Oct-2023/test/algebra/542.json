@@ -1,0 +1,7 @@
+{
+    "problem": "What are the coordinates of the point on the line $20x-7y=351$ such that the $x$ and $y$ coordinates are the additive inverses of each other? Express your answer as an ordered pair.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{(13,-13)}",
+    "is_static": false
+}

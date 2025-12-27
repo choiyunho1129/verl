@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $7056-49x^2$ completely.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{49(12-x)(12+x)}",
+    "is_static": false
+}

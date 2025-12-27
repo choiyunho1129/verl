@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 20\\sqrt{50x - 1} - 12$.  Find $f(1)$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{128}",
+    "is_static": false
+}

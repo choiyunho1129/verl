@@ -1,0 +1,7 @@
+{
+    "problem": "Let $h$ be a polynomial of degree $79$, and suppose that $h(x) = (16x^{18}+13x^{17}+15x^{16}-15x^{15}-2x^{14}-2x^{13}-1x^{12}+6x^{11}+11x^{10}+12x^9+3x^8-15x^7+18x^5+11x^4+18x^3-18x^2-6x+11) \\cdot g(x)$, where $g(x)$ is a polynomial of degree $b$.  Find $b$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{61}",
+    "is_static": false
+}

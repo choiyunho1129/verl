@@ -1,0 +1,7 @@
+{
+    "problem": "In the row of Pascal's triangle that starts 1, 23, what is the eighteenth number?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{100947}",
+    "is_static": false
+}

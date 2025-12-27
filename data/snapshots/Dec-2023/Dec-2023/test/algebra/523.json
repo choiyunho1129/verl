@@ -1,0 +1,7 @@
+{
+    "problem": "If $|748x+810|=860$ and $x<0$, what is the value of $x$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-2.232620320855615}",
+    "is_static": false
+}

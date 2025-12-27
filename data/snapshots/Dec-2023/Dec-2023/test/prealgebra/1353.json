@@ -1,0 +1,7 @@
+{
+    "problem": "I have a deck of $1002$ cards, and I deal all of the cards to $x$ players, with each player getting $y$ cards. If $x$ is at least $2$ and $y$ is at least $5$, then how many possible values of $x$ are there?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

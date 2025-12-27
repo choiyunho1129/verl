@@ -1,0 +1,7 @@
+{
+    "problem": "The vertex of the parabola described by the equation $y=11x^2-1848x+57$ is $(m,n)$. What is $m$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{84}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The point $(a, b)$ lies on the line with the equation $432x + 946y = 708140.$ When $a = 137$, what is the value of $b$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{686}",
+    "is_static": false
+}

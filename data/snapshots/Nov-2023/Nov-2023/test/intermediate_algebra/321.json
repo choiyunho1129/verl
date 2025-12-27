@@ -1,0 +1,7 @@
+{
+    "problem": "Find the center of the ellipse whose equation is $1x^2 + 10x + 2y^2 - 8y - 35 = 0.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(-5,2)}",
+    "is_static": false
+}

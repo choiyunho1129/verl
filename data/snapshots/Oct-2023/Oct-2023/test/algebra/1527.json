@@ -1,0 +1,7 @@
+{
+    "problem": "Find the constant $c$ such that $$(x^2-5x+4)(x+6) - (x^2+5x-6)(x-c)=0$$ for all $x.$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

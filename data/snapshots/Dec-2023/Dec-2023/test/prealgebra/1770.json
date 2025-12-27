@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $x$ such that $\\sqrt{x - 12} = 9$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{93}",
+    "is_static": false
+}

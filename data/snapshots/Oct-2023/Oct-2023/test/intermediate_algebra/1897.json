@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\log_2 x + \\log _2 x^8 = 225,$ find the value of $x.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{33554432}",
+    "is_static": false
+}

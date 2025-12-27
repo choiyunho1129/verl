@@ -1,0 +1,7 @@
+{
+    "problem": "What digit is represented by $\\Delta$ if $216 / \\Delta = 3\\Delta$, with 3 the tens digit and $\\Delta$ the ones digit of the quotient?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

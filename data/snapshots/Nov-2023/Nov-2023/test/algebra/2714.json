@@ -1,0 +1,7 @@
+{
+    "problem": "On the Cartesian plane, the midpoint between two points $A(a,b)$ and $B(c,d)$ is $M(m,n)$. If $A$ is moved vertically upwards 13 units and horizontally to the right 16 units, and $B$ is moved vertically downwards 4 units and horizontally to the left 2 units, then the new midpoint between $A$ and $B$ is $M'$. What is the distance between $M$ and $M'$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{8.32165848854662}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In the diagram, $K$, $O$ and $M$ are the centers of the three semi-circles. Also, $OC = 386$ and $CB = 868$. [asy]\npair A, K, O, C, M, B, X, Y, Z;\nO=(0,0);\nC=(32,0);\nM=(50,0);\nB=(68,0);\nA=(-68,0);\nK=(A+C)/2;\nX=(0,68);\nY=(-18,50);\nZ=(50,18);\npath nom, bigc, middlec, smallc;\nnom=A--B--(100,100)--(-100,100)--cycle;\nbigc=A..X..B--cycle;\nmiddlec=A..Y..C--cycle;\nsmallc=C..Z..B--cycle;\nfill(bigc, gray(.5));\nfill(middlec, white);\nfill(smallc, white);\ndraw(smallc);\ndraw(middlec);\ndraw(bigc);\ndraw(A--B);\nlabel(\"A\", A, S);\nlabel(\"K\", K, S);\nlabel(\"O\", O, S);\nlabel(\"M\", M, S);\nlabel(\"C\", C, S);\nlabel(\"B\", B, S);\ndot(K);\ndot(O);\ndot(M);\n[/asy]\n\n\nWhat is the length of $AC$?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1640}",
+    "is_static": false
+}

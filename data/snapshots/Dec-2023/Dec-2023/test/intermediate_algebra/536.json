@@ -1,0 +1,7 @@
+{
+    "problem": "Find $t$ such that $x-3$ is a factor of $x^3-3x^2+tx+171$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-57}",
+    "is_static": false
+}

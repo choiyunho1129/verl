@@ -1,0 +1,7 @@
+{
+    "problem": "What is $(616 + 20 \\cdot 66 \\cdot 63 \\cdot 14) \\div 623$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1869.752808988764}",
+    "is_static": false
+}

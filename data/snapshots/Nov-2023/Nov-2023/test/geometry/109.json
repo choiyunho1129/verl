@@ -1,0 +1,7 @@
+{
+    "problem": "A water tank in the shape of a right circular cylinder has a base radius of $48$ meters and a volume of $11520\\pi$ cubic meters. What is the number of meters in the height of the tank?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

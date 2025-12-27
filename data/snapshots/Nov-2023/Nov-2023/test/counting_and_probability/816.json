@@ -1,0 +1,7 @@
+{
+    "problem": "When counting from $3$ to $128$, $72$ is the $70^\\mathrm{st}$ number counted. When counting backwards from $128$ to $3$, $72$ is the $n^\\mathrm{th}$ number counted. What is $n$?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{57}",
+    "is_static": false
+}

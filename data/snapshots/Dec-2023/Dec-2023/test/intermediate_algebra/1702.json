@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\log_{342}22572 \\approx 1.72$, what is the value of $\\log_{116964} 4356$, accurate to two decimal places?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{0.72}",
+    "is_static": false
+}

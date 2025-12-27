@@ -1,0 +1,7 @@
+{
+    "problem": "In $\\triangle{XYZ}$, $\\angle{Z}=90^{\\circ}$, $\\cos{Y}=\\frac{-8855}{9577}$, and $XY=9577$.  What is $\\tan{X}$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{-8855}{3648}}",
+    "is_static": false
+}

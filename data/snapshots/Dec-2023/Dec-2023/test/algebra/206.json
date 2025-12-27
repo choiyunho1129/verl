@@ -1,0 +1,7 @@
+{
+    "problem": "The polynomial $p(x) = x^2+ax+b$ has distinct roots $61a$ and $27b$. Find $a+b$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-0.000787065146506555}",
+    "is_static": false
+}

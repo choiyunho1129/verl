@@ -1,0 +1,7 @@
+{
+    "problem": "The projection of $\\begin{pmatrix} 3 \\\\ y \\\\ 6 \\end{pmatrix}$ onto $\\begin{pmatrix} 3 \\\\ -6 \\\\ 3 \\end{pmatrix}$ is\n\\[\\frac{-63}{54} \\begin{pmatrix} 3 \\\\ -6 \\\\ 3 \\end{pmatrix}.\\]Find $y.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

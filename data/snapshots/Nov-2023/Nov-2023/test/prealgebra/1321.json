@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the expression $a+2+a-10+a+15+a-19$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4a-12}",
+    "is_static": false
+}

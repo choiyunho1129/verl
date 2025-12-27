@@ -1,0 +1,7 @@
+{
+    "problem": "How many factors of $2^13\\cdot3^47$ are perfect squares?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{168}",
+    "is_static": false
+}

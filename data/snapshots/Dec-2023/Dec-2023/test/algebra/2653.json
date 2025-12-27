@@ -1,0 +1,7 @@
+{
+    "problem": "Jane has been growing two bacteria farms.\n\nBacteria farm Rod has a starting population of 128 bacteria, while Bacteria farm Sphere has a starting population of 512 bacteria.  However, Jane starts growing Rod twelve hours before she starts growing Sphere.\n\nAt 1 p.m., Jane checks her farms and finds that they have the exact same population. If the population of Rod doubles every hour, but the population of Sphere is quadrupled every hour, how many hours ago did she start growing Sphere?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{x = 10}",
+    "is_static": false
+}

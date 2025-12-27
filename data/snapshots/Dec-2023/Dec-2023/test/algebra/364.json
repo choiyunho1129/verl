@@ -1,0 +1,7 @@
+{
+    "problem": "What digit is represented by $\\Delta$ if $891 / \\Delta = 9\\Delta$, with 9 the tens digit and $\\Delta$ the ones digit of the quotient?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

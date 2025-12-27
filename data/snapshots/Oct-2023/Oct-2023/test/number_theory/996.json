@@ -1,0 +1,7 @@
+{
+    "problem": "Two positive integers each have a units digit of 2 when expressed in base 3.  Find the units digit of their product when expressed in base 3.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

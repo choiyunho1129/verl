@@ -1,0 +1,7 @@
+{
+    "problem": "A right circular cylinder with radius 126 inches and height 3 inch has the same volume as a second right circular cylinder. The radius of the second cylinder is 7 inch. How many inches are in the height of the second cylinder?",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{972}",
+    "is_static": false
+}

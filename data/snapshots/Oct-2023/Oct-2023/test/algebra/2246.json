@@ -1,0 +1,7 @@
+{
+    "problem": "There are two solutions for the equation $409x^2 - 995x - 226177 = 0$. What is the product of these two solutions?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-553}",
+    "is_static": false
+}

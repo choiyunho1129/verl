@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\tan^{-1} x + \\tan^{-1} y = \\frac{\\pi}{4},$ then compute $xy + x + y + 3.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

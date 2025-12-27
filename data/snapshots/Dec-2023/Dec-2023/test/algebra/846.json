@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the squares of the solutions to $2x^2+14x-43=0$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{92}",
+    "is_static": false
+}

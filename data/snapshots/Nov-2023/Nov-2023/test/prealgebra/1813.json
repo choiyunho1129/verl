@@ -1,0 +1,7 @@
+{
+    "problem": "If $y^2= 1156$, what is the greatest possible value of $y^3$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{39304}",
+    "is_static": false
+}

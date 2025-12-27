@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $\\frac{53!\\cdot2!}{51!}$",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{5512}",
+    "is_static": false
+}

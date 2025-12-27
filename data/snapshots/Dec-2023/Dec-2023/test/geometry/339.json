@@ -1,0 +1,7 @@
+{
+    "problem": "Find the volume of this solid in terms of $\\pi$.\n\n[asy]\nimport solids; size(200); import three; defaultpen(linewidth(0.8)); currentprojection = orthographic(5,0,3);\nrevolution c = cylinder((0,0,0), sqrt(8308), 10494);\nrevolution c2 = cone((0,0,10494), sqrt(8308), 10494);\ndraw(c,black);\ndraw(c2,black);\ndraw((3,0)--(3,8.5),Arrows(TeXHead));\nlabel(\"10494\",(3,0)--(3,8.5),E);\ndraw((0,0)--(sqrt(8308),0),Arrows(TeXHead));\nlabel(\"$\\sqrt{8308}$\",(0,-.5)--(sqrt(8308),-.5),S);\ndraw((3,8.5)--(3,17.3),Arrows(TeXHead));\nlabel(\"10494\",(3,8.5)--(3,17.3),E);\n[/asy]",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{116245536\\pi}",
+    "is_static": false
+}

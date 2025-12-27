@@ -1,0 +1,7 @@
+{
+    "problem": "What is the area, in square units, of the square with the four vertices at $(-5, 5), (5, -5), (-5, -15)$, and $(-15, -5)$?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{200}",
+    "is_static": false
+}

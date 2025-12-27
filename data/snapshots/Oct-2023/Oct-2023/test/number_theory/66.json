@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the remainder of 32 (mod 13).",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

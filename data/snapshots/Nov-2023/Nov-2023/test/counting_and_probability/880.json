@@ -1,0 +1,7 @@
+{
+    "problem": "Find the total number of twenty-six-digit palindromes. (Recall that a palindrome is a nonnegative sequence of digits which reads the same forwards and backwards, such as 1331. Zero cannot be the first digit.)",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{9000000000000}",
+    "is_static": false
+}

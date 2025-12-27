@@ -1,0 +1,7 @@
+{
+    "problem": "There exist constants $a$, $b$, $c$, and $d$ such that\n\\[(\\sin x)^{47} = a \\sin 47x + b \\sin 45x + c \\sin 43x + d \\sin 41x + e \\sin 39x + f \\sin 37x + g \\sin 35x + h \\sin 33x + i \\sin 31x + j \\sin 29x + k \\sin 27x + l \\sin 25x + m \\sin 23x + n \\sin 21x + o \\sin 19x + p \\sin 17x + q \\sin 15x + r \\sin 13x + s \\sin 11x + t \\sin 9x + u \\sin 7x + v \\sin 5x + w \\sin 3x + x \\sin x\\]for all angles $x$.  Find $x$.",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{16123801841550}{70368744177664}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{8x^2-71x+56}{x-8}=m$, and $x$ can be any real number except $8$, what real values can $m$ NOT have?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{57}",
+    "is_static": false
+}

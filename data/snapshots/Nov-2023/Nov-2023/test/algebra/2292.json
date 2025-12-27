@@ -1,0 +1,7 @@
+{
+    "problem": "If $A\\ \\spadesuit\\ B$ is defined as $A\\ \\spadesuit\\ B = A + B + 8$, what is the value of $A$ for which $A\\ \\spadesuit\\ 63 = 47$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-24}",
+    "is_static": false
+}

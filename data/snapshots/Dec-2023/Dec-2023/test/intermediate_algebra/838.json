@@ -1,0 +1,7 @@
+{
+    "problem": "The equations $x^3 + 14x^2 + px + q = 0$ and $x^3 + 18x^2 + px + r = 0$ have two roots in common.  If the third root of each equation is represented by $x_1$ and $x_2$ respectively, compute the ordered pair $(x_1,x_2).$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(-14,-18)}",
+    "is_static": false
+}

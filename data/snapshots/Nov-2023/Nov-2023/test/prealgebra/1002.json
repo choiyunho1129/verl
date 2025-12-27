@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least common multiple of the first twenty-seven positive integers?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{80313433200}",
+    "is_static": false
+}

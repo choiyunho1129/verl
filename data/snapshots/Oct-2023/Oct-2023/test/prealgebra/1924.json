@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(-6k + 15) + (-5 + 165k)$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{159k+10}",
+    "is_static": false
+}

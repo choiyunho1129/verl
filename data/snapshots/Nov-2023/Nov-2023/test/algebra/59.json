@@ -1,0 +1,7 @@
+{
+    "problem": "If $F(a, b, c, d) = a^b + c ^ d$, what is the value of $b$ such that $F(5, b, 13, 1) = 638$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

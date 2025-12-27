@@ -1,0 +1,7 @@
+{
+    "problem": "Find the integer that lies between $\\sqrt[3]{-338188477}$ and $\\sqrt[3]{-339719465}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-697}",
+    "is_static": false
+}

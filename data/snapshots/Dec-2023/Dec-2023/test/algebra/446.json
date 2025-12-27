@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(3+28i)(-42-50i)$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{1274-1326i}",
+    "is_static": false
+}

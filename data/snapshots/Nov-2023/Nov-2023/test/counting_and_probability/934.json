@@ -1,0 +1,7 @@
+{
+    "problem": "When two consecutive whole numbers are randomly selected, what is the probability that one of them is a multiple of 14? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{1}{7}}",
+    "is_static": false
+}

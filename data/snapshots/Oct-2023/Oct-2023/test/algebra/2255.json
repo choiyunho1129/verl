@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $38368x^2 + 207962x + 4578$ can be written in the form $(Ax+218)(Bx+21)$ where $A$ and $B$ are integers. What is the value of $AB$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{38368}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\theta$ be an angle such that $\\tan \\theta = 8.$  Simplify\n\\[\\frac{e^{2i \\theta} - 1}{e^{2i \\theta} + 1}.\\]",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{8i}",
+    "is_static": false
+}

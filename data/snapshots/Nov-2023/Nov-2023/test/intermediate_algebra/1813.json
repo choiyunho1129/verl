@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = x^3 + bx + 2809c.$  If $(x - 53)^2$ is a factor of $f(x),$ then find the ordered pair $(b,c).$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(-8427,106)}",
+    "is_static": false
+}

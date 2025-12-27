@@ -1,0 +1,7 @@
+{
+    "problem": "There are forty-five tourist locations in Italy that Mary would like to visit, but she only has time to see fifteen.  In how many ways can she choose fifteen of the locations to visit (the order in which she visits them does not matter)?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{344867425584}",
+    "is_static": false
+}

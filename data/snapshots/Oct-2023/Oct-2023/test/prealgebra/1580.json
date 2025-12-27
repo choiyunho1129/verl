@@ -1,0 +1,7 @@
+{
+    "problem": "A number $x$ factors as $193\\cdot197^75$, and $193$ and $197$ are primes. What is the exponent of $197$ in the prime factorization of $x^{10}$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{750}",
+    "is_static": false
+}

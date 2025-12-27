@@ -1,0 +1,7 @@
+{
+    "problem": "Three people are standing on a Cartesian coordinate plane. Robert is standing at point $(2,5)$, Lucy at point $(25,9)$, and Liz at point $(17,24)$. How many units away is the farther person from Robert?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\sqrt{586}}",
+    "is_static": false
+}

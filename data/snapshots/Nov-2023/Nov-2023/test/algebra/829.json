@@ -1,0 +1,7 @@
+{
+    "problem": "If $y>0$, find the range of all possible values of $y$ such that $\\lceil{y}\\rceil\\cdot\\lfloor{y}\\rfloor=156$.  Express your answer using interval notation.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{(12,13)}",
+    "is_static": false
+}

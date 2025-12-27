@@ -1,0 +1,7 @@
+{
+    "problem": "Factor the expression $ab+21b+36a+756$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(a+21)(b+36)}",
+    "is_static": false
+}

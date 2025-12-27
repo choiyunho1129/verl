@@ -1,0 +1,7 @@
+{
+    "problem": "A particular convex octadecagon has two congruent, acute angles. The measure of each of the other interior angles is equal to the sum of the measures of the two acute angles. What is the common measure of the large angles, in degrees?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{169}",
+    "is_static": false
+}

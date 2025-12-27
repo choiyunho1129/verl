@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least positive integer value of $x$ for which the inequality $21x > 20x+48$ is true?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{49}",
+    "is_static": false
+}

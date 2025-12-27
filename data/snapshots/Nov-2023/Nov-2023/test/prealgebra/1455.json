@@ -1,0 +1,7 @@
+{
+    "problem": "Three angles of a quadrilateral are $45^\\circ$, $ 88^\\circ$, and $116^\\circ$. How many degrees are in the measure of the fourth angle?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{111^\\circ}",
+    "is_static": false
+}

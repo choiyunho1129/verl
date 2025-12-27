@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\sin 2 \\theta = \\frac{96}{121}$ and $\\cos \\theta - \\sin \\theta > 0,$ then compute $\\cos \\theta - \\sin \\theta.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{5}{11}}",
+    "is_static": false
+}

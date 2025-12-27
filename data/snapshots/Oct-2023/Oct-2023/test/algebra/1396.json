@@ -1,0 +1,7 @@
+{
+    "problem": "A ball travels on a parabolic path in which the height (in feet) is given by the expression $-38t^2+646t+50$, where $t$ is the time after launch. At what time is the height of the ball at its maximum?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{17}{2}}",
+    "is_static": false
+}

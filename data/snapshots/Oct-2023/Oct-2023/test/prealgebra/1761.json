@@ -1,0 +1,7 @@
+{
+    "problem": "Remmy wants to divide $5$ by $\\frac{27}{83}$, but he cannot remember how to do that.  By what number should he multiply $5$ to get the answer?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{83}{27}}",
+    "is_static": false
+}

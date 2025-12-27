@@ -1,0 +1,7 @@
+{
+    "problem": "If all multiples of 18 and all multiples of 19 are removed from the list of whole numbers 1 through 273, then how many whole numbers are left?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{244}",
+    "is_static": false
+}

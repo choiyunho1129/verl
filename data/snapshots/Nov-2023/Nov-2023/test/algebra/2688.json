@@ -1,0 +1,7 @@
+{
+    "problem": "Expand $(x+27)^2$",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{x^2 + 54x + 729}",
+    "is_static": false
+}

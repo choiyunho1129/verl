@@ -1,0 +1,7 @@
+{
+    "problem": "Let\n\\[f(x) = \\left\\{\n\\begin{array}{cl}\n85x & \\text{if $0 \\le x < 49$}, \\\\\n8 - 65x & \\text{if $49 \\le x \\le 72$}.\n\\end{array}\n\\right.\\]Find the maximum value of the function.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{4165}",
+    "is_static": false
+}

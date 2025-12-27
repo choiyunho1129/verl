@@ -1,0 +1,7 @@
+{
+    "problem": "If $53 + m + n + 93 = 478$ and $m = 3n$, then what is the value of $n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{83}",
+    "is_static": false
+}

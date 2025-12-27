@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest possible integer value of $x$ if $979\\div(x+9)$ is an integer?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-988}",
+    "is_static": false
+}

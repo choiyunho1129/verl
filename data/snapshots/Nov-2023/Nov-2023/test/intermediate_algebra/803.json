@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $a$ and $b$ are positive real numbers with $a > b$ and $ab = 50.$  Find the minimum value of $\\frac{a^2 + b^2}{a - b}.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

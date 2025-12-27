@@ -1,0 +1,7 @@
+{
+    "problem": "If $872ab = 79352$, evaluate $42a^2b^2$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{347802}",
+    "is_static": false
+}

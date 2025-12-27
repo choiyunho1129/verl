@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $(x+ y)(x-y)$ when $x= 59$ and $y= 83$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-3408}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $a * b = 24a + 11b$ for all $a$ and $b$, then what is the value of $57 * 22$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{1610}",
+    "is_static": false
+}

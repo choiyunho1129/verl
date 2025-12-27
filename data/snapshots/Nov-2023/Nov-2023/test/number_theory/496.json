@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive divisors do 58, 1408, and 1450 have in common?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $i$ be the smallest positive integer such that $2^i\\equiv 3\\pmod 5.$ Let $j$ be the smallest positive integer such that $3^j\\equiv 2\\pmod 5.$ What is the remainder when $ij$ is divided by $6?$",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

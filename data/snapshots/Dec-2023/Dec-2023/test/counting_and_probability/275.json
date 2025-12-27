@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $\\frac{37!\\cdot2!}{35!}$",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{2664}",
+    "is_static": false
+}

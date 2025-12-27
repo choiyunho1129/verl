@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ and $y$ are numbers such that $(x + 85)(y-173) = 0$, what is the smallest possible value of $x^2+ y^2$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{7225}",
+    "is_static": false
+}

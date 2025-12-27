@@ -1,0 +1,7 @@
+{
+    "problem": "If $A\\ \\spadesuit\\ B$ is defined as $A\\ \\spadesuit\\ B = A + B + 9$, what is the value of $A$ for which $A\\ \\spadesuit\\ 30 = 54$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

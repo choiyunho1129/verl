@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest value of $x$ such that $(8x+6)(4x-12)=x(16x+-156)$? Express your answer as a fraction.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{3}{4}}",
+    "is_static": false
+}

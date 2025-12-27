@@ -1,0 +1,7 @@
+{
+    "problem": "A hemispherical cup of radius 1020 inches is filled with milk. The milk is then poured into a right cylindrical container of radius 68 inches. What is the minimum number of inches in the height of the container so it can hold all of the milk? Express your answer as a decimal to the nearest tenth.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{153000}",
+    "is_static": false
+}

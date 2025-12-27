@@ -1,0 +1,7 @@
+{
+    "problem": "If the area of the triangle shown is 249490, what is $r$? [asy]\nimport graph; size(200); defaultpen(linewidth(0.8));\n\nreal xmin=0;\nreal xmax=12;\nreal ymin=0;\nreal ymax=10;\n\nxlimits(xmin, xmax);\n\nylimits(ymin, ymax);\n\nxaxis(\"$x$\",0,12,EndArrow);\nyaxis(\"$y$\",0,10,EndArrow);\ndot(Label(\"$O$\",align=SW),(0,0));\ndraw((0,8)--(10,0));\ndot(Label(\"$(0,818)$\",align=E),(0,8));\ndot(Label(\"$(r,0)$\",align=S),(10,0));\n[/asy]",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{610}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\binom{88}{52}$. You are told that $\\binom{87}{36} = 3652922043466281423147726$ and $\\binom{87}{52} = 2528946030092040985256118$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{6181868073558322408403844}",
+    "is_static": false
+}

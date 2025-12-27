@@ -1,0 +1,7 @@
+{
+    "problem": "When a spaceship full of scientists landed on Planet Q, they found that $\\frac{1}{4}$ of the $84$ aliens had $2$ eyes.  The rest of the aliens had 5 eyes. How many eyes total do the 84 aliens have?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{357}",
+    "is_static": false
+}

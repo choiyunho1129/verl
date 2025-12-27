@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $16384^a = 165323$, $165323^b = 374363$, $374363^c = 512371$, and $512371^d = 524288$. What is $a \\cdot b \\cdot c \\cdot d$?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{19}{14}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{44}{41}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{13244}",
+    "is_static": false
+}

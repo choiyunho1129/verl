@@ -1,0 +1,7 @@
+{
+    "problem": "A triangle has sides measuring 6658 unit and 1 units. The length of the third side is an integer value of units. What is the length of the third side, in units?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{6658}",
+    "is_static": false
+}

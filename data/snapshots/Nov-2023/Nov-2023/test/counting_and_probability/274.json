@@ -1,0 +1,7 @@
+{
+    "problem": "Find the least common multiple of $14!$ and $(5!)^4.$",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{4358914560000}",
+    "is_static": false
+}

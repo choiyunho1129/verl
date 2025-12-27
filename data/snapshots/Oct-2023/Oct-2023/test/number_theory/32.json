@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all of the positive factors of $624$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{1736}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The sign function $\\text{sgn}(x)$ is defined by \\[\\text{sgn}(x) = \\left\\{ \\begin{aligned} -1 \\quad &\\text{if } x < 0 \\\\ 0 \\quad &\\text{if } x = 0 \\\\ 1 \\quad &\\text{if } x > 0. \\end{aligned} \\right. \\]Compute $\\sum_{n=-482}^{677} \\text{sgn}(n).$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{195}",
+    "is_static": false
+}

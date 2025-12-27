@@ -1,0 +1,7 @@
+{
+    "problem": "What is the positive difference between the greatest and the least member of the set $\\left\\{\\frac{4}{17},\\frac{3}{7},\\frac{20}{3},\\frac{12}{18}\\right\\}$? Express your answer in simplest form.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

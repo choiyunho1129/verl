@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $f(x)$ is an invertible function, and suppose that $f(83)=f^{-1}(83)=51$.\n\nWhat is the value of $f(f(83))$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{83}",
+    "is_static": false
+}

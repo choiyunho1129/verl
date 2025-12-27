@@ -1,0 +1,7 @@
+{
+    "problem": "When $(x\\sqrt{x^{37}})^{96}$ is simplified, what is the exponent of $x$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{1872}",
+    "is_static": false
+}

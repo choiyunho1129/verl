@@ -1,0 +1,7 @@
+{
+    "problem": "The product of two positive whole numbers is 5731. If neither number is 1, what is the sum of the two numbers?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{532}",
+    "is_static": false
+}

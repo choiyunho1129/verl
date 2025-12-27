@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\sqrt{169}=\\sqrt{81}+\\sqrt{n}$, then what is the value of $n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

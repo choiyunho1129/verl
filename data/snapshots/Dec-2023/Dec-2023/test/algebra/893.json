@@ -1,0 +1,7 @@
+{
+    "problem": "The product of $3t^2+5t+a$ and $4t^2+bt-2$ is $12t^4+50t^3+24t^2-60t+10$. What is $a+b$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

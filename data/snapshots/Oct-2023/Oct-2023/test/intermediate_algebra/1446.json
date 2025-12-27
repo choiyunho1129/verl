@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = x^{159} + ax^{69} + cx^{29}$  If $f(-961) = 264,$ then find $f(961).$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-264}",
+    "is_static": false
+}

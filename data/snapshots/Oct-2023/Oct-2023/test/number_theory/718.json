@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the units digit of $62^{87} - 88$.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

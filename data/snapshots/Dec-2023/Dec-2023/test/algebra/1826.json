@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of three consecutive even integers is $336$. What is the smallest of the three integers?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{110}",
+    "is_static": false
+}

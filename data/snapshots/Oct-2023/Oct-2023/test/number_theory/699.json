@@ -1,0 +1,7 @@
+{
+    "problem": "What is the last nonzero digit to the right of the decimal point in the decimal expansion of $\\frac{3602879701896397}{4503599627370496}$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

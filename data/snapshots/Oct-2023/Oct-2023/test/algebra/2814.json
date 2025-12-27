@@ -1,0 +1,7 @@
+{
+    "problem": "What is the minimum value of the expression $5x^2+4y^2+70x-16y+12$ for real $x$ and $y$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-249}",
+    "is_static": false
+}

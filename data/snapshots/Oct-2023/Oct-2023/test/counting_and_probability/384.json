@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can a 81-person committee be chosen from a group of 118 people?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{5871053328458635945336263575566}",
+    "is_static": false
+}

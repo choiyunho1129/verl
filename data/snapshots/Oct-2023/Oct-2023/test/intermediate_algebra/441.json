@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $|\\sqrt{63}+9i|$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

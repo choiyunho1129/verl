@@ -1,0 +1,7 @@
+{
+    "problem": "What is the radius of the circle inscribed in triangle $ABC$ if $AB = 131595,$ $AC = 68068,$ and $BC = 148157$? Express your answer as a decimal to the nearest tenth.",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{25753.0}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the simplified value of $\\frac{387! + 388! + 389!}{387! + 388!}$?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{389}",
+    "is_static": false
+}

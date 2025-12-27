@@ -1,0 +1,7 @@
+{
+    "problem": "In a certain isosceles right triangle, the altitude to the hypotenuse has length $22\\sqrt{2}$.  What is the area of the triangle?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{968}",
+    "is_static": false
+}

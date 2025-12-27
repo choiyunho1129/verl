@@ -1,0 +1,7 @@
+{
+    "problem": "If $21n+19m=308$ and $n+m=16$, find the value of $n-m$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-12}",
+    "is_static": false
+}

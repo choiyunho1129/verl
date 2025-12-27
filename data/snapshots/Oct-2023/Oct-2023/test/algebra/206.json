@@ -1,0 +1,7 @@
+{
+    "problem": "The polynomial $p(x) = x^2+ax+b$ has distinct roots $32a$ and $66b$. Find $a+b$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{0.00023674242424242425}",
+    "is_static": false
+}

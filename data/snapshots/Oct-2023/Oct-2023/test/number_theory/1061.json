@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the number of solutions in $x$ of the congruence $136x\\equiv 2\\pmod {138}$ such that $0< x\\le 490$.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

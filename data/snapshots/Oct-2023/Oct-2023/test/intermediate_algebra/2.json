@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $z$ is a complex number such that $z^2 = 7140 + 1105i.$  Find $|z|.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{85}",
+    "is_static": false
+}

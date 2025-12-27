@@ -1,0 +1,7 @@
+{
+    "problem": "A chime clock strikes 1 chime at one o'clock, 2 chimes at two o'clock, 3 chimes at three o'clock, and so forth. What is the total number of chimes the clock will strike in a forty-hour period?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{820}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest common divisor of $4343$ and $72283$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{43}",
+    "is_static": false
+}

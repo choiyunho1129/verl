@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ and $b$ are acute angles such that $\\cos a = \\frac{399}{401}$ and $\\cos b = \\frac{45}{117},$ then find $\\cos (a + b).$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{1515}{5213}}",
+    "is_static": false
+}

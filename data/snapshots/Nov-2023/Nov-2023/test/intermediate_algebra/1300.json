@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d$ be positive real numbers.  Find the minimum value of\n\\[(a + b + c + d) \\left( \\frac{308}{a} + \\frac{308}{b} + \\frac{308}{c} + \\frac{308}{d} \\right).\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{4928}",
+    "is_static": false
+}

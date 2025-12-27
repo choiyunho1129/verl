@@ -1,0 +1,7 @@
+{
+    "problem": "Euler discovered that the polynomial $p(n) = n^2 - n + 557$ yields prime numbers for many small positive integer values of $n$. What is the smallest positive integer $n$ for which $p(n)$ and $p(n+1)$ share a common factor greater than $1$?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{557}",
+    "is_static": false
+}

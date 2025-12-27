@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive integers are factors of 11580 and also factors of 1930?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

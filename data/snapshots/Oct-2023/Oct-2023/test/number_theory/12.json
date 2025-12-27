@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers between 68 and 108 are divisible by 22?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

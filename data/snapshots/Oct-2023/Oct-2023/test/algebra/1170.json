@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all of the multiples of 13 between 16 and 189?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{1352}",
+    "is_static": false
+}

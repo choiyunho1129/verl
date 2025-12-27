@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\lceil x\\rceil+\\lfloor x\\rfloor+x=34.3$, solve for $x$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{11.3}",
+    "is_static": false
+}

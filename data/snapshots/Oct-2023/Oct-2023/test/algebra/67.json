@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 17x+9$ and $g(x)=x^2-14$. What is $g(f(-2))$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{611}",
+    "is_static": false
+}

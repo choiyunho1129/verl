@@ -1,0 +1,7 @@
+{
+    "problem": "If $2^{x+18}=4^{x+5}$, what is $x$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

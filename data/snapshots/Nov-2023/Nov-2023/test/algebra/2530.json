@@ -1,0 +1,7 @@
+{
+    "problem": "What is the difference between the sum of the first 3250 even counting numbers and the sum of the first 3250 odd counting numbers?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{3250}",
+    "is_static": false
+}

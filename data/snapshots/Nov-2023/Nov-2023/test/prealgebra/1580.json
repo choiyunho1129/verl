@@ -1,0 +1,7 @@
+{
+    "problem": "A number $x$ factors as $97\\cdot101^67$, and $97$ and $101$ are primes. What is the exponent of $101$ in the prime factorization of $x^{4}$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{268}",
+    "is_static": false
+}

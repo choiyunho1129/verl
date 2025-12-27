@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x)=2x-4$ and $g(x)=x^2+3$. What is $f(g(84))$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{14114}",
+    "is_static": false
+}

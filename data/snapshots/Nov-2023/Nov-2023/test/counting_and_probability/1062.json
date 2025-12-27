@@ -1,0 +1,7 @@
+{
+    "problem": "A turn consists of rolling a standard die and tossing a fair coin. The game is won when the die shows a 1, a 2, a 3 or a 4 and the coin shows heads. What is the probability the game will be won before the seventh turn? Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\dfrac{665}{729}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest three-digit positive integer congruent to 2 (mod 10)?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{102}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find $y$: $\\sqrt{14+2y} = 4$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\displaystyle\\frac{x}{y} = 7$, $\\displaystyle\\frac{y}{z} = 24$, and $\\displaystyle \\frac{z}{w} = \\frac{2}{3}$, then what is $\\displaystyle\\frac{w}{x}$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{112}}",
+    "is_static": false
+}

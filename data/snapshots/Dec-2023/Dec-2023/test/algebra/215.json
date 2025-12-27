@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of the two values of $x$ for which $(x+444)^2 = 83$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-888}",
+    "is_static": false
+}

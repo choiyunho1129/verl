@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 15x+14$ and $g(x)=x^2-2$. What is $g(f(19))$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{89399}",
+    "is_static": false
+}

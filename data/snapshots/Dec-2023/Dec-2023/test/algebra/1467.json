@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{343^n\\cdot7^{4n+2}}{16807}=749048330965186233494494102694564493649$, find $n$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

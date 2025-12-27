@@ -1,0 +1,7 @@
+{
+    "problem": "Sasha and Chloe are throwing darts at a map of the complex plane. Sasha's dart lands on the point $429+460i$. Chloe's dart lands on the point $140-48i$. How much closer to the origin is Chloe's dart compared to Sasha's?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{481}",
+    "is_static": false
+}

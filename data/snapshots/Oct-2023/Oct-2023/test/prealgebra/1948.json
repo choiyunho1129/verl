@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of 77 and 99, rounded to the nearest ten?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{180}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "A turn consists of rolling a standard die and tossing a fair coin. The game is won when the die shows a 2, a 3, a 5 or a 6 and the coin shows heads. What is the probability the game will be won before the fourth turn? Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\dfrac{19}{27}}",
+    "is_static": false
+}

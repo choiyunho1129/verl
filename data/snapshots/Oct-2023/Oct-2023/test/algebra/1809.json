@@ -1,0 +1,7 @@
+{
+    "problem": "Find the domain of $\\frac{x^2 + 9x + 16}{x^2 + 9x - 90}$.  (Express your answer using interval notation.)",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{(-\\infty, -15)\\cup(-15, 6)\\cup(6, \\infty)}",
+    "is_static": false
+}

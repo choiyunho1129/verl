@@ -1,0 +1,7 @@
+{
+    "problem": "Two sides of scalene $\\bigtriangleup ABC$ measure $15$ centimeters and $29$ centimeters. How many different whole centimeter lengths are possible for the third side?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{27}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $585x^9-15x^8+585x^7$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{15x^7(39x^2-x+39)}",
+    "is_static": false
+}

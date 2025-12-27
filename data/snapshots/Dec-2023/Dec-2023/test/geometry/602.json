@@ -1,0 +1,7 @@
+{
+    "problem": "A circular ceiling fan rotates at a constant speed of $3700$ revolutions per minute.  A point halfway between the center of the fan and the outer edge of the fan travels $9262$ inches in $600$ minutes.  How far (in inches) does a point on the outer edge of the fan travel in $224$ minutes?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{37048}",
+    "is_static": false
+}

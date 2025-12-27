@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\begin{pmatrix} -84 \\\\ 26 \\end{pmatrix} + \\begin{pmatrix} 73 \\\\ -74 \\end{pmatrix}$.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} -11 \\\\ -48 \\end{pmatrix}}",
+    "is_static": false
+}

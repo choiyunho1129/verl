@@ -1,0 +1,7 @@
+{
+    "problem": "Solve the following equation for $x$: \\[ \\ \\frac{4}{7} = \\frac{36}{x-25}.\\]",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{88}",
+    "is_static": false
+}

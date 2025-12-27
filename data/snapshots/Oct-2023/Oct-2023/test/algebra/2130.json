@@ -1,0 +1,7 @@
+{
+    "problem": "What is the following value when expressed as a common fraction: $$\\frac{1}{7^{1}}+\\frac{1}{7^{2}}+\\frac{1}{7^{3}}+\\cdots + \\frac{1}{7^{5}}+\\frac{1}{7^{6}}+\\frac{1}{7^{7}}?$$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{823542}{823543}}",
+    "is_static": false
+}

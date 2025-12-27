@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{64^n\\cdot8^{3n+4}}{32768}=166153499473114484112975882535043072$, find $n$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

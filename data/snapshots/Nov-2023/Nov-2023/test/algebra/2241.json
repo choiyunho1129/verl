@@ -1,0 +1,7 @@
+{
+    "problem": "What is the minimum value of the expression $x^2+y^2-28x+82y+30$ for real $x$ and $y$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-1847}",
+    "is_static": false
+}

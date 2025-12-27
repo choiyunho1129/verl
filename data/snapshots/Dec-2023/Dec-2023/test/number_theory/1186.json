@@ -1,0 +1,7 @@
+{
+    "problem": "How many whole numbers less than $39,\\!334$ are congruent to $ 23 \\pmod {25} $?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{1573}",
+    "is_static": false
+}

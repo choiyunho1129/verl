@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $\\binom{9}{3}=84$, $\\binom{10}{4}=210$, and $\\binom{10}{5}=252$, find $\\binom{9}{5}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{126}",
+    "is_static": false
+}

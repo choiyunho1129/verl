@@ -1,0 +1,7 @@
+{
+    "problem": "The graphs of $y=x^4$ and $y=19x^2-70$ intersect at four points with $x$-coordinates $\\pm \\sqrt{m}$ and $\\pm \\sqrt{n}$, where $m > n$. What is $m-n$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the constant $c$ such that $$(x^2-17x+16)(x+18) - (x^2+17x-18)(x-c)=0$$ for all $x.$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

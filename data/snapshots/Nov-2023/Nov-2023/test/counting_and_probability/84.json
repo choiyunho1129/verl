@@ -1,0 +1,7 @@
+{
+    "problem": "One Hundred And Seventy-Four-digit integers are formed using the digits 2, 3, 4 and 5. Any of the digits can be used any number of times. How many such one hundred and seventy-four-digit integers are palindromes? Palindromes read the same forward and backward.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{23945242826029513411849172299223580994042798784118784}",
+    "is_static": false
+}

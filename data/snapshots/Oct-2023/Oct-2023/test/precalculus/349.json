@@ -1,0 +1,7 @@
+{
+    "problem": "The projection of $\\begin{pmatrix} a \\\\ 768 \\end{pmatrix}$ onto $\\begin{pmatrix} -17 \\\\ 559 \\end{pmatrix}$ is\n\\[\\frac{382783}{312770} \\begin{pmatrix} -17 \\\\ 559 \\end{pmatrix}.\\]Find $a.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{2737}",
+    "is_static": false
+}

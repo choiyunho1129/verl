@@ -1,0 +1,7 @@
+{
+    "problem": "A steel sphere with a 10-inch radius is made by removing metal from the corners of a cube that has the shortest possible side lengths. How many cubic inches are in the volume of the cube?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{8000}",
+    "is_static": false
+}

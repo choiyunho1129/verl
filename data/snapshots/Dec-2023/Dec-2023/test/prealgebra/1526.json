@@ -1,0 +1,7 @@
+{
+    "problem": "How many multiples of 2 are greater than -48, but less than 48?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{47 \\text{ multiples}}",
+    "is_static": false
+}

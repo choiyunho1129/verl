@@ -1,0 +1,7 @@
+{
+    "problem": "Find $\\frac{1}{6}\\left(\\frac{3}{4}\\right)^5$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{243}{6144}}",
+    "is_static": false
+}

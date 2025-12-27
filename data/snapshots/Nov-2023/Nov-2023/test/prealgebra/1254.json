@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest common divisor of $8383$ and $7802$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{83}",
+    "is_static": false
+}

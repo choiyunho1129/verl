@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the following expression: $35(20y+96)$",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{700y+3360}",
+    "is_static": false
+}

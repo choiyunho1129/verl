@@ -1,0 +1,7 @@
+{
+    "problem": "I have six cubes such that, on each cube, three faces are painted red and three faces are painted white. If I roll each of the cubes once, what is the probability that they will land such that there is one red face and five white face up?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{3}{32}}",
+    "is_static": false
+}

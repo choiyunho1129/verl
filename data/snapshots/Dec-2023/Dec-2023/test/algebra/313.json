@@ -1,0 +1,7 @@
+{
+    "problem": "Complex numbers are often used when dealing with alternating current (AC) circuits. In the equation $V = IZ$, $V$ is voltage, $I$ is current, and $Z$ is a value known as impedance. If $V = 74+57i$ and $Z=12-5i$, find $I$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{ \\frac{603}{169} + \\frac{1054}{169}i }",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find $1^{-1} \\pmod{100}$, as a residue modulo 100.  (Give an answer between 0 and 99, inclusive.)",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

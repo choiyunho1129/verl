@@ -1,0 +1,7 @@
+{
+    "problem": "The lengths in feet of three pieces of timber are 243, 81, and 18. The sawmill operator needs to cut the timber into logs of equal length with no waste. How many feet long is the greatest possible length she can cut?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

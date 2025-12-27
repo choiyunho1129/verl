@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\displaystyle \\left(\\frac{38}{50}\\right)^x=\\frac{54872}{125000}$, what must $x$ be?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

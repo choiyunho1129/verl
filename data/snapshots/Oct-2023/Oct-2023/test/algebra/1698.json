@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of eighteen consecutive integers is seven hundred and twenty-nine. What is the product of the eighteen integers?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{73974680717492499304808448000}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\binom{12}{8}$. You are told that $\\binom{11}{4} = 330$ and $\\binom{11}{8} = 165$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{495}",
+    "is_static": false
+}

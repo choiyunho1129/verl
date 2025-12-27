@@ -1,0 +1,7 @@
+{
+    "problem": "A bag contains 18 balls. Each ball is a single color, and 17 distinct colors are represented in the bag. What is the probability that the first 2 balls selected without replacement are the same color? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{1}{153}}",
+    "is_static": false
+}

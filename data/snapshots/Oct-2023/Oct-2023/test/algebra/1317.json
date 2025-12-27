@@ -1,0 +1,7 @@
+{
+    "problem": "If the third term of a geometric sequence of real numbers is $150$ and the twelfth term is $292968750,$ then what is the sixty-sixth term?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{16263032587282566510111792013049125671386718750}",
+    "is_static": false
+}

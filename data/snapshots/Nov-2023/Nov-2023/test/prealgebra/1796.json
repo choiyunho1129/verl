@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $$\\frac{9110+3771}{6774+7764}?$$",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{12881}{14538}}",
+    "is_static": false
+}

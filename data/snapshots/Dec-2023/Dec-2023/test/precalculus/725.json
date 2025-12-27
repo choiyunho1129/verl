@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\begin{pmatrix} -790 \\\\ 64 \\end{pmatrix} \\cdot \\begin{pmatrix} -468 \\\\ 11 \\end{pmatrix}$.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{370424}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The complex numbers $5 + 10i,$ $5 + 7i,$ and $7 + 7i$ are three vertices of a rectangle.  Find the fourth vertex.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{7 + 10i}",
+    "is_static": false
+}

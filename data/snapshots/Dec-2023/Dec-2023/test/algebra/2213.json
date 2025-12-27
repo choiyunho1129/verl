@@ -1,0 +1,7 @@
+{
+    "problem": "The product of the first and the third terms of an arithmetic sequence is $107$. If all terms of the sequence are positive integers, what is the fourth term?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{160}",
+    "is_static": false
+}

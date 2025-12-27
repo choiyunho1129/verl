@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive integer $n$ such that $n$ has remainder 1 when divided by 34, $n$ has remainder 1 when divided by 37, and $n$ has remainder 19 when divided by 72?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{11323}",
+    "is_static": false
+}

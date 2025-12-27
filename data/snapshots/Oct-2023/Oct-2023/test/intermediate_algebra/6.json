@@ -1,0 +1,7 @@
+{
+    "problem": "For how many integer values of $k$ do the graphs of $x^2+y^2=93k^2$ and $xy = 135k$ not intersect?",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

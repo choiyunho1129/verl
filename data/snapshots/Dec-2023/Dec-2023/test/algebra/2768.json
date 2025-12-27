@@ -1,0 +1,7 @@
+{
+    "problem": "Nine aluminum cans can be recycled to make a new can. How many new cans can eventually be made from 4782969 aluminum cans? (Remember that the first new cans that are made can then be recycled into even newer cans!)",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{597871}",
+    "is_static": false
+}

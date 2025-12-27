@@ -1,0 +1,7 @@
+{
+    "problem": "Eight hundred and thirty-three workers paint two hundred and ninety houses in six hundred days. Working at the same rate as these workers, how many workers are needed to paint 8410 houses in three hundred days?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{48314}",
+    "is_static": false
+}

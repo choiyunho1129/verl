@@ -1,0 +1,7 @@
+{
+    "problem": "Given the equations $8x+y=3,15y+z=23$ and $8x+15z=54$, what is the value of the sum $x+y+z$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

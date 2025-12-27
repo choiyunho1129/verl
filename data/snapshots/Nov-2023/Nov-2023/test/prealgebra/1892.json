@@ -1,0 +1,7 @@
+{
+    "problem": "Two 11-sided dice, one red and one green, are rolled.  What is the probability that the red die shows a 9 and the green die shows a 1?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{1}{121}}",
+    "is_static": false
+}

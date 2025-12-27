@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $142222_5 - 24423_5$.  Express your answer in base 5.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{112244_5}",
+    "is_static": false
+}

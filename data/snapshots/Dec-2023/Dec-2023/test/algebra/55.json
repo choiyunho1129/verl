@@ -1,0 +1,7 @@
+{
+    "problem": "What fraction is the same as \\[\n\\frac{1-2+3-4+5-6+7}{2-4+6-8+10-12+14}?\n\\]",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{2}}",
+    "is_static": false
+}

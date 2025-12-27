@@ -1,0 +1,7 @@
+{
+    "problem": "If $10m+22n=348$, and $m+n=12$, what is $m$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-7}",
+    "is_static": false
+}

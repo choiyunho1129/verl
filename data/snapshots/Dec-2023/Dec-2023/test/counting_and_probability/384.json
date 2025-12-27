@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can a 22-person committee be chosen from a group of 120 people?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{631333441953785051102700}",
+    "is_static": false
+}

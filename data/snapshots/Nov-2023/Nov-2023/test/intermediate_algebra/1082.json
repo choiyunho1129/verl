@@ -1,0 +1,7 @@
+{
+    "problem": "The foci of a certain ellipse are at $(-879,554 + \\sqrt{921557})$ and $(-879,554 - \\sqrt{921557}).$  The endpoints of one of the axes are $(-1081,554)$ and $(-677,554).$  Find the semi-major axis.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{981}",
+    "is_static": false
+}

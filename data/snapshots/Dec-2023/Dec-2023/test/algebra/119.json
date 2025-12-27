@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $e$, given that $16d$ is $80$ less than $730e$, and $10e$ is $56995$ less than $d$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{1600}",
+    "is_static": false
+}

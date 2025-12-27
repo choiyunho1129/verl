@@ -1,0 +1,7 @@
+{
+    "problem": "For any integer $x$, $\\boxed{x}$ is defined to be the product of all its factors greater than 1 not including $x$. Find $\\fbox{2916}$.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{15243604656924934524769184776192}",
+    "is_static": false
+}

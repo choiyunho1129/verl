@@ -1,0 +1,7 @@
+{
+    "problem": "How many numbers between 1 and 337367 are integer multiples of 95 or 67 but not 6365?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{8480}",
+    "is_static": false
+}

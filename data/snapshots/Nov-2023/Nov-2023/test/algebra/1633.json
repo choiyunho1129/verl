@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate: $475^2 - 209^2$",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{181944}",
+    "is_static": false
+}

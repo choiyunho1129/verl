@@ -1,0 +1,7 @@
+{
+    "problem": "Twelve friends met for dinner at Oscar's Overstuffed Oyster House, and each ordered one meal. The portions were so large, there was enough food for 24 people. If they share, how many meals should they have ordered to have just enough food for the 12 of them?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{318}{316}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{50403}",
+    "is_static": false
+}

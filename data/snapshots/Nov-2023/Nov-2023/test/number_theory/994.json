@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest number $k$ less than 126122709 such that the remainder is 1 when $k$ is divided by each of 40, 17, 38, 12, and 6?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{126086281}",
+    "is_static": false
+}

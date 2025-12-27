@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $33a^{32}(100a^{47} - 94a^6) - 88a(83a^8 - 61a^2)$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{3300a^{79} - 3102a^{38} - 7304a^9 + 5368a^3}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Express the infinite series $$\\frac{39}{278}+\\frac{1521}{2\\cdot139^2}+\\frac{59319}{2\\cdot139^3}+\\cdots$$as a terminating decimal.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{0.195}",
+    "is_static": false
+}

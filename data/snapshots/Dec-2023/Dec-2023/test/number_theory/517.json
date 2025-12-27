@@ -1,0 +1,7 @@
+{
+    "problem": "Find the modulo 5 residue of $241 \\cdot 242 \\cdot 243$.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

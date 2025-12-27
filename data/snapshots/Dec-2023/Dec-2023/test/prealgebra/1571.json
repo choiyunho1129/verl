@@ -1,0 +1,7 @@
+{
+    "problem": "Two right triangles have equal areas. The first triangle has a height of 17 cm and a corresponding base of 100 cm. The second triangle has a leg of length 170 cm. What is the length of the other leg of the second triangle, in cm?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

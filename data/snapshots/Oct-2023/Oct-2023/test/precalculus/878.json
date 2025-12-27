@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $30\\tan 135^\\circ$.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{-30}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many rectangles are in the array below?\n\n[asy]\nfor(int i = 0; i<9; ++i)\n{\n\nfor(int j = 0; j<9; ++j)\n\n{\n\ndraw((9i,j)--(9i+9,j)--(9i+9,j+1)--(9i,j+1)--(9i,j)--cycle,linewidth(2));\n\n}\n}\n[/asy]",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{2025}",
+    "is_static": false
+}

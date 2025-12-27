@@ -1,0 +1,7 @@
+{
+    "problem": "When $\\frac{1}{2^{1747}}$ is written as a decimal, how many digits are to the right of the decimal point?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{1747}",
+    "is_static": false
+}

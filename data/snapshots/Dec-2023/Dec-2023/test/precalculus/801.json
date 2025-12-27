@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a}$ and $\\mathbf{b}$ be vectors such that the angle between $\\mathbf{a}$ and $\\mathbf{b}$ is $26^\\circ,$ and the angle between $\\mathbf{b}$ and $\\mathbf{a} - \\mathbf{b}$ is $30^\\circ.$  Find the angle between $\\mathbf{a}$ and $\\mathbf{a} - \\mathbf{b}.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{4^\\circ}",
+    "is_static": false
+}

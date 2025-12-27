@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when 5 to the 1,955,210th power is divided by 7?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

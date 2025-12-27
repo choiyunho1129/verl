@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $ABC$, shown below, $\\cos{B}=\\frac{560280}{585818}$.  What is $\\tan{C}$?\n\n[asy]\ndraw((0,0)--(10,0)--(3.6,4.8)--cycle,black+linewidth(1));\ndraw(rightanglemark((0,0),(3.6,4.8),(10,0),20),black+linewidth(1));\nlabel(\"$C$\",(10,0),E);\nlabel(\"$A$\",(3.6,4.8),N);\nlabel(\"$B$\",(0,0),W);\nlabel(\"10\",(0,0)--(10,0),S);\n[/asy]",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{280140}{85541}}",
+    "is_static": false
+}

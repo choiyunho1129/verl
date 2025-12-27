@@ -1,0 +1,7 @@
+{
+    "problem": "In the prime factorization of $9653!$, what is the exponent of $8$?  (Reminder: The number $n!$ is the product of the integers from 1 to $n$.  For example, $5!=5\\cdot 4\\cdot3\\cdot2\\cdot 1= 120$.)",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1376}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $DEF$, we have $\\angle E = 90^\\circ$ and $\\tan D = 410\\sin D$.  What is $\\sin F$?",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac1{410}}",
+    "is_static": false
+}

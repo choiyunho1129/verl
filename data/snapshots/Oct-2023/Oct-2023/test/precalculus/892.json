@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a}$ and $\\mathbf{b}$ be two non-zero vectors such that\n\\[\\mathbf{a} \\times (\\mathbf{a} \\times \\mathbf{b}) = -82 \\mathbf{b}.\\]Find $\\|\\mathbf{a}\\|.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\sqrt{82}}",
+    "is_static": false
+}

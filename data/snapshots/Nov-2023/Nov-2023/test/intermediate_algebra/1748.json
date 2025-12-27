@@ -1,0 +1,7 @@
+{
+    "problem": "For each $x$ in $[0,1]$, define\n\\[\\begin{cases}  f(x) = 2x, \\qquad\\qquad \\mathrm{if} \\quad 0 \\leq x \\leq \\frac{1}{2};\\\\  f(x) = 2-2x, \\qquad \\mathrm{if} \\quad \\frac{1}{2} < x \\leq 1.  \\end{cases}\\]Let $f^{[2]}(x) = f(f(x))$, and $f^{[n + 1]}(x) = f^{[n]}(f(x))$ for each integer $n \\geq 2$.  Then the number of values of $x$ in $[0,1]$ for which $f^{[5303]}(x) = \\frac {1}{2}$ can be expressed in the form $p^a,$ where $p$ is a prime and $a$ is a positive integer.  Find $p + a.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{5305}",
+    "is_static": false
+}

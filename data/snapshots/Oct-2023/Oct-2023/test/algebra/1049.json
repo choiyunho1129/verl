@@ -1,0 +1,7 @@
+{
+    "problem": "At constant temperature, the pressure of a sample of gas is inversely proportional to its volume. I have some hydrogen in a 0.96 liter container with a pressure of 4 kPa. If I move all of it to a 0.36 liter container at the same temperature, what will the new pressure be in kPa?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{10.666666666666666}",
+    "is_static": false
+}

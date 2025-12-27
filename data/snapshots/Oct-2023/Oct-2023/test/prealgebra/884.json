@@ -1,0 +1,7 @@
+{
+    "problem": "Mario is constructing a square dart board. It will consist of a smaller square centered in a larger square. The smaller square measures $12$ inches on each side. The ratio of the area of the smaller square to the area of the entire dart board is $\\frac {12}{48}$. How long is the side of the larger square?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{24}",
+    "is_static": false
+}

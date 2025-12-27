@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $226780x^2 + 596397x + 318159$ can be written in the form $(Ax+667)(Bx+477)$ where $A$ and $B$ are integers. What is the value of $AB$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{226780}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $f$ and $g$ are polynomials, and that $h(x)=f(g(x))+g(x)$.  Find the degree of $g(x)$ given that the degree of $h(x)$ is $2976$ and the degree of $f(x)$ is $96$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{31}",
+    "is_static": false
+}

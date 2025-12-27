@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $9x^3 - 27x^2 + 18x$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{9x(x-1)(x-2)}",
+    "is_static": false
+}

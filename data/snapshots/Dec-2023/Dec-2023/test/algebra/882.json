@@ -1,0 +1,7 @@
+{
+    "problem": "Find $x$ such that $9^{\\log_x 4096} = 531441$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "$23$ is the largest prime less than $28$. What is the largest prime factor of $23!$ (23 factorial)?  (Reminder: The number $n!$ is the product of the integers from 1 to $n$.  For example, $5!=5\\cdot 4\\cdot3\\cdot2\\cdot 1= 120$.)",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{23}",
+    "is_static": false
+}

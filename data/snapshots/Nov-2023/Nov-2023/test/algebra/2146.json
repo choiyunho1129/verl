@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest possible value of $x$ such that $x^2-345x-26353876=0$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{5309}",
+    "is_static": false
+}

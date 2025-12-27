@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$, $y$, and $z$ are positive integers such that $8xyz+128xy+68xz+2yz+1088x+32y+17z=8721$, find $x+y+z$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

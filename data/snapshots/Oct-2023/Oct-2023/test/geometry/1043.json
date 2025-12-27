@@ -1,0 +1,7 @@
+{
+    "problem": "Coplanar squares $ABGH$ and $BCDF$ are adjacent, with $CD = 401310$ units and $AH = 637$ units. Point $E$ is on segments $AD$ and $GB$. What is the area of triangle $ABE$, in square units? Express your answer as a common fraction.\n\n[asy]\ndraw((0,0)--(637,0)--(637,637)--(0,637)--(0,0)--cycle,linewidth(2));\ndraw((637,0)--(401947,0)--(401947,401310)--(637,401310)--(637,0)--cycle,linewidth(2));\n\ndraw((0,0)--(401947,401310),linewidth(2));\n\nfilldraw((0,0)--(637,0)--(637,401310/631)--(0,0)--cycle,gray,linewidth(2));\n\nlabel(\"A\",(0,0),SW);\nlabel(\"B\",(637,0),S);\nlabel(\"C\",(401947,0),SE);\nlabel(\"D\",(401947,401310),NE);\nlabel(\"E\",(637,401310/631),SE);\nlabel(\"F\",(637,401310),NW);\nlabel(\"G\",(637,637),NW);\nlabel(\"H\",(0,637),NW);\n[/asy]",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{127817235}{631}}",
+    "is_static": false
+}

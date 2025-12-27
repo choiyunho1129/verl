@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $14612_7 - 31341_7$.  Express your answer in base 7.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{_7}",
+    "is_static": false
+}

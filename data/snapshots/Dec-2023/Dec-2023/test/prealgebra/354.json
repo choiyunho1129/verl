@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $29\\cdot 54 + 68(32 + 69) - 52^2$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{5730}",
+    "is_static": false
+}

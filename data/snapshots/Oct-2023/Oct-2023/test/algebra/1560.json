@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\&x$ is defined as $\\&x = x + 5772$ and $\\#x$ is defined as $\\#x = x^2$ , what is the value of $\\#(\\&7033)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{163968025}",
+    "is_static": false
+}

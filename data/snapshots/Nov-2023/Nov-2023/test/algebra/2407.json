@@ -1,0 +1,7 @@
+{
+    "problem": "If $(x + y)^2 = 100$ and $x^2 + y^2 = 68$, what is the value of $xy$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

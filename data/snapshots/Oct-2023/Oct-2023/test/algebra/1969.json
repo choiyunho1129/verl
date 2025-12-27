@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ if $5^x + 5^x + 5^x + 5^x + 5^x = 5^507$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{506}",
+    "is_static": false
+}

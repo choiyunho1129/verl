@@ -1,0 +1,7 @@
+{
+    "problem": "A trapezoid has one base equal to its height, $11x$, and the other base is twice as long. Write the expression for the area of the trapezoid as a common fraction in terms of $x$.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{363x^2}{2}}",
+    "is_static": false
+}

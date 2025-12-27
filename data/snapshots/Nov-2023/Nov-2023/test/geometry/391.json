@@ -1,0 +1,7 @@
+{
+    "problem": "In right $\\triangle ABC$, shown here, $AB = 166 \\text{ units}$, $AC = 296 \\text{ units}$ and points $D,$ $E,$ and $F$ are the midpoints of $\\overline{AC}, \\overline{AB}$ and $\\overline{BC}$, respectively. In square units, what is the area of $\\triangle DEF$?\n\n[asy]\nsize(150);\nimport olympiad;\npair A,B,C,D,E,F;\nA = (0,0); B = (166, 0); C = (0, 296);\nE = midpoint(A--B); D = midpoint(A--C); F = midpoint(B--C);\ndraw(A--B); draw(B--C); draw(C--A);\ndraw(D--F); draw(F--E); draw(E--D);\nlabel(\"$A$\", A, S);\nlabel(\"$B$\", B, S);\nlabel(\"$C$\", C, N);\nlabel(\"$D$\", D, W);\nlabel(\"$E$\", E, S);\nlabel(\"$F$\", F, NE);\ndraw(rightanglemark(C, A, B, 20));\n[/asy]",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{6142 \\text{ units}^2}",
+    "is_static": false
+}

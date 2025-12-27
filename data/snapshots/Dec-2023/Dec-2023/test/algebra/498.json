@@ -1,0 +1,7 @@
+{
+    "problem": "The length of a rectangle is fifteen times its width. The perimeter is 448 cm. What is the number of square centimeters in the area of the rectangle?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{2940}",
+    "is_static": false
+}

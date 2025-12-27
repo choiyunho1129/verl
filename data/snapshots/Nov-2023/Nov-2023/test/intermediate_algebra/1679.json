@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $z$ is a complex number such that $z^3 = 78652+126405i$.  Find $|z|$.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{53}",
+    "is_static": false
+}

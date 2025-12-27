@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a_1,a_2,a_3,\\dots$ be an arithmetic sequence. If $\\frac{a_21}{a_2} = 20$, what is $\\frac{a_49}{a_7}$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

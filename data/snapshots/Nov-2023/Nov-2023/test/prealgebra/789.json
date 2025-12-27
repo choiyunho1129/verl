@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $80908\\div80908-80908+80908\\times80908$.",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6546023557}",
+    "is_static": false
+}

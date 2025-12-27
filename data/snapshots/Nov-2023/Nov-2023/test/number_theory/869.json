@@ -1,0 +1,7 @@
+{
+    "problem": "How many three-digit numbers are divisible by 14?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{64}",
+    "is_static": false
+}

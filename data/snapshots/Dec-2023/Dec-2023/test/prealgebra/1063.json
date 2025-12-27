@@ -1,0 +1,7 @@
+{
+    "problem": "In a group of 185 high school students, 36 take French, 147 take Spanish and 8 take both languages. How many students of the group take neither French nor Spanish?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many 64-digit numbers have a first digit which is triple the final digit?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{300000000000000000000000000000000000000000000000000000000000000}",
+    "is_static": false
+}

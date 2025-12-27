@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of the 126 smallest positive multiples of two hundred and sixty-nine?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{2152269}",
+    "is_static": false
+}

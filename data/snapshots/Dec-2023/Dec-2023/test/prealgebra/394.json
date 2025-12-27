@@ -1,0 +1,7 @@
+{
+    "problem": "Robin bought a eight-scoop ice cream cone having a scoop each of vanilla, chocolate, strawberry, cherry, blueberry, watermelon, pistachio and butterscotch. In how many orders can the eight scoops be stacked on the cone if they are stacked one on top of the other and chocolate cannot be on the bottom?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{35280}",
+    "is_static": false
+}

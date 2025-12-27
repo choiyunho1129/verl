@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $10x - 5y = 50$ and $20x + 5y = 160$, what is the product of $x$ and $y$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{28}",
+    "is_static": false
+}

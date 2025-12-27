@@ -1,0 +1,7 @@
+{
+    "problem": "In this problem, $a$ and $b$ are positive integers.\n\nWhen $a$ is written in base $25$, its last digit is $9$.\n\nWhen $b$ is written in base $10$, its last two digits are $26$.\n\nWhen $a-b$ is written in base $5$, what are its last two digits?  Assume $a-b$ is positive.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $P(x) = 9x^3 - 13x^2 + x + 17$, and let $Q(x) = P(x)^2$. What is the y-intercept of $Q(x)$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{289}",
+    "is_static": false
+}

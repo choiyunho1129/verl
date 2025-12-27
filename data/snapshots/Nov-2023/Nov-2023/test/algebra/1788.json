@@ -1,0 +1,7 @@
+{
+    "problem": "Sviatoslav solved the quadratic equation $x^2-x-19=0$ by completing the square. In the process, he came up with the equivalent equation $$(x+a)^2 = b,$$where $a$ and $b$ are constants.\n\nWhat is $b$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac {77}4}",
+    "is_static": false
+}

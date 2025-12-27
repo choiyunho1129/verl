@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $6230x^3-3293x^2+5073x$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{89x(70x^2-37x+57)}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $x$ and $y$ are real numbers satisfying  \\begin{align*}\n5120y - 1600x^2 &= 4096 \\\\\n5120x - 1600y^2 &= 4096.\n\\end{align*} What is $\\dfrac{1}{x^3 + y^3}$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{0.1220703125}",
+    "is_static": false
+}

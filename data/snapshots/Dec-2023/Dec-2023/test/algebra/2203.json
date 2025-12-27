@@ -1,0 +1,7 @@
+{
+    "problem": "If $(49^20)^{(49^20)} = 49^N$, what is the value of $N$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{127336115218180559714828702784480020}",
+    "is_static": false
+}

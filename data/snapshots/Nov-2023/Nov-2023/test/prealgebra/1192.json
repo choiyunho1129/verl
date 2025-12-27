@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest number of marbles that could be divided up either into bags of $50$ marbles or into bags of $156$ marbles, with no marbles left over in each case?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{3900}",
+    "is_static": false
+}

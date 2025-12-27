@@ -1,0 +1,7 @@
+{
+    "problem": "How many times does the digit 5 appear in the list of all integers from 1 to 1000?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{300}",
+    "is_static": false
+}

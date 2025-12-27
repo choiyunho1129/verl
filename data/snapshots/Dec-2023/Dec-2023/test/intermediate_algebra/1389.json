@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the real roots of $x^4 - 640x - 576 = 0.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

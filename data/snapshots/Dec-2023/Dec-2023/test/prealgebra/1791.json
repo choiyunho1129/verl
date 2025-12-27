@@ -1,0 +1,7 @@
+{
+    "problem": "Express $0.\\overline{3}$ as a common fraction in lowest terms.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\dfrac{3}{9}}",
+    "is_static": false
+}

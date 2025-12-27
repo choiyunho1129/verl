@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c$ be positive real numbers.  Find the minimum value of\n\\[\\frac{(a + b)(64a + 81c)(16b + 100c)}{abc}.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{23040}",
+    "is_static": false
+}

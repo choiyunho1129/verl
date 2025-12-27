@@ -1,0 +1,7 @@
+{
+    "problem": "Find the remainder when $x^3-19x^2-361x+6878$ is divided by $x-19$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{19}",
+    "is_static": false
+}

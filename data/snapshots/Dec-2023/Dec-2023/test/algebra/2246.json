@@ -1,0 +1,7 @@
+{
+    "problem": "There are two solutions for the equation $545x^2 - 536x - 175490 = 0$. What is the product of these two solutions?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-322}",
+    "is_static": false
+}

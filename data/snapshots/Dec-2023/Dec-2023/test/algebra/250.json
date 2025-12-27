@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left(\\frac{i}{104}\\right)^16$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{187298124572719231164840669085696}}",
+    "is_static": false
+}

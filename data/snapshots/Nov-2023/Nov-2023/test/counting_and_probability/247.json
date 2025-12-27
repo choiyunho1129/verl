@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{13}{2}$.",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{78}",
+    "is_static": false
+}

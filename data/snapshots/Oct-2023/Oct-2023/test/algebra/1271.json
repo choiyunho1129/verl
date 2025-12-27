@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $7x - 7y = 56$ and $14x + 7y = 280$, what is the product of $x$ and $y$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{128}",
+    "is_static": false
+}

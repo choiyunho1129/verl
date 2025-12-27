@@ -1,0 +1,7 @@
+{
+    "problem": "The foci of a certain ellipse are at $(638,216 + \\sqrt{142923})$ and $(638,216 - \\sqrt{142923}).$  The endpoints of one of the axes are $(339,216)$ and $(937,216).$  Find the semi-major axis.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{482}",
+    "is_static": false
+}

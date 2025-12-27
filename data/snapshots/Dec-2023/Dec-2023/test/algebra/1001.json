@@ -1,0 +1,7 @@
+{
+    "problem": "Find $x$ such that $\\lceil x \\rceil + x = \\dfrac{9}{5}$. Express $x$ as a common fraction.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\dfrac{4}{5}}",
+    "is_static": false
+}

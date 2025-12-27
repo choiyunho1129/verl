@@ -1,0 +1,7 @@
+{
+    "problem": "The range of the function $f(x)$ is $[-123,480].$  Let $g(x) = [f(x)]^2.$  Find the range of the function $g(x).$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{[0,230400]}",
+    "is_static": false
+}

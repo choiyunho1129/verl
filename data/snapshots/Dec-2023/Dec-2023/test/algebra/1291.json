@@ -1,0 +1,7 @@
+{
+    "problem": "$a$ and $b$ are real numbers and satisfy $ab^2=\\frac{343}{3}$ and $a^2b=1029$. Compute $a+3b$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{28}",
+    "is_static": false
+}

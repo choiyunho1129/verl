@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive integers are less than $66\\pi$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{207}",
+    "is_static": false
+}

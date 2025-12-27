@@ -1,0 +1,7 @@
+{
+    "problem": "If $a = 1$, $b = 16$ and $c = 1$, what is the numerical value of the expression $(b-c)^2 + a(b+c)$ ?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{242}",
+    "is_static": false
+}

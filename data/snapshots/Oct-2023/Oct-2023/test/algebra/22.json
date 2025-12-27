@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\log_{7562^99}7562^5544$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{56}",
+    "is_static": false
+}

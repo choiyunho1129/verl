@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a}$ and $\\mathbf{b}$ be two nonzero vectors such that $134 \\mathbf{a} + 826 \\mathbf{b}$ and $\\mathbf{b}$ are orthogonal, and $746 \\mathbf{a} + 77272172 \\mathbf{b}$ and $\\mathbf{a}$ are orthogonal.  Find $\\frac{\\|\\mathbf{a}\\|}{\\|\\mathbf{b}\\|}.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\sqrt{638498}}",
+    "is_static": false
+}

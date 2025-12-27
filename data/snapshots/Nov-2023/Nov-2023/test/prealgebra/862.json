@@ -1,0 +1,7 @@
+{
+    "problem": "For how many different digits $n$ is the two-digit number $\\underline{8}\\underline{n}$ divisible by $n$? (The expression $\\underline{8}\\underline{n}$ should be interpreted as a two-digit integer with tens digit 8 and units digit $n$, not as 8 times $n$.)",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

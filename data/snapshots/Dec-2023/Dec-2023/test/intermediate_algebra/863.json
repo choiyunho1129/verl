@@ -1,0 +1,7 @@
+{
+    "problem": "The range of the function $f(x)$ is $[-2,25].$  Let $h(x) = 3f(x) - 41.$  Find the range of the function $h(x).$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{[-47,34]}",
+    "is_static": false
+}

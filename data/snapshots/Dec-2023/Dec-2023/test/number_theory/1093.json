@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when $8462+8463+8464+8465+8466+8467+8468+8469$ is divided by $8$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

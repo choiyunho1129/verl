@@ -1,0 +1,7 @@
+{
+    "problem": "A cylindrical can that is seventeen inches high has a label that is $170\\pi$ square inches in area and exactly covers the outside of the can excluding the top and bottom lids. What is the radius of the can, in inches?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{5\\text{ inches}}",
+    "is_static": false
+}

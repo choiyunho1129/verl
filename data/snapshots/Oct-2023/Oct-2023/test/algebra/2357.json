@@ -1,0 +1,7 @@
+{
+    "problem": "Two bricklayers, Alan and David, each place 41 bricks per hour. Alan worked eight times as many hours as David, and the two of them placed a total of 1476 bricks. How many bricks did David lay?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{164}",
+    "is_static": false
+}

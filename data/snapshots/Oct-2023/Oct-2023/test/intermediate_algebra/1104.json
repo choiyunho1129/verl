@@ -1,0 +1,7 @@
+{
+    "problem": "For how many positive integers $m,$ $1 \\le m \\le 1985,$ does there exist at least one positive integer $n$ such that $m \\cdot n \\le m + n$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{1985}",
+    "is_static": false
+}

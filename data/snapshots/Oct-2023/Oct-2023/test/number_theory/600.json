@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the remainder when $$7+91+240+9668+14719+587105+826444+9942317$$is divided by $7$.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

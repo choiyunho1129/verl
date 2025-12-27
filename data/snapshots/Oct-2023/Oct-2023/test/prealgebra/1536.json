@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest multiple of 29 greater than 7637?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{7656}",
+    "is_static": false
+}

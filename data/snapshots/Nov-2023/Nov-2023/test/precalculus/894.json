@@ -1,0 +1,7 @@
+{
+    "problem": "A point has rectangular coordinates $(282, -306, 779)$ and spherical coordinates $(\\rho, \\theta, \\phi).$  Find $\\cos \\phi.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{779}{883.1766527711203}}",
+    "is_static": false
+}

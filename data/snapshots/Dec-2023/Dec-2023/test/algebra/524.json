@@ -1,0 +1,7 @@
+{
+    "problem": "What is the 571st term of the sequence of odd numbers 848, 861, 874, 887, $\\dots$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{8258}",
+    "is_static": false
+}

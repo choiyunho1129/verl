@@ -1,0 +1,7 @@
+{
+    "problem": "For which value of $x$ does the function $f(x) = \\frac{318x-154548}{x^3 - 301x^2 - 626x + 410}$ cross its horizontal asymptote?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{486}",
+    "is_static": false
+}

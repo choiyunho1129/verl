@@ -1,0 +1,7 @@
+{
+    "problem": "If $1024^b=4$ and $3125^b=c$, what is the value of $c$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

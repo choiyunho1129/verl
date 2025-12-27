@@ -1,0 +1,7 @@
+{
+    "problem": "The volume of a cube is 0.125 cubic meters. What is its surface area in square meters?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{1.5}",
+    "is_static": false
+}

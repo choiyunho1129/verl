@@ -1,0 +1,7 @@
+{
+    "problem": "Jenny's grandmother has $34$ cats.  Thirty-two of the cats do not catch mice.  Thirty-one of the cats have black fur.  What is the smallest possible number of cats that do not catch mice that have black fur?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

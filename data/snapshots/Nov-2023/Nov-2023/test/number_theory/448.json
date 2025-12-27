@@ -1,0 +1,7 @@
+{
+    "problem": "Let's call a prime number a $\\textit{reversible prime}$ if the number formed by reversing its digits is also prime. What is the smallest reversible prime greater than 871?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{907}",
+    "is_static": false
+}

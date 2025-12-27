@@ -1,0 +1,7 @@
+{
+    "problem": "Find \\[\\left|\\left(49-4\\sqrt{114}i\\right)^7\\right|\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{4902227890625}",
+    "is_static": false
+}

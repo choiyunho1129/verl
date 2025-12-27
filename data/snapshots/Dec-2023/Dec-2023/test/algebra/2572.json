@@ -1,0 +1,7 @@
+{
+    "problem": "If $F(a, b, c, d) = a^b + c \\times d$, what is the value of $b$ such that $F(5, b, 9, 5) = 170$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

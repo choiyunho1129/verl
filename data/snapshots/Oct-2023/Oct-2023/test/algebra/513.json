@@ -1,0 +1,7 @@
+{
+    "problem": "If $32a+31b=4$ and $a+b=1$, what is the ordered pair $(a,b)$ that satisfies both equations?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{(-27,28)}",
+    "is_static": false
+}

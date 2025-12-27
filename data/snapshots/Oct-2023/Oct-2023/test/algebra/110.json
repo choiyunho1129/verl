@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(69-61i)(71+73i)$, where $i^2 = -1.$",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{9352+706i}",
+    "is_static": false
+}

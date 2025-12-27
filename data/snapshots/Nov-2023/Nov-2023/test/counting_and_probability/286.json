@@ -1,0 +1,7 @@
+{
+    "problem": "The summary of a survey of 568 students listed the following totals:\n\n48 students did math homework\n\n51 students did English homework\n\n61 students did science homework\n\n26 students did English and science homework\n\n17 students did science and math homework\n\n30 students did math and English homework\n\n8 students did math, science and English homework\n\nHow many students did no math, no English and no science homework?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{473}",
+    "is_static": false
+}

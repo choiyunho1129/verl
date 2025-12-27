@@ -1,0 +1,7 @@
+{
+    "problem": "If $x = 6 + \\frac{x}{6 + \\frac{x}{6+ \\frac{x}{6 + \\cdots}}}$, then what is $x$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

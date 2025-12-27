@@ -1,0 +1,7 @@
+{
+    "problem": "Our basketball team has 12 players.  We need to divide into two teams of 6 for an intra-squad scrimmage.  In how many ways can we do this without restrictions?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{462}",
+    "is_static": false
+}

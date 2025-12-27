@@ -1,0 +1,7 @@
+{
+    "problem": "A triangle has vertices at coordinates $(-2,8)$, $(-9,-9)$ and $(4,-2)$.  What is the number of units in the length of the longest side of the triangle?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\sqrt{338}}",
+    "is_static": false
+}

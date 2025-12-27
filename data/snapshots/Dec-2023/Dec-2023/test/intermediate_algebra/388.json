@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left|\\dfrac{32-68i}{26+20i}\\right|$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2.2910850337711737}",
+    "is_static": false
+}

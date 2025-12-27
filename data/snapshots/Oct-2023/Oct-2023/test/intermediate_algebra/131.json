@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate the sum $$117 + \\frac{235}{119} + \\frac{353}{14161} + \\frac{471}{1685159} + \\frac{589}{200533921} + \\dotsb$$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{119}",
+    "is_static": false
+}

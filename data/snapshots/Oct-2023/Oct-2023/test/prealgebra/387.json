@@ -1,0 +1,7 @@
+{
+    "problem": "A rhombus has a perimeter of $3140$ units and one of its diagonals is $1472$ units. What is its area in square units?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{401856}",
+    "is_static": false
+}

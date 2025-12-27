@@ -1,0 +1,7 @@
+{
+    "problem": "The ratio of two interior angles of a parallelogram is $5:5$. What is the degree measure of one of the two obtuse angles of the parallelogram?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{90^\\circ}",
+    "is_static": false
+}

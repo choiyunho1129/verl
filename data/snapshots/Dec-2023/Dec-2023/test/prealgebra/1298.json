@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the following expression in $x$: $$13x + 10 - 5x - 200.$$",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{8x - 190}",
+    "is_static": false
+}

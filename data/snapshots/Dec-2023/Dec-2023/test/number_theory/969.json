@@ -1,0 +1,7 @@
+{
+    "problem": "The number of toy cars that Ray has is a multiple of $4$. When he loses two of them, the number of cars that he has left is a multiple of $n$. If $n$ is a positive even integer less than $10$, then how many possible values are there for $n$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

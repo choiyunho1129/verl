@@ -1,0 +1,7 @@
+{
+    "problem": "What is 380 times the mean of the measures of the three exterior angles of a triangle if two of the interior angles have measures of 88 and 8 degrees?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{45600^\\circ}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is 650 times the mean of the measures of the three exterior angles of a triangle if two of the interior angles have measures of 84 and 67 degrees?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{78000^\\circ}",
+    "is_static": false
+}

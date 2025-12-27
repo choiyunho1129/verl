@@ -1,0 +1,7 @@
+{
+    "problem": "What is the length of the segment of the number line consisting of the points that satisfy $(x-769)^2 \\le 289$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{34}",
+    "is_static": false
+}

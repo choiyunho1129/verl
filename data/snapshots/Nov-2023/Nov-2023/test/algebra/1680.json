@@ -1,0 +1,7 @@
+{
+    "problem": "In a rectangular coordinate system, the line $5y = 2x$ intersects the line $9x - 5y = 35$ at point $Z$. What is the sum of the coordinates of point $Z$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If a girl 17 feet tall could walk around the equator, how many feet further would the top of her head travel than her feet? Assume that the earth is a sphere. Express your answer in terms of $\\pi$.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{34\\pi}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ and $y$ are positive integers for which $7x + 6y + xy = 799$, then what is $x + y$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{45}",
+    "is_static": false
+}

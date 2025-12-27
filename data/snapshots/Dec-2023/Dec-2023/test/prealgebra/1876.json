@@ -1,0 +1,7 @@
+{
+    "problem": "One day, 15 frogs were captured from a pond, marked and then returned to the pond. The next day, 6 frogs were observed in the pond, of which 3 had been marked the previous day. Assuming the marked frogs are equally distributed among all the frogs in the pond, what is the best estimate of how many frogs live in the pond?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{30}",
+    "is_static": false
+}

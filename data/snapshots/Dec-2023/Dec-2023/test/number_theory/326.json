@@ -1,0 +1,7 @@
+{
+    "problem": "The product of three consecutive integers is 2184. What is the largest of these integers?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

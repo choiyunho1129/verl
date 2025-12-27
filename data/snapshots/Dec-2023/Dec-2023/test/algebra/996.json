@@ -1,0 +1,7 @@
+{
+    "problem": "If $x = 18 + \\frac{x}{18 + \\frac{x}{18+ \\frac{x}{18 + \\cdots}}}$, then what is $x$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{19}",
+    "is_static": false
+}

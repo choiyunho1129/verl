@@ -1,0 +1,7 @@
+{
+    "problem": "Find the center of the ellipse whose equation is $3x^2 - 6x + 5y^2 - 60y - 198 = 0.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(1,6)}",
+    "is_static": false
+}

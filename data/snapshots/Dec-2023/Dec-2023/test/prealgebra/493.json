@@ -1,0 +1,7 @@
+{
+    "problem": "The length of a rectangle is twice its width. Given the length of the diagonal is $88\\sqrt{5}$, find the area of the rectangle.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{15488}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the greatest integer less than $100.4^3$ without using a calculator.",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{1012048}",
+    "is_static": false
+}

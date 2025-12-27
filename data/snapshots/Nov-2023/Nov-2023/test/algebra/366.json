@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of the parabola defined by the equation $y=-(x+10)^2+934$ is shifted 10 unit to the right, then shifted 9770 units down, then rotated 180 degrees about its vertex. The resulting parabola has zeros at $x=a$ and $x=b$, where $b\\ge a$. What is $b-a$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{188}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest common divisor of 2835 and 688747536?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{81}",
+    "is_static": false
+}

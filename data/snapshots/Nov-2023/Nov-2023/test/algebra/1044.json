@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ in the equation $(10^36-10^35)\\div9=10^x$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{35}",
+    "is_static": false
+}

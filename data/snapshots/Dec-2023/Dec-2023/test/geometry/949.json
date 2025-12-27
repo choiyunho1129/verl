@@ -1,0 +1,7 @@
+{
+    "problem": "Rhombus $ABCD$ is similar to rhombus $BFDE$. The area of rhombus $ABCD$ is 3762, and $\\angle BAD=60^\\circ$. What is the area of rhombus $BFDE$?\n\n[asy]\npair A,B,C,D,I,F;\nA=(0,0);\nB=(10,0);\nC=(15,8.7);\nD=(5,8.7);\nI=(5,2.88);\nF=(10,5.82);\ndraw(A--B--C--D--cycle,linewidth(0.7));\ndraw(D--I--B--F--cycle,linewidth(0.7));\nlabel(\"$A$\",A,SW);\nlabel(\"$B$\",B,SE);\nlabel(\"$C$\",C,NE);\nlabel(\"$D$\",D,NW);\nlabel(\"$E$\",I,W);\nlabel(\"$F$\",F,E);\n[/asy]",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{1254}",
+    "is_static": false
+}

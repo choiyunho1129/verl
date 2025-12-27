@@ -1,0 +1,7 @@
+{
+    "problem": "What is the units digit when $1783^{416}$ is multiplied out?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

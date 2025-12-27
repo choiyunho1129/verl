@@ -1,0 +1,7 @@
+{
+    "problem": "Let $(a_1, b_1),$ $(a_2, b_2),$ $\\dots,$ $(a_n, b_n)$ be the real solutions to\n\\begin{align*}\na + \\frac{259a + 4b}{a^2 + b^2} &= 32, \\\\\nb + \\frac{4a - 259b}{a^2 + b^2} &= 0.\n\\end{align*}Find $a_1 + b_1 + a_2 + b_2 + \\dots + a_n + b_n.$\n\nHint: Use complex numbers.",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{32}",
+    "is_static": false
+}

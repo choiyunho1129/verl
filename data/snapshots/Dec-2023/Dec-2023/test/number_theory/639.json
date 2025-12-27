@@ -1,0 +1,7 @@
+{
+    "problem": "How many of the positive divisors of 168 are even?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

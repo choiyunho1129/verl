@@ -1,0 +1,7 @@
+{
+    "problem": "As $n$ ranges over the positive integers, what is the maximum possible value that the greatest common divisor of $868n + 715$ and $713n+464$ can take?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{3453}",
+    "is_static": false
+}

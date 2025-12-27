@@ -1,0 +1,7 @@
+{
+    "problem": "A line is parameterized by\n\\[\\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ 2 \\end{pmatrix} + t \\begin{pmatrix} 20 \\\\ -10 \\end{pmatrix}.\\]A second line is parameterized by\n\\[\\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 4 \\end{pmatrix} + u \\begin{pmatrix} a \\\\ -25 \\end{pmatrix}.\\]If the two lines do not intersect, then find $a.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{50}",
+    "is_static": false
+}

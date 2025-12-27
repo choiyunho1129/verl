@@ -1,0 +1,7 @@
+{
+    "problem": "Find the smallest integer that satisfies the inequality: \\[\n(x-16)(x+41)<0.\n\\]",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-40}",
+    "is_static": false
+}

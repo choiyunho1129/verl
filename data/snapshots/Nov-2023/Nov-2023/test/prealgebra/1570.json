@@ -1,0 +1,7 @@
+{
+    "problem": "Ten is added to nine times an integer to get a result of 199. What was the integer?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{21}",
+    "is_static": false
+}

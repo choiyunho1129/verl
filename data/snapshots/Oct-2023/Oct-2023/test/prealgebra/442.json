@@ -1,0 +1,7 @@
+{
+    "problem": "What is the 1000th digit to the right of the decimal point when $\\frac{8}{360}$ is expressed as a decimal?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

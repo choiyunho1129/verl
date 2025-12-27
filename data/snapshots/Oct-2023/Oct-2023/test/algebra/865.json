@@ -1,0 +1,7 @@
+{
+    "problem": "If $11m+33n=1078$, and $m+n=440$, what is $m$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{611}",
+    "is_static": false
+}

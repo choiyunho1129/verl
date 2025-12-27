@@ -1,0 +1,7 @@
+{
+    "problem": "There is a total of 1206 quarters stacked in four piles. The first pile has 13 fewer than the second pile. The second pile has 5 more than the third pile. The fourth pile has fifteen times as many as the second pile. How many quarters are in the fourth pile?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{1020}",
+    "is_static": false
+}

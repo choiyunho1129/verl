@@ -1,0 +1,7 @@
+{
+    "problem": "A rectangular box is 508288 cm thick, and its square bases measure 12834 cm by 12834 cm. What is the distance, in centimeters, from the center point $P$ of one square base to corner $Q$ of the opposite base? Express your answer in simplest terms.\n\n[asy]\nimport three;\ndraw((0,0,1/4)--(1,0,1/4)--(1,1,1/4)--(0,1,1/4)--(0,0,1/4)--cycle,linewidth(2));\n\ndraw((0,1,0)--(1,1,0),linewidth(2));\ndraw((1,1,0)--(1,0,0),linewidth(2));\ndraw((0,1,0)--(0,1,1/4),linewidth(2));\ndraw((1,1,0)--(1,1,1/4),linewidth(2));\ndraw((1,0,0)--(1,0,1/4),linewidth(2));\n\ndot((1/2,1/2,1/4));\ndot((0,1,0));\n\nlabel(\"$P$\",(1/2,1/2,1/4),W);\nlabel(\"$Q$\",(0,1,0),E);\n[/asy]",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{508369}",
+    "is_static": false
+}

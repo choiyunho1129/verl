@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x_1,$ $x_2,$ $x_3,$ $y_1,$ $y_2,$ and $y_3$ be real numbers such that\n\\begin{align*}\n(x_1 - x_2)^2 + (y_1 - y_2)^2 &= 784, \\\\\n(x_1 - x_3)^2 + (y_1 - y_3)^2 &= 9216, \\\\\n(x_2 - x_3)^2 + (y_2 - y_3)^2 &= 10000.\n\\end{align*}Find $\\begin{vmatrix} x_1 & y_1 & 1 \\\\ x_2 & y_2 & 1 \\\\ x_3 & y_3 & 1 \\end{vmatrix}^2.$",
+    "level": "Level 5",
+    "type": "Precalculus",
+    "solution": "\\boxed{7225344}",
+    "is_static": false
+}

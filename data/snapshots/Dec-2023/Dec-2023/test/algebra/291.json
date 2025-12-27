@@ -1,0 +1,7 @@
+{
+    "problem": "Alice and Bob are playing a game. Alice starts first. On Alice's turn, she flips two coins. If she gets all heads, she wins. If not, it becomes Bob's turn. On Bob's turn, he flips two coins. If he gets all tails, he wins. If not, it becomes Alice's turn. What is the probability that Alice wins the game?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{4}{7}}",
+    "is_static": false
+}

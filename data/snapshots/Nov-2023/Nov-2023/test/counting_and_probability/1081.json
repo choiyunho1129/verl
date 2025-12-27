@@ -1,0 +1,7 @@
+{
+    "problem": "Five couples go to the movie theater. They want to seat people together for maximum enjoyment, but instead they randomly file into a row with ten seats. What is the probability that they sit in a socially optimal configuration, in which each person is sitting next to his or her partner?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{1}{945}}",
+    "is_static": false
+}

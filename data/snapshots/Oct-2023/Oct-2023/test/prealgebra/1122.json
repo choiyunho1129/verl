@@ -1,0 +1,7 @@
+{
+    "problem": "On a protractor, ray $BA$ goes through the 140-degree mark and ray $BC$ goes through the 74-degree mark. What is the measure, in degrees, of angle $ABC$?\n\n[asy]\ndraw((0,0)--(2,0)..(1,1)..(0,0)..cycle,linewidth(2));\n\ndraw((1,0)--1.4dir(74)+(1,0),Arrow);\ndraw((1,0)--1.3dir(140)+(1,0),Arrow);\n\ndot(1.1dir(140)+(1,0));\ndot(1.2dir(74)+(1,0));\n\nlabel(\"A\",1.1dir(140)+(1,0),NW);\nlabel(\"B\",(1,0),S);\nlabel(\"C\",1.2dir(74)+(1,0),SE);\n\nlabel(\"140\",.9dir(140)+(1,0));\nlabel(\"74\",.9dir(74)+(1,0));\n\n[/asy]",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{66}",
+    "is_static": false
+}

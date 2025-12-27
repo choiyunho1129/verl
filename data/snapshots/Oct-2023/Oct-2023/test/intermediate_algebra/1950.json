@@ -1,0 +1,7 @@
+{
+    "problem": "The fourth degree polynomial equation $122x^4 - 749x^3 + 698x^2 + 912x - 478 = 0$ has four real roots, $a$, $b$, $c$ and $d$. What is the value of the sum $\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}+\\frac{1}{d}$? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{749}{478}}",
+    "is_static": false
+}

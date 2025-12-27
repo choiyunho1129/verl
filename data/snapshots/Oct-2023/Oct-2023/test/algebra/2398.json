@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate the infinite geometric series: $$1-\\frac{3}{8}+\\frac{9}{64}-\\frac{27}{512}+\\dots$$",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{8}{11}}",
+    "is_static": false
+}

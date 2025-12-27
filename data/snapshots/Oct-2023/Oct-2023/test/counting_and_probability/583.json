@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{208}{205}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{1478256}",
+    "is_static": false
+}

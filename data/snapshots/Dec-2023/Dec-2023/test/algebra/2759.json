@@ -1,0 +1,7 @@
+{
+    "problem": "Twenty-Seven identical blue boxes together weigh the same as thirty-six identical red boxes together. Each red box weighs 33.8 ounces. How much does one blue box weigh in ounces?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{45.067}",
+    "is_static": false
+}

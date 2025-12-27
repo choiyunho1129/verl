@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{48}{29}\\times \\dbinom{19}{16}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{11184050611689120}",
+    "is_static": false
+}

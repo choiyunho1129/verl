@@ -1,0 +1,7 @@
+{
+    "problem": "A stadium staircase with 2615 steps is numbered from 207 to 2615. Jan starts on step 1942 and steps down to step number 1939, then to step number 1936, and continues downward to step 1111 stepping only on every third step. Jen starts on step number 302 and steps up to step number 306, then to step number 310, and continues upward to step 2602 stepping only on every fourth step. How many steps were stepped on by both Jan and Jen (not necessarily at the same time)?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{70}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "$n$ fair 6-sided dice are simultaneously rolled. The probability that exactly two of them show a number other than 1 is $\\frac{2275}{78364164096}$. Find $n$.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

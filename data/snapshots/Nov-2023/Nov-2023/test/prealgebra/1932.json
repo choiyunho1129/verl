@@ -1,0 +1,7 @@
+{
+    "problem": "My club has 130 members.  In how many ways can we choose a president, vice-president, secretary, and treasurer, if no member can hold more than one office?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{27,\\!26,\\!13,\\!120}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left(25^{\\left(5\\frac{1}{34}\\right)}\\right)^{\\frac{17}{171}} \\cdot \\left(625^{\\left(2\\frac{1}{52}\\right)}\\right)^{\\frac{13}{105}}$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{25}",
+    "is_static": false
+}

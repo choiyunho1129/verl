@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers from $-1500$ to $1500$ are congruent to $2 \\pmod{7}?$",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{429 \\text{ integers}}",
+    "is_static": false
+}

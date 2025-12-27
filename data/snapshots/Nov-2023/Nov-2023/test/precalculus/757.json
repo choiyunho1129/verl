@@ -1,0 +1,7 @@
+{
+    "problem": "In triangle $ABC,$\n\\[(b \\sin C)(b \\cos C + c \\cos B) = 150.\\]Compute the area of triangle $ABC.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{75}",
+    "is_static": false
+}

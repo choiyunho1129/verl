@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lfloor\\frac{405}{88}\\right\\rfloor$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

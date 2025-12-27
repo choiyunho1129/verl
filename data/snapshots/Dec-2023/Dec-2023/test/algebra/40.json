@@ -1,0 +1,7 @@
+{
+    "problem": "Kyle's birthday party in 1979 cost $d$ dollars per person and $p$ people attended. In 1983, the cost per person increased by thirty-eight times and the number of people attending the party also increased by twenty-six times. What is the ratio of the total cost of the party in 1979 to the total cost of the party in 1983? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{988}}",
+    "is_static": false
+}

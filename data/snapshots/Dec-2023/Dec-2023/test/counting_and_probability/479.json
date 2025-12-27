@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that I have 8 different books, 2 of which are math books.  In how many ways can I stack my 8 books on a shelf if I want a math book on both ends of the stack?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{1440}",
+    "is_static": false
+}

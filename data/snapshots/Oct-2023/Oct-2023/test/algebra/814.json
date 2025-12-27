@@ -1,0 +1,7 @@
+{
+    "problem": "Given $f(x) = \\frac{\\sqrt{5x-245}}{x-49}$, what is the smallest possible integer value for $x$ such that $f(x)$ has a real number value?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{50}",
+    "is_static": false
+}

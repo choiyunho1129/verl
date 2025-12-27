@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $z$ is a complex number such that $z^4 = \\frac{96040}{41}-\\frac{21609}{41}i$.  Find $|z|$.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

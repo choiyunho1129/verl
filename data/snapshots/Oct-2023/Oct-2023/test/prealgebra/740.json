@@ -1,0 +1,7 @@
+{
+    "problem": "In a bag with 217 marbles, fifty of them are blue. How many blue marbles must be added to the bag so that the probability of selecting a blue marble at random is $\\frac{1}{2}$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{117}",
+    "is_static": false
+}

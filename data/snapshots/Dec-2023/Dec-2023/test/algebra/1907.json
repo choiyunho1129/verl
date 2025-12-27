@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil\\left(\\frac{59}{7}\\right)^2\\right\\rceil$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{72}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "$a$ is chosen from the set $\\{1,2\\}$, and $b$ is chosen from the set $\\{3,4,5,6,7,8,9,10,11,12,13,14,15,16,17\\}$. What is the probability that the product $ab$ is a prime number?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac15}",
+    "is_static": false
+}

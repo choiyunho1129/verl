@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $\\Join$ is an operation defined by $x \\Join y = (x+14)(y-38)$. What is $((t+16) \\Join (t+32)) - ((t+24) \\Join (t+24))$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{352}",
+    "is_static": false
+}

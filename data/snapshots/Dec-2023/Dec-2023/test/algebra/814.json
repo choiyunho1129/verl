@@ -1,0 +1,7 @@
+{
+    "problem": "Given $f(x) = \\frac{\\sqrt{14x-1246}}{x-89}$, what is the smallest possible integer value for $x$ such that $f(x)$ has a real number value?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{90}",
+    "is_static": false
+}

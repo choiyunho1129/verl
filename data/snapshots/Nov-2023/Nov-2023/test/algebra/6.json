@@ -1,0 +1,7 @@
+{
+    "problem": "Find the distance between the vertex of the graph of the equation $f(x) = x^2 - 46x + 237$ and the point $(6, 18)$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{310.4658}",
+    "is_static": false
+}

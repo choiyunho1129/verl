@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $x$ such that $\\sqrt{2x + 7} = 29$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{417}",
+    "is_static": false
+}

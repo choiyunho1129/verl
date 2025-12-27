@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest integer value of $n$ for which $\\frac{n+1}{19-n}$ is a positive prime number?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

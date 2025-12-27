@@ -1,0 +1,7 @@
+{
+    "problem": "Find $\\frac{1}{20}\\left(\\frac{5}{6}\\right)^5$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{3125}{155520}}",
+    "is_static": false
+}

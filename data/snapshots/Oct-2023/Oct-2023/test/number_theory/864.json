@@ -1,0 +1,7 @@
+{
+    "problem": "Find the product of $3_4 \\cdot 3_4.$ Express your answer in base $4.$",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{21_4}",
+    "is_static": false
+}

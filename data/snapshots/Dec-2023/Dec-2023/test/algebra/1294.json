@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the function $g(x) = 674$.  Find $g(-475)$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{674}",
+    "is_static": false
+}

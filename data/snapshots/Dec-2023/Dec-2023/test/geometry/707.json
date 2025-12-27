@@ -1,0 +1,7 @@
+{
+    "problem": "Points $A,$ $B,$ and $C$ are placed on a circle centered at $O$ as in the following diagram: [asy]\npair pA, pB, pC, pO;\npO = (0, 0);\npA = pO + dir(-40);\npB = pO + dir(32);\npC = pO + dir(176);\ndraw(pA--pO--pB--pC--pA);\nlabel(\"$O$\", pO, 2 * E);\nlabel(\"$A$\", pA, SE);\nlabel(\"$B$\", pB, NE);\nlabel(\"$C$\", pC, W);\ndraw(circle(pO, 1));\n[/asy] If $AC = BC$ and $\\angle OAC = 14^\\circ,$ then how many degrees are in $\\angle AOB$?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{56^\\circ}",
+    "is_static": false
+}

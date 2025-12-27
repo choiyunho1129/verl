@@ -1,0 +1,7 @@
+{
+    "problem": "Eric's sports car's specifications include a $408$ metric horsepower engine. Eric wants to know how many kilowatts of power his car's engine can generate. What result should Eric obtain if $1$ kilowatt is equivalent to $1.36$ horsepower? (You may use a calculator on this problem; answer to the nearest kilowatt.)",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{300}",
+    "is_static": false
+}

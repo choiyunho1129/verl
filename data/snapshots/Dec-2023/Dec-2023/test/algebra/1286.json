@@ -1,0 +1,7 @@
+{
+    "problem": "The function $f(x)$ is graphed below.  Each small box has width and height 1.\n\n[asy]\nsize(150);\nimport TrigMacros;\nrr_cartesian_axes(-1,5,-1,5);\n\ndot((1,3),red+5bp);\ndot((2,1),red+5bp);\ndot((3,4),red+5bp);\ndot((4,2),red+5bp);\n[/asy]\nWhat is the value of $f(f(1))+f(f(2))+\\cdots+f(f(3))+f(f(4))$ ?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $\\displaystyle{{(11!)!\\over39916797!}}$?",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{63601465312816945113600}",
+    "is_static": false
+}

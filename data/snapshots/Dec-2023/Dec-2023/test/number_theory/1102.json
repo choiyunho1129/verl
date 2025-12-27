@@ -1,0 +1,7 @@
+{
+    "problem": "In this problem, $m$ and $n$ are integers.\n\nIf $m\\equiv 18\\pmod{40}$ and $m-n\\equiv 37\\pmod{40}$, then what is the remainder when $m+n$ is divided by $40$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{39}",
+    "is_static": false
+}

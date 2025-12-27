@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of the following expression: $160 - 159 +158 - 157 + 156 - 155 + \\cdots + 4 - 3 +2 - 1$?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{80}",
+    "is_static": false
+}

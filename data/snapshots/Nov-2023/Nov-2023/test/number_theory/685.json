@@ -1,0 +1,7 @@
+{
+    "problem": "$N^2$ is a divisor of $14!$. What is the greatest possible integer value of $N$?  (Reminder: For a positive integer $n$, the expression $n!$ stands for the product of the integers from 1 up to (and including) $n$.)",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{10080}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{A}$ and $\\mathbf{B}$ be $91 \\times 91$ matrices such that $\\det \\mathbf{A} = -82$ and $\\det \\mathbf{B} = -3.$  Find $\\det (28 \\mathbf{A} \\mathbf{B}).$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{192864}",
+    "is_static": false
+}

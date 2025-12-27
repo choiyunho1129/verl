@@ -1,0 +1,7 @@
+{
+    "problem": "Let $z_1,$ $z_2,$ $z_3$ be complex numbers such that $|z_1| = 93,$ $|z_2| = 92,$ $|z_3| = 80,$ and\n\\[|6400z_1 z_2 + 8464z_1 z_3 + 8649z_2 z_3| = 8898240.\\]Find $|z_1 + z_2 + z_3|.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

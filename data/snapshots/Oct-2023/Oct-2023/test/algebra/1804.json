@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $(x+ y)(x-y)$ when $x= 11$ and $y= 75$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-5504}",
+    "is_static": false
+}

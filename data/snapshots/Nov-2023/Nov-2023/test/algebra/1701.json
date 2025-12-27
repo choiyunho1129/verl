@@ -1,0 +1,7 @@
+{
+    "problem": "If $3^{x+64}=243^{x+8}$, what is $x$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The average of three weights is 16 grams. This set of three weights is then increased by another weight of 12 grams. What is the average of the four weights?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{15 \\text{ gm}}",
+    "is_static": false
+}

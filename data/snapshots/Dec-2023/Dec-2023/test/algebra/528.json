@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the product ${(7p^2 + 7)(44p^2 + 3)}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{308p^4 + 329p^2 + 21}",
+    "is_static": false
+}

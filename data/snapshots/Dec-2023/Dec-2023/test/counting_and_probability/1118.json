@@ -1,0 +1,7 @@
+{
+    "problem": "Fourteen people are sitting around a round table.  Three of them are chosen at random to give a presentation.  What is the probability that the three chosen people were sitting in consecutive seats?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{1}{26}}",
+    "is_static": false
+}

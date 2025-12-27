@@ -1,0 +1,7 @@
+{
+    "problem": "What is the circumradius of a triangle $ABC$ with sides of length $81007875$, $7478300$, and $81352325$?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{40676162.5}",
+    "is_static": false
+}

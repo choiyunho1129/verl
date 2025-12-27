@@ -1,0 +1,7 @@
+{
+    "problem": "In the polynomial $(ax^{13}+bx^{22}+cx^6+d)(x^2+ex+f)(x^{14}+gx^4+h)$, letters $a$ through $h$ are all nonzero constants. What is the degree of the polynomial?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{38}",
+    "is_static": false
+}

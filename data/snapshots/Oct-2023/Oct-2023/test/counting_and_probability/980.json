@@ -1,0 +1,7 @@
+{
+    "problem": "If we flip 14 coins, what is the probability of getting at least 9 heads?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{3473}{16384}}",
+    "is_static": false
+}

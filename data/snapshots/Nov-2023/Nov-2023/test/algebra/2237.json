@@ -1,0 +1,7 @@
+{
+    "problem": "You have linear functions $p(x)$ and $q(x)$. You know $p(23)=52$, and $p(q(x))=9x+7$ for all $x$. Find $q(5)$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{23}",
+    "is_static": false
+}

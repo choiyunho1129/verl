@@ -1,0 +1,7 @@
+{
+    "problem": "If $x=\\frac{3}{74}$ and $y=\\frac{3}{24}$, what is $\\frac{x}{y}$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{24}{74}}",
+    "is_static": false
+}

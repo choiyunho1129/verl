@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $c$ and $d$ are inversely proportional. If $c=25$ when $d=10207$, find the value of $d$ when $c=173$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1475}",
+    "is_static": false
+}

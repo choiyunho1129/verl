@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of\n\\[x^2 + 528x + y^2 - 2y + z^2 + 308z + 89805 = 0\\]is a sphere.  Find the center of the sphere.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{(-264,1,-154)}",
+    "is_static": false
+}

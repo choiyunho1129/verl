@@ -1,0 +1,7 @@
+{
+    "problem": "A baker bakes a batch of muffins and splits the batch evenly onto eleven different trays.  She then adds twelve croissants to each tray. If each tray now contains at least thirty-two baked goods, what is the least possible number of muffins in the baker's original batch?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{220}",
+    "is_static": false
+}

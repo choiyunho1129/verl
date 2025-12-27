@@ -12,14 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-try:
-    from math_verify.errors import TimeoutException
-    from math_verify.metric import math_metric
-    from math_verify.parser import ExprExtractionConfig, LatexExtractionConfig
-except ImportError:
-    print("To use Math-Verify, please install it first by running `pip install math-verify`.")
 
-
+from math_verify.errors import TimeoutException
+from math_verify.metric import math_metric
+from math_verify.parser import ExprExtractionConfig, LatexExtractionConfig
+    
 def compute_score(model_output: str, ground_truth: str, timeout_score: float = 0) -> bool:
     verify_func = math_metric(
         gold_extraction_target=(LatexExtractionConfig(),),

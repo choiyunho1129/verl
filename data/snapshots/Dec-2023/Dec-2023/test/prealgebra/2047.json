@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the first 11 prime numbers.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{160}",
+    "is_static": false
+}

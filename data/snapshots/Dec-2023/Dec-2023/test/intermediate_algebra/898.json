@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ and $y$ are real, and $x^2 + y^2 = 61,$ compute the maximum value of $(x + y)^2.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{122}",
+    "is_static": false
+}

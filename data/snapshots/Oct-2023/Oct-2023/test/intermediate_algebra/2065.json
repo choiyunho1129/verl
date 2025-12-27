@@ -1,0 +1,7 @@
+{
+    "problem": "Find the unique value of $a$ for which the polynomial $x^3 - 93x^2 + ax - 29791$ has all real, nonnegative roots.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2883}",
+    "is_static": false
+}

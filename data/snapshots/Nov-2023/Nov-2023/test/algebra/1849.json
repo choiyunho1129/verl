@@ -1,0 +1,7 @@
+{
+    "problem": "Factor the following expression: $56z^{24}+4z^{23}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{4z^{23}(14z+1)}",
+    "is_static": false
+}

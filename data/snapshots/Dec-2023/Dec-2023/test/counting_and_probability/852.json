@@ -1,0 +1,7 @@
+{
+    "problem": "During a party, a total of 81810 handshakes occurred. If each person shook hands once with each of the other people, how many people were at the party?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{405}",
+    "is_static": false
+}

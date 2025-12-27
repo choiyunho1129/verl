@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the following expression in $x$:\n\n$$39x + 20 - 51x + 40$$",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-12x + 60}",
+    "is_static": false
+}

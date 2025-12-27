@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $k$ is a positive integer less than 4, how many values can $k$ take on such that $2x \\equiv k \\pmod{4}$ has no solutions in $x$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

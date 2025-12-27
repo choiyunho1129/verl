@@ -1,0 +1,7 @@
+{
+    "problem": "If $216^b=6$ and $125^b=c$, what is the value of $c$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

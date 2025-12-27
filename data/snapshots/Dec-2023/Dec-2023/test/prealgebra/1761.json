@@ -1,0 +1,7 @@
+{
+    "problem": "Remmy wants to divide $71$ by $\\frac{99}{4}$, but he cannot remember how to do that.  By what number should he multiply $71$ to get the answer?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{4}{99}}",
+    "is_static": false
+}

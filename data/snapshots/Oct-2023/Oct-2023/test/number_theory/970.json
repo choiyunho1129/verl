@@ -1,0 +1,7 @@
+{
+    "problem": "What is the units digit of $18^7$ when expressed as an integer?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

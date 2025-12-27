@@ -1,0 +1,7 @@
+{
+    "problem": "If the function $j(x)$ is defined only on domain $[-57,67]$, and is defined on this domain by the formula $$j(x) = 17x^2+80,$$ then what is the range of $j(x)$? Express your answer as an interval or as a union of intervals.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{[80,76393]}",
+    "is_static": false
+}

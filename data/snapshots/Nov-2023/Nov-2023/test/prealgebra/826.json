@@ -1,0 +1,7 @@
+{
+    "problem": "Think of a number. Double the number. Add 400. Divide the answer by 4. Subtract one-half the original number. What is the value of the result?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{100}",
+    "is_static": false
+}

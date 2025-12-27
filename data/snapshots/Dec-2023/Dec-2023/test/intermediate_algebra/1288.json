@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $x:$ $\\log_{x} 10+\\log_{x} 1000=4$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

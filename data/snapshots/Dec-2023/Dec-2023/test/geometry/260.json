@@ -1,0 +1,7 @@
+{
+    "problem": "Given quadrilateral $ABCD$ with $A(8,14)$, $B(8,11)$, $C(-9,1)$, and $D(-9,4)$, find the number of square units in the area of the quadrilateral.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{51}",
+    "is_static": false
+}

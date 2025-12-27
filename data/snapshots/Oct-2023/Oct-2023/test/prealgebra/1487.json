@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ and $y$ are positive integers for which $5^x6^y = 21870000000$, what is the value of $x+y$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

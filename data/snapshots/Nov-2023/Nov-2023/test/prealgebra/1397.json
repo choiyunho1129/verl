@@ -1,0 +1,7 @@
+{
+    "problem": "Two fair 7-sided dice are rolled.  What is the probability the sum rolled is 9?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\dfrac{6}{49}}",
+    "is_static": false
+}

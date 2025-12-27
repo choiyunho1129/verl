@@ -1,0 +1,7 @@
+{
+    "problem": "My usual workout consists of running 9 laps around a 521 meter track. If I go to a track that is only 727 meters long, how many laps will I need to run to get the same workout?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{6.449793672627235}",
+    "is_static": false
+}

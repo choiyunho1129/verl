@@ -1,0 +1,7 @@
+{
+    "problem": "If $128^b=2$ and $823543^b=c$, what is the value of $c$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

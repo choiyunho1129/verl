@@ -1,0 +1,7 @@
+{
+    "problem": "Express in simplest form: $\\sqrt[102]{13107200000000000000000^6}$",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

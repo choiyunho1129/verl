@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x=\\frac{43}{77}$ and $y=-\\frac{37}{66}$.  If $x\\cdot z = y$, then what is $z$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-\\frac{2849}{2838}}",
+    "is_static": false
+}

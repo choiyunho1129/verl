@@ -1,0 +1,7 @@
+{
+    "problem": "If $j$ is a positive integer and the expression $(40j+3)$ is multiplied by 3 and then divided by 40, what is the remainder?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

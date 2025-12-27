@@ -1,0 +1,7 @@
+{
+    "problem": "The only garments that a particular factory produces are  dresses and shirts. It produces six\tdresses for every six shirts  it makes. If the factory produced a total of 108 garments today,  how many dresses did it make?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{54}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the remainder when $69248^{860} - 144340^{860} + 5739$ is divided by 698.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{5739}",
+    "is_static": false
+}

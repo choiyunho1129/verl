@@ -1,0 +1,7 @@
+{
+    "problem": "The digits 1, 3 and 4 are each used once to form each of the possible three-digit positive integers. The three-digit integers are listed from greatest to least. Which integer is listed fifth?",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{143}",
+    "is_static": false
+}

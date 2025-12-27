@@ -1,0 +1,7 @@
+{
+    "problem": "Let $m>1$ and $n>1$ be integers. Suppose that the product of the solutions for $x$ of the equation $$ 7(\\log_n x)(\\log_m x)-4\\log_n x-3 \\log_m x-4638 = 0 $$is the smallest possible integer. What is $m+n$?",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

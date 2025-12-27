@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of two positive integers $a$ and $b$ is 276.  What is the largest possible value of $\\gcd(a,b)$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{138}",
+    "is_static": false
+}

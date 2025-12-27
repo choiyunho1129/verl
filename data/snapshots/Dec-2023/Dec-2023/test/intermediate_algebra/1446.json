@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = x^{71} + ax^{55} + cx^{49}$  If $f(-861) = 881,$ then find $f(861).$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-881}",
+    "is_static": false
+}

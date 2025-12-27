@@ -1,0 +1,7 @@
+{
+    "problem": "The equation of a particular ellipse is $616225x^2+729610400y^2-6084x+11851632y+217987310284=0$. Another way to give the equation for ellipses is in the form $$\\dfrac{\\left(x-h\\right)^2}{a^2}+\\dfrac{\\left(y-k\\right)^2}{b^2}=1$$ When $616225x^2+729610400y^2-6084x+11851632y+217987310284=0$ is rewritten in this form, what is the value of $h + k + a + b$?",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{481}",
+    "is_static": false
+}

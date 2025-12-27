@@ -1,0 +1,7 @@
+{
+    "problem": "Seven circles are all the same size. Each pair of these circles overlap but no circle is exactly on top of another circle. What is the greatest possible total number of intersection points of these ten circles?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{42}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\sin 2 \\theta = \\frac{6536}{6561}$ and $\\cos \\theta - \\sin \\theta > 0,$ then compute $\\cos \\theta - \\sin \\theta.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{5}{81}}",
+    "is_static": false
+}

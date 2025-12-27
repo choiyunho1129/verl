@@ -1,0 +1,7 @@
+{
+    "problem": "What value of $x$ will give the minimum value for $x^2- 62x + 392$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{31}",
+    "is_static": false
+}

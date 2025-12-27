@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the product ${610(x+235)(x+790)}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{610x^2 + 625250x + 113246500}",
+    "is_static": false
+}

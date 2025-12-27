@@ -1,0 +1,7 @@
+{
+    "problem": "There are $2$ separate large boxes, and inside each large box there are $5$ separate small boxes, and inside each of these small boxes there are $9$ separate smaller boxes. How many boxes, counting all sizes, are there altogether?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{102}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In triangle $ABC$, medians $\\overline{AD}$ and $\\overline{BE}$ are perpendicular.  If $AC = 44$ and $BC = 8$, then find $AB$.",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

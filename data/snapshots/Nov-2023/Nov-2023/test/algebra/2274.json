@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$, $y$, and $z$ are positive integers such that $10xyz+90xy+85xz+4yz+765x+36y+34z=13991$, find $x+y+z$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

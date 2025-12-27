@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $k$ in the equation $89k+233 = 3437$.",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{36}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the product ${882(x+635)(x+115)}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{882x^2 + 661500x + 64408050}",
+    "is_static": false
+}

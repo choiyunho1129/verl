@@ -1,0 +1,7 @@
+{
+    "problem": "If $j$ is a positive integer and the expression $(3j+19)$ is multiplied by 19 and then divided by 3, what is the remainder?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

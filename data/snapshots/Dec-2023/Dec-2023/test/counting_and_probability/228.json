@@ -1,0 +1,7 @@
+{
+    "problem": "What is the probability that if you roll two fair, standard thirty-one-sided dice, the difference between the two numbers rolled will be 0? Express your answer as a common fraction.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{1}{31}}",
+    "is_static": false
+}

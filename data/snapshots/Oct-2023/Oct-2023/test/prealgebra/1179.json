@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest integer that is a solution of $6x + 5 < 31$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

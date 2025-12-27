@@ -1,0 +1,7 @@
+{
+    "problem": "Abby, Bart, Cindy and Damon weigh themselves in pairs. Together Abby and Bart weigh 112 pounds, Bart and Cindy weigh 107 pounds, and Cindy and Damon weigh 78 pounds. How many pounds do Abby and Damon weigh together?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{83}",
+    "is_static": false
+}

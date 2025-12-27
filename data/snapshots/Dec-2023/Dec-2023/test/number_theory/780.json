@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $m$ is a two-digit positive integer such that $106^{-1}\\pmod m$ exists and $106^{-1}\\equiv 2^2\\pmod m$. What is $m$?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{47}",
+    "is_static": false
+}

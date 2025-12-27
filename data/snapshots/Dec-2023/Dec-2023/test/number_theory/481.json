@@ -1,0 +1,7 @@
+{
+    "problem": "How many more digits does the base-10 number 1953 have when expressed in base 6 than when expressed in base 8?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

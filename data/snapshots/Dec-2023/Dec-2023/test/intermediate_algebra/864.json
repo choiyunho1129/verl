@@ -1,0 +1,7 @@
+{
+    "problem": "Compute the area of the ellipse $49x^2 + y^2 = 1225.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{175\\pi}",
+    "is_static": false
+}

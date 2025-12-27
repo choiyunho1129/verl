@@ -1,0 +1,7 @@
+{
+    "problem": "A positive integer is 17 more than a multiple of 21 and 23 more than a multiple of 50. What is the least integer it could be?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{773}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Each of $\\triangle PQR$ and $\\triangle STU$ has an area of $97.$ In $\\triangle PQR,$ $U,$ $W,$ and $V$ are the midpoints of the sides. In $\\triangle STU,$ $R,$ $V,$ and $W$ are the midpoints of the sides. What is the area of parallelogram $UVRW?$ [asy]\ndraw((0,0)--(2,0)--(1,2)--cycle,linewidth(1));\ndraw((0,2)--(2,2)--(1,0)--cycle,linewidth(1));\nlabel(\"$T$\",(0,0),SW);\nlabel(\"$R$\",(1,0),S);\nlabel(\"$S$\",(2,0),SE);\nlabel(\"$W$\",(1.5,1),E);\nlabel(\"$Q$\",(2,2),NE);\nlabel(\"$U$\",(1,2),N);\nlabel(\"$P$\",(0,2),NW);\nlabel(\"$V$\",(0.5,1),W);\n[/asy]",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{97}{2}}",
+    "is_static": false
+}

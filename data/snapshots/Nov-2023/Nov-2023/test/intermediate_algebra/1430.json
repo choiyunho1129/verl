@@ -1,0 +1,7 @@
+{
+    "problem": "Find the center of the ellipse whose equation is $10x^2 - 180x + 8y^2 - 112y - 1282 = 0.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(9,7)}",
+    "is_static": false
+}

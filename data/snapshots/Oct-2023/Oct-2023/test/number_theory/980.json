@@ -1,0 +1,7 @@
+{
+    "problem": "As $n$ ranges over the positive integers, what is the maximum possible value that the greatest common divisor of $868n + 118$ and $668n+60$ can take?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{6686}",
+    "is_static": false
+}

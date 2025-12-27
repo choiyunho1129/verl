@@ -1,0 +1,7 @@
+{
+    "problem": "Find the matrix $\\mathbf{M}$ that swaps the rows of a matrix.  In other words,\n\\[\\mathbf{M} \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = \\begin{pmatrix} 325c & 325d \\\\ 49a & 49b \\end{pmatrix}.\\]If no such matrix $\\mathbf{M}$ exists, then enter the zero matrix.",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 0 & 325 \\\\ 49 & 0 \\end{pmatrix}}",
+    "is_static": false
+}

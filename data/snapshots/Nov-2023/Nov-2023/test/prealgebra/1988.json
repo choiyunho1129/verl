@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the following expression in $x$:\n\n$$35x + 48 - 51x + 3$$",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-16x + 51}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The product of two positive numbers is 47, and the sum of their squares is 193. What is the square of their difference?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{99}",
+    "is_static": false
+}

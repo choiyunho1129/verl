@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers between 300 and 600 have at least two 6s as digits?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{21}",
+    "is_static": false
+}

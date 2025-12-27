@@ -1,0 +1,7 @@
+{
+    "problem": "Find the range of the function $f(x) = 11\\arctan x + \\frac{11}{2} \\arcsin x.$  All functions are in radians.",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\left[ -\\frac{11\\pi}{2}, \\frac{11\\pi}{2} \\right]}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "When the expression $-15x^2-1350x-37$ is written in the form $a(x+d)^2+e$, where $a$, $d$, and $e$ are constants, what is the sum $a+d+e$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{30368}",
+    "is_static": false
+}

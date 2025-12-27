@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{58}{29}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{30067266499541040}",
+    "is_static": false
+}

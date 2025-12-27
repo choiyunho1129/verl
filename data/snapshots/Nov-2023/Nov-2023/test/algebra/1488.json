@@ -1,0 +1,7 @@
+{
+    "problem": "If the point $(32,287)$ is on the graph of $y=f(x)$, then there is one point which must be on the graph of $y=f(-x)$. What is the sum of that point's coordinates?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{255}",
+    "is_static": false
+}

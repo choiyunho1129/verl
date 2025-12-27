@@ -1,0 +1,7 @@
+{
+    "problem": "The graphs of $y = x^2 - 74x + 1339$ and the line $y = 6$ intersect at two points. What is the sum of the $x$-coordinates of these two points?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{74}",
+    "is_static": false
+}

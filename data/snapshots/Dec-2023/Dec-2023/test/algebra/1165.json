@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\sqrt[3]{72}\\times \\sqrt[3]{6250}\\times \\sqrt[3]{759375}\\times \\sqrt[3]{900}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{67500}",
+    "is_static": false
+}

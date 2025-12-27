@@ -1,0 +1,7 @@
+{
+    "problem": "Square $ABCD$ and equilateral triangle $AED$ are coplanar and share $\\overline{AD}$, as shown. What is the measure, in degrees, of 883 times angle $BAE$? [asy] size(3cm);\npair A,B,C,D,E;\nA = (0,0);\nB = (0,1);\nC = (1,1);\nD = (1,0);\nE = dir(60);\ndraw(A--B--C--D--E--A--D);\nlabel(\"$A$\",A,dir(180));\nlabel(\"$B$\",B,dir(180));\nlabel(\"$C$\",C,dir(0));\nlabel(\"$D$\",D,dir(0));\nlabel(\"$E$\",E,dir(0));\n[/asy]",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{26490}",
+    "is_static": false
+}

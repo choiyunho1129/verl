@@ -1,0 +1,7 @@
+{
+    "problem": "A committee of three students met with the principal today and agreed that Rachel will report to the principal every $10$ days, Jessica every $27$ days, and Richard every $28$ days. What is the least number of days before all three will again report to the principal on the same day?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{3780}",
+    "is_static": false
+}

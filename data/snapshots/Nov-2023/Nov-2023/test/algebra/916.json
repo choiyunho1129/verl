@@ -1,0 +1,7 @@
+{
+    "problem": "How many non-congruent right triangles are there, all of whose sides have positive integer lengths, and one of whose legs (i.e. not the hypotenuse) has length $62762119218$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

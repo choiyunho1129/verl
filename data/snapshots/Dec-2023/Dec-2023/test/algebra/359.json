@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $y$ in the arithmetic sequence $y + 46$, $58$, $y$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{35}",
+    "is_static": false
+}

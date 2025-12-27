@@ -1,0 +1,7 @@
+{
+    "problem": "If no one shares an office, in how many ways can 10 people be assigned to 18 different offices? (Each person gets exactly one office).",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{158789030400}",
+    "is_static": false
+}

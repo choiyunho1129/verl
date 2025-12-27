@@ -1,0 +1,7 @@
+{
+    "problem": "Let $z_1$ and $z_2$ be two complex numbers such that $|z_1| = 803$ and\n\\[\\frac{z_1}{z_2} + \\frac{z_2}{z_1} = 1.\\]Find $|z_1 - z_2|^2.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{644809}",
+    "is_static": false
+}

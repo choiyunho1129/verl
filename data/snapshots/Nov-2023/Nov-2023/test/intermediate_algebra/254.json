@@ -1,0 +1,7 @@
+{
+    "problem": "What is the radical conjugate of $42 - 74\\sqrt{2}$?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{42+74\\sqrt{2}}",
+    "is_static": false
+}

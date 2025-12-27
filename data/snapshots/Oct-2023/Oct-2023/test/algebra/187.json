@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $f$ is a polynomial such that \\[(6x^5+26x^4+2x^3+14x^2+6x-36)\\cdot f(x)=22x^7+3x^6+40x^5+28x^4+32x^3 - 11x^2 +29x -14.\\]What is the degree of $f$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

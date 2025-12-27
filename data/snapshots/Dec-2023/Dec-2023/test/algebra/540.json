@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left(\\dfrac{i}{11}\\right)^2$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-\\dfrac{1}{121}}",
+    "is_static": false
+}

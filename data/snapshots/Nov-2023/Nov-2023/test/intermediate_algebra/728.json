@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of the rational function $\\frac{q(x)}{x^{41}-4x^{20}+3x^{37}+x^{25}-1} $ has a horizontal asymptote. What is the largest possible degree of $q(x)$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{41}",
+    "is_static": false
+}

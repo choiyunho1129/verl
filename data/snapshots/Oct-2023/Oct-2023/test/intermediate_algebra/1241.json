@@ -1,0 +1,7 @@
+{
+    "problem": "Let $p(x) = x^3 + ax^2 + bx + c$, where $a$, $b$, and $c$ are complex numbers.  Suppose that \\begin{align*} p(730 + 128\\pi i) = p(730) = p(128) = 0 \\end{align*}What is the number of nonreal zeros of $x^{96} + ax^64 + bx^32 + c$?",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{36}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left|\\dfrac{19-55i}{12+25i}\\right|$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2.0983614884668667}",
+    "is_static": false
+}

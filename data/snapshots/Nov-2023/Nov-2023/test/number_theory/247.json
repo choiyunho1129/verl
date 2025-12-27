@@ -1,0 +1,7 @@
+{
+    "problem": "Solve the congruence $10n \\equiv 3 \\pmod{53}$, as a residue modulo 53.  (Give an answer between 0 and 52.)",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{48}",
+    "is_static": false
+}

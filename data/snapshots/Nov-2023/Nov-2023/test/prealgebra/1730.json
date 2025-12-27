@@ -1,0 +1,7 @@
+{
+    "problem": "The product of three consecutive integers is 24. That product divided by the mean of the three integers is 8. What is the largest of the three consecutive integers?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

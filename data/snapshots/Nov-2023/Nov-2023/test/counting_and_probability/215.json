@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can 36 different people be seated around a round table with 36 places? Two seatings are considered equivalent if one can be rotated to form the other.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{10333147966386144929666651337523200000000}",
+    "is_static": false
+}

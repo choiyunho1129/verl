@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ and $b$ are integers such that $ab\\equiv 20843\\pmod{109408}$, then what is the remainder when $(a+54704)(b+54704)$ is divided by $109408$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{20843}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many fifteen-digit positive integers are there?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{900000000000000}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $h(x)=f^{-1}(x)$. If $h(12)=40$, $h(40)=2$ and $h(2)=12$, what is $f(f(40))$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

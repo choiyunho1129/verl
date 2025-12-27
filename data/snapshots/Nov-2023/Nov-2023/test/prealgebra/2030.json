@@ -1,0 +1,7 @@
+{
+    "problem": "The table shows the number of days per week households eat their dinner together.  What percent of households eat their dinner together at least once a week? \\begin{tabular}{|c|c|}\n\\multicolumn{2}{c}{}\\\\\\hline\n7 days&38\\%\\\\\\hline\n5-6 days&14\\%\\\\\\hline\n1-4 days&8\\%\\\\\\hline\n0 days&40\\%\\\\\\hline\n\\end{tabular}",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{60}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find all values of $x$ where there is a vertical asymptote for the equation $y=\\frac{x+1}{x^2-4x+4}$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

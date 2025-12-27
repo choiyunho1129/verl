@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(785-144i)-(-533-144i)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1318}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Round each number to the nearest tenth and add the results: 894.17, 479.22, and 172.18.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1545.6}",
+    "is_static": false
+}

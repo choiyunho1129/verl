@@ -1,0 +1,7 @@
+{
+    "problem": "Circle $A$ has a diameter of 205 inches and circle $B$ has a diameter of 245 inches. What is the ratio of the area of circle $A$ to the area of circle $B$? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{1681}{2401}}",
+    "is_static": false
+}

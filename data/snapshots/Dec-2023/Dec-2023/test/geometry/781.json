@@ -1,0 +1,7 @@
+{
+    "problem": "Triangle $ABC$ with vertices at $A(2, 2)$, $B(2, -5)$ and $C(5, -5)$ is translated up 10 units and then dilated with respect to the origin by a factor of 9. What are the new coordinates of point $C$? Express your answer as an ordered pair.",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{(45,45)}",
+    "is_static": false
+}

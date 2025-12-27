@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(834-681i)-(-201-681i)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1035}",
+    "is_static": false
+}

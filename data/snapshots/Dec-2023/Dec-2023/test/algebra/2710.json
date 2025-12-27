@@ -1,0 +1,7 @@
+{
+    "problem": "Find $p+q$, given that $(q+44)(p+58)-(q+24)(p+38)=2580$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{47}",
+    "is_static": false
+}

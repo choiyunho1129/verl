@@ -1,0 +1,7 @@
+{
+    "problem": "If $x = 18$ and $y = 18$, then what is the value of $\\frac{18x^3-18y^2}{324}$ ?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{306}",
+    "is_static": false
+}

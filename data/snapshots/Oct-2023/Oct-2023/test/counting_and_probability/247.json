@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{33}{2}$.",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{528}",
+    "is_static": false
+}

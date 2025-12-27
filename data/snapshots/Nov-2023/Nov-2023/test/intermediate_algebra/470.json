@@ -1,0 +1,7 @@
+{
+    "problem": "The function $f(x) = -2x^2 + 8x - 15,$ defined for all real numbers, does not have an inverse.  However, when its domain is restricted to $x \\in [c,\\infty),$ the function does become invertible, for certain values of $c.$  What is the smallest such value of $c$?",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

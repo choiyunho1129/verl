@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of 70 and 14, rounded to the nearest ten?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{80}",
+    "is_static": false
+}

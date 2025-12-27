@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate: $[37-(-1)^{11}]^2.$",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1444}",
+    "is_static": false
+}

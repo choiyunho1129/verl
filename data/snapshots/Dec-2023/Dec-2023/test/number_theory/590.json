@@ -1,0 +1,7 @@
+{
+    "problem": "A positive integer is 3 more than a multiple of 41 and 41 more than a multiple of 50. What is the least integer it could be?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{741}",
+    "is_static": false
+}

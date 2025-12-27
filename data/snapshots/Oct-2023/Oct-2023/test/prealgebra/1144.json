@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest integer that satisfies $14 - x > -22$ ?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{35}",
+    "is_static": false
+}

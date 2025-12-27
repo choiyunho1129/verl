@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when $1 + 2 + 3 + 4 + \\dots + 408 + 409$ is divided by 54?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{37}",
+    "is_static": false
+}

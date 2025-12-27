@@ -1,0 +1,7 @@
+{
+    "problem": "Convert the point $(0,105)$ in rectangular coordinates to polar coordinates.  Enter your answer in the form $(r,\\theta),$ where $r > 0$ and $0 \\le \\theta < 2 \\pi.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\left( 105, \\frac{\\pi}{2} \\right)}",
+    "is_static": false
+}

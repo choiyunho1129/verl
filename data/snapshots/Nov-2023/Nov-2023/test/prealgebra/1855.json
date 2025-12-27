@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $523 + (2688 \\div 32)$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{607}",
+    "is_static": false
+}

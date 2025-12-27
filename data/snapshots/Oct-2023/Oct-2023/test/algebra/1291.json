@@ -1,0 +1,7 @@
+{
+    "problem": "$a$ and $b$ are real numbers and satisfy $ab^2=\\frac{343}{8}$ and $a^2b=2744$. Compute $a+8b$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{63}",
+    "is_static": false
+}

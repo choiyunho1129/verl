@@ -1,0 +1,7 @@
+{
+    "problem": "The number 24137569 is both a perfect cube and a perfect square, since $289^3 = 24137569$ and $4913^2 = 24137569$. What is the next larger number that is both a perfect cube and a perfect square?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{34012224}",
+    "is_static": false
+}

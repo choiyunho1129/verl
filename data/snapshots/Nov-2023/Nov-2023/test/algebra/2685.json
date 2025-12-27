@@ -1,0 +1,7 @@
+{
+    "problem": "Which of the following points is farthest from the origin: $(-14,3)$, $(4,-2)$, $(10,15)$, $(-3,-14)?$",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{(10,15)}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Solve the congruence $7n \\equiv 2 \\pmod{23}$, as a residue modulo 23.  (Give an answer between 0 and 22.)",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

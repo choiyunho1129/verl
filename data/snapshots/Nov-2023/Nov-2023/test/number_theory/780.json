@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $m$ is a two-digit positive integer such that $178^{-1}\\pmod m$ exists and $178^{-1}\\equiv 2^2\\pmod m$. What is $m$?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{79}",
+    "is_static": false
+}

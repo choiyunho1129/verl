@@ -1,0 +1,7 @@
+{
+    "problem": "Recently, Frank took a one-hundred question aptitude test where each correct answer scored $5$ points, each incorrect answer scored $-2$ points, and each question not answered scored zero points. Frank answered $53$ questions and scored $139$ points. How many questions did he answer correctly?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{35}",
+    "is_static": false
+}

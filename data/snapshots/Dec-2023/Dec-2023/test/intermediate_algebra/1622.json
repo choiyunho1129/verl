@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ and $y$ are numbers such that $(x + 1)(y-8) = 0$, what is the smallest possible value of $x^2+ y^2$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

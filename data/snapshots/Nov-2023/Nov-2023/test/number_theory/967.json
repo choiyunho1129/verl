@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $$\\begin{array}{@{}c@{\\;}c@{}c@{}c} && &P_b \\\\ & \\times & & P_b \\\\ \\cline{2-4} & & Q & P_b, \\\\ \\end{array} $$where $P$, $Q$, and $b$ represent three distinct digits 1-9. If $Q=\\frac{P}{796}$, and $P$ is three thousand, nine hundred and seventy-four less than $b$, what is the value of the digit $P$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

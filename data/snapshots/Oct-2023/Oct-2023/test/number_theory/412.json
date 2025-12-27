@@ -1,0 +1,7 @@
+{
+    "problem": "If $x \\equiv 39 \\pmod{41}$ and $y \\equiv 18 \\pmod{41}$, then find the remainder when $(x + 10)^7 (y + 27)^8$ is divided by 41.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{36}",
+    "is_static": false
+}

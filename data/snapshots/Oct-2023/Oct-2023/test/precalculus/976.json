@@ -1,0 +1,7 @@
+{
+    "problem": "Convert the point $( 145, -145, -312 )$ in rectangular coordinates to cylindrical coordinates.  Enter your answer in the form $(r,\\theta,z),$ where $r > 0$ and $0 \\le \\theta < 2 \\pi.$",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\left( 145\\sqrt{2}, \\frac{7 \\pi}{4}, -312 \\right)}",
+    "is_static": false
+}

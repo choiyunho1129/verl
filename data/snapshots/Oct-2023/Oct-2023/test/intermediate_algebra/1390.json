@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x,$ $y,$ and $z$ be nonnegative real numbers such that $x + y + z = 87.$  Find the maximum value of\n\\[(xy + z)(xz + y).\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{937024}",
+    "is_static": false
+}

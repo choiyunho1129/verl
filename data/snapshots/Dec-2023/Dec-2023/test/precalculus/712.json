@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\det \\mathbf{A} = 663,$ then find $\\det (\\mathbf{749A}).$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{371943663}",
+    "is_static": false
+}

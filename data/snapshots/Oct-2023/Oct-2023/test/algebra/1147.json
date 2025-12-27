@@ -1,0 +1,7 @@
+{
+    "problem": "If we express $x^2 + 24x + 100$ in the form $a(x - h)^2 + k$, then what is $h$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-12}",
+    "is_static": false
+}

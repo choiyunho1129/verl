@@ -1,0 +1,7 @@
+{
+    "problem": "A club has 20 members, 2 boys and 18 girls.  Two of the members are chosen at random.  What is the probability that a boy and a girl are chosen?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\dfrac{18}{95}}",
+    "is_static": false
+}

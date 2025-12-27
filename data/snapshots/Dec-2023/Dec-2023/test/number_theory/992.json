@@ -1,0 +1,7 @@
+{
+    "problem": "What is the 2466th digit to the right of the decimal point in the decimal expansion of $\\frac{112}{13}$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

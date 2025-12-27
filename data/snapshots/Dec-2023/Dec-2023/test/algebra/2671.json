@@ -1,0 +1,7 @@
+{
+    "problem": "If \\begin{align*}\n4x-y&=46,\\\\\n2x+y &=13,\n\\end{align*}compute $12x-24y$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{278}",
+    "is_static": false
+}

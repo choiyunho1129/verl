@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x)=|x-p|+|x-7|+|x-p-7|,$ where $0 < p < 7.$ Determine the minimum value taken by $f(x)$ for $x$ in the interval $p \\leq x\\leq7.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

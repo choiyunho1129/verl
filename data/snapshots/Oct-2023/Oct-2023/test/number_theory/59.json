@@ -1,0 +1,7 @@
+{
+    "problem": "February $7$, $2024$ is a Wednesday.  The last Wednesday of February $2024$ will be February $x$, $2024$.  If $2024$ is a leap year, what is the value of $x$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{28}",
+    "is_static": false
+}

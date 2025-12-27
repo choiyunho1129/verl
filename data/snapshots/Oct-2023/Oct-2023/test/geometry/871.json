@@ -1,0 +1,7 @@
+{
+    "problem": "How many square units are in the area of the largest square that can be inscribed in a circle with radius 24 units?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{1152}",
+    "is_static": false
+}

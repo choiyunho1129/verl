@@ -1,0 +1,7 @@
+{
+    "problem": "Find the point of intersection of the line\n\\[\\frac{x - 942}{353} = \\frac{y + 323}{331} = \\frac{z - 495}{814}\\]and $x - y + z = 1760.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{(942,-323,495)}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Cheldelin Middle School has 17 doors to enter or leave the building. In how many ways is it possible to enter the building by one door and leave the building by a different door?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{272}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $23\\cos 315^\\circ$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{\\sqrt{1058}}{2}}",
+    "is_static": false
+}

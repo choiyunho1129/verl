@@ -1,0 +1,7 @@
+{
+    "problem": "If \\begin{align*}\n2x-y&=21,\\\\\n8x+y &=17,\n\\end{align*}compute $152x-171y$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{2869}",
+    "is_static": false
+}

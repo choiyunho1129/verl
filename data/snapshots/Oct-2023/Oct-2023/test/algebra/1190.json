@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is an integer, what is the smallest value of the expression $x^2 - 18x +83$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

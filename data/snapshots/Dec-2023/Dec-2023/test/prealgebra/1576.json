@@ -1,0 +1,7 @@
+{
+    "problem": "In a convex heptagon, the degree measures of the interior angles are $x, ~x, ~x-8, ~x-8,\n~x + 8, ~x + 8$ and $x + 18$ degrees. What is the degree measure of the largest interior angle?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{144}",
+    "is_static": false
+}

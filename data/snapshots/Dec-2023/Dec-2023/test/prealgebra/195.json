@@ -1,0 +1,7 @@
+{
+    "problem": "Enrico makes a list of the first forty-four positive multiples of 19. Marie makes a list of the first twenty-two positive multiples of 38. How many of the numbers on Marie's list are also on Enrico's list?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

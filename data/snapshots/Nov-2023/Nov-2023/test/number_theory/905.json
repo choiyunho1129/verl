@@ -1,0 +1,7 @@
+{
+    "problem": "What percent of the integers from 1 to 100, inclusive, leave remainder 2 when divided by 6?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{17}",
+    "is_static": false
+}

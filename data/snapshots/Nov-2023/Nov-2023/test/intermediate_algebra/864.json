@@ -1,0 +1,7 @@
+{
+    "problem": "Compute the area of the ellipse $64x^2 + y^2 = 3136.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{392\\pi}",
+    "is_static": false
+}

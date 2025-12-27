@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of two numbers is 186 and their difference is 8. What is the smaller of the two numbers?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{89}",
+    "is_static": false
+}

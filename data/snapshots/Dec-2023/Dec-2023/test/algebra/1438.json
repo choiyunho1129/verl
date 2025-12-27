@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $(10648000)^{6/3}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{113379904000000}",
+    "is_static": false
+}

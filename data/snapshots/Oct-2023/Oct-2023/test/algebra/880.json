@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of $y=ax^2+bx+c$ passes through points $(0,16)$, $(1,4)$, and $(2,40)$. Find $a+b+c$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

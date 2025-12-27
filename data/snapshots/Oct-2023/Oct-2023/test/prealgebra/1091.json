@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive multiples of $11$ are less than $887$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{80}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Alice wants to buy $709$ pounds of veal at the grocery store, but the scales at the store only show weight in kilograms. If one kilogram is $2.20$ pounds, how many kilograms of veal should Alice buy?  (You may use a calculator on this problem; answer to the nearest hundredth.)",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{322.27}",
+    "is_static": false
+}

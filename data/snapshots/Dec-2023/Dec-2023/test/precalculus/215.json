@@ -1,0 +1,7 @@
+{
+    "problem": "Find the smallest positive value of $x$ such that\n\\[\\tan 14^\\circ + 2 \\tan 62^\\circ = \\tan x^\\circ.\\]",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{76}",
+    "is_static": false
+}

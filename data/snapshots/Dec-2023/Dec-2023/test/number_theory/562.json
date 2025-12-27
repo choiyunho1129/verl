@@ -1,0 +1,7 @@
+{
+    "problem": "Express $0.\\overline{17}$ as a fraction in lowest terms.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac{17}{99}}",
+    "is_static": false
+}

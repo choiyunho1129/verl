@@ -1,0 +1,7 @@
+{
+    "problem": "The following diagonal is drawn in a regular icosagon, creating an octadecagon and a quadrilateral.  What is the measure of $x$?\n\n[asy]\nimport markers;\nfor(int i=0; i <=20; ++i) {\ndraw(dir(360*i/20+90)--dir(360*(i+1)/20+90));\n}\npair A = dir(360*0/20+90);\npair F = dir(360*17/20+90);\npair G = dir(360*18/20+90);\npair H = dir(360*19/20+90);\n\ndraw(A--F);\n\nmarkangle(Label(\"$x$\",Relative(0.5)),n=1,radius=18,G,F,A);\n\n[/asy]",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

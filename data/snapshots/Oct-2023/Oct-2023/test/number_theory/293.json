@@ -1,0 +1,7 @@
+{
+    "problem": "What digit must be placed in the blank to make the four-digit integer $88\\_3$ a multiple of 11?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can  31 students be selected from a group of 31 students?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

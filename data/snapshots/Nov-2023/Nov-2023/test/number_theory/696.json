@@ -1,0 +1,7 @@
+{
+    "problem": "Express as a common fraction: $\\frac{. \\overline{1} }{. \\overline{9} }$",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac19}",
+    "is_static": false
+}

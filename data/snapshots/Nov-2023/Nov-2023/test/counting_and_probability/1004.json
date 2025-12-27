@@ -1,0 +1,7 @@
+{
+    "problem": "How many numbers between 1 and 43445 are integer multiples of 66 or 47 but not 3102?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{1554}",
+    "is_static": false
+}

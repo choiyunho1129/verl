@@ -1,0 +1,7 @@
+{
+    "problem": "How many units apart is any pair of parallel sides of a regular hexagon with side of 2902 units? Express your answer in simplest radical form.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{2902\\sqrt{3}}",
+    "is_static": false
+}

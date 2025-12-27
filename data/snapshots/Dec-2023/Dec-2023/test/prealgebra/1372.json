@@ -1,0 +1,7 @@
+{
+    "problem": "An 24.5-by-29-inch piece of paper is folded in half repeatedly (never being unfolded), each time shortening what was then the longer side. What is the length of the longest side, in inches, immediately after the second fold? Express your answer as a decimal to the nearest tenth.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{14.5}",
+    "is_static": false
+}

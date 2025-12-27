@@ -1,0 +1,7 @@
+{
+    "problem": "Given that the absolute value of the difference of the two roots of $ax^2 + 35x - 38 = 0$ is $\\frac{\\sqrt{5937}}{31}$, and $a$ is positive, what is the value of $a$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{31}",
+    "is_static": false
+}

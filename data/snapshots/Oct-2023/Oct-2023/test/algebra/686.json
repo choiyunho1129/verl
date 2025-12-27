@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the geometric series $96+\\frac{9120}{a}+\\frac{866400}{a^2}+\\cdots$. If the sum is a perfect square, what is the smallest possible value of $a$ where $a$ is a positive integer?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{96}",
+    "is_static": false
+}

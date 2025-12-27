@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $z$ is a complex number such that $z^4 = \\frac{120000}{13}-\\frac{50000}{13}i$.  Find $|z|$.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

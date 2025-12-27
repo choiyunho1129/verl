@@ -1,0 +1,7 @@
+{
+    "problem": "Find all values of $x$ such that $\\displaystyle\\frac{74}{x-1} + \\frac{296x}{x - 1} = 306$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{38}",
+    "is_static": false
+}

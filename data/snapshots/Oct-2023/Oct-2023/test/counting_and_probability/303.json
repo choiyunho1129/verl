@@ -1,0 +1,7 @@
+{
+    "problem": "Sarah wants to order a pizza with 14 different toppings. She has 16 different toppings to choose from. How many different pizzas could she order?",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{120}",
+    "is_static": false
+}

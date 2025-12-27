@@ -1,0 +1,7 @@
+{
+    "problem": "If the number \\[\\frac{1}{2} \\left(\\frac{1334}{\\sqrt[3]{945} + \\sqrt[3]{389}} + \\frac{556}{\\sqrt[3]{945} -\\sqrt[3]{389}}\\right)\\]can be expressed in the form $\\sqrt[3]{a} + \\sqrt[3]{b},$ where $a$ and $b$ are integers, compute $a+b.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{1044346}",
+    "is_static": false
+}

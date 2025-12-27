@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest perfect square less than 9458 that is a multiple of 97?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{9409}",
+    "is_static": false
+}

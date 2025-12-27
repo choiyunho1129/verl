@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when $13!$ is divided by $31$?\n\n(Note: $n!$ means \"n factorial\", defined as the product of all integers from $1$ to $n$.)",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

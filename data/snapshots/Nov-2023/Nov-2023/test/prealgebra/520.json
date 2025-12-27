@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{k-90}{6} + 12k+11+\\frac{53k+24}{6}$.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{21k}",
+    "is_static": false
+}

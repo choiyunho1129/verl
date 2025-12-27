@@ -1,0 +1,7 @@
+{
+    "problem": "For integers $n$, let \\[f(n) = \\left\\{\n\\begin{array}{cl}\nn^2 & \\text{ if }n\\text{ is odd}, \\\\\nn^2 - 4n - 1 & \\text{ if }n\\text{ is even}.\n\\end{array}\n\\right.\\]Find $f(f(f(f(f(6153)))))$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{17814813608908226390399715407249864418260937360312919655898177946612909838745862152445841073061211584421626381902893661441}",
+    "is_static": false
+}

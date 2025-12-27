@@ -1,0 +1,7 @@
+{
+    "problem": "How many of the 3201 integers from $-1600$ to $1600$ are congruent to $2 \\pmod{2}?$",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{1601}",
+    "is_static": false
+}

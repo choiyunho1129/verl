@@ -1,0 +1,7 @@
+{
+    "problem": "Beth rolls a fair eleven-sided die. If she rolls a prime number, she wins 1 dollar, but if she rolls a composite number, she loses 1 dollar. If she rolls 1 nothing happens. What is the expected value of the amount of money Beth will win if she rolls the die once? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

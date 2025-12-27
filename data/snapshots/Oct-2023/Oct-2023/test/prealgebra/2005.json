@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is doubled and then increased by $9582$, the result is $2597$. What is the value of $x$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-3492.5}",
+    "is_static": false
+}

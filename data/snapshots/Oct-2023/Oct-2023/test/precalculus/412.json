@@ -1,0 +1,7 @@
+{
+    "problem": "Given that\n\\[\\begin{vmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{vmatrix} = 567,\\]find\n\\[\\begin{vmatrix} a & b & c \\\\ 650d + 972g & 650e + 972h & 650f + 972i \\\\ -g & -h & -i \\end{vmatrix}.\\]",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{-368550}",
+    "is_static": false
+}

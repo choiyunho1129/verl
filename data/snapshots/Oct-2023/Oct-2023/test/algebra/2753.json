@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\sqrt{23x}\\cdot\\sqrt{391x}\\cdot\\sqrt{2057x}=40735991245312$, find $x$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{4476506}",
+    "is_static": false
+}

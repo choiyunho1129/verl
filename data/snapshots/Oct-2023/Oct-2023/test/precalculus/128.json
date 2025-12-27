@@ -1,0 +1,7 @@
+{
+    "problem": "A dilation centered at the origin takes $\\begin{pmatrix} 589 \\\\ 899 \\end{pmatrix}$ to $\\begin{pmatrix} 68324 \\\\ 104284 \\end{pmatrix}.$  Which vector does the dilation take $\\begin{pmatrix} 34 \\\\ 132 \\end{pmatrix}$ to?",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 3944 \\\\ 15312 \\end{pmatrix}}",
+    "is_static": false
+}

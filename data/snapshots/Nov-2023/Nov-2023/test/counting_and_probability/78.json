@@ -1,0 +1,7 @@
+{
+    "problem": "For how many integers $n$ where $22890 \\le n \\le 369952$ is $\\binom{n}{2}$ odd?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{173532}",
+    "is_static": false
+}

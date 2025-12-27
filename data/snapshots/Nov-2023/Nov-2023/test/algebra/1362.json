@@ -1,0 +1,7 @@
+{
+    "problem": "If $h(x) = \\sqrt{\\frac{x^3+26}{2}}+12$, what is the value of $h(6)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{23}",
+    "is_static": false
+}

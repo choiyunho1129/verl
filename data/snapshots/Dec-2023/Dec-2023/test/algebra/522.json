@@ -1,0 +1,7 @@
+{
+    "problem": "In the polynomial $(ax^6+bx^{10}+cx+d)(x^6+ex^2+f)(x^2+gx+h)$, letters $a$ through $h$ are all nonzero constants. What is the degree of the polynomial?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

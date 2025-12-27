@@ -1,0 +1,7 @@
+{
+    "problem": "A standard deck of playing cards with $26$ red cards and $26$ black cards is split into two piles, each having at least one card. In pile $A$ there are twelve times as many black cards as red cards. In pile $B,$ the number of red cards is a multiple of the number of black cards. How many red cards are in pile $B?$",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{24}",
+    "is_static": false
+}

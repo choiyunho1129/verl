@@ -1,0 +1,7 @@
+{
+    "problem": "The points $A(3,13), B(14,13), C(13,3)$ and $D(2,3)$ are the vertices of a parallelogram. If the parallelogram is translated down 3 units and right one units, what will be the coordinates of the final image of point $B$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{(15, 10)}",
+    "is_static": false
+}

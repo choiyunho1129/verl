@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $FGH$ with $\\angle H = 90^\\circ$, we have $FG = 773$ and $HG = 195$.  Find $\\sin G$.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{748}{773}}",
+    "is_static": false
+}

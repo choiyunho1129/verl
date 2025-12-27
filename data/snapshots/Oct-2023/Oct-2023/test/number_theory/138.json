@@ -1,0 +1,7 @@
+{
+    "problem": "When written in standard form, how many zeroes are in the product $\\left(2.9 \\times 10^5\\right)\\left(16 \\times 10^5\\right)$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

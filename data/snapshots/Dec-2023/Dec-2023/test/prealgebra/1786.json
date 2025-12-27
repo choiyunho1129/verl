@@ -1,0 +1,7 @@
+{
+    "problem": "If $y = 1$ and $3x + 6y = 7$, express the value of $x$ as a common fraction.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac13}",
+    "is_static": false
+}

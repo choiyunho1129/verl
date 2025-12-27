@@ -1,0 +1,7 @@
+{
+    "problem": "A point has rectangular coordinates $(-99, -290, -657)$ and spherical coordinates $(\\rho, \\theta, \\phi).$  Find $\\cos \\phi.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{-657}{724.9482740168432}}",
+    "is_static": false
+}

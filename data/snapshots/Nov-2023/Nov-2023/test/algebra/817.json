@@ -1,0 +1,7 @@
+{
+    "problem": "There are numbers $A$ and $B$ for which  \\[\\frac A{x-91}+\\frac B{x+91}=\\frac{x+2093}{x^2-8281}\\]for every number $x\\neq\\pm1$.  Find $A-B$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{23}",
+    "is_static": false
+}

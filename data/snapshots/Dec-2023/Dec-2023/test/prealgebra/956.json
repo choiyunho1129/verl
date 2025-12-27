@@ -1,0 +1,7 @@
+{
+    "problem": "The average of five numbers is $55.4$. Four of the numbers are 74, 87, 26 and 60. What is the value of the fifth number?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{30}",
+    "is_static": false
+}

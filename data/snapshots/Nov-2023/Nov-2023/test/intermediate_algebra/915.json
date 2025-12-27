@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ and $b$ are complex numbers such that $|a| = 8$ and $|b| = 8,$ then find $|ab|.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{64}",
+    "is_static": false
+}

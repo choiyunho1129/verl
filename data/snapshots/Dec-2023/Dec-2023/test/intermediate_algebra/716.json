@@ -1,0 +1,7 @@
+{
+    "problem": "Let $z$ be a complex number satisfying $z^2 + z + 1 = 0.$  Compute\n\\[\\left( z + \\frac{1}{z} \\right)^2 + \\left( z^2 + \\frac{1}{z^2} \\right)^2 + \\left( z^3 + \\frac{1}{z^3} \\right)^2 + \\dots + \\left( z^{183} + \\frac{1}{z^{183}} \\right)^2.\\]",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{366}",
+    "is_static": false
+}

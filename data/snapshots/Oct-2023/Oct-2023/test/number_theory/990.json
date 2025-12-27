@@ -1,0 +1,7 @@
+{
+    "problem": "If $x=122699310744991954350234375$ and $ax$ is a perfect square where $a$ is a positive integer, what is the smallest possible value of $\\sqrt{ax}$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{42900928441875}",
+    "is_static": false
+}

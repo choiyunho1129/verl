@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = -535,$ then find\n\\[\\begin{vmatrix} b & a \\\\ d & c \\end{vmatrix}.\\]",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{535}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Hillary has thirty-nine coins, all dimes and nickels. In total, the coins are worth 220 cents. How many nickels does she have?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{34}",
+    "is_static": false
+}

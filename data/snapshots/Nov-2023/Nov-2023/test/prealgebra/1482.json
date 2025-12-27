@@ -1,0 +1,7 @@
+{
+    "problem": "How many distinct diagonals of a convex 215-gon can be drawn?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{ 22790}",
+    "is_static": false
+}

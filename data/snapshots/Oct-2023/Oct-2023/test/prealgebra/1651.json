@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $x = 4+4t$ and $y = t - 16$.  If $x = 44$, what is $y$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-6}",
+    "is_static": false
+}

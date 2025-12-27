@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ and $c$ be the roots of $x^3 - 891x - 919 = 0.$  Find $abc.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{919}",
+    "is_static": false
+}

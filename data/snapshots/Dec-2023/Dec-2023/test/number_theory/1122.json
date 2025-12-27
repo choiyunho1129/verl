@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ and $b$ are integers such that $ab\\equiv 7777\\pmod{203444}$, then what is the remainder when $(a+101722)(b+101722)$ is divided by $203444$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{7777}",
+    "is_static": false
+}

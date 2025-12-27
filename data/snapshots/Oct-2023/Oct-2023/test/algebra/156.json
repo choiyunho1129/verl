@@ -1,0 +1,7 @@
+{
+    "problem": "The graphs of $y=x^4$ and $y=24x^2-135$ intersect at four points with $x$-coordinates $\\pm \\sqrt{m}$ and $\\pm \\sqrt{n}$, where $m > n$. What is $m-n$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $n \\equiv 2 \\pmod{5}$, then find the remainder when $(n + 2)(n + 4)$ is divided by 5.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

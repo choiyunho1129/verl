@@ -1,0 +1,7 @@
+{
+    "problem": "How many distinct arrangements are there of KHUJTQRPIDMCGBTFNSWZAONX?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{155112100433309859840000}",
+    "is_static": false
+}

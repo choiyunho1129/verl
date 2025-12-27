@@ -1,0 +1,7 @@
+{
+    "problem": "A rotation centered at the origin takes $\\begin{pmatrix} -252 \\\\ 253 \\end{pmatrix}$ to $\\begin{pmatrix} 969 \\\\ 970 \\end{pmatrix}.$  Which vector does the rotation take $\\begin{pmatrix} 12 \\\\ 18 \\end{pmatrix}$ to?",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 69.22752974206551 \\\\ -45.902519743085016 \\end{pmatrix}}",
+    "is_static": false
+}

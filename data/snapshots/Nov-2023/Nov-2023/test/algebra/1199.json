@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $f$ is a function and $f^{-1}$ is the inverse of $f$.  If $f(2)=16$, $f(16) = 21$, and $f(3)=5$, then what is $f^{-1}(f^{-1}(21))$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

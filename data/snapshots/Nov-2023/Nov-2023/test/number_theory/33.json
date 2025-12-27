@@ -1,0 +1,7 @@
+{
+    "problem": "Find an integer $n$ such that $0\\leq n<1221$ and $n$ is a multiplicative inverse to 13 modulo 1221.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{94}",
+    "is_static": false
+}

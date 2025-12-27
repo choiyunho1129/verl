@@ -1,0 +1,7 @@
+{
+    "problem": "What is the mean of $\\frac{8}{9}$ and $\\frac{7}{8}$? Express your answer as a common fraction.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{127}{144}}",
+    "is_static": false
+}

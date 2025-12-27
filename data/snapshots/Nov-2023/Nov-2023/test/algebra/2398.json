@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate the infinite geometric series: $$1-\\frac{9}{11}+\\frac{81}{121}-\\frac{729}{1331}+\\dots$$",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{11}{20}}",
+    "is_static": false
+}

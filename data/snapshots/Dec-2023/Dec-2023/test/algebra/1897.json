@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $c$ and $d$ are inversely proportional. If $c=837$ when $d=200$, find the value of $d$ when $c=450$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{372}",
+    "is_static": false
+}

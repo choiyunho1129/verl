@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the number of ways to arrange the letters of the word YGJOVWOOXBGVLNRHKZUXTNQTEZB.",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{14,\\!178,\\!215,\\!430,\\!232,\\!229,\\!088,\\!854,\\!016}",
+    "is_static": false
+}

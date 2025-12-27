@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ is a positive integer, then $16a^2+513a+4112$ and $a^2+32a+256$ are also positive integers. We define the function $f$ such that $f(a)$ is the greatest common divisor of  $16a^2+513a+4112$ and $a^2+32a+256$.  Find the maximum possible value of $f(a)- a$.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

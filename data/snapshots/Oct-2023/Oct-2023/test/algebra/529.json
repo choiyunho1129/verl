@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of 121 consecutive positive integers is $11^6$. What is their median?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{14641}",
+    "is_static": false
+}

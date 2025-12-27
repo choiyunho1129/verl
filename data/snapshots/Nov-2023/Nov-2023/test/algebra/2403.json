@@ -1,0 +1,7 @@
+{
+    "problem": "A population of bacteria is doubling every two hours. At noon there are $826$ bacteria. If this rate continues, how many bacteria will be present at midnight, eight hours later?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{13216}",
+    "is_static": false
+}

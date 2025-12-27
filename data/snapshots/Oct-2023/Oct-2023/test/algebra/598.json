@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that  $9^{a}=1324$, $1324^{b}=1561$, $1561^{c}=2020,$ and  $2020^{d}=2187$. What is $a\\cdot b\\cdot c\\cdot d$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{7}{2}}",
+    "is_static": false
+}

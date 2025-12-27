@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of\n\\[x^2 + 794x + y^2 - 798y + z^2 + 114z + 89601 = 0\\]is a sphere.  Find the center of the sphere.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{(-397,399,-57)}",
+    "is_static": false
+}

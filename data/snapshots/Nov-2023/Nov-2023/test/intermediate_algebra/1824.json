@@ -1,0 +1,7 @@
+{
+    "problem": "The points $P = (x_1,y_1)$ and $Q = (x_2,y_2)$ are the intersections of the parabola $y^2 = 1688ax,$ where $a > 0,$ and a line passing through the focus of the parabola.  Then the distance $PQ$ can be expressed in the form $c_1 x_1 + c_2 x_2 + c_3 a,$ where $c_1,$ $c_2,$ and $c_3$ are constants.  Compute $c_1 + c_2 + c_3.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{846}",
+    "is_static": false
+}

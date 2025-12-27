@@ -1,0 +1,7 @@
+{
+    "problem": "Nancy generates a two-digit integer by rolling a six-sided die twice. The result of her first roll is the tens digit, and the result of her second roll is the ones digit. What is the probability that the resulting integer is divisible by 9? Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\dfrac{4}{36}}",
+    "is_static": false
+}

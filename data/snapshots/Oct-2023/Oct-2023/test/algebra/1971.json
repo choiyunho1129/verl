@@ -1,0 +1,7 @@
+{
+    "problem": "If the first term of an arithmetic sequence equals the third minus the second, and the fourth term is $76$, what is the first term?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{19}",
+    "is_static": false
+}

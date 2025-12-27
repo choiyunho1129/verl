@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = 175x-10$ and $g(x) = x+893$. What is the value of $g(f(200)-176)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{35707}",
+    "is_static": false
+}

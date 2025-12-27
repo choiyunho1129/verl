@@ -1,0 +1,7 @@
+{
+    "problem": "Find the integer $n,$ $-90 \\le n \\le 90,$ such that $\\sin n^\\circ = \\sin 6419^\\circ.$",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{-61}",
+    "is_static": false
+}

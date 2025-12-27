@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{k-78}{7} + 23k+10+\\frac{48k+8}{7}$.",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{30k}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Given $m\\geq 2$, denote by $b^{-1}$ the inverse of $b\\pmod{m}$. That is, $b^{-1}$ is the residue for which $bb^{-1}\\equiv 1\\pmod{m}$. Sadie wonders if $(a+b)^{-1}$ is always congruent to $a^{-1}+b^{-1}$ (modulo $m$). She tries the example $a=14$, $b=23$, and $m=5$. Let $L$ be the residue of $(14+23)^{-1}\\pmod{5}$, and let $R$ be the residue of $14^{-1}+23^{-1}\\pmod{5}$, where $L$ and $R$ are integers from $0$ to $4$ (inclusive). Find $L-R$.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

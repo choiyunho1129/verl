@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest integer value of $c$ such that the function $f(x)=\\frac{2x^2+x+5}{x^2+144x+c}$ has a domain of all real numbers?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{5185}",
+    "is_static": false
+}

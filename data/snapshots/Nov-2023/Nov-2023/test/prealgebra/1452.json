@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ in the equation $16x + \\frac{1}{16}x + 16(1+x) = 5146$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{160}",
+    "is_static": false
+}

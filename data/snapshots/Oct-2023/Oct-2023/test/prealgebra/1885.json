@@ -1,0 +1,7 @@
+{
+    "problem": "In isosceles right triangle $ABC$, point $D$ is on hypotenuse $\\overline{BC}$ such that $\\overline{AD}$ is an altitude of $\\triangle ABC$ and $DC = 21$. What is the area of triangle $ABC$?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{441}",
+    "is_static": false
+}

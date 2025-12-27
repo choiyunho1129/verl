@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x)=\\dfrac{96}{x+57}$, then what is the value of $f^{-1}\\left(\\frac{1}{9}\\right)$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{807}",
+    "is_static": false
+}

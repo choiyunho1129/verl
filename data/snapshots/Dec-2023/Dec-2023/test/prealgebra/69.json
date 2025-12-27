@@ -1,0 +1,7 @@
+{
+    "problem": "Lincoln Elementary School has 988 students. Of these 988 students, $\\frac{8}{247}$ ride the bus to school and $\\frac{1}{19}$ have a parent drive them to school. If the rest of the students walk to school, what fraction of students walk to school?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{226}{247}}",
+    "is_static": false
+}

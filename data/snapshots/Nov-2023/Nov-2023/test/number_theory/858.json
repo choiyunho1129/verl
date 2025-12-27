@@ -1,0 +1,7 @@
+{
+    "problem": "Wendy noticed when she stacked her quarters in piles of 3 she had 2 left over and when she stacked them in piles of 5 she had 3 left over. If she has less than five dollars worth of quarters, how many quarters does she have?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

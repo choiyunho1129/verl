@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{328}{325}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{5827576}",
+    "is_static": false
+}

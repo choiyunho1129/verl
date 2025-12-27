@@ -1,0 +1,7 @@
+{
+    "problem": "If seventy-two cookies cost the same as 8 brownies, and ten brownies cost the same as 70 cupcakes, how many cupcakes can Bob buy for the price of forty-five cookies?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{35}",
+    "is_static": false
+}

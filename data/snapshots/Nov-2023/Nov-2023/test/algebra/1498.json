@@ -1,0 +1,7 @@
+{
+    "problem": "Each successive term in the sequence $274432, 34304, x,\ny, 67, \\ldots$ is obtained by multiplying the previous term by a constant. What is the value of $x + y$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{4824}",
+    "is_static": false
+}

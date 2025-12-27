@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{2x^2-15x+27}{x-3}=m$, and $x$ can be any real number except $3$, what real values can $m$ NOT have?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-3}",
+    "is_static": false
+}

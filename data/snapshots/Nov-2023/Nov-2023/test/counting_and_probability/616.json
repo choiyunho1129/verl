@@ -1,0 +1,7 @@
+{
+    "problem": "There are 12 pens along a wall in the pound.  The pound has to allocate 5 pens to dogs, 6 to cats, and one to roosters.  In how many ways can the pound make the allocation?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{5544}",
+    "is_static": false
+}

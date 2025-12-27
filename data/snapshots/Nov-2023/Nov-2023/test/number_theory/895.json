@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest $n$ such that $a = 2^{351} \\cdot 3^{390}$ is a perfect $n$th power?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{39}",
+    "is_static": false
+}

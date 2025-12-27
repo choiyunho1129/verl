@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when 229 is divided by 21?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{19}",
+    "is_static": false
+}

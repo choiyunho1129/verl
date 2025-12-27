@@ -1,0 +1,7 @@
+{
+    "problem": "Find $k$, if ${(86^k)}^32=86^64$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

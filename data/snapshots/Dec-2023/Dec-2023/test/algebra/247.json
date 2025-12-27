@@ -1,0 +1,7 @@
+{
+    "problem": "Let $t=2s-s^2$ and $s=n^2 - 2^n+1$. What is the value of $t$ when $n=162$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-34175792574734561318320347298712833833643272050861252558254936242455477614041196257565044816835599}",
+    "is_static": false
+}

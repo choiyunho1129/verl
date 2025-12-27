@@ -1,0 +1,7 @@
+{
+    "problem": "For any integer $x$, $\\boxed{x}$ is defined to be the product of all its factors greater than 1 not including $x$. Find $\\fbox{1296}$.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{17324272922341478836520869842386944}",
+    "is_static": false
+}

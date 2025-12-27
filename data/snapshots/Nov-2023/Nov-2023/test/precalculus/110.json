@@ -1,0 +1,7 @@
+{
+    "problem": "The triangles whose vertices are $\\overrightarrow{A},$ $\\overrightarrow{B},$ and $\\overrightarrow{C}$ has area 44.  Find the area of the triangle whose vertices are $-\\overrightarrow{A} + \\overrightarrow{B} + \\overrightarrow{C},$ $\\overrightarrow{A} - \\overrightarrow{B} + \\overrightarrow{C},$ and $\\overrightarrow{A} + \\overrightarrow{B} - \\overrightarrow{C}.$",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{176}",
+    "is_static": false
+}

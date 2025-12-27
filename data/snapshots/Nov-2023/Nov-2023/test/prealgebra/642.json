@@ -1,0 +1,7 @@
+{
+    "problem": "In Duck Creek, a bicycle license plate consists of one letter followed by four digit; for example, $A0123$ or $A0123$. How many different license plates are possible?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{260000}",
+    "is_static": false
+}

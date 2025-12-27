@@ -1,0 +1,7 @@
+{
+    "problem": "Given two real numbers $p>1$ and $q>1$ so that $\\frac{6257}{p} + \\frac{4738}{q} = 82364$, what is the value of $(82364p-6257)(82364q-4738)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{29645666}",
+    "is_static": false
+}

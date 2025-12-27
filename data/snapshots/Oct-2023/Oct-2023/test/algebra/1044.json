@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ in the equation $(72^19-72^18)\\div71=72^x$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

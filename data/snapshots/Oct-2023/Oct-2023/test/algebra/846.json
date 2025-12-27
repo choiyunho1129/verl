@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the squares of the solutions to $2x^2+66x-45=0$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{1134}",
+    "is_static": false
+}

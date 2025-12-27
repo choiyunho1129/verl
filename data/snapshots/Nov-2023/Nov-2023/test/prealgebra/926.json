@@ -1,0 +1,7 @@
+{
+    "problem": "Everyone in a class of 45 students takes math and history. 13 students received an A in history, 15 received an A in math and 11 received an A in both courses. How many students did not receive an A in either course?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{28}",
+    "is_static": false
+}

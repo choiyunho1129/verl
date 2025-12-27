@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{A}$ and $\\mathbf{B}$ be $4 \\times 4$ matrices such that $\\det \\mathbf{A} = -25$ and $\\det \\mathbf{B} = -25.$  Find $\\det (-34 \\mathbf{A} \\mathbf{B}).$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{722500}",
+    "is_static": false
+}

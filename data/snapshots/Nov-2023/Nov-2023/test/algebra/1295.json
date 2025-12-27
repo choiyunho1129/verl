@@ -1,0 +1,7 @@
+{
+    "problem": "Sixteen pencils cost as much as three pens. If seventeen pens cost $\\$ 95.2$, what is the cost, in cents, of one pencil?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{105}",
+    "is_static": false
+}

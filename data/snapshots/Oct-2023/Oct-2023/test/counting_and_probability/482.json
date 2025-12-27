@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{19}{16}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{969}",
+    "is_static": false
+}

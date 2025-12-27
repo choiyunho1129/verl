@@ -1,0 +1,7 @@
+{
+    "problem": "Bekah has nine brass house number digits: 2, 8, 6, 7, 9, 3, 5, 4 and 1, and only has one of each number. How many distinct numbers can she form using one or more of the digits?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{986409}",
+    "is_static": false
+}

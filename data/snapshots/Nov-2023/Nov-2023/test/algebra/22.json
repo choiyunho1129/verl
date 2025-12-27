@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\log_{8890^100}8890^2600$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{26}",
+    "is_static": false
+}

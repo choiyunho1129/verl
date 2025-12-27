@@ -1,0 +1,7 @@
+{
+    "problem": "What's the largest three-digit base 16 integer?  Express your answer in base 10.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{4095}",
+    "is_static": false
+}

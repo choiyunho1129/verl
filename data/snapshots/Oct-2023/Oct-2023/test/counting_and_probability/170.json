@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose you have a weighted coin in which heads comes up with probability $\\frac{68}{113}$ and tails with probability $\\frac{45}{113}$.  If you flip heads, you win 84 dollars, but if you flip tails, you lose 50 dollar.  What is the expected value of a coin flip? Express your answer as a decimal.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\$30.64}",
+    "is_static": false
+}

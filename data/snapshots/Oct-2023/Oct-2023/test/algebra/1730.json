@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of a 35-term arithmetic series with first term 17  is $3570$.  What is the common difference?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-5}",
+    "is_static": false
+}

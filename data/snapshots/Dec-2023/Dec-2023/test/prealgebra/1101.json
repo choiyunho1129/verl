@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest possible area, in square centimeters, of a right triangle with one side of length 7 cm and another side of length 25 cm?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{87.5}",
+    "is_static": false
+}

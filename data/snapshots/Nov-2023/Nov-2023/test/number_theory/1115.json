@@ -1,0 +1,7 @@
+{
+    "problem": "Find the units digit of the following:  \\begin{align*}\n& (1433 - 535)(1171 - 772)(1473 - 729) \\\\\n&\\qquad+ (843 - 22)(1286 - 738)(442 - 63) - (1143 - 601)^3\n\\end{align*}",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

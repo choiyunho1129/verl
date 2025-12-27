@@ -1,0 +1,7 @@
+{
+    "problem": "Factor the expression $ab+18b+39a+702$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(a+18)(b+39)}",
+    "is_static": false
+}

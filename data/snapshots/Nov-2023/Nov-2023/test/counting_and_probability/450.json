@@ -1,0 +1,7 @@
+{
+    "problem": "What is the coefficient of $xy$ in the expansion of $(4x+(3y+1))^2$?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{24}",
+    "is_static": false
+}

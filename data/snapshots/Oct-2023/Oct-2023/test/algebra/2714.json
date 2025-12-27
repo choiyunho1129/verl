@@ -1,0 +1,7 @@
+{
+    "problem": "On the Cartesian plane, the midpoint between two points $A(a,b)$ and $B(c,d)$ is $M(m,n)$. If $A$ is moved vertically upwards 53 units and horizontally to the right 30 units, and $B$ is moved vertically downwards 48 units and horizontally to the left 5 units, then the new midpoint between $A$ and $B$ is $M'$. What is the distance between $M$ and $M'$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{12.747548783981962}",
+    "is_static": false
+}

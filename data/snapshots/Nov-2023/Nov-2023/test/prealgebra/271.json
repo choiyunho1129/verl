@@ -1,0 +1,7 @@
+{
+    "problem": "Kailin's favorite restaurant has a special offer on a three-course meal. A meal consists of an appetizer, an entree and a dessert. The menu features nine hundred and twenty-three appetizers, three hundred and sixty entrees and one hundred and forty-two desserts. How many different three-course meals can be formed with these choices?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{47183760}",
+    "is_static": false
+}

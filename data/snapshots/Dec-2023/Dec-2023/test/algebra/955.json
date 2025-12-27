@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the function $g(x)=100x-98$.  What is $g(38)$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{3702}",
+    "is_static": false
+}

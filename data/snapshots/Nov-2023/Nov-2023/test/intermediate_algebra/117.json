@@ -1,0 +1,7 @@
+{
+    "problem": "Let $P(x)$ be a monic polynomial of degree 3.  Suppose that $P(x)$ has remainder $R(x)$ when it is divided by $(x - 1)(x - 42),$ and remainder $2R(x)$ when it is divided by $(x - 36)(x - 7).$  Given that $P(0) = 49,$ find $P(43).$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-7175}",
+    "is_static": false
+}

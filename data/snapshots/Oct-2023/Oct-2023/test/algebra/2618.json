@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\displaystyle\\frac{9t^5}{63t^4}\\cdot \\frac{18t^{13}}{78t^7}$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{3t^7}{91}}",
+    "is_static": false
+}

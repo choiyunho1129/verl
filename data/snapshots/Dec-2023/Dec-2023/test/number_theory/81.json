@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the remainder of 198 (mod 1).",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

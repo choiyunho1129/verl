@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $(-3375)^{4/3}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{50625}",
+    "is_static": false
+}

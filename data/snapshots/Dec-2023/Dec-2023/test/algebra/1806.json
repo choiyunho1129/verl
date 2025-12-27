@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $\\Join$ is an operation defined by $x \\Join y = (x+3)(y-13)$. What is $((t+9) \\Join (t+11)) - ((t+10) \\Join (t+10))$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Calculate $2^{(4^3)} - \\left(2^4\\right)^3$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{18446744073709547520}",
+    "is_static": false
+}

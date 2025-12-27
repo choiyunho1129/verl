@@ -1,0 +1,7 @@
+{
+    "problem": "The fourth term of a geometric series is $272$ and the eleventh term is $34816$. What is the common ratio?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

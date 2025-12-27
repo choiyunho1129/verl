@@ -1,0 +1,7 @@
+{
+    "problem": "Given that\n\\[\\begin{vmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{vmatrix} = 375,\\]find\n\\[\\begin{vmatrix} a & b & c \\\\ 158d + 579g & 158e + 579h & 158f + 579i \\\\ -g & -h & -i \\end{vmatrix}.\\]",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{-59250}",
+    "is_static": false
+}

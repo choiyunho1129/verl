@@ -1,0 +1,7 @@
+{
+    "problem": "In a convex quadrilateral, the measure of the largest angle is 8 times the measure of the smallest angle, and the other two angles are both right angles. How many degrees are in the largest angle?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{160}",
+    "is_static": false
+}

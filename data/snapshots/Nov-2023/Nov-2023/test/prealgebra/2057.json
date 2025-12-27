@@ -1,0 +1,7 @@
+{
+    "problem": "Yann and Camille go to a restaurant.  If there are 279 items on the menu, and each orders one dish, how many different combinations of meals can Yann and Camille order if they refuse to order the same dish? (It does matter who orders what---Yann ordering chicken and Camille ordering fish is different from Yann ordering fish and Camille ordering chicken.)",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{77562}",
+    "is_static": false
+}

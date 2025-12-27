@@ -1,0 +1,7 @@
+{
+    "problem": "Find the remainder when $525830^{1130} - 894535^{1130} + 1131$ is divided by 895.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{1131}",
+    "is_static": false
+}

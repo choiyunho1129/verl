@@ -1,0 +1,7 @@
+{
+    "problem": "Two nonzero real numbers $a$ and $b$ satisfy $ab = 4884a - 3762b.$ Find all possible values of $\\frac {23853456a}{b} + \\frac {28302390b}{a} - ab.$\n\nEnter all possible values, separated by commas.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{36747216}",
+    "is_static": false
+}

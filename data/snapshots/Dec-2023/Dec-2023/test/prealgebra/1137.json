@@ -1,0 +1,7 @@
+{
+    "problem": "Each of eight hundred and forty-one circles has a radius of 24 inches. A larger circle has an area equal to the total area of the eight hundred and forty-one smaller circles. What is the length of the radius, in inches, of the larger circle?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{696}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the units digit of the following:  \\begin{align*}\n& (1465 - 874)(1005 - 346)(1047 - 594) \\\\\n&\\qquad+ (1127 - 350)(678 - 537)(1483 - 640) - (952 - 940)^5\n\\end{align*}",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

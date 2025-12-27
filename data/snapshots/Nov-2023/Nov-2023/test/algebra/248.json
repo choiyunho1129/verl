@@ -1,0 +1,7 @@
+{
+    "problem": "When a car's brakes are applied, it travels 10 feet less in each  second than the previous second until it comes to a complete stop.  A car goes 310 feet in the first second after the brakes are applied.  How many feet does the car travel from the time the  brakes are applied to the time the car stops?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{4960}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "For how many positive integer values of $n$ is $7^n$ a factor of $94!$?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

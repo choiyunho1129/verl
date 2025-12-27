@@ -1,0 +1,7 @@
+{
+    "problem": "For a certain species of ocean fish, 11 fish can exist per cubic meter of water without the symptoms of overcrowding. If doctors want to study 836 fish, what is the minimum number of cubic meters of water necessary to maintain a healthy study environment?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{76}",
+    "is_static": false
+}

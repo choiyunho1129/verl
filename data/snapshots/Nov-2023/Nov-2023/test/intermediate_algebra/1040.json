@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of \\[2x^2 - 7x + 15 = y^2 - 60y\\]is a hyperbola. Find the coordinates of its center.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\left(\\frac74,30\\right)}",
+    "is_static": false
+}

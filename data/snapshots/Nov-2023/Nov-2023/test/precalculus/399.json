@@ -1,0 +1,7 @@
+{
+    "problem": "Find $\\begin{pmatrix} -640 & 894 \\\\ 162 & -473 \\end{pmatrix} + \\begin{pmatrix} 631 & -813 \\\\ -729 & 981 \\end{pmatrix}.$",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} -9 & 81 \\\\ -567 & 508 \\end{pmatrix}}",
+    "is_static": false
+}

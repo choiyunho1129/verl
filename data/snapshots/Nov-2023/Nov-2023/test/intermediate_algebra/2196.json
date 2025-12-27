@@ -1,0 +1,7 @@
+{
+    "problem": "Find the maximum value of\n\\[\\frac{x - y}{x^6 + y^6 + 10}\\]over all real numbers $x$ and $y.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{1}{6}}",
+    "is_static": false
+}

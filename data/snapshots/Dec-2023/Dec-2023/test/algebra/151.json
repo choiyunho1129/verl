@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil\\sqrt{217}\\right\\rceil - \\left\\lfloor\\sqrt{1958}\\right\\rfloor$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-29}",
+    "is_static": false
+}

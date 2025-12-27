@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x)=ax^4-bx^2+74x+5$ and $f(-26)=55,$ then what is the value of $f(26)$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{3903}",
+    "is_static": false
+}

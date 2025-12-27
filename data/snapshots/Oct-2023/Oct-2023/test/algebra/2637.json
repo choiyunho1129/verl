@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $f (x ) = x^2 + 128$. If $m > 0$ and $f (8m) = 8(f (m))$, what is the value of $m$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

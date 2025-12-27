@@ -1,0 +1,7 @@
+{
+    "problem": "Find $\\begin{pmatrix} 2 \\\\ -3 \\\\ 2 \\end{pmatrix} + \\begin{pmatrix} 6 \\\\ -4 \\\\ 2 \\end{pmatrix}.$",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 8 \\\\ -7 \\\\ 4 \\end{pmatrix}}",
+    "is_static": false
+}

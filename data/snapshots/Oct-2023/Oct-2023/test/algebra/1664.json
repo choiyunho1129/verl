@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $11664-81x^2$ completely.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{81(12-x)(12+x)}",
+    "is_static": false
+}

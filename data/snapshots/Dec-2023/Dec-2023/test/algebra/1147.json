@@ -1,0 +1,7 @@
+{
+    "problem": "If we express $x^2 + 70x + 10$ in the form $a(x - h)^2 + k$, then what is $h$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-35}",
+    "is_static": false
+}

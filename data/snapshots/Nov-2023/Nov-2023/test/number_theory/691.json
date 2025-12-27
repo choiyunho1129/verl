@@ -1,0 +1,7 @@
+{
+    "problem": "What's the largest twelve-digit base 10 integer?  Express your answer in base 10.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{999999999999}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $\\binom{30}{20}=30045015$, $\\binom{31}{21}=44352165$, and $\\binom{31}{22}=20160075$, find $\\binom{30}{22}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{5852925}",
+    "is_static": false
+}

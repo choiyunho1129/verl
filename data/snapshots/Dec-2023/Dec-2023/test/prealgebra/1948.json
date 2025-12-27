@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of 79 and 24, rounded to the nearest ten?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{100}",
+    "is_static": false
+}

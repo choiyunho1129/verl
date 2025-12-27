@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of the rational function $\\frac{254x^{63}-5x^{30} + 392x^{12} -529x^6+242}{q(x)} $ has a horizontal asymptote. What is the smallest possible degree of $q(x)$?",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{63}",
+    "is_static": false
+}

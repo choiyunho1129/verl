@@ -1,0 +1,7 @@
+{
+    "problem": "Jasmine drank 2.4 pints of water on the first 4 miles of her hike. If she continued at this rate, how many pints of water would she drink in the next 100 miles?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{60}",
+    "is_static": false
+}

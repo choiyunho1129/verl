@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $800^2 - 2\\cdot 800\\cdot 415 + 415^2$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{148225}",
+    "is_static": false
+}

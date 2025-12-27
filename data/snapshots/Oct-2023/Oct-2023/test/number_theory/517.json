@@ -1,0 +1,7 @@
+{
+    "problem": "Find the modulo 4 residue of $225 \\cdot 226 \\cdot 227$.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

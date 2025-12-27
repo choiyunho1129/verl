@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers $x$ satisfy $|x|+1<50$ and $|x-81|>64$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{65}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the domain of the real-valued function $$q(x) = \\frac{\\sqrt{x}}{\\sqrt{225-x^2}}~?$$Express your answer as an interval or as a union of intervals.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{[0,15)}",
+    "is_static": false
+}

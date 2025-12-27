@@ -1,0 +1,7 @@
+{
+    "problem": "How many distinct nine-letter rearrangements of the word ``Kalamazoo\" can I form?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{60480}",
+    "is_static": false
+}

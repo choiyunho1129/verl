@@ -1,0 +1,7 @@
+{
+    "problem": "The measures of the sides of a triangle are 3, 4 and 5. What is the area of the triangle?",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

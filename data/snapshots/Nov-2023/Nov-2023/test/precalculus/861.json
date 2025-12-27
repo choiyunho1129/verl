@@ -1,0 +1,7 @@
+{
+    "problem": "Find the phase shift of the graph of $y =  54 \\sin \\left( x + \\frac{\\pi}{34} \\right).$",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{-\\frac{\\pi}{34}}",
+    "is_static": false
+}

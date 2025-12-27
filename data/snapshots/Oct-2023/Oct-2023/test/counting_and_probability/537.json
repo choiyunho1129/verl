@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the number of ways to arrange the letters of the word BPAHUYWVNFXTECU.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{653837184000}",
+    "is_static": false
+}

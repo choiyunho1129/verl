@@ -1,0 +1,7 @@
+{
+    "problem": "The letters of the word `FEEHCVQ' are randomly arranged.  What is the probability that the two E's are not next to each other?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\dfrac{5}{7}}",
+    "is_static": false
+}

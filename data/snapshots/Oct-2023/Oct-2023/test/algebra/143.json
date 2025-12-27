@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x) = x + 6450$ and $g(x) = x^2 + 8087$, what is the value of $f(g(8200))$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{67254537}",
+    "is_static": false
+}

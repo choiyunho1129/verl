@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x)=x^3+3x^2+3x+1$, find $f(f^{-1}(f(f^{-1}(f(f^{-1}(f(f^{-1}(f(f^{-1}(1018))))))))))$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{1018}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the following value when expressed as a common fraction: $$\\frac{1}{8^{1}}+\\frac{1}{8^{2}}+\\frac{1}{8^{3}}+\\cdots + \\frac{1}{8^{6}}+\\frac{1}{8^{7}}+\\frac{1}{8^{8}}?$$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{16777215}{16777216}}",
+    "is_static": false
+}

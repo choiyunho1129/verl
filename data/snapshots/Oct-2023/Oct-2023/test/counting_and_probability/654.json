@@ -1,0 +1,7 @@
+{
+    "problem": "If all multiples of 19 and all multiples of 6 are removed from the list of whole numbers 1 through 75, then how many whole numbers are left?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{60}",
+    "is_static": false
+}

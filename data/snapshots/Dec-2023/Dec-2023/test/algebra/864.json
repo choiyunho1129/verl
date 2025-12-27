@@ -1,0 +1,7 @@
+{
+    "problem": "Find the midpoint of the line segment between $(2091,6122)$ and $(4383,8880)$. Express your answer as an ordered pair, $(x,y)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{(3237,7501)}",
+    "is_static": false
+}

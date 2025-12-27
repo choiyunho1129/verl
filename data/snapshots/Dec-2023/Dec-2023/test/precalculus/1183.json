@@ -1,0 +1,7 @@
+{
+    "problem": "Find the number of solutions in the interval $[0,16\\pi]$ to\n\\[\\tan x + \\sec x = 2 \\cos x.\\]",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

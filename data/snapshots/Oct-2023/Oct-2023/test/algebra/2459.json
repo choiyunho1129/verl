@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate \\[x^{{(x-8)}^x}\\] when $x = 9$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

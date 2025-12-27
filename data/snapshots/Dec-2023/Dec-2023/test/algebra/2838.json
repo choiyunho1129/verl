@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $3x^2 + 26x + 51$ can be written in the form $(3x + A)(x + B)$ where $A$ and $B$ are integers. What is the value of $A - B$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

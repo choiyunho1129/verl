@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest possible value of $x$ such that $x^2-4244x-8206341=0$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{5687}",
+    "is_static": false
+}

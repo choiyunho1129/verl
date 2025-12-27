@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $a$ and $b$ are real numbers such that $-3\\leq a\\leq8$ and $-13\\leq b\\leq 20$, and values for $a$ and $b$ are chosen at random, what is the probability that the product $a\\cdot b$ is positive?  Express your answer as a common fraction.",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\dfrac{199}{363}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $h(x) = \\sqrt{\\frac{x^3+144}{2}}+11$, what is the value of $h(14)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{49}",
+    "is_static": false
+}

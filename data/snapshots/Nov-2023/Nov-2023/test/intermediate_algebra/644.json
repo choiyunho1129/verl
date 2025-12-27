@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x$ be a positive real number such that $x - \\frac{1}{x} = 21.$  Find $x + \\frac{1}{x}.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\sqrt{445}}",
+    "is_static": false
+}

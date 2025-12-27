@@ -1,0 +1,7 @@
+{
+    "problem": "Find the number of square units bounded by the $x$-axis, the $y$-axis and the line $x+ y= 10$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{50}",
+    "is_static": false
+}

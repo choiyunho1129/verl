@@ -1,0 +1,7 @@
+{
+    "problem": "How many multiples of $6$ are greater than $-796$ and less than $796$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{265}",
+    "is_static": false
+}

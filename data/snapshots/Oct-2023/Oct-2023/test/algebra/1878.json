@@ -1,0 +1,7 @@
+{
+    "problem": "Find all solutions to the equation $\\sqrt{14x+29}=x+3$.  If there are multiple solutions, order them from least to greatest, separated by comma(s).",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-2, 10}",
+    "is_static": false
+}

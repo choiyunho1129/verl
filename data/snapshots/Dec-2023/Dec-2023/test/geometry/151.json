@@ -1,0 +1,7 @@
+{
+    "problem": "The point $(0,0)$ is reflected across the vertical line $x = 4$. Its image is then reflected across the line $y=3$. What are the coordinates of the resulting point?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{(8,6)}",
+    "is_static": false
+}

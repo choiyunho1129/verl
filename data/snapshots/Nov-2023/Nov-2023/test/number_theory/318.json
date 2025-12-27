@@ -1,0 +1,7 @@
+{
+    "problem": "Find the positive base $b$ in which the equation $2_b \\cdot 70_b = 160_b$ is valid.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

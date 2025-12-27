@@ -1,0 +1,7 @@
+{
+    "problem": "Ray will choose at random an integer $Q$, such that $901 < Q < 924$. What is the probability that Ray will choose a prime number? Express your answer as a common fraction.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac{3}{22}}",
+    "is_static": false
+}

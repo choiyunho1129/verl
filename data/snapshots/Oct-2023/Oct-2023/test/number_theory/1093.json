@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when $8727+8728+8729+8730+8731+8732$ is divided by $6$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

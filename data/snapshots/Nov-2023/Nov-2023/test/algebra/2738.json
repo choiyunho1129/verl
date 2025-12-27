@@ -1,0 +1,7 @@
+{
+    "problem": "What is the discriminant of $4x^2 - 66x + 81$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{3060}",
+    "is_static": false
+}

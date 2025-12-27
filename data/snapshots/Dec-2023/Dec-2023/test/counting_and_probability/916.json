@@ -1,0 +1,7 @@
+{
+    "problem": "How many diagonals does tetradecagon $ABCDEFGHIJKLMN$ have?\n\n[asy]size(101);\nstring[] labels = {\"$G$\",\"$F$\",\"$E$\",\"$D$\",\"$C$\",\"$B$\",\"$A$\",\"$N$\",\"$M$\",\"$L$\",\"$K$\",\"$J$\",\"$I$\",\"$H$\"};\npath p;\nfor(int i = 0; i<14; ++i)\n{\np = p--dir(360*i/14);\nlabel(labels[i],dir(360*i/14),dir(360*i/14),fontsize(10pt));\n}\ndraw(p--cycle);\nlabel(\"1\",(0,1.03),fontsize(10));[/asy]",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{77}",
+    "is_static": false
+}

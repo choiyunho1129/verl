@@ -1,0 +1,7 @@
+{
+    "problem": "Monica, who is 504085 feet tall, is standing next to a pine tree that casts a shadow 704231 feet long. If Monica's shadow is 488489 feet long, how tall is the pine tree, in feet?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{726715\\text{ feet}}",
+    "is_static": false
+}

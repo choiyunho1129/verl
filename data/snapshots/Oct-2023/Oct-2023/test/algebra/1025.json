@@ -1,0 +1,7 @@
+{
+    "problem": "The two endpoints of a segment are at $(72,37)$ and $(86,38)$. What is the sum of the coordinates of the midpoint of the segment?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{116.5}",
+    "is_static": false
+}

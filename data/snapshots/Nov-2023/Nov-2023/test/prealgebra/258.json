@@ -1,0 +1,7 @@
+{
+    "problem": "Eight students, with different names, line up single file. What is the probability that they are in alphabetical order from front-to-back?  Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{1}{40320}}",
+    "is_static": false
+}

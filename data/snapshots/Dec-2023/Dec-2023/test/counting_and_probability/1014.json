@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that I have $5$ different books, $3$ of which are math books. In how many ways can I stack my $5$ books on a shelf if I do not want the math books to be next to each other?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

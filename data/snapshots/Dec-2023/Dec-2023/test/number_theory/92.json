@@ -1,0 +1,7 @@
+{
+    "problem": "Solve the congruence $17n \\equiv 6 \\pmod{283}$, as a residue modulo 283.  (Give an answer between 0 and 282.)",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{17}",
+    "is_static": false
+}

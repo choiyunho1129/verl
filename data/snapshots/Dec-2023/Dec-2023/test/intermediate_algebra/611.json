@@ -1,0 +1,7 @@
+{
+    "problem": "Compute \\[\\log_{\\log_{\\log_4 16777216} 20736} 16777216.\\]",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find all values of $x$ that satisfy the equation $x = \\!\\sqrt{39-2x} + 2$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{x=7}",
+    "is_static": false
+}

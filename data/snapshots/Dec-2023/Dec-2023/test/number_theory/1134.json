@@ -1,0 +1,7 @@
+{
+    "problem": "If $a\\equiv 19\\pmod{36}$ and $b\\equiv 23\\pmod{36}$, then for what integer $n$ in the set $\\{0,1,2,\\ldots,34,35\\}$ is it true that $$a-b\\equiv n\\pmod{36}~?$$",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{32}",
+    "is_static": false
+}

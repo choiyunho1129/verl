@@ -1,0 +1,7 @@
+{
+    "problem": "If $x=97$, then what is $\\sqrt{x^2}-32$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{65}",
+    "is_static": false
+}

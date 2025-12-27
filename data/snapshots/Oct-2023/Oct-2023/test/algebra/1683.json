@@ -1,0 +1,7 @@
+{
+    "problem": "Rationalize the denominator of $\\frac{\\sqrt{21}+\\sqrt{12}}{\\sqrt{21}-\\sqrt{12}}$. The answer can be written as $\\frac{A+B\\sqrt{C}}{D}$, where $A$, $B$, $C$, and $D$ are integers, $D$ is positive, and $C$ is not divisible by the square of any prime. If the greatest common divisor of $A$, $B$, and $D$ is 1, find $A+B+C+D$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{296}",
+    "is_static": false
+}

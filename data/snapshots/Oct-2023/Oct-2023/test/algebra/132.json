@@ -1,0 +1,7 @@
+{
+    "problem": "If $f (x) = x + 4$ and $g (x) = x^2$, then for what value of $x$ does $f(g(x)) = g(f(x))$? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-\\frac{3}{2}}",
+    "is_static": false
+}

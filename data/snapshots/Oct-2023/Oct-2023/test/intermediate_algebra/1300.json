@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d$ be positive real numbers.  Find the minimum value of\n\\[(a + b + c + d) \\left( \\frac{382}{a} + \\frac{382}{b} + \\frac{382}{c} + \\frac{382}{d} \\right).\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{6112}",
+    "is_static": false
+}

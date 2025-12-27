@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d$ be positive real numbers such that $a + b + c + d = 1.$  Find the minimum value of\n\\[\\frac{9}{a} + \\frac{9}{b} + \\frac{16}{c} + \\frac{100}{d}.\\]",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{400}",
+    "is_static": false
+}

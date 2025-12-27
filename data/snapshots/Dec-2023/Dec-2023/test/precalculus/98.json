@@ -1,0 +1,7 @@
+{
+    "problem": "Given $\\|\\mathbf{v}\\| = 803$ and $\\|\\mathbf{w}\\| = 358,$ find the largest possible value of\n\\[\\|\\operatorname{proj}_{\\mathbf{w}} \\mathbf{v}\\|.\\]",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{803}",
+    "is_static": false
+}

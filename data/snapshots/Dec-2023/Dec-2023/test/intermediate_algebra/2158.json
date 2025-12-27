@@ -1,0 +1,7 @@
+{
+    "problem": "Let $P(x)$ be the degree three polynomial with\n\\begin{align*}\nP(8) &= \\log 1, \\\\\nP(9) &= \\log 10, \\\\\nP(10) &= \\log 17, \\\\\nP(11) &= \\log 100.\n\\end{align*}Then $P(12)$ can be expressed in the form $A \\log \\frac{B}{C},$ where $A,$ $B,$ and $C$ are positive integers, and $C$ is prime.  Find $A + B + C.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{123}",
+    "is_static": false
+}

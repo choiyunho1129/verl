@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $ABC$, the length of side $BC$ is 12 units, the length of side $AC$ is 24 units and the measure of angle $C$ is 60 degrees. What is the length of side $AB$, in units? Express your answer in simplest radical form.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{12\\sqrt3}",
+    "is_static": false
+}

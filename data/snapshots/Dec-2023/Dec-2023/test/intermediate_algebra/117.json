@@ -1,0 +1,7 @@
+{
+    "problem": "Let $P(x)$ be a monic polynomial of degree 3.  Suppose that $P(x)$ has remainder $R(x)$ when it is divided by $(x - 1)(x - 40),$ and remainder $2R(x)$ when it is divided by $(x - 8)(x - 33).$  Given that $P(0) = 35,$ find $P(41).$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-7509}",
+    "is_static": false
+}

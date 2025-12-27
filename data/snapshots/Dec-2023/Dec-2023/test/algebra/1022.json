@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of all integers that satisfy these conditions: \\[\n|x|+1>395\\text{ and }|x+1|\\le395.\n\\]",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-791}",
+    "is_static": false
+}

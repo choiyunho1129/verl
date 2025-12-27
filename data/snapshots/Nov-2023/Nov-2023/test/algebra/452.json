@@ -1,0 +1,7 @@
+{
+    "problem": "The eleventh and forty-fifth terms of an arithmetic sequence are $\\frac4{11}$ and $\\frac{12}{17}$, respectively. What is the twenty-eighth term?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{100}{187}}",
+    "is_static": false
+}

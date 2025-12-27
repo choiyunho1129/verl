@@ -1,0 +1,7 @@
+{
+    "problem": "Find the phase shift of the graph of $y =  12 \\sin \\left( x + \\frac{\\pi}{32} \\right).$",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{-\\frac{\\pi}{32}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "You have linear functions $p(x)$ and $q(x)$. You know $p(11)=11$, and $p(q(x))=2x+9$ for all $x$. Find $q(1)$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

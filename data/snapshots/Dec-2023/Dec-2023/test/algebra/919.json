@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $y$ such that $\\lceil y\\rceil+y=39.3?$",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{19.3}",
+    "is_static": false
+}

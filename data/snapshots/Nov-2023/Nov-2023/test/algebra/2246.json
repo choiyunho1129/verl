@@ -1,0 +1,7 @@
+{
+    "problem": "There are two solutions for the equation $347x^2 - 228x - 245676 = 0$. What is the product of these two solutions?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-708}",
+    "is_static": false
+}

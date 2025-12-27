@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest common factor of $1344$ and $976$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

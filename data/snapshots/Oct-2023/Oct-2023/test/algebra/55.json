@@ -1,0 +1,7 @@
+{
+    "problem": "What fraction is the same as \\[\n\\frac{14-28+42-56+70-84+98}{47-94+141-188+235-282+329}?\n\\]",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{14}{47}}",
+    "is_static": false
+}

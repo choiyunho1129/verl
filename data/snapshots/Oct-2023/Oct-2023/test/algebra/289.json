@@ -1,0 +1,7 @@
+{
+    "problem": "The two positive integer solutions of the equation $x^2 - mx + n = 0$ are $k$ and $t$, where $m$ and $n$ are both prime numbers and $k > t$. What is the value of $34m^n + 34n^m + 34k^t + 34t^k$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{680}",
+    "is_static": false
+}

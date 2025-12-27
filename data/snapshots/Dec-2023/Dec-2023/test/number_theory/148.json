@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $b$ and $c$ are positive integers.\n\nWhen $b^2$ is written in base $c$, the result is $169_c$. When $c^2$ is written in base $b$, the result is $49_b$.\n\nWhat is $b+c$?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{19}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The square of 66 is 4356. The square of what other number is 4356?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-66}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive multiple of $613$ that is also a multiple of $319$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{195547}",
+    "is_static": false
+}

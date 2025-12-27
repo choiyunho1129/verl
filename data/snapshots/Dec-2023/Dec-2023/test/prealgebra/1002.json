@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least common multiple of the first thirty positive integers?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2329089562800}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The arithmetic mean of twenty positive integers is 6. If one of the twenty integers is removed, the mean becomes 3. What is the value of the integer that is removed?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{63}",
+    "is_static": false
+}

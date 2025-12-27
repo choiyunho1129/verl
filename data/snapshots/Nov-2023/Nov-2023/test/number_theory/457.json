@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least positive integer $n$ such that $233608725$ divides $n!$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{1009}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "A point has rectangular coordinates $(-422,593,686)$ and spherical coordinates $(\\rho, \\theta, \\phi).$  Find the rectangular coordinates of the point with spherical coordinates $(\\rho, -\\theta, \\phi).$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{(-422,-593,686)}",
+    "is_static": false
+}

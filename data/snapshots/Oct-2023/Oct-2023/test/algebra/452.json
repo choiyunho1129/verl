@@ -1,0 +1,7 @@
+{
+    "problem": "The seventeenth and forty-fifth terms of an arithmetic sequence are $\\frac5{17}$ and $\\frac6{11}$, respectively. What is the thirty-first term?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{157}{374}}",
+    "is_static": false
+}

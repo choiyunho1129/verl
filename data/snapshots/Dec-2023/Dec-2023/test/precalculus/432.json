@@ -1,0 +1,7 @@
+{
+    "problem": "The parametric curve $(x,y) = (\\sin t, \\sin 2t)$ is plotted below.\n\n[asy]\nunitsize(2 cm);\n\npair moo (real t) {\n  return (sin(t),sin(2*t));\n}\n\nreal t;\npath foo = moo(0);\n\nfor (t = 0; t <= 2*pi + 0.1; t = t + 0.1) {\n  foo = foo--moo(t);\n}\n\ndraw((-1.2,0)--(1.2,0));\ndraw((0,-1.2)--(0,1.2));\ndraw(foo,red);\n[/asy]\n\nThis curve can also be expressed in the form\n\\[ax^4 - bx^2 + cy^2 = 0,\\]where $a,$ $b,$ and $c$ are positive integers.  Find the smallest possible value of $917a + 399b + 608c.$",
+    "level": "Level 5",
+    "type": "Precalculus",
+    "solution": "\\boxed{5872}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $JKL$ with $\\angle JLK = 90^\\circ$, we have $KL = 14$ and $\\tan K = \\frac{50}{14}$.  Find $JL$.",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{50}",
+    "is_static": false
+}

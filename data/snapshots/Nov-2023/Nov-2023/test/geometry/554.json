@@ -1,0 +1,7 @@
+{
+    "problem": "A triangle has vertices $A(-6, -1)$, $B (2, -1)$ and $C(2, 1)$. What is the area, in square units, of triangle $ABC$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

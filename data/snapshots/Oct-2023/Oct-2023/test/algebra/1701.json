@@ -1,0 +1,7 @@
+{
+    "problem": "If $6^{x+50}=1296^{x+2}$, what is $x$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The 7th and 8th grades have enrollments of 46531 and 46452 respectively. The two grades have a total of 17655 representatives on the Student Council. How many representatives should the 8th grade have if there is to be a fair representation of the two grades?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{8820}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find a non-zero value for $a$ such that $ax^2+1260x+45=0$ has only one solution.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{8820}",
+    "is_static": false
+}

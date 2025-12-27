@@ -1,0 +1,7 @@
+{
+    "problem": "How many possible distinct 35 card hands can be dealt from a standard 52 card deck? The order in which the cards are dealt doesn't matter.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{21,\\!945,\\!588,\\!357,\\!420}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive integer $n$ such that $n$ has remainder 60 when divided by 85, $n$ has remainder 60 when divided by 89, and $n$ has remainder 80 when divided by 100?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{60580}",
+    "is_static": false
+}

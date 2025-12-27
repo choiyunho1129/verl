@@ -1,0 +1,7 @@
+{
+    "problem": "What is $13.0000607\\cdot 8.9999351\\cdot 0.9999787$ to the nearest whole number?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{117}",
+    "is_static": false
+}

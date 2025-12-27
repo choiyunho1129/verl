@@ -1,0 +1,7 @@
+{
+    "problem": "By partial fractions,\n$$\\frac{38x-30}{x^2-1} = \\frac{A}{x-1} + \\frac{B}{x+1}.$$Find $A+B$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{38}",
+    "is_static": false
+}

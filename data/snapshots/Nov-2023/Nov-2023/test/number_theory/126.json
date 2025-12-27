@@ -1,0 +1,7 @@
+{
+    "problem": "The greatest common divisor of two integers is $(x+10)$ and their least common multiple is $x(x+10)$, where $x$ is a positive integer. If one of the integers is 176, what is the smallest possible value of the other one?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{33}",
+    "is_static": false
+}

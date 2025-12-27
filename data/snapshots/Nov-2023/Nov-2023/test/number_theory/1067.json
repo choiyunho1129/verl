@@ -1,0 +1,7 @@
+{
+    "problem": "For how many integers $n$ from $1$ to $89$ is the fraction $\\frac{n}{90}$ a repeating decimal?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{80}",
+    "is_static": false
+}

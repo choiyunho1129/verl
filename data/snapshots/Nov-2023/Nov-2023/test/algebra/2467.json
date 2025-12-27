@@ -1,0 +1,7 @@
+{
+    "problem": "A particular geometric sequence has strictly decreasing terms. After the first term, each successive term is calculated by multiplying the previous term by $\\frac{m}{23}$. If the first term of the sequence is positive, how many possible integer values are there for $m$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

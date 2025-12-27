@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\lceil 20.8 \\rceil+\\lceil -47.5 \\rceil$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-26}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Points $A, B, C$ and $D$ have these coordinates: $A(667,224)$, $B(667,-224)$, $C(-667,-224)$ and $D(-667,191)$. What is the area of quadrilateral $ABCD$?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{575621}",
+    "is_static": false
+}

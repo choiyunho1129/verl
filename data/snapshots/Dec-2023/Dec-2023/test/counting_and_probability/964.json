@@ -1,0 +1,7 @@
+{
+    "problem": "I have thirteen cubes such that, on each cube, three faces are painted red and three faces are painted white. If I roll each of the cubes once, what is the probability that they will land such that there is one red face and twelve white face up?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{13}{8192}}",
+    "is_static": false
+}

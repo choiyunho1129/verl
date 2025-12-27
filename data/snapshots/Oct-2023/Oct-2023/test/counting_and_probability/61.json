@@ -1,0 +1,7 @@
+{
+    "problem": "If two numbers are randomly chosen without replacement from $\\{1, 2, 3\\}$, what is the probability their sum is greater than their product? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{2}{3}}",
+    "is_static": false
+}

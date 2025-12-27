@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest three-digit positive integer congruent to 2 (mod 19)?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{116}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Express the quotient $2433002_5 \\div 201_5$ in base 5.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{12102_5}",
+    "is_static": false
+}

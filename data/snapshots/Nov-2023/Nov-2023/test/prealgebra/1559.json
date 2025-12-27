@@ -1,0 +1,7 @@
+{
+    "problem": "There are 22 cars in my building's parking lot.  All of the cars are red or white.  Also, all the cars are either 2-door or 4-door.  11 of them are red, 16 of them are 4-door, and 3 of them are 2-door and white.  How many of the cars are 4-door and red?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

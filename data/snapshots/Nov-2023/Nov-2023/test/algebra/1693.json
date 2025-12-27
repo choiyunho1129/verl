@@ -1,0 +1,7 @@
+{
+    "problem": "For specific positive numbers $m$ and $n$, the quadratics $900x^2+1380x+79$ and $(mx+n)^2$ differ only in their constant term. What is $mn$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{690}",
+    "is_static": false
+}

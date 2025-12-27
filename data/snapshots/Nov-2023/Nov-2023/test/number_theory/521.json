@@ -1,0 +1,7 @@
+{
+    "problem": "The product of two consecutive positive even integers is 8648. What is the greater of the two integers?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{94}",
+    "is_static": false
+}

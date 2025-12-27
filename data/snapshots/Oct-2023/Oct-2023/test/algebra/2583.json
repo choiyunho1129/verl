@@ -1,0 +1,7 @@
+{
+    "problem": "An Internet service provider allows a certain number of free hours each month and then charges for each additional hour used. Wells, Ted, and Vino each have separate accounts. This month the total hours used by Wells and Ted was 2709, and each used all of their free hours. Their total cost was $\\$44$. Vino used 2709 hours by himself and had to pay $\\$140$. What is the number of cents charged for each extra hour?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{8.71}",
+    "is_static": false
+}

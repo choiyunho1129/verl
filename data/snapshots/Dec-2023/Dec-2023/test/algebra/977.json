@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $\\displaystyle{(7^12)}^{\\frac{10}{4}}$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{22539340290692258087863249}",
+    "is_static": false
+}

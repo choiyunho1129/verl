@@ -1,0 +1,7 @@
+{
+    "problem": "What is $0.\\overline{5}\\cdot 24$? Express your answer as a reduced fraction.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{40}{3}}",
+    "is_static": false
+}

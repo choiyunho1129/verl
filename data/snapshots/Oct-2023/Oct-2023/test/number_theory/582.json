@@ -1,0 +1,7 @@
+{
+    "problem": "If $n$ is a multiple of three, what is the remainder when $(n + 50) + (n + 78) + (n + 4)$ is divided by $9$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

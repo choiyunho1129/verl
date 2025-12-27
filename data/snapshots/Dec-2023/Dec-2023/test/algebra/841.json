@@ -1,0 +1,7 @@
+{
+    "problem": "If the fifty-third term of an arithmetic sequence is $88$ and the two hundred and fifteenth term is $8026$, what is the one hundred and thirty-fourth term?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{4057}",
+    "is_static": false
+}

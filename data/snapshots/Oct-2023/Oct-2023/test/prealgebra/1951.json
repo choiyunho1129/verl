@@ -1,0 +1,7 @@
+{
+    "problem": "A square has a perimeter of $64 \\text{ cm}.$ What is the area of the square, in $\\mbox{cm}^2?$",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{256}",
+    "is_static": false
+}

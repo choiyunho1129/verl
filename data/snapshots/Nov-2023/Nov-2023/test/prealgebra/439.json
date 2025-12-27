@@ -1,0 +1,7 @@
+{
+    "problem": "How many numbers are in the list $2946, 2947, 2948, \\ldots, 41174, 41175 ?$",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{38230}",
+    "is_static": false
+}

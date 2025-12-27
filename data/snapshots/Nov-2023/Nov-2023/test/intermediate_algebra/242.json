@@ -1,0 +1,7 @@
+{
+    "problem": "Find the positive solution to\n\\[\\frac 1{x^2-31x-2328}+\\frac1{x^2-31x-2664}-\\frac 2{x^2-31x-2720}=0.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{69}",
+    "is_static": false
+}

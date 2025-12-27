@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $y=7$, evaluate $(77+y)^y$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{29509034655744}",
+    "is_static": false
+}

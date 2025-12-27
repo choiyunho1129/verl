@@ -1,0 +1,7 @@
+{
+    "problem": "If $f (x) = 38x - 87$ and $g (x) =-47$, what is the value of $f(g(x))$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-1873}",
+    "is_static": false
+}

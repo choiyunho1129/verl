@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $25 + 9^2 - 7$.",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{99}",
+    "is_static": false
+}

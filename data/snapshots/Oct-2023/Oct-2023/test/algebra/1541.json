@@ -1,0 +1,7 @@
+{
+    "problem": "$P$ and $Q$ represent numbers, and $P \\ast Q$ means $\\cfrac{P+Q}{2}$. What is the value of $258 \\ast (22 \\ast 44)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{145}",
+    "is_static": false
+}

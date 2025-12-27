@@ -1,0 +1,7 @@
+{
+    "problem": "The polynomial $ax^3 + bx - 9c$ is divisible by $x^2 + bx + c,$ where $a,$ $b,$ and $c$ are nonzero real numbers.  Find $ab.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

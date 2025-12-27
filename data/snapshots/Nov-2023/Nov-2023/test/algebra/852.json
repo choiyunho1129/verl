@@ -1,0 +1,7 @@
+{
+    "problem": "If $22 + m + n + 12 = 144$ and $m = 9n$, then what is the value of $n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

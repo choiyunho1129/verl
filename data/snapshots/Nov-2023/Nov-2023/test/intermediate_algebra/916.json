@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of the following expression: $400 - 399 +398 - 397 + 396 - 395 + \\cdots + 4 - 3 +2 - 1$?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{200}",
+    "is_static": false
+}

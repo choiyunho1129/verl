@@ -1,0 +1,7 @@
+{
+    "problem": "Two nonzero real numbers $a$ and $b$ satisfy $ab = 3220a - 1925b.$ Find all possible values of $\\frac {10368400a}{b} + \\frac {7410099b}{a} - ab.$\n\nEnter all possible values, separated by commas.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{12397000}",
+    "is_static": false
+}

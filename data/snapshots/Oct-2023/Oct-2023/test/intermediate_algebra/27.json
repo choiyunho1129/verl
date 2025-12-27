@@ -1,0 +1,7 @@
+{
+    "problem": "By partial fractions,\n$$\\frac{56x-4324}{x^2-2116} = \\frac{A}{x-46} + \\frac{B}{x+46}.$$Find $A+B$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{56}",
+    "is_static": false
+}

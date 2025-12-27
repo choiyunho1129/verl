@@ -1,0 +1,7 @@
+{
+    "problem": "How many numbers are in the list $$ 5.2, 11.2, 17.2, 23.2, \\ldots, 113.2, 119.2? $$",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

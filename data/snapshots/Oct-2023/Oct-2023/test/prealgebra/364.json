@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $x$ that satisfies the equation $43x+42 = 45x+84$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-21}",
+    "is_static": false
+}

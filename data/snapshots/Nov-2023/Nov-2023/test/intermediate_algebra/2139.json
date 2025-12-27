@@ -1,0 +1,7 @@
+{
+    "problem": "The largest term in the binomial expansion of $(1 + \\tfrac{1}{2})^{70}$ is of the form $\\tfrac{a}{b}$, where $a$ and $b$ are relatively prime positive integers.  What is the value of $b$?",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{131072}",
+    "is_static": false
+}

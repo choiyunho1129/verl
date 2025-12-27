@@ -1,0 +1,7 @@
+{
+    "problem": "How many rectangles are in the array below?\n\n[asy]\nfor(int i = 0; i<12; ++i)\n{\n\nfor(int j = 0; j<12; ++j)\n\n{\n\ndraw((12i,j)--(12i+12,j)--(12i+12,j+1)--(12i,j+1)--(12i,j)--cycle,linewidth(2));\n\n}\n}\n[/asy]",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{6084}",
+    "is_static": false
+}

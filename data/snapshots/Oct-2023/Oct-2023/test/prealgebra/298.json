@@ -1,0 +1,7 @@
+{
+    "problem": "Find the product of the positive divisors of 300.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{19683000000000000000000}",
+    "is_static": false
+}

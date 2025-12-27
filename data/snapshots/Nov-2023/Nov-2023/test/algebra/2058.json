@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{1+\\sqrt{37}}{37+\\sqrt{1368}}$. Your solution can be converted to the form $A(1+\\sqrt{B})-(\\sqrt{C}+\\sqrt{D})$, where $A$, $B$, $C$, and $D$ are positive integers. What is $A+B+C+D$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{52058}",
+    "is_static": false
+}

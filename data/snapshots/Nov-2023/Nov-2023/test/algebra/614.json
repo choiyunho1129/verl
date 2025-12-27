@@ -1,0 +1,7 @@
+{
+    "problem": "Rationalize the denominator of $\\displaystyle\\frac{174}{\\sqrt{174}}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\!\\sqrt{174}}",
+    "is_static": false
+}

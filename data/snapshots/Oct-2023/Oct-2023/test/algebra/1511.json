@@ -1,0 +1,7 @@
+{
+    "problem": "Alex, Bob, Camille, and Danielle's mothers are comparing their children's ages. They observe that the sum of Alex, Bob, and Danielle's ages is ten times Camille's age. They also note that the sum of Alex and Bob's ages is four times Camille's age, and Bob's age is ten years less than the difference in ages of Danielle and Alex. How old is Camille?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

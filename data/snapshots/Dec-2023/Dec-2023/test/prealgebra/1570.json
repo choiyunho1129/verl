@@ -1,0 +1,7 @@
+{
+    "problem": "Seven is added to eight times an integer to get a result of 711. What was the integer?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{88}",
+    "is_static": false
+}

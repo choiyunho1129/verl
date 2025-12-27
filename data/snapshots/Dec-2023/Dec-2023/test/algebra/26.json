@@ -1,0 +1,7 @@
+{
+    "problem": "What is the shortest distance between the circles defined by $x^2-54x +y^2-72y+1856=0$ and $x^2+54x +y^2+72y+1856=0$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{64}",
+    "is_static": false
+}

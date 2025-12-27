@@ -1,0 +1,7 @@
+{
+    "problem": "Find the largest prime number that divides the quantity $0! + (1!) \\times 1 + (2!) \\times 2 + (3!) \\times 3 + \\cdots + (32!) \\times 32$.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{31}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $n \\equiv 12 \\pmod{17}$, then find the remainder when $(n + 2)(n + 4)(n + 6)(n + 8)(n + 10)(n + 12)(n + 14)(n + 16)$ is divided by 17.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

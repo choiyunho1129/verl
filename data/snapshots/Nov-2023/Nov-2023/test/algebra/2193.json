@@ -1,0 +1,7 @@
+{
+    "problem": "Find all values of $x$ that satisfy the equation $x = \\!\\sqrt{20-2x} + 6$.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{x=8}",
+    "is_static": false
+}

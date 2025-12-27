@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $\\frac{42}{112}+\\frac{716}{204}$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{22190}{5712}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "When $6242^{3689}$ is written in decimal notation, what is its ones digit?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

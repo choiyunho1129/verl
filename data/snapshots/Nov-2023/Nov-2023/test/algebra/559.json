@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of the two values which will make the following expression undefined? $$\\frac{65x-69}{2x^2-14x+93}$$",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

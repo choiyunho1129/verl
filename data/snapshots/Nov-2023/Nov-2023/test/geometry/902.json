@@ -1,0 +1,7 @@
+{
+    "problem": "Two circles are centered at the origin, as shown.  The point $P(99,20)$ is on the larger circle and the point $S(0,k)$ is on the smaller circle.  If $QR=50$, what is the value of $k$? [asy]\ndefaultpen(linewidth(.7pt)+fontsize(10pt));\ndotfactor=4;\ndraw(Circle((0,0),51)); draw(Circle((0,0),101));\ndot((0,0)); dot((51,0)); dot((101,0)); dot((0,51)); dot((99,20));\ndraw((0,0)--(99,20));\nlabel(\"$S (0,k)$\",(0,7.5),W);\ndraw((104,0)--(0,0)--(0,104),Arrows(TeXHead));\ndraw((-104,0)--(0,0)--(0,-104));\n\nlabel(\"$x$\",(104,0),E); label(\"$y$\",(0,104),N); label(\"$P(99,20)$\",(99,20),NE);\n\nlabel(\"$O$\",(0,0),SW); label(\"$Q$\",(51,0),SW); label(\"$R$\",(101,0),SE);\n\n[/asy]",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{51}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "A teacher has made forty-two statements for a True-False test. Thirteen statements are true and twenty-nine are false. How many distinct answer keys could there be for the test?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{25518731280\\text{ ways}}",
+    "is_static": false
+}

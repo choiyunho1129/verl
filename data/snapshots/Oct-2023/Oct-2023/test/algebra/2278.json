@@ -1,0 +1,7 @@
+{
+    "problem": "John is 763 years younger than his dad. The sum of their ages is 1537 years. How many years old is John's dad?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1150}",
+    "is_static": false
+}

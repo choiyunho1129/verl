@@ -1,0 +1,7 @@
+{
+    "problem": "Max must take 43 steps to go the same distance as six of his dad's steps. His dad takes 96 steps to walk down the hall. How many steps must Max take to walk down the same hall?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{688}",
+    "is_static": false
+}

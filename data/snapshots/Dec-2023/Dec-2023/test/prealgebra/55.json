@@ -1,0 +1,7 @@
+{
+    "problem": "How many numbers from 1 through 1000 have a 2 in the units place and are divisible by 4?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{50}",
+    "is_static": false
+}

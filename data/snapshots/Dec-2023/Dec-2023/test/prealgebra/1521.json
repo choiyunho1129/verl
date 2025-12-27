@@ -1,0 +1,7 @@
+{
+    "problem": "The average of five weights is 17 grams. This set of five weights is then increased by another weight of 11 grams. What is the average of the six weights?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{16 \\text{ gm}}",
+    "is_static": false
+}

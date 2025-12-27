@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\dbinom{33}{27}\\times \\dbinom{6}{4}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{16613520}",
+    "is_static": false
+}

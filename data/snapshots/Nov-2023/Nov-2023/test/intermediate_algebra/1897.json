@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\log_2 x + \\log _2 x^{10} = 594,$ find the value of $x.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{18014398509481984}",
+    "is_static": false
+}

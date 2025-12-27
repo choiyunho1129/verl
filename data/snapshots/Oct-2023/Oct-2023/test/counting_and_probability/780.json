@@ -1,0 +1,7 @@
+{
+    "problem": "A bag has 72 red and 100 blue marbles.  A marble is selected and not replaced, then a second is selected.  What is the probability that both are the same color?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{ \\frac{417}{817}}",
+    "is_static": false
+}

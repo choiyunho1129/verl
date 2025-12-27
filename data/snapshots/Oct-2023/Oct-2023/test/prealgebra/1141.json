@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive integers are factors of 16500 and also factors of 1650?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{24}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $k$ is a positive integer less than 22, how many values can $k$ take on such that $11x \\equiv k \\pmod{22}$ has no solutions in $x$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

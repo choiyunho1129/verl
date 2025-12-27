@@ -1,0 +1,7 @@
+{
+    "problem": "Forty-six students were surveyed about their participation in hockey and baseball. The results of the survey were:\n\n$\\bullet$ $27$ students played hockey\n\n$\\bullet$ $28$ students played baseball\n\n$\\bullet$ $6$ students played neither hockey nor baseball\n\nHow many of the students surveyed played both hockey and baseball?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

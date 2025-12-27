@@ -1,0 +1,7 @@
+{
+    "problem": "If $|724x+888|=268$ and $x<0$, what is the value of $x$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-0.856353591160221}",
+    "is_static": false
+}

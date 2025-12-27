@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ if $6^x + 6^x + 6^x + 6^x + 6^x + 6^x = 6^278$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{277}",
+    "is_static": false
+}

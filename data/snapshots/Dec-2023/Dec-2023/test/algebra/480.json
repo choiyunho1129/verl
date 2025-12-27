@@ -1,0 +1,7 @@
+{
+    "problem": "Let \\[f(x) = \\begin{cases}\n-x^2 - 738 &\\text{if }x<869, \\\\\n186&\\text{if }869 \\le x< 925, \\\\\n\\sqrt{x}&\\text{if }x \\ge 925.\n\\end{cases}\n\\]Find $f(\\pi)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-747.8596}",
+    "is_static": false
+}

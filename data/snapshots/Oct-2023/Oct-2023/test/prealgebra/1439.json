@@ -1,0 +1,7 @@
+{
+    "problem": "My classroom has 6 rows of chairs, with 7 chairs in each row.  The chairs in each row are numbered from 1 to 7.  How many chairs have odd numbers?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{24}",
+    "is_static": false
+}

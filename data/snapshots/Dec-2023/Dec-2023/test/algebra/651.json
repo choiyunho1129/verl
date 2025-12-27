@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of the first ninety-six positive odd integers?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{9216}",
+    "is_static": false
+}

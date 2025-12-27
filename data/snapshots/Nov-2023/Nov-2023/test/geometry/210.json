@@ -1,0 +1,7 @@
+{
+    "problem": "How many congruent 1-foot tall cylindrical pipes with an inside diameter of 6 inches are needed to hold the same amount of water as one pipe of the same height with an inside diameter of 120 inches?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{400}",
+    "is_static": false
+}

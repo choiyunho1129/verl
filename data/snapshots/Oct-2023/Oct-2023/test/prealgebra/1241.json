@@ -1,0 +1,7 @@
+{
+    "problem": "What is the $2972^{\\text{nd}}$ digit to the right of the decimal point in the decimal expansion of $\\frac{86}{7}$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

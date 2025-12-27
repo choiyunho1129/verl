@@ -1,0 +1,7 @@
+{
+    "problem": "How many perfect squares are factors of $48 \\times 48 \\times 2592 \\times 1296 \\times 108 \\times 3240?$",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{108}",
+    "is_static": false
+}

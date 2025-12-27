@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $3025 + (8360 \\div 95)$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{3113}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many four-digit integers are less than 5895 and greater than 3370?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2524}",
+    "is_static": false
+}

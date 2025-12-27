@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f: \\mathbb{R}\\rightarrow \\mathbb{R}$ be a function satisfying $f(x)f(y)=f(x-y)$. Find all possible values of $23\\cdot f(3538)$.  Enter all the possible values, separated by commas.",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{0,23}",
+    "is_static": false
+}

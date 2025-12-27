@@ -1,0 +1,7 @@
+{
+    "problem": "Remmy wants to divide $30$ by $\\frac{43}{84}$, but he cannot remember how to do that.  By what number should he multiply $30$ to get the answer?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{84}{43}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Express as a common fraction: $\\frac{. \\overline{6} }{. \\overline{8} }$",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac68}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the function $f(x)=66x+1$.  What is $f(9)$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{595}",
+    "is_static": false
+}

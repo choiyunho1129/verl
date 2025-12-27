@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of the following expression: $1 - 3 + 5 - 7 + 9 - \\cdots - 51 + 53 - 55 + 57$ ?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum $\\frac{3}{10}+\\frac{7}{1000}$, in decimal form to the nearest thousandth?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{0.307}",
+    "is_static": false
+}

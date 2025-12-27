@@ -1,0 +1,7 @@
+{
+    "problem": "What is $0.\\overline{7}\\cdot 24$? Express your answer as a reduced fraction.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{56}{3}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil\\left(\\frac{53}{20}\\right)^2\\right\\rceil$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

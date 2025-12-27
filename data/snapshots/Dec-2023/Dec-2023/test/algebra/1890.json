@@ -1,0 +1,7 @@
+{
+    "problem": "Let $P(x) = 20x^3 - 2x^2 + 9x + 8$, and let $Q(x) = P(x)^2$. What is the y-intercept of $Q(x)$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{64}",
+    "is_static": false
+}

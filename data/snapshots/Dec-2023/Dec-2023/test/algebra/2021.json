@@ -1,0 +1,7 @@
+{
+    "problem": "Positive integers $x$ and $y$ have a product of 144 and $x < y$. Seventy-two times the reciprocal of the smaller integer plus 72 times the reciprocal of the larger integer equals 13. What is the value of $x$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

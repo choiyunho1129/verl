@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $\\sqrt{5700-\\!\\sqrt{5700-\\!\\sqrt{5700-\\cdots}}}$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{75}",
+    "is_static": false
+}

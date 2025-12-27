@@ -1,0 +1,7 @@
+{
+    "problem": "Compute 43$\\arccos \\left( -\\frac{1}{2} \\right).$  Express your answer in radians.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{86 \\pi}{3}}",
+    "is_static": false
+}

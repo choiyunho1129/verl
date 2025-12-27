@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is a positive integer such that $1^x + 2^x + 6^x = 10078209$, what is the value of $x$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The product of two consecutive odd whole numbers is 1648655. What is the greater number?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1285}",
+    "is_static": false
+}

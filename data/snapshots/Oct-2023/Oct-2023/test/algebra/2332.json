@@ -1,0 +1,7 @@
+{
+    "problem": "Express $\\left(\\frac{1}{281474976710656}\\right)^{\\frac116}$ a common fraction.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{8}}",
+    "is_static": false
+}

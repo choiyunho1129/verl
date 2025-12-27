@@ -1,0 +1,7 @@
+{
+    "problem": "Define the operation $\\star$ by $a \\star b = (a + b)b$. What is $(26\\star13) - (13\\star26)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-507}",
+    "is_static": false
+}

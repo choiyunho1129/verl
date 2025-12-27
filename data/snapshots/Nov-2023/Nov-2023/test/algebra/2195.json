@@ -1,0 +1,7 @@
+{
+    "problem": "The sixteenth term of an arithmetic sequence is $15$ and the thirty-second term is $-17.$ Find the sixty-fourth term of this sequence.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-81}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $|1-9i|$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\sqrt{82}}",
+    "is_static": false
+}

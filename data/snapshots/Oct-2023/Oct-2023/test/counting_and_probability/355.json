@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest positive integer $n$ such that $14^n$ is a factor of $499409!$?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{38415}",
+    "is_static": false
+}

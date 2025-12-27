@@ -1,0 +1,7 @@
+{
+    "problem": "Find the cross product of $\\begin{pmatrix} 24 \\\\ 43 \\\\ 18 \\end{pmatrix}$ and $\\begin{pmatrix} 24 \\\\ 3 \\\\ 2 \\end{pmatrix}.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 32 \\\\ 384 \\\\ -960 \\end{pmatrix}}",
+    "is_static": false
+}

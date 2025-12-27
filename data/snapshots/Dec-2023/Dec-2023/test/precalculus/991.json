@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{v}$ and $\\mathbf{w}$ be vectors such that $\\|\\mathbf{v}\\| = 138$ and $\\|\\mathbf{w}\\| = 435.$  Find the minimum value of $\\mathbf{v} \\cdot \\mathbf{w}.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{-60030}",
+    "is_static": false
+}

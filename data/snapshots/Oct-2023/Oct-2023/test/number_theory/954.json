@@ -1,0 +1,7 @@
+{
+    "problem": "If $171_{a}$ is equal to the base 10 integer 859, find $a$ given that $a>0$.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{26}",
+    "is_static": false
+}

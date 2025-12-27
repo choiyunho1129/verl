@@ -1,0 +1,7 @@
+{
+    "problem": "How many factors of 304760 can be divided by 76 without a remainder?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

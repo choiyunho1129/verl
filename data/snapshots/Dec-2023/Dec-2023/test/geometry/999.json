@@ -1,0 +1,7 @@
+{
+    "problem": "The lateral surface area of a cylindrical tube with a height of 556 cm is $998576\\pi$ square centimeters. In cubic centimeters, what is the tube's volume? Express your answer in terms of $\\pi$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{448360624\\pi}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c$ be the roots of $x^3 + 2x^2 + 15x + 63 = 0.$  Compute\n\\[\\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c}.\\]",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-\\frac{15}{63}}",
+    "is_static": false
+}

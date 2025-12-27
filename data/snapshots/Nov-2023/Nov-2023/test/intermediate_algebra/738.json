@@ -1,0 +1,7 @@
+{
+    "problem": "Find $w$ if $|28-8i+w|=0$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-28+8i}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{A}$ and $\\mathbf{B}$ be $90 \\times 90$ matrices such that $\\det \\mathbf{A} = -42$ and $\\det \\mathbf{B} = -89.$  Find $\\det (88 \\mathbf{A} \\mathbf{B}).$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{28947072}",
+    "is_static": false
+}

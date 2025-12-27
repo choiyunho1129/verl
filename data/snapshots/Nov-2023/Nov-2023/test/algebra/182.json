@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the following expression: $20(87y+20)$",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{1740y+400}",
+    "is_static": false
+}

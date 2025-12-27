@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest common divisor of 8505 and 918330048?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{243}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $n$ is a multiple of three, what is the remainder when $(n + 67) + (n + 32) + (n + 20)$ is divided by $9$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

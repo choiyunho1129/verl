@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\displaystyle\\frac{n+2}{n-20} = 2$ what is the value of $n$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{42}",
+    "is_static": false
+}

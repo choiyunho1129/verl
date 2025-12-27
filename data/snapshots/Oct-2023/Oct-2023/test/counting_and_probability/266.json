@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that we win $\\$292$ if we flip a heads on a coin toss, but lose $\\$13$ if we flip tails.  What is the expected value, in dollars, of our winnings after one flip?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\$139.50}",
+    "is_static": false
+}

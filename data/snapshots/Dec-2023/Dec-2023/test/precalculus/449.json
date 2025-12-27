@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate\n\\[\\begin{vmatrix} 568x & 568\\sin \\theta & 568\\cos \\theta \\\\ -647\\sin \\theta & -647x & 647 \\\\ 750\\cos \\theta & 750 & 750x \\end{vmatrix}.\\]",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{-275622000x^3}",
+    "is_static": false
+}

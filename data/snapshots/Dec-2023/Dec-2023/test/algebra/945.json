@@ -1,0 +1,7 @@
+{
+    "problem": "If $P(x) = 6+2\\sqrt{x+5}$ and $G(x) = 35-8x$, then what is the largest constant $a$ such that $P(G(a))$ is defined?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

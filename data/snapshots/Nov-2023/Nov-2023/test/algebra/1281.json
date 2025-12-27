@@ -1,0 +1,7 @@
+{
+    "problem": "A line parallel to $6x-19y = 37$ passes through the point $(38,23)$ and $(0,K)$. What is the value of K?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

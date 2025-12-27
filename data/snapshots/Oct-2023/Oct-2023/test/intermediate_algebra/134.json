@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $1-2+3-4+5- \\dots +109-110$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-55}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Distinct points $A$ and $B$ are on a semicircle with diameter $MN$ and center $C$.  The point $P$ is on $CN$ and $\\angle CAP = \\angle CBP = 14^\\circ$.  If arc $MA$ is equal to $54^\\circ$, then find arc $BN$ (in degrees).\n\n[asy]\nimport geometry;\nimport graph;\n\nunitsize(2 cm);\n\npair A, B, C, M, N, P;\n\nM = (-1,0);\nN = (1,0);\nC = (0,0);\nA = dir(140);\nB = dir(20);\nP = extension(A, A + rotate(10)*(C - A), B, B + rotate(10)*(C - B));\n\ndraw(M--N);\ndraw(arc(C,1,0,180));\ndraw(A--C--B);\ndraw(A--P--B);\n\nlabel(\"$A$\", A, NW);\nlabel(\"$B$\", B, NE);\nlabel(\"$C$\", C, S);\nlabel(\"$M$\", M, SW);\nlabel(\"$N$\", N, SE);\nlabel(\"$P$\", P, S);\n[/asy]",
+    "level": "Level 5",
+    "type": "Geometry",
+    "solution": "\\boxed{26^\\circ}",
+    "is_static": false
+}

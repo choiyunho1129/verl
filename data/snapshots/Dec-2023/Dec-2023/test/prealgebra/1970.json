@@ -1,0 +1,7 @@
+{
+    "problem": "A bacteria colony doubles in size every hour. At 3:00 pm there are 9 bacteria in a petri dish. At 7:00 pm on the same day, what is the bacteria population?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{144}",
+    "is_static": false
+}

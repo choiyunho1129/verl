@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\sqrt[3]{486}\\times \\sqrt[3]{1250}\\times \\sqrt[3]{3375}\\times \\sqrt[3]{150}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{6750}",
+    "is_static": false
+}

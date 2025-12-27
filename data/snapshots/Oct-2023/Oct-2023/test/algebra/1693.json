@@ -1,0 +1,7 @@
+{
+    "problem": "For specific positive numbers $m$ and $n$, the quadratics $100x^2+180x+90$ and $(mx+n)^2$ differ only in their constant term. What is $mn$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{90}",
+    "is_static": false
+}

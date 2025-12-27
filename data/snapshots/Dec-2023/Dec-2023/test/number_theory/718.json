@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the units digit of $77^{21} - 48$.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

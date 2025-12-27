@@ -1,0 +1,7 @@
+{
+    "problem": "The function defined by\n\\[f(x) = \\left\\{\n\\begin{array}{cl}\nx + k & \\text{if $x < 11$}, \\\\\n11x - 3 & \\text{if $x \\ge 11$}\n\\end{array}\n\\right.\\]has an inverse, and the inverse is defined for all real numbers.  Enter all possible values of $k,$ separated by commas.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{107}",
+    "is_static": false
+}

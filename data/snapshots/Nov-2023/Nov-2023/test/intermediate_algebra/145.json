@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c,$ $d$ be nonnegative real numbers such that $a + b + c + d = 673.$  Find the maximum value of\n\\[ab + bc + cd.\\]",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{452929}{4}}",
+    "is_static": false
+}

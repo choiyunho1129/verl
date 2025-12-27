@@ -1,0 +1,7 @@
+{
+    "problem": "In my neighborhood, there are nineteen streets. There are 10 houses on each side of each street. No house faces two different streets. How many houses are in my neighborhood?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{380}",
+    "is_static": false
+}

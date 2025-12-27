@@ -1,0 +1,7 @@
+{
+    "problem": "Find the diameter of the incircle for a triangle whose side lengths are 12, 35, and 37.",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

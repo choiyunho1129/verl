@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $r^2+30r+225$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{(r+15)^2}",
+    "is_static": false
+}

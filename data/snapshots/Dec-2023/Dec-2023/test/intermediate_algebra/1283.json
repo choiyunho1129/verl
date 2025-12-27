@@ -1,0 +1,7 @@
+{
+    "problem": "For real numbers $t > 11,$ find the minimum value of\n\\[\\frac{t}{\\sqrt{t - 11}}.\\]",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2 \\sqrt{11}}",
+    "is_static": false
+}

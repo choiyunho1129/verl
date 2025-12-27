@@ -1,0 +1,7 @@
+{
+    "problem": "When $(x\\sqrt{x^{29}})^{84}$ is simplified, what is the exponent of $x$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{1302}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lfloor\\left|-\\frac{523}{68}\\right|\\right\\rfloor$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

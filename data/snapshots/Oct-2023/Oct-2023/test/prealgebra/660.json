@@ -1,0 +1,7 @@
+{
+    "problem": "A suitcase lock has 3 dials with the digits $0, 1, 2,..., 9$ on each. How many different settings are possible if all three digits have to be different?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{720}",
+    "is_static": false
+}

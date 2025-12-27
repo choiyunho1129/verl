@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{3^n\\cdot3^{4n+1}}{27}=1350851717672992089$, find $n$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

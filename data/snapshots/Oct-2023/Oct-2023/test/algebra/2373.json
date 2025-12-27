@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $x$ if $x$ is positive and $x\\cdot\\lfloor x\\rfloor=325$. Express your answer as a decimal.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{18.055555555555557}",
+    "is_static": false
+}

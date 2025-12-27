@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $ \\frac{1}{24} \\div \\frac{1}{1080} $.",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{45}",
+    "is_static": false
+}

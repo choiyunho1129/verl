@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left(26^{\\left(19\\frac{1}{20}\\right)}\\right)^{\\frac{10}{381}} \\cdot \\left(676^{\\left(18\\frac{1}{76}\\right)}\\right)^{\\frac{19}{1369}}$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{26}",
+    "is_static": false
+}

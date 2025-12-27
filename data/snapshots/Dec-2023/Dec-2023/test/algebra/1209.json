@@ -1,0 +1,7 @@
+{
+    "problem": "Thirty people purchased supplies for a eighty-day camping trip with the understanding that each of the thirty will get equal daily shares. They are then joined by ten more people, but make no further purchases. How many days will the supplies last if the original daily share for each person is not changed?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{60}",
+    "is_static": false
+}

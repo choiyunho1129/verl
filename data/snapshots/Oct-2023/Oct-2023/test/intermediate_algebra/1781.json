@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $|13-3i|$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\sqrt{178}}",
+    "is_static": false
+}

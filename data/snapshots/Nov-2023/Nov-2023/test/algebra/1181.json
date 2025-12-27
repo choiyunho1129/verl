@@ -1,0 +1,7 @@
+{
+    "problem": "A recipe calls for $\\frac8{25}$ teaspoon of salt for each quart of water. How many quarts of water will be used for four hundred and ninety-six teaspoons of salt?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{1550}",
+    "is_static": false
+}

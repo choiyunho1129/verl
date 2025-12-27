@@ -1,0 +1,7 @@
+{
+    "problem": "John meant to divide a number by $10$, but he was careless and subtracted $10$ from the number instead.  He got an answer of $290$.  What would his answer have been had he actually divided by $10$ instead of subtracting $10$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{30}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "When a number is divided by 28, the remainder is 26. What is the remainder when twice the number is divided by 28?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{24}",
+    "is_static": false
+}

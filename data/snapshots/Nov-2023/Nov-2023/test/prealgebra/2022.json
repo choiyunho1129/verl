@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $(23 \\times 38)-(23+38)$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{813}",
+    "is_static": false
+}

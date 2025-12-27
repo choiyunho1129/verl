@@ -1,0 +1,7 @@
+{
+    "problem": "Mikka wants to order a pizza with twenty-six different toppings. He has 39 different toppings to choose from. How many different pizzas could he order?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{8122425444}",
+    "is_static": false
+}

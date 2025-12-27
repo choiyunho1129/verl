@@ -1,0 +1,7 @@
+{
+    "problem": "Find the mean of the whole numbers from 6 to 69. Express your answer as a decimal to the nearest tenth.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{37.5}",
+    "is_static": false
+}

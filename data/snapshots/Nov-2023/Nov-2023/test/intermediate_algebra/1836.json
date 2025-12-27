@@ -1,0 +1,7 @@
+{
+    "problem": "Let $z_1,$ $z_2,$ $z_3$ be complex numbers such that $|z_1| = 99,$ $|z_2| = 98,$ $|z_3| = 29,$ and\n\\[|841z_1 z_2 + 9604z_1 z_3 + 9801z_2 z_3| = 6189876.\\]Find $|z_1 + z_2 + z_3|.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

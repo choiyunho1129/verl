@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $\\sqrt{45 \\cdot 90 \\cdot 50}$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{450}",
+    "is_static": false
+}

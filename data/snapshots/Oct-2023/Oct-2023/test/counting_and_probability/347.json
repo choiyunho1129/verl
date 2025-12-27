@@ -1,0 +1,7 @@
+{
+    "problem": "How many unique diagonals can be drawn in a ninety-three-sided convex polygon?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{4185}",
+    "is_static": false
+}

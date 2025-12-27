@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive factors does 13122 have?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

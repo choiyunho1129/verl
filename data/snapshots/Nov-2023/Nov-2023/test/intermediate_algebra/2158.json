@@ -1,0 +1,7 @@
+{
+    "problem": "Let $P(x)$ be the degree three polynomial with\n\\begin{align*}\nP(12) &= \\log 1, \\\\\nP(13) &= \\log 9, \\\\\nP(14) &= \\log 23, \\\\\nP(15) &= \\log 81.\n\\end{align*}Then $P(16)$ can be expressed in the form $A \\log \\frac{B}{C},$ where $A,$ $B,$ and $C$ are positive integers, and $C$ is prime.  Find $A + B + C.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{110}",
+    "is_static": false
+}

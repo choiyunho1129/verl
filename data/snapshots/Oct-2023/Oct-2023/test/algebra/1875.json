@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $\\sqrt{1640-\\!\\sqrt{1640-\\!\\sqrt{1640-\\cdots}}}$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{40}",
+    "is_static": false
+}

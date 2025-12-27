@@ -1,0 +1,7 @@
+{
+    "problem": "Find a nonzero solution to the equation $\\sqrt{57c-102c^2} = 0$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{19}{34}}",
+    "is_static": false
+}

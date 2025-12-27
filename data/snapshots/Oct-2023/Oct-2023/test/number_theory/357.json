@@ -1,0 +1,7 @@
+{
+    "problem": "Find the greatest common divisor of $174041$, $154583$, and $19320$.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{23}",
+    "is_static": false
+}

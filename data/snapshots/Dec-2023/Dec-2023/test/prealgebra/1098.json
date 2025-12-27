@@ -1,0 +1,7 @@
+{
+    "problem": "Alina and Joe are both thinking of the same positive number. Alina tells Joe that her number is a factor of 381, while he tells her that it is a factor of 508. If the number is not 1, what is it?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{127}",
+    "is_static": false
+}

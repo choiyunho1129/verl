@@ -1,0 +1,7 @@
+{
+    "problem": "The owners of the Luray Caverns in Virginia conduct tours every 15 minutes. Each day in April the first tour is at 8 a.m., and the last tour starts at 7 p.m. How many tours are there per day in April?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{45}",
+    "is_static": false
+}

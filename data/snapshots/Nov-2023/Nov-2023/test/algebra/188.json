@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $f(x)$ is an invertible function, and suppose that $f(39)=f^{-1}(39)=13$.\n\nWhat is the value of $f(f(39))$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{39}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Given the equations $6x+y=31,11y+z=4$ and $6x+11z=25$, what is the value of the sum $x+y+z$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

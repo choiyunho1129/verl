@@ -1,0 +1,7 @@
+{
+    "problem": "What is the units digit of $3^{2313}$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

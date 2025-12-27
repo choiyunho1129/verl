@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the circle defined by the equation $x^2 +3538x +y^2 +2880y =0$.  Find the sum of the coordinates of the center of the circle.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-3209}",
+    "is_static": false
+}

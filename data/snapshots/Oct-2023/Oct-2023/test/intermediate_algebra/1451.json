@@ -1,0 +1,7 @@
+{
+    "problem": "Compute\n\\[\\sum_{k = 1}^\\infty \\frac{827k + 1654}{k! + (k + 1)! + (k + 2)!}.\\]",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{827}{2}}",
+    "is_static": false
+}

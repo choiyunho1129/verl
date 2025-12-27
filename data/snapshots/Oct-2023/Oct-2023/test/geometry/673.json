@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that there is a right triangle $\\triangle ABC$ such that the legs $AB$ and $BC$ have lengths $114\\sqrt{1509}$ and $1740,$ respectively. What is the length of the median $BM$?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{2379}",
+    "is_static": false
+}

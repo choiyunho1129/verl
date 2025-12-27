@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\sqrt{134369280}$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{5184\\sqrt{5}}",
+    "is_static": false
+}

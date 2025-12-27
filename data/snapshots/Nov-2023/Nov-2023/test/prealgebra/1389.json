@@ -1,0 +1,7 @@
+{
+    "problem": "A fraction is equivalent to $\\frac{6}{31}.$ Its denominator and numerator add up to $629.$ What is the difference between the denominator and numerator of this fraction?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{425}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can I stack 12 different books on a shelf?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{479001600}",
+    "is_static": false
+}

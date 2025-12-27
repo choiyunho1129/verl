@@ -1,0 +1,7 @@
+{
+    "problem": "The first term of an arithmetic sequence is $12$. The sum of the seventh and the twelfth terms is $41$. What is the forty-fourth term?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{55}",
+    "is_static": false
+}

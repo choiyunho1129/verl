@@ -1,0 +1,7 @@
+{
+    "problem": "How many 36-step paths are there from $E$ to $G$?[asy]size(4cm,4cm);int w=18;int h=20;int i;for (i=0; i<h; ++i){draw((0,i) -- (w-1,i));}for (i=0; i<w; ++i){draw((i, 0)--(i,h-1));}label(\"$G$\", (w-1,0), SE);label(\"$E$\", (0,h-1), NW);[/asy]",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{8597496600}",
+    "is_static": false
+}

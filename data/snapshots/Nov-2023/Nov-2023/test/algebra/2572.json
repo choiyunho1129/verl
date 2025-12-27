@@ -1,0 +1,7 @@
+{
+    "problem": "If $F(a, b, c, d) = a^b + c \\times d$, what is the value of $b$ such that $F(7, b, 9, 9) = 117730$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

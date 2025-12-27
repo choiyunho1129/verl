@@ -1,0 +1,7 @@
+{
+    "problem": "If we flip 19 coins, what is the probability of getting at least 10 heads?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{262144}{524288}}",
+    "is_static": false
+}

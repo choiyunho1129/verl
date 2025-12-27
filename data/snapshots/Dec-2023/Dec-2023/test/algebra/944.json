@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify: $\\displaystyle \\frac{\\frac 1512\\times 2^{-60}}{2^{53}\\times 2^{-95}}$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{2^{-27}}",
+    "is_static": false
+}

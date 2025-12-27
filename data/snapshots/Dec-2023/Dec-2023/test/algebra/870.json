@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $12z^3 - 132z^2 + 576z$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{12z(z^2 - 11z + 48)}",
+    "is_static": false
+}

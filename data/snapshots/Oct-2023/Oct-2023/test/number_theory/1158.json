@@ -1,0 +1,7 @@
+{
+    "problem": "Convert $\\frac{25385}{262144}$ to base 2. Express your answer in binary with a radix point.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{0.000110001100101001_{2}}",
+    "is_static": false
+}

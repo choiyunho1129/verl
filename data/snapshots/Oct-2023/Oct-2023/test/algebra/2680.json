@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{(299r^660)(181488r^469)}{456r^473}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{119002r^656}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $7\\cos 30^\\circ$.",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{7\\sqrt{3}}{2}}",
+    "is_static": false
+}

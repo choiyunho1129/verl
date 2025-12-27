@@ -1,0 +1,7 @@
+{
+    "problem": "A rectangular box has volume 729.  Find the smallest possible surface area of the box.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{486}",
+    "is_static": false
+}

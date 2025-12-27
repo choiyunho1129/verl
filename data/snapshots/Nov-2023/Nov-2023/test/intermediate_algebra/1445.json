@@ -1,0 +1,7 @@
+{
+    "problem": "Find the number of positive integers $n$ for which the graph of\n\\[y = \\frac{(x + 1315)(x - 1500)^{517}}{(x - 500)(x - 1500)^n}\\]has a hole at $x = 1500.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{517}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The points $(733, 0)$ and $(-733, 0)$ are two non-consecutive vertices of a rhombus with an area of $441266$ square units. One of the other vertices is $(0, K)$ where $K > 0$. What is the value of $K$?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{301}",
+    "is_static": false
+}

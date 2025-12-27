@@ -1,0 +1,7 @@
+{
+    "problem": "The product of two positive numbers is 50, and the sum of their squares is 129. What is the square of their difference?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{29}",
+    "is_static": false
+}

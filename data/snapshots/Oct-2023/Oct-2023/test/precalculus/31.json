@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $10e^{39\\pi i}.$",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{-10}",
+    "is_static": false
+}

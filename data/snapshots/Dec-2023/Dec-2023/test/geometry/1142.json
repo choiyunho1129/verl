@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $31\\cos 225^\\circ$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{-\\frac{31\\sqrt{2}}{2}}",
+    "is_static": false
+}

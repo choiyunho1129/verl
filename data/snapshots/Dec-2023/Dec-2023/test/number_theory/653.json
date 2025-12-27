@@ -1,0 +1,7 @@
+{
+    "problem": "Find the remainder of $471^{26}$ when it is divided by 11.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

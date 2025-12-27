@@ -1,0 +1,7 @@
+{
+    "problem": "Let $65x^2 + 10x + c = 0.$ What value of $c$ will give us exactly one solution for $x$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{\\dfrac{5}{13}}",
+    "is_static": false
+}

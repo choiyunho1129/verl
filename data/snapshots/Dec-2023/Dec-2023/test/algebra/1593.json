@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left(9^{\\left(2\\frac{1}{6}\\right)}\\right)^{\\frac{3}{13}} \\cdot \\left(81^{\\left(15\\frac{1}{80}\\right)}\\right)^{\\frac{20}{1201}}$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

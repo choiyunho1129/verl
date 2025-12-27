@@ -1,0 +1,7 @@
+{
+    "problem": "A triangle $\\triangle ABC$ with $\\angle A = 2^\\circ$ is inscribed in a circle where $AB$ is a diameter. How many degrees are in $\\angle B$?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{88^\\circ}",
+    "is_static": false
+}

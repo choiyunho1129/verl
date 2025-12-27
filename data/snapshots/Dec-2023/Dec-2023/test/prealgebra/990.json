@@ -1,0 +1,7 @@
+{
+    "problem": "A pencil costs $p$ dollars and an eraser costs $e$ dollars. Mark buys $13$ more pencils than erasers, and he buys $46$ pencils. Write an expression that represents the amount of money that Mark spent, in dollars.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{46p+33e}",
+    "is_static": false
+}

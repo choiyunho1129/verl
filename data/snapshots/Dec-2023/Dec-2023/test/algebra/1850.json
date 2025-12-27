@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $p$ and $q$ are inversely proportional. If $p=398720$ when $q=35928$, find the value of $p$ when $q=32040$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{447104}",
+    "is_static": false
+}

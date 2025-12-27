@@ -1,0 +1,7 @@
+{
+    "problem": "How many digits does $1746564_{10}$ have when converted to base 6?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{9\\text{ digits}}",
+    "is_static": false
+}

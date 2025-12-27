@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $x$ and $y$ are real numbers satisfying  \\begin{align*}\n12528y - 5184x^2 &= 7569 \\\\\n12528x - 5184y^2 &= 7569.\n\\end{align*} What is $\\dfrac{1}{x^3 + y^3}$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{0.2834064537291402}",
+    "is_static": false
+}

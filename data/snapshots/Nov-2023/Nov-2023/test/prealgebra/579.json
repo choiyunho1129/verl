@@ -1,0 +1,7 @@
+{
+    "problem": "There are 9 sprinters in the Olympic 100-meter finals.  The gold medal goes to first place, silver to second, and bronze to third.   In how many ways can the medals be awarded?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{504}",
+    "is_static": false
+}

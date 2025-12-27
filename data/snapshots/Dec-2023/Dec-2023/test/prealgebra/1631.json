@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{3a^2b}{9ac}\\times\\frac{441c}{21ab}$, given that $a,b,c\\neq0.$",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

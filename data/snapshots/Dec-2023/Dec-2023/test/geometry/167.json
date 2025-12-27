@@ -1,0 +1,7 @@
+{
+    "problem": "The points $A(1,4), B(5,4), C(4,1)$ and $D(0,1)$ are the vertices of a parallelogram. If the parallelogram is translated down 5 units and right two units, what will be the coordinates of the final image of point $B$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{(7, -1)}",
+    "is_static": false
+}

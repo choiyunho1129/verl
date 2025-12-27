@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest positive integer $n$ such that $5^n$ is a factor of $2501!$?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{624}",
+    "is_static": false
+}

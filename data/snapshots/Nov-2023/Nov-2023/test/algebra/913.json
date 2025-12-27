@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(91a^30)^7$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{51676101935731a^210}",
+    "is_static": false
+}

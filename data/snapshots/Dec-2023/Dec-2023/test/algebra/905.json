@@ -1,0 +1,7 @@
+{
+    "problem": "Eric and Charles each think of a quadratic polynomial. To their surprise, both quadratics start $x^2+13x+\\cdots$. The ratio of the discriminant, $b^2-4ac$, of Eric's polynomial to the discriminant of Charles's polynomial is equal to the ratio of Charles's constant term to Eric's constant term. If their constant terms are not equal, find the sum of the constant terms.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

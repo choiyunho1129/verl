@@ -1,0 +1,7 @@
+{
+    "problem": "A class of 59 students recently took a test.  If 50 students scored 89, 6 students scored 94, and 3 students scored 98, then what was the class average (the mean) on this test?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{89.97}",
+    "is_static": false
+}

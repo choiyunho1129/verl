@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $16z^3 - 80z^2 + 416z$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{16z(z^2 - 5z + 26)}",
+    "is_static": false
+}

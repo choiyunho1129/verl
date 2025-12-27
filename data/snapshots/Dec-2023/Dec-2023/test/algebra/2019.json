@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the following product: $\\frac{919}{220}\\left(\\frac{440}{y} + 9240y\\right)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1838}{y} + 38598y}",
+    "is_static": false
+}

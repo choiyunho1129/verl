@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least common multiple of all positive integers smaller than 30?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2329089562800}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Points $A, B, C$ and $D$ have these coordinates: $A(921,556)$, $B(921,-556)$, $C(-921,-556)$ and $D(-921,196)$. What is the area of quadrilateral $ABCD$?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{1716744}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive 9-digit integers have only odd digits?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1953125}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest common divisor of 18600435 and 11019960576?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{531441}",
+    "is_static": false
+}

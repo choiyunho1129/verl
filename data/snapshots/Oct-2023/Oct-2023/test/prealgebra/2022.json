@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $(24 \\times 41)-(24+41)$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{919}",
+    "is_static": false
+}

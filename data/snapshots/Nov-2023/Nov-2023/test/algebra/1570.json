@@ -1,0 +1,7 @@
+{
+    "problem": "How many units long is a segment whose endpoints are $(-40,0)$ and $(0,42)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{58}",
+    "is_static": false
+}

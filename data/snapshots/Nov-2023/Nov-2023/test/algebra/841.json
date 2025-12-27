@@ -1,0 +1,7 @@
+{
+    "problem": "If the ninetieth term of an arithmetic sequence is $69$ and the two hundred and ninetieth term is $8269$, what is the one hundred and ninetieth term?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{4169}",
+    "is_static": false
+}

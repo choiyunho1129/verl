@@ -1,0 +1,7 @@
+{
+    "problem": "Calculate $2^{(3^3)} - \\left(2^3\\right)^3$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{134217216}",
+    "is_static": false
+}

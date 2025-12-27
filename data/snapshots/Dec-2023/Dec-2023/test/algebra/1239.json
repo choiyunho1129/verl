@@ -1,0 +1,7 @@
+{
+    "problem": "Rationalize the denominator: $\\frac{277}{995\\sqrt{5185}}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{277\\sqrt{5185}}{5159075}}",
+    "is_static": false
+}

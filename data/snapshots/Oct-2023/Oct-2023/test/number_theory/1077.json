@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of the base-44 geometric series $0.1_44-0.01_44+0.001_44-0.0001_44+0.00001_44\\ldots$; give your answer as a fraction in which the numerator and denominator are both expressed in base 10.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac{1}{45}}",
+    "is_static": false
+}

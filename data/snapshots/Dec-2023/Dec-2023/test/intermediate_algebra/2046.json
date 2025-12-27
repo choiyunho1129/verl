@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $x: 8^{3x} + 999137112552722945396305967104 = 558^x$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

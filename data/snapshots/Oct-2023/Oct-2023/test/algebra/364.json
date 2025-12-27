@@ -1,0 +1,7 @@
+{
+    "problem": "What digit is represented by $\\Delta$ if $539 / \\Delta = 7\\Delta$, with 7 the tens digit and $\\Delta$ the ones digit of the quotient?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the function $f(x)=90x+9$.  What is $f(3)$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{279}",
+    "is_static": false
+}

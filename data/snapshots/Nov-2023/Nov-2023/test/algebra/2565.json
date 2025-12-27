@@ -1,0 +1,7 @@
+{
+    "problem": "Forty-six people can mow a lawn in 45 hours.  How many more people are needed to mow the lawn in just 23 hours, assuming each person mows at the same rate?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{44}",
+    "is_static": false
+}

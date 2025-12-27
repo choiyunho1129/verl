@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x$ and $y$ be real numbers such that $0 \\le x \\le 9$ and $0 \\le y \\le 9.$  Find the maximum value of\n\\[x^2 y - xy^2.\\]",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{729}{4}}",
+    "is_static": false
+}

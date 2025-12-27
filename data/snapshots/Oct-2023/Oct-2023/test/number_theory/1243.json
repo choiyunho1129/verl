@@ -1,0 +1,7 @@
+{
+    "problem": "An ordered pair of digits $(a, b)$ is such that $36194a6,b94$ is a multiple of 66. Find $a+b$.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{36194}",
+    "is_static": false
+}

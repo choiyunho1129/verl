@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a}$ and $\\mathbf{b}$ be orthogonal vectors.  If $\\operatorname{proj}_{\\mathbf{a}} \\begin{pmatrix} 557 \\\\ -379 \\end{pmatrix} = \\begin{pmatrix} 961 \\\\ 321 \\end{pmatrix},$ then find $\\operatorname{proj}_{\\mathbf{b}} \\begin{pmatrix} 557 \\\\ -379 \\end{pmatrix}.$",
+    "level": "Level 5",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} -404 \\\\ -700 \\end{pmatrix}}",
+    "is_static": false
+}

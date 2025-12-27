@@ -1,0 +1,7 @@
+{
+    "problem": "If $(x,y) = (9,10)$, what is $y^2 - 4xy + 46$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-214}",
+    "is_static": false
+}

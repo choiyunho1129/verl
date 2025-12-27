@@ -1,0 +1,7 @@
+{
+    "problem": "If $x = 14 + \\frac{x}{14 + \\frac{x}{14+ \\frac{x}{14 + \\cdots}}}$, then what is $x$?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

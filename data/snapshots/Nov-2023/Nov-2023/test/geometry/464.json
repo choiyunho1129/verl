@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $11\\cos 30^\\circ$.",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{11\\sqrt{3}}{2}}",
+    "is_static": false
+}

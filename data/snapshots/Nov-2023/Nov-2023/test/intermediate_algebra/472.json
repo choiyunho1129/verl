@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ and $c$ be the roots of $2x^3 + 6x^2 - 48x - 30 = 0.$  Find $a + b + c.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-3}",
+    "is_static": false
+}

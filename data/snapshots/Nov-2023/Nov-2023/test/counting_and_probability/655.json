@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\displaystyle \\binom{28}{9}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{6906900}",
+    "is_static": false
+}

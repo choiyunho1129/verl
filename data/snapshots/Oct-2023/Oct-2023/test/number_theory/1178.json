@@ -1,0 +1,7 @@
+{
+    "problem": "How many perfect square factors does the number 840,057,472,492,704,609 have?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

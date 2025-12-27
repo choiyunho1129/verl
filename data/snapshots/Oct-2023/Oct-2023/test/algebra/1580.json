@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $(38-87)+(174-37)+(59-87)$ in your head.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{60}",
+    "is_static": false
+}

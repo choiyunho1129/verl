@@ -1,0 +1,7 @@
+{
+    "problem": "How many numbers between 1 and 70153 are integer multiples of 23 or 61 but not 1403?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{4100}",
+    "is_static": false
+}

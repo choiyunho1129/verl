@@ -1,0 +1,7 @@
+{
+    "problem": "The first round of the 2010 FIFA World Cup consisted of several groups of eight hundred and seven teams each. Within each group, each of the eight hundred and seven teams played each other once. How many matches were there in each group?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{325221}",
+    "is_static": false
+}

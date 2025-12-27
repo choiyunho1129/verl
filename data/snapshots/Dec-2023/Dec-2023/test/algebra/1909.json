@@ -1,0 +1,7 @@
+{
+    "problem": "Express in simplest form: $\\sqrt[180]{3814697265625^10}$",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

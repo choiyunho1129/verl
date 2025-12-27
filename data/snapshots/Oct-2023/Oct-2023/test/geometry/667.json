@@ -1,0 +1,7 @@
+{
+    "problem": "A right rectangular prism has a base area one-fifth the base area of a larger right rectangular prism. The height of the smaller prism is one-sixth the height of the larger one. What is the ratio of the volume of the smaller prism to the volume of the larger prism? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{1}{30}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The doctor has told Cal O'Ree that during his ten weeks of working out at the gym, he can expect each week's weight loss to be $9\\%$ of his weight at the end of the previous week. His weight at the beginning of the workouts is $343$ pounds. How many pounds does he expect to weigh at the end of the ten weeks? Express your answer to the nearest whole number.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{134}",
+    "is_static": false
+}

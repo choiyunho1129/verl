@@ -1,0 +1,7 @@
+{
+    "problem": "How many perfect squares are factors of $324 \\times 288 \\times 48 \\times 162 \\times 486 \\times 4860?$",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{88}",
+    "is_static": false
+}

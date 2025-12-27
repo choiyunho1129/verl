@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left|\\dfrac{37-87i}{19+11i}\\right|$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{4.306224386249547}",
+    "is_static": false
+}

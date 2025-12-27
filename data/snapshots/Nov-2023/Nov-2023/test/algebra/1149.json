@@ -1,0 +1,7 @@
+{
+    "problem": "If $(x,y) = (13,7)$, what is $y^2 - 6xy + 37$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{-460}",
+    "is_static": false
+}

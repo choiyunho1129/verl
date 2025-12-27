@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $$\\left( \\sqrt{121} - \\sqrt{100} \\right)^2?$$",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

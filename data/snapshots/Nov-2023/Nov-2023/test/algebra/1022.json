@@ -1,0 +1,7 @@
+{
+    "problem": "Find the sum of all integers that satisfy these conditions: \\[\n|x|+1>921\\text{ and }|x+1|\\le921.\n\\]",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-1843}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Because of redistricting, Liberty Middle School's enrollment increased to 374220 students. This is an increase of $285\\%$ over last year's enrollment. What was last year's enrollment?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{97200\\text{ students}}",
+    "is_static": false
+}

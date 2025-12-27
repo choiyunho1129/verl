@@ -1,0 +1,7 @@
+{
+    "problem": "The surface area of a particular cube is 9126 square inches. When the edges of the cube are doubled in length, what is the volume of the new cube, in cubic inches?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{474552}",
+    "is_static": false
+}

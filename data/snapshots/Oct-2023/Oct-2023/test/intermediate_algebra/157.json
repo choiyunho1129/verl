@@ -1,0 +1,7 @@
+{
+    "problem": "Find $|{-40664} + 11040i|$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{42136}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The first 2688 positive integers are each written in base 3.  How many of these base-3 representations are palindromes?  (A palindrome is a number that reads the same forward and backward.)",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{112}",
+    "is_static": false
+}

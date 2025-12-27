@@ -1,0 +1,7 @@
+{
+    "problem": "If $x \\equiv 42 \\pmod{45}$ and $y \\equiv 33 \\pmod{45}$, then find the remainder when $(x + 17)^7 (y + 28)^3$ is divided by 45.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{14}",
+    "is_static": false
+}

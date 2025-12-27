@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c$ be positive real numbers such that $a + b + c = 36abc.$  Find the maximum value of\n\\[\\frac{28 \\sqrt{a} + 36 \\sqrt{b} + 42 \\sqrt{c}}{\\sqrt{abc}}.\\]",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{372}",
+    "is_static": false
+}

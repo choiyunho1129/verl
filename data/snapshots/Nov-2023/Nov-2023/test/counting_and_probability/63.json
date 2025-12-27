@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\binom{22}{11}$. You are told that $\\binom{21}{11} = 352716$ and $\\binom{21}{11} = 352716$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{705432}",
+    "is_static": false
+}

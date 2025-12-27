@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least value of $x$ that is a solution of $|{-x+763}|=466$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{297}",
+    "is_static": false
+}

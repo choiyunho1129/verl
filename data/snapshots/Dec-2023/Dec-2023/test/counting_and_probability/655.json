@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\displaystyle \\binom{32}{20}$.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{225792840}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{v}$ and $\\mathbf{w}$ be vectors such that $\\|\\mathbf{v}\\| = 679$ and $\\|\\mathbf{w}\\| = 699.$  Find the minimum value of $\\mathbf{v} \\cdot \\mathbf{w}.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{-474621}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $k$ is a positive integer less than 38, how many values can $k$ take on such that $19x \\equiv k \\pmod{38}$ has no solutions in $x$?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{36}",
+    "is_static": false
+}

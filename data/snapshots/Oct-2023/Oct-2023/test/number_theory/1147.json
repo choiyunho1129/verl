@@ -1,0 +1,7 @@
+{
+    "problem": "How many fractions in the form $\\frac{n}{639}$, with $0<n<99$, are in lowest terms?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{420}",
+    "is_static": false
+}

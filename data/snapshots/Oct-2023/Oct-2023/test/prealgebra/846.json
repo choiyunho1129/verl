@@ -1,0 +1,7 @@
+{
+    "problem": "A class of 36 students recently took a test.  If 25 students scored 70, 9 students scored 92, and 2 students scored 97, then what was the class average (the mean) on this test?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{77}",
+    "is_static": false
+}

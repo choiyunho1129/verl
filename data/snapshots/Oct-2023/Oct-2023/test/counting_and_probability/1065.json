@@ -1,0 +1,7 @@
+{
+    "problem": "The dartboard below has a radius of 150 inches. Each of the concentric circles has a radius fifty inches less than the next larger circle. If one hundred and sixty-eight darts land randomly on the target, how many darts would we expect to land in a non-shaded region?\n\n[asy]import graph;\nfill(Circle((0,0),15),gray(0.7));\nfill(Circle((0,0),10),white);\ndraw(Circle((0,0),20));\ndraw(Circle((0,0),15));\ndraw(Circle((0,0),10));\n[/asy]",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{112}",
+    "is_static": false
+}

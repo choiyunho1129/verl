@@ -1,0 +1,7 @@
+{
+    "problem": "If $a\\equiv 38\\pmod{147}$ and $b\\equiv 120\\pmod{147}$, then for what integer $n$ in the set $\\{0,1,2,\\ldots,145,146\\}$ is it true that $$a-b\\equiv n\\pmod{147}~?$$",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{65}",
+    "is_static": false
+}

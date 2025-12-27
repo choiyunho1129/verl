@@ -1,0 +1,7 @@
+{
+    "problem": "The arithmetic mean of nine positive integers is 10. If one of the nine integers is removed, the mean becomes 8. What is the value of the integer that is removed?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{26}",
+    "is_static": false
+}

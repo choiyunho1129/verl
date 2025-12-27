@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $47a^2(47a^{12} - 97a^{11}) - 37a(47a^6 - 54a^2)$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{2209a^{14} - 4559a^{13} - 1739a^7 + 1998a^3}",
+    "is_static": false
+}

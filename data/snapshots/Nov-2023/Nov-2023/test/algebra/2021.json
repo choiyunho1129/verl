@@ -1,0 +1,7 @@
+{
+    "problem": "Positive integers $x$ and $y$ have a product of 360 and $x < y$. Sixty times the reciprocal of the smaller integer plus 60 times the reciprocal of the larger integer equals 7. What is the value of $x$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

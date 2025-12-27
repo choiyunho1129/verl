@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $f$ is a polynomial such that \\[(30x^7+25x^6+15x^5+5x^4+50x^3+40x^2+42x-5)\\cdot f(x)=30x^10-18x^9+2x^8+31x^7+32x^6+47x^5+17x^4+2x^3 - 27x^2 +15x -43.\\]What is the degree of $f$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

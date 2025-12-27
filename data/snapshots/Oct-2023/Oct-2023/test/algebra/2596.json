@@ -1,0 +1,7 @@
+{
+    "problem": "Find all values of $x$ such that $\\displaystyle\\frac{116}{x-1} + \\frac{145x}{x - 1} = 154$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{30}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The circumference of the interior of a cylindrical water glass is $7\\pi$ inches, and its interior height is 40 inches. How many cubic inches of liquid can the glass hold? Express your answer in terms of $\\pi$.",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{490\\pi}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The forty-second and forty-fifth terms of an arithmetic sequence are 197 and 209, respectively. What is the sixty-third term?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{281}",
+    "is_static": false
+}

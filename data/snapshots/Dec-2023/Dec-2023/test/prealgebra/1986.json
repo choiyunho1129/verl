@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest multiple of 82 that is less than 0?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-82}",
+    "is_static": false
+}

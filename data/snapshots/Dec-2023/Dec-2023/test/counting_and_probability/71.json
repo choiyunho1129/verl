@@ -1,0 +1,7 @@
+{
+    "problem": "How many ways are there to put 34 balls in 2 boxes if the balls are not distinguishable and neither are the boxes?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

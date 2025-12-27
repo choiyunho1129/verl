@@ -1,0 +1,7 @@
+{
+    "problem": "By how many degrees does the measure of an interior angle of a regular icosagon exceed the measure of an interior angle of a regular hexadecagon?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{4.5^\\circ}",
+    "is_static": false
+}

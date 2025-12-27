@@ -1,0 +1,7 @@
+{
+    "problem": "In $\\triangle{XYZ}$, $\\angle{Z}=90^{\\circ}$, $\\cos{Y}=\\frac{-10191}{11441}$, and $XY=11441$.  What is $\\tan{X}$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{-10191}{5200}}",
+    "is_static": false
+}

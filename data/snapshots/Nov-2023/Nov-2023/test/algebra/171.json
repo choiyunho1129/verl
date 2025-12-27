@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the function $f(x)=94x+67$.  What is $f(4)$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{443}",
+    "is_static": false
+}

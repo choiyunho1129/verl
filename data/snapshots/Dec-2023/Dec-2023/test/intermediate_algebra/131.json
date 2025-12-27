@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate the sum $$928 + \\frac{1857}{930} + \\frac{2786}{864900} + \\frac{3715}{804357000} + \\frac{4644}{748052010000} + \\dotsb$$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{930}",
+    "is_static": false
+}

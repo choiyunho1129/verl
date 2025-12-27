@@ -1,0 +1,7 @@
+{
+    "problem": "If $P(x) = 9+2\\sqrt{x+1}$ and $G(x) = 2-3x$, then what is the largest constant $a$ such that $P(G(a))$ is defined?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

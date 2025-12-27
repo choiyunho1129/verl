@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest integer less than 1166 which is divisible by 20?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{1160}",
+    "is_static": false
+}

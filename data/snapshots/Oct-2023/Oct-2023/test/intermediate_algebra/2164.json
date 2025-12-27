@@ -1,0 +1,7 @@
+{
+    "problem": "What real values of $x$ are not in the domain of\n\n$f(x)=\\frac{1}{|x^2+623x+80520|+|x^2-22x-203280|}$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-440}",
+    "is_static": false
+}

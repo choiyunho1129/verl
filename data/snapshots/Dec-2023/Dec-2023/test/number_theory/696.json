@@ -1,0 +1,7 @@
+{
+    "problem": "Express as a common fraction: $\\frac{. \\overline{2} }{. \\overline{2} }$",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac22}",
+    "is_static": false
+}

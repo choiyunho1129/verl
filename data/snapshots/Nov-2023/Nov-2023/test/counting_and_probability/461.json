@@ -1,0 +1,7 @@
+{
+    "problem": "How many ways are there to put 4 balls in 4 boxes if the balls are distinguishable and the boxes are distinguishable?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{256}",
+    "is_static": false
+}

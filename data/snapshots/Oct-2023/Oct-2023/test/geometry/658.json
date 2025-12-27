@@ -1,0 +1,7 @@
+{
+    "problem": "How many inches are in the circumference of a great circle of a sphere which has surface area of $144\\pi$ sq in? Express your answer in terms of $\\pi$.\n\nNote: To measure the circumference, take the largest circle on the surface of the sphere.",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{12\\pi}",
+    "is_static": false
+}

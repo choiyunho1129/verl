@@ -1,0 +1,7 @@
+{
+    "problem": "Convert $\\frac{152113}{800000}$ to a terminating decimal.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{.19014125}",
+    "is_static": false
+}

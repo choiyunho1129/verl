@@ -1,0 +1,7 @@
+{
+    "problem": "How many ways are there to put 6 balls in 9 boxes if the balls are distinguishable and the boxes are distinguishable?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{531441}",
+    "is_static": false
+}

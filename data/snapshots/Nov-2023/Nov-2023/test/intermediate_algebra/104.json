@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is a real number and $\\lfloor x \\rfloor = -70,$ how many possible values are there for $\\lfloor 9x \\rfloor$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $h$ be a polynomial of degree $20$, and suppose that $h(x) = (-12x^{19}-3x^{18}+17x^{17}+20x^{16}-12x^{15}+6x^{14}-4x^{13}+8x^{12}-14x^{11}-9x^{10}+11x^9-17x^8-3x^7-1x^6-9x^5-5x^3-15x^2-17x-12) \\cdot g(x)$, where $g(x)$ is a polynomial of degree $b$.  Find $b$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

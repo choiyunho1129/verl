@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of $y=ax^2+bx+c$ passes through points $(0,100)$, $(1,27)$, and $(2,29)$. Find $a+b+c$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{27}",
+    "is_static": false
+}

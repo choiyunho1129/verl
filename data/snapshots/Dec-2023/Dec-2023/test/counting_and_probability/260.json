@@ -1,0 +1,7 @@
+{
+    "problem": "A row of 19 light switches controls different banks of lights in a school gymnasium. In preparation for a school dance, students decide that they want either one or two banks of lights on during the dance. How many possible ways are there of setting these 19 switches so that either one or two banks of lights are on?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{190}",
+    "is_static": false
+}

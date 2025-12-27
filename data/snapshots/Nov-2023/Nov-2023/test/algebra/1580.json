@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $(47-28)+(56-5)+(79-28)$ in your head.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{121}",
+    "is_static": false
+}

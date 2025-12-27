@@ -1,0 +1,7 @@
+{
+    "problem": "A translation of the plane takes $-8 + 3i$ to $-7 + 12i.$  Find the complex number that the translation takes $-7$ to.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-6 + 9i}",
+    "is_static": false
+}

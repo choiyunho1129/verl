@@ -1,0 +1,7 @@
+{
+    "problem": "If $(24^10)^{(24^10)} = 24^N$, what is the value of $N$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{634033809653760}",
+    "is_static": false
+}

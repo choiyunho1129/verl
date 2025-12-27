@@ -1,0 +1,7 @@
+{
+    "problem": "Find the value of $2\\left(\\frac{34!}{3!31!}\\right)$",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{11968}",
+    "is_static": false
+}

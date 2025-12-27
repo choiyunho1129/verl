@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ and $c$ be the roots of $7x^3 + 7x^2 - 8x - 46 = 0.$  Find $a + b + c.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-1}",
+    "is_static": false
+}

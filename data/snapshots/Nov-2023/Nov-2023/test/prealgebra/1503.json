@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers are there on the number line between $11\\sqrt{17}$ and $17\\sqrt{11}$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{11}",
+    "is_static": false
+}

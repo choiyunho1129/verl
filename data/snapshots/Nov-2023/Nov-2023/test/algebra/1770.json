@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\lceil x\\rceil+\\lfloor x\\rfloor+x=52.6$, solve for $x$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{17.6}",
+    "is_static": false
+}

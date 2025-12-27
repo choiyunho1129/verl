@@ -1,0 +1,7 @@
+{
+    "problem": "Enrico makes a list of the first one hundred and thirty positive multiples of 17. Marie makes a list of the first sixty-five positive multiples of 51. How many of the numbers on Marie's list are also on Enrico's list?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{65}",
+    "is_static": false
+}

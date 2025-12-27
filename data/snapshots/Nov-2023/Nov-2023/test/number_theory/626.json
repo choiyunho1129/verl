@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive integer $n$ such that $n$ has remainder 75 when divided by 80, $n$ has remainder 75 when divided by 83, and $n$ has remainder 51 when divided by 88?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{39915}",
+    "is_static": false
+}

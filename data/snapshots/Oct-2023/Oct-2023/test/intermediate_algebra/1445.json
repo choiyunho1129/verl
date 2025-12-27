@@ -1,0 +1,7 @@
+{
+    "problem": "Find the number of positive integers $n$ for which the graph of\n\\[y = \\frac{(x + 1382)(x - 2327)^{540}}{(x - 756)(x - 2327)^n}\\]has a hole at $x = 2327.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{540}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the sum of all values of $x$ for which $|x-28| + |28-x| -1 = 69$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{56}",
+    "is_static": false
+}

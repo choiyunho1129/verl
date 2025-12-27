@@ -1,0 +1,7 @@
+{
+    "problem": "One line is described by\n\\[\\begin{pmatrix} -4 \\\\ 9 \\\\ 12 \\end{pmatrix} + t \\begin{pmatrix} 4 \\\\ k \\\\ 13 \\end{pmatrix}.\\]Another line is described by\n\\[\\begin{pmatrix} 5 \\\\ 14 \\\\ 24 \\end{pmatrix} + u \\begin{pmatrix} 125 \\\\ 8 \\\\ 113 \\end{pmatrix}.\\]Find $k$ so that the lines are coplanar (i.e. there is a plane that contains both lines).",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

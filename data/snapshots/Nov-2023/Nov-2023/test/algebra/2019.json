@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the following product: $\\frac{858}{639}\\left(\\frac{589797}{y} + 289467y\\right)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{791934}{y} + 388674y}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x=\\frac{59}{60}$ and $y=-\\frac{23}{32}$.  If $x\\cdot z = y$, then what is $z$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-\\frac{1380}{1888}}",
+    "is_static": false
+}

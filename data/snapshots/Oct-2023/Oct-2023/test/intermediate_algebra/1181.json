@@ -1,0 +1,7 @@
+{
+    "problem": "Let $z$ be a complex number such that\n\\[z^5 + 15z^4 + 226z^3 + 15z^2 + 225z = 0.\\]Find all possible values of $|z|.$\n\nEnter all possible values, separated by commas.",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{0,1,15}",
+    "is_static": false
+}

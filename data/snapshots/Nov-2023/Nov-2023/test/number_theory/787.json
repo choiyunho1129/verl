@@ -1,0 +1,7 @@
+{
+    "problem": "At the beginning of a program, the 299 members of a marching band stand in a rectangular formation named Formation $A$. All of the band members then move into Formation $B$, which is a different rectangular formation with ten more rows, but with ten fewer band members per row. How many rows are in Formation $A$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

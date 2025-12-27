@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\mathbf{a}$ and $\\mathbf{b}$ are vectors such that $\\|\\mathbf{a}\\| = 527$ and $\\|\\mathbf{b}\\| = 295$, then find the smallest possible value of $\\|\\mathbf{a} + \\mathbf{b}\\|$.",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{232}",
+    "is_static": false
+}

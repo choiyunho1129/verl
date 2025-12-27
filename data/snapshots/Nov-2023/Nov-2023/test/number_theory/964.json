@@ -1,0 +1,7 @@
+{
+    "problem": "What is the units digit when $6458^{817}$ is multiplied out?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

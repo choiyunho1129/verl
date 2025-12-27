@@ -1,0 +1,7 @@
+{
+    "problem": "If $(x - 9) + (x - 8) + (x - 14) + (x - 12) = x$, then what is $x$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{43}{3}}",
+    "is_static": false
+}

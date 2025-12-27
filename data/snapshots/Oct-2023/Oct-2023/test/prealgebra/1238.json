@@ -1,0 +1,7 @@
+{
+    "problem": "What integer $x$ satisfies $\\frac{1}{20}<\\frac{x}{39}<\\frac{1}{19}$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

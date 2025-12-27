@@ -1,0 +1,7 @@
+{
+    "problem": "Find $x$ such that $4^{\\log_x 400} = 16$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{20}",
+    "is_static": false
+}

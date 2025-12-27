@@ -1,0 +1,7 @@
+{
+    "problem": "When rolling eighteen fair, standard six-faced dice, what is the probability of rolling the same number on all dices? Express your answer as a common fraction.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{1}{6^{17}}}",
+    "is_static": false
+}

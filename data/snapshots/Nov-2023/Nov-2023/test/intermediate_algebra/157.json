@@ -1,0 +1,7 @@
+{
+    "problem": "Find $|{-34400} + 36120i|$.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{49880}",
+    "is_static": false
+}

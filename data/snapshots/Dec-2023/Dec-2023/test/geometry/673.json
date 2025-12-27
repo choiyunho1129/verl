@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that there is a right triangle $\\triangle ABC$ such that the legs $AB$ and $BC$ have lengths $2\\sqrt{7817799}$ and $6970,$ respectively. What is the length of the median $BM$?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{4468}",
+    "is_static": false
+}

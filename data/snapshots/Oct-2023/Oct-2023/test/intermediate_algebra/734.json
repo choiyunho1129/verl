@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ and $b$ are complex numbers such that $|a| = 153$ and $|b| = 72,$ then find $\\left| \\frac{a}{b} \\right|.$",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{17}{8}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Find the distance between the vertex of the graph of the equation $f(x) = x^2 - 18x + 17$ and the point $(14, 1)$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{65.192}",
+    "is_static": false
+}

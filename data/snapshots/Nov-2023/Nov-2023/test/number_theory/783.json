@@ -1,0 +1,7 @@
+{
+    "problem": "How many of the 1201 integers from $-600$ to $600$ are congruent to $1 \\pmod{20}?$",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{60}",
+    "is_static": false
+}

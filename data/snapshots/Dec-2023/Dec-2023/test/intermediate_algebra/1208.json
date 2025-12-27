@@ -1,0 +1,7 @@
+{
+    "problem": "In a geometric sequence $a_1,$ $a_2,$ $a_3,$ $\\dots,$ where all the terms are positive, $a_5 - a_4 = 7036608348$ and $a_2 - a_1 = 7252.$  Find $a_1 + a_2 + a_3 + a_4 + a_5.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{7180945274}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is $\\left(3240 \\cdot \\left(\\frac{6}{6}\\right)^2 \\cdot \\left(\\frac{3}{36}\\right)^2 \\cdot \\frac{6}{9}\\right)^10$?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{576650390625}",
+    "is_static": false
+}

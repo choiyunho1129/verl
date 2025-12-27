@@ -1,0 +1,7 @@
+{
+    "problem": "Let $C_1$ and $C_2$ be circles defined by $(x-33)^2 + y^2 = 1$ and $(x+112)^2 + y^2 = 256$ respectively. What is the length of the shortest line segment $PQ$ that is tangent to $C_1$ at $P$ and to $C_2$ at $Q$?",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{144}",
+    "is_static": false
+}

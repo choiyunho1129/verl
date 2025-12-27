@@ -1,0 +1,7 @@
+{
+    "problem": "If $f(x)=ax^4-bx^2+41x+22$ and $f(-11)=14,$ then what is the value of $f(11)$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{916}",
+    "is_static": false
+}

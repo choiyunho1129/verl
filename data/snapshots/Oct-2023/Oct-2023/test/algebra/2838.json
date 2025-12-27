@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $8x^2 + 143x + 240$ can be written in the form $(8x + A)(x + B)$ where $A$ and $B$ are integers. What is the value of $A - B$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{-1}",
+    "is_static": false
+}

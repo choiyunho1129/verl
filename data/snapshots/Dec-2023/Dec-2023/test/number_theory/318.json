@@ -1,0 +1,7 @@
+{
+    "problem": "Find the positive base $b$ in which the equation $3_b \\cdot 30_b = 140_b$ is valid.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{5}",
+    "is_static": false
+}

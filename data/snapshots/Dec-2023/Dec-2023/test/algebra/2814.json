@@ -1,0 +1,7 @@
+{
+    "problem": "What is the minimum value of the expression $2x^2+6y^2+44x-144y+28$ for real $x$ and $y$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{-1078}",
+    "is_static": false
+}

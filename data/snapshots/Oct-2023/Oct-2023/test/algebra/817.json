@@ -1,0 +1,7 @@
+{
+    "problem": "There are numbers $A$ and $B$ for which  \\[\\frac A{x-12}+\\frac B{x+12}=\\frac{x+324}{x^2-144}\\]for every number $x\\neq\\pm1$.  Find $A-B$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{27}",
+    "is_static": false
+}

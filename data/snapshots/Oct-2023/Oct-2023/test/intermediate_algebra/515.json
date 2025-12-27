@@ -1,0 +1,7 @@
+{
+    "problem": "At what value of $y$ is there a horizontal asymptote for the graph of the equation $y=\\frac{8x^6+97x-89}{5x^6-34x^5+85x-4}$?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac85}",
+    "is_static": false
+}

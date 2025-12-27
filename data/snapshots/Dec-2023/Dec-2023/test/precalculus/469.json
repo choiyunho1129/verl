@@ -1,0 +1,7 @@
+{
+    "problem": "A particle moves so that it is at $\\left( 29 \\sin \\frac{t}{4}, 29 \\cos \\frac{t}{4} \\right)$ at time $t.$  Find the speed of the particle, measured in unit of distance per unit of time.",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{29}{4}}",
+    "is_static": false
+}

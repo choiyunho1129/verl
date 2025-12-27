@@ -1,0 +1,7 @@
+{
+    "problem": "Let $z_1,$ $z_2,$ $z_3$ be complex numbers such that $|z_1| = 35,$ $|z_2| = 76,$ $|z_3| = 70,$ and\n\\[|4900z_1 z_2 + 5776z_1 z_3 + 1225z_2 z_3| = 14523600.\\]Find $|z_1 + z_2 + z_3|.$",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{78}",
+    "is_static": false
+}

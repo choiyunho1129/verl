@@ -1,0 +1,7 @@
+{
+    "problem": "Coin $A$ is flipped five times and coin $B$ is flipped eight times. What is the probability that the number of heads obtained from flipping the two fair coins is the same?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{1287}{8192}}",
+    "is_static": false
+}

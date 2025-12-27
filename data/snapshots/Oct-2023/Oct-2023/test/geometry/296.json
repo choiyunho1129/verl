@@ -1,0 +1,7 @@
+{
+    "problem": "The perimeter of $\\triangle ABC$ is $18.$ If $\\angle ABC=\\angle ACB$ and $BC=4,$ what is the length of $AB?$\n\n[asy]\ndraw((0,0)--(4,0)--(2,3)--cycle,black+linewidth(1));\nMarkAngle((4,0),(0,0),(2,3),1,black+linewidth(1));\nMarkAngle((2,3),(4,0),(0,0),1,black+linewidth(1));\nlabel(\"$A$\",(2,3),N);\nlabel(\"$B$\",(0,0),W);\nlabel(\"$C$\",(4,0),E);\nlabel(\"4\",(0,0)--(4,0),S);\n[/asy]",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

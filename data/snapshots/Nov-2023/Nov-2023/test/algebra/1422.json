@@ -1,0 +1,7 @@
+{
+    "problem": "If $f (x) = -16x + 31$ and $g (x) =-16$, what is the value of $f(g(x))$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{287}",
+    "is_static": false
+}

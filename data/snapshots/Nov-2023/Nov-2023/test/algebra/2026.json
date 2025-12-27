@@ -1,0 +1,7 @@
+{
+    "problem": "The value of $\\log_{4}{759676648449}$ is between the consecutive integers $a$ and $b$.  Find $a+b$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{39}",
+    "is_static": false
+}

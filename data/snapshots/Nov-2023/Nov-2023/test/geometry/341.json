@@ -1,0 +1,7 @@
+{
+    "problem": "In $\\triangle{XYZ}$, $\\angle{Z}=90^{\\circ}$, $\\cos{Y}=\\frac{-3477}{16925}$, and $XY=16925$.  What is $\\tan{X}$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{-3477}{16564}}",
+    "is_static": false
+}

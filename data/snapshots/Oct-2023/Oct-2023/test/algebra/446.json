@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(-1+40i)(-20+23i)$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-900-823i}",
+    "is_static": false
+}

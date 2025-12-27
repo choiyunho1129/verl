@@ -1,0 +1,7 @@
+{
+    "problem": "The ellipse shown below is defined by the equation\n\\[PF_1 + PF_2 = d.\\]Find $d.$\n\n[asy]\nunitsize(0.3 cm);\n\nint i, n = 28;\n\nfor (i = -n; i <= n; ++i) {\n  draw((i,-n)--(i,n),gray(0.7));\n  draw((-n,i)--(n,i),gray(0.7));\n}\n\ndraw((0,-n)--(0,n));\ndraw((-n,0)--(n,0));\n\ndraw(shift((-9,-1))*xscale(17)*yscale(12)*Circle((0,0),1),red);\n\ndot((-9,-1));\n[/asy]",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{34}",
+    "is_static": false
+}

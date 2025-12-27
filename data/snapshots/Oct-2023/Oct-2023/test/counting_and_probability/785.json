@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the number of ways to arrange the letters of the word UXTVAFQSEMGZJIHNWCFROL.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{562000363888803840000}",
+    "is_static": false
+}

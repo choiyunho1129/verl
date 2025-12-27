@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\left\\lceil -\\frac{1777}{91}\\right\\rceil$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-19}",
+    "is_static": false
+}

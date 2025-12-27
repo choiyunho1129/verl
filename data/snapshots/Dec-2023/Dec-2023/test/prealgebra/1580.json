@@ -1,0 +1,7 @@
+{
+    "problem": "A number $x$ factors as $163\\cdot167^79$, and $163$ and $167$ are primes. What is the exponent of $167$ in the prime factorization of $x^{14}$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1106}",
+    "is_static": false
+}

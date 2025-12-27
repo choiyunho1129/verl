@@ -1,0 +1,7 @@
+{
+    "problem": "How many increasing sequences of three distinct prime numbers have a sum of 68?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

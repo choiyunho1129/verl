@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $(15 \\times 22)-(15+22)$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{293}",
+    "is_static": false
+}

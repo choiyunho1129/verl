@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $609\\cos 300^\\circ$.",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac{609}{2}}",
+    "is_static": false
+}

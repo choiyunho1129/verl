@@ -1,0 +1,7 @@
+{
+    "problem": "The ratio of two numbers is $47:426$. When 306 is subtracted from the lesser of the two numbers and 2906 is added to the larger of the two, the new ratio is $117:6740$. What is the greater of the two numbers before 2906 is added to it?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{3834}",
+    "is_static": false
+}

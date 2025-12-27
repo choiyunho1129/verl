@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{z}$, find the value of $y$ when $x = 8782$ and $z = 8781$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{77114742}",
+    "is_static": false
+}

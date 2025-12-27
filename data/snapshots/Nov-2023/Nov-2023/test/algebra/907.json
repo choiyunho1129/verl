@@ -1,0 +1,7 @@
+{
+    "problem": "If $x^2 - x - 1 = 0$, what is the value of $x^3 - 2x + 33$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{34}",
+    "is_static": false
+}

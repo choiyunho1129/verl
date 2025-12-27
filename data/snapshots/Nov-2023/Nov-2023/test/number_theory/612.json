@@ -1,0 +1,7 @@
+{
+    "problem": "Zach has sixty-nine bags and a bunch of pencils to be placed into the bags. He is told to place the greatest number of pencils possible into each of the sixty-nine bags while also keeping the number of pencils in each bag the same. What is the greatest number of pencils he could have left over?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{68}",
+    "is_static": false
+}

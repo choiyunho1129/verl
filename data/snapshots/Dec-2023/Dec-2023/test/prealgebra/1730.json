@@ -1,0 +1,7 @@
+{
+    "problem": "The product of three consecutive integers is 210. That product divided by the mean of the three integers is 35. What is the largest of the three consecutive integers?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

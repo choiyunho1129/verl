@@ -1,0 +1,7 @@
+{
+    "problem": "The positive integers up to 437 are alternately subtracted and added:\n\\[1 - 2 + 3 - 4 + \\cdots + 431 - 432 + 433 - 434 + 435 - 436 + 437.\\]What is the value of the expression?",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{219}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a$ and $b$ be positive real numbers.  Find the minimum value of\n\\[\\frac{a}{b} + \\frac{19b}{a}.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{2 \\sqrt{19}}",
+    "is_static": false
+}

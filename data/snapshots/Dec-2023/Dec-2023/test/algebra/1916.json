@@ -1,0 +1,7 @@
+{
+    "problem": "If $20n+18m=114$ and $n+m=6$, find the value of $n-m$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the area, in square units, of an isosceles right triangle with a hypotenuse of 44 units?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{484\\text{ square units}}",
+    "is_static": false
+}

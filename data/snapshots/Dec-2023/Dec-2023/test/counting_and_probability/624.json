@@ -1,0 +1,7 @@
+{
+    "problem": "What is the simplified value of $\\frac{172! + 173! + 174!}{172! + 173!}$?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{174}",
+    "is_static": false
+}

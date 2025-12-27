@@ -1,0 +1,7 @@
+{
+    "problem": "The operation $\\clubsuit$ is defined by $x\\clubsuit y =|x|^3+y$. What is the value of $6\\clubsuit 2$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{218}",
+    "is_static": false
+}

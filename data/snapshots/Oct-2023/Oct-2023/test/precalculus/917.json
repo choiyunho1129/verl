@@ -1,0 +1,7 @@
+{
+    "problem": "Convert the point $(-858,0)$ in rectangular coordinates to polar coordinates.  Enter your answer in the form $(r,\\theta),$ where $r > 0$ and $0 \\le \\theta < 2 \\pi.$",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{(858,\\pi)}",
+    "is_static": false
+}

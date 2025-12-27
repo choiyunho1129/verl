@@ -1,0 +1,7 @@
+{
+    "problem": "Rationalize the denominator of: $\\frac{1}{\\sqrt{7}+\\sqrt{343}+\\sqrt{16807}}$. The answer can be written as $\\frac{\\sqrt{A}}{B}$, where $A$ and $B$ are integers. Find the minimum possible value of $A+B$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{161}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What integer $n$ satisfies $0\\le n<{101}$ and $$100015\\equiv n\\pmod {101}~?$$",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{25}",
+    "is_static": false
+}

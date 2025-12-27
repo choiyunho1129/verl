@@ -1,0 +1,7 @@
+{
+    "problem": "Kyle's birthday party in 2003 cost $d$ dollars per person and $p$ people attended. In 2077, the cost per person increased by thirteen times and the number of people attending the party also increased by twenty-six times. What is the ratio of the total cost of the party in 2003 to the total cost of the party in 2077? Express your answer as a common fraction.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{338}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $ \\sqrt{x+\\!\\sqrt{x+\\!\\sqrt{x+\\!\\sqrt{x+\\cdots}}}}=19$, find $x$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{342}",
+    "is_static": false
+}

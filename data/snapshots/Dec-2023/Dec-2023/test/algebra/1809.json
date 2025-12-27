@@ -1,0 +1,7 @@
+{
+    "problem": "Find the domain of $\\frac{x^2 + 10x + 6}{x^2 + 5x - 150}$.  (Express your answer using interval notation.)",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{(-\\infty, -15)\\cup(-15, 10)\\cup(10, \\infty)}",
+    "is_static": false
+}

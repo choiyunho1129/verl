@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $r^2+22r+121$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{(r+11)^2}",
+    "is_static": false
+}

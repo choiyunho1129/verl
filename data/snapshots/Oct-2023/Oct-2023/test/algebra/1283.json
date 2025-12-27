@@ -1,0 +1,7 @@
+{
+    "problem": "The solutions to the equation $(x+11)(x+12) = x+13$ can be written in the form $m+\\sqrt n$ and $m-\\sqrt n$, where $m$ and $n$ are integers. What is $m+n$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-9}",
+    "is_static": false
+}

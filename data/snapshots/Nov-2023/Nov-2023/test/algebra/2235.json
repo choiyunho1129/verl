@@ -1,0 +1,7 @@
+{
+    "problem": "If $a * b = 2a + 39b$ for all $a$ and $b$, then what is the value of $90 * 40$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{1740}",
+    "is_static": false
+}

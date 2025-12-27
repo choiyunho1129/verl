@@ -1,0 +1,7 @@
+{
+    "problem": "We have positive integers $a,$ $b,$ and $c$ such that $a > b > c.$ When $a,$ $b,$ and $c$ are divided by $18$, the remainders are $3,$ $9,$ and $17,$ respectively.\n\nWhen the number $2a + b - c$ is divided by $18$, what is the remainder?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

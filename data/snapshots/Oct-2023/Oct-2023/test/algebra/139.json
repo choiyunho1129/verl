@@ -1,0 +1,7 @@
+{
+    "problem": "If $a \\star b = \\dfrac{\\left(\\dfrac{1}{b} - \\dfrac{1}{a}\\right)}{(a - b)}$, express $15 \\star 99$ as a common fraction.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{1}{1485}}",
+    "is_static": false
+}

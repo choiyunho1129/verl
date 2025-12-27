@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(-2k + 9) + (-4 + 27k)$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{25k+5}",
+    "is_static": false
+}

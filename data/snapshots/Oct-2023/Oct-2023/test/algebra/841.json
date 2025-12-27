@@ -1,0 +1,7 @@
+{
+    "problem": "If the sixty-second term of an arithmetic sequence is $8$ and the two hundred and sixty-fourth term is $14956$, what is the one hundred and sixty-third term?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{7482}",
+    "is_static": false
+}

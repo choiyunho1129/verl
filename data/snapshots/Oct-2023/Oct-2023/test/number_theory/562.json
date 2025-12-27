@@ -1,0 +1,7 @@
+{
+    "problem": "Express $0.\\overline{18}$ as a fraction in lowest terms.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{\\frac{2}{11}}",
+    "is_static": false
+}

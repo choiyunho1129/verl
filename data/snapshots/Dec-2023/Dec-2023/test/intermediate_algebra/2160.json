@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f$ be a function taking the nonnegative integers to the positive integers such that $f(0) = f(1) = 1$ and\n\\[\\frac{f(n) f(m + 1)}{f(m)} + \\frac{f(n) f(n - m)}{f(n - m - 1)} = f(n + 1)\\]for all nonnegative integers $n$ and $m,$ where $n \\ge m + 1.$\n\nFind the smallest nonnegative integer $n$ such that $f(n) > 8^4.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

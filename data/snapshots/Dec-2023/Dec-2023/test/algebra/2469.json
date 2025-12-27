@@ -1,0 +1,7 @@
+{
+    "problem": "The amount of money a certain company has can be modeled with the line $y=-827x+3263$, where $x$ is the number of workers the company decides to hire. What is the maximum number of workers the company can hire before the company has no money left and goes bankrupt?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

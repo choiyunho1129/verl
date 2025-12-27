@@ -1,0 +1,7 @@
+{
+    "problem": "A circle with center $C$ is shown. Express the area of the circle in terms of $\\pi$. [asy]\nsize(200); import graph; import markers; defaultpen(linewidth(0.7));\nxaxis(\"$x$\",-760,1762,Arrows);\nyaxis(\"$y$\",-589,935,Arrows);\ndraw(Circle((501,174),760));\ndot(Label(\"$C(501,174)$\",align=N),(501,174));\ndot(Label(\"$(1261,174)$\",align=N),(1261,174));\n[/asy]",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{577600\\pi}",
+    "is_static": false
+}

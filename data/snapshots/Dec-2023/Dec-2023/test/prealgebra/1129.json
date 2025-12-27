@@ -1,0 +1,7 @@
+{
+    "problem": "An integer is randomly selected from the integers 52 through 294, inclusive. What is the probability that the integer is in the range 123 through 207, inclusive? Express your answer as a common fraction.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{85}{243}}",
+    "is_static": false
+}

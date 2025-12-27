@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the number of ways to arrange the letters of the word FSHWLITXUVMYBFCKJNOQAPDG.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{310224200866619719680000}",
+    "is_static": false
+}

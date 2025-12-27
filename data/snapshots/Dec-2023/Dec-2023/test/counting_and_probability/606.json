@@ -1,0 +1,7 @@
+{
+    "problem": "Eight cards are dealt at random from a standard deck (13 clubs, 13 diamonds, 13 hearts, and 13 spades) of 52 cards.  What is the probability that all eight cards are $\\heartsuit$s?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{11}{6431950}}",
+    "is_static": false
+}

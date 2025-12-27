@@ -1,0 +1,7 @@
+{
+    "problem": "Rationalize the denominator of $\\displaystyle\\frac{146}{\\sqrt{146}}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\!\\sqrt{146}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least common multiple of all positive integers smaller than 45?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{9419588158802421600}",
+    "is_static": false
+}

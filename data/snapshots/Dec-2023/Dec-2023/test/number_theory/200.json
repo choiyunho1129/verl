@@ -1,0 +1,7 @@
+{
+    "problem": "Tim is doing a cakewalk with $47$ steps. He takes his first step on step $1$ and takes a total of $9870$ steps, walking in a circle (so that after the 47th step he reaches the first step again). Which step of the cakewalk does he end on?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{47}",
+    "is_static": false
+}

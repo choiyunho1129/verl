@@ -1,0 +1,7 @@
+{
+    "problem": "In a three-digit number, the hundreds digit is greater than 4, the tens digit is greater than 0 but less than 4, and the units digit is the smallest prime number. How many three-digit numbers satisfy all of these conditions?",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{15}",
+    "is_static": false
+}

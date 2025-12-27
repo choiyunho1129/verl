@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $(8+10i)7-4i$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{56+66i}",
+    "is_static": false
+}

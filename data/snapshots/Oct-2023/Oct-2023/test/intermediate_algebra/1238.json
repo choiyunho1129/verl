@@ -1,0 +1,7 @@
+{
+    "problem": "If $|z| = 58$, express $\\overline{z}$ as a simplified fraction in terms of $z$.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\frac{3364}{z}}",
+    "is_static": false
+}

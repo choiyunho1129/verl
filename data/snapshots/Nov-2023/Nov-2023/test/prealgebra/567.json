@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $\\sqrt{19\\cdot266\\cdot182\\cdot65\\cdot5\\cdot16}$.",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{69160}",
+    "is_static": false
+}

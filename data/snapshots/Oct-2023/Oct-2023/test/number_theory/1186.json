@@ -1,0 +1,7 @@
+{
+    "problem": "How many whole numbers less than $35,\\!877$ are congruent to $ 28 \\pmod {137} $?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{262}",
+    "is_static": false
+}

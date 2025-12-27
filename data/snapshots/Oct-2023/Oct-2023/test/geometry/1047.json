@@ -1,0 +1,7 @@
+{
+    "problem": "A right triangle is inscribed in a circle with a diameter $76$ units long. What is the maximum area of the triangle, in square units?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{1444}",
+    "is_static": false
+}

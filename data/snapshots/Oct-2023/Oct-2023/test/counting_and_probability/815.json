@@ -1,0 +1,7 @@
+{
+    "problem": "The digits 1, 2, 3, 4, 5, 7, 8 and 9 are each used once to form each of the possible eight-digit positive integers. The eight-digit integers are listed from greatest to least. Which integer is listed forty thousand, three hundred and nineteenth?",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{12345798}",
+    "is_static": false
+}

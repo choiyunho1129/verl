@@ -1,0 +1,7 @@
+{
+    "problem": "If $a$ and $b$ are integers such that $ab\\equiv 79575\\pmod{393040}$, then what is the remainder when $(a+196520)(b+196520)$ is divided by $393040$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{79575}",
+    "is_static": false
+}

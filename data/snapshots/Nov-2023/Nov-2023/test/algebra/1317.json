@@ -1,0 +1,7 @@
+{
+    "problem": "If the ninth term of a geometric sequence of real numbers is $39366$ and the fifteenth term is $28697814,$ then what is the fifty-first term?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{4307387926151115532621494}",
+    "is_static": false
+}

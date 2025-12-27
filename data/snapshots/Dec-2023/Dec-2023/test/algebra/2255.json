@@ -1,0 +1,7 @@
+{
+    "problem": "The expression $377808x^2 + 751776x + 548352$ can be written in the form $(Ax+816)(Bx+672)$ where $A$ and $B$ are integers. What is the value of $AB$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{377808}",
+    "is_static": false
+}

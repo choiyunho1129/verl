@@ -1,0 +1,7 @@
+{
+    "problem": "If $y = 5$ and $5x + 4y = 27$, express the value of $x$ as a common fraction.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac75}",
+    "is_static": false
+}

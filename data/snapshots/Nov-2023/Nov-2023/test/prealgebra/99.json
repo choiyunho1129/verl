@@ -1,0 +1,7 @@
+{
+    "problem": "A right triangle has two sides of length $12$ units each.  What is the area of the triangle, in square units?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{72}",
+    "is_static": false
+}

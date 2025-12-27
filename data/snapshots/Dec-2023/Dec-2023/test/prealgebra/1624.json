@@ -1,0 +1,7 @@
+{
+    "problem": "A square and a triangle have the same area. If the square has a side length of 20 units and the triangle has a base of 8 units, what is the length, in units, of the altitude to that base of the triangle?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{100}",
+    "is_static": false
+}

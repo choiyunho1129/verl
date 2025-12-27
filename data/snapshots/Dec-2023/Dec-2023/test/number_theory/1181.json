@@ -1,0 +1,7 @@
+{
+    "problem": "How many factors of $2^9\\cdot3^45$ are perfect squares?",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{115}",
+    "is_static": false
+}

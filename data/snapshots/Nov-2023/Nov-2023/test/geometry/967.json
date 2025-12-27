@@ -1,0 +1,7 @@
+{
+    "problem": "A regular dodecagon is rotated counterclockwise about its center. What is the minimum number of degrees it must be rotated until it coincides with its original position?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{30}",
+    "is_static": false
+}

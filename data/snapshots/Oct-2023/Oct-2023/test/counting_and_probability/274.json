@@ -1,0 +1,7 @@
+{
+    "problem": "Find the least common multiple of $6!$ and $(5!)^2.$",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{14400}",
+    "is_static": false
+}

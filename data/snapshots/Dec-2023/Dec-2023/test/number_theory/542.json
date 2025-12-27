@@ -1,0 +1,7 @@
+{
+    "problem": "Find the positive base $b$ in which the equation $3 \\cdot 31 = 213$ is valid.",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

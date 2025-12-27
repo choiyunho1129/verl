@@ -1,0 +1,7 @@
+{
+    "problem": "A ball travels on a parabolic path in which the height (in feet) is given by the expression $-5t^2+485t+97$, where $t$ is the time after launch. At what time is the height of the ball at its maximum?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{97}{2}}",
+    "is_static": false
+}

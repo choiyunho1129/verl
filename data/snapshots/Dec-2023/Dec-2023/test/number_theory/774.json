@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest perfect square less than 4917 that is a multiple of 35?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{4900}",
+    "is_static": false
+}

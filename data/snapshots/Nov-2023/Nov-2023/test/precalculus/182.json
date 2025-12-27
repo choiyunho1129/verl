@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x$, $y$, and $z$ be real numbers such that\n\\[\\cos x + \\cos y + \\cos z = \\sin x + \\sin y + \\sin z = 0.\\]Find the sum of all possible values of $477\\cos (2x - y - z).$",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{477}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The solutions to the equation $(x+5)(x+6) = x+7$ can be written in the form $m+\\sqrt n$ and $m-\\sqrt n$, where $m$ and $n$ are integers. What is $m+n$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{-3}",
+    "is_static": false
+}

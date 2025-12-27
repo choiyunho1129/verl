@@ -1,0 +1,7 @@
+{
+    "problem": "A rectangle is inscribed in a circle of radius 614.  Find the largest possible area of the rectangle.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{753992}",
+    "is_static": false
+}

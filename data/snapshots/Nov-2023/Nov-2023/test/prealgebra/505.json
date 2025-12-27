@@ -1,0 +1,7 @@
+{
+    "problem": "Solve for $x$: $\\frac{x}6 + \\frac{x}7 = 91$",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{294}",
+    "is_static": false
+}

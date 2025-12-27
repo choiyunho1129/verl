@@ -1,0 +1,7 @@
+{
+    "problem": "Find $n$ if $\\gcd(n,27) = 9$ and $\\mathop{\\text{lcm}}[n,27] = 135$.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{45}",
+    "is_static": false
+}

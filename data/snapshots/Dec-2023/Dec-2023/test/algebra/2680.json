@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\frac{(745r^442)(294380r^617)}{359r^406}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{610900r^653}",
+    "is_static": false
+}

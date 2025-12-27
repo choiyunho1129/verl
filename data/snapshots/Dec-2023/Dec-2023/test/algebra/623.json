@@ -1,0 +1,7 @@
+{
+    "problem": "In a $3240$ meter track event, Alice runs at a constant speed and crosses the finish line $9$ seconds before Beatrice does. If it took Beatrice $126$ seconds to complete the race, how many seconds would it take Alice to run $360$ meters?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

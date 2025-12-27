@@ -1,0 +1,7 @@
+{
+    "problem": "What is $\\frac{61}{80}+\\frac{94}{160}+\\frac{54}{320}$ is equal to?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{243}{160}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is $1 + 2 + 3 + \\cdots + 753 + 754 + 755$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{285390}",
+    "is_static": false
+}

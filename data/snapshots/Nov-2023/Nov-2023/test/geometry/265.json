@@ -1,0 +1,7 @@
+{
+    "problem": "A right triangle has leg lengths of 1560900 and 100000 units. A second triangle is similar to the first triangle and has a hypotenuse of 703845000 units. What is the length, in units, of the shorter leg of the second triangle?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{45000000}",
+    "is_static": false
+}

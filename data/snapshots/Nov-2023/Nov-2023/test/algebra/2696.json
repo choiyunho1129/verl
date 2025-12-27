@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $x + y = 21$ and $x - y = 28$, find $2x^2 + 2y^2$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{1225}",
+    "is_static": false
+}

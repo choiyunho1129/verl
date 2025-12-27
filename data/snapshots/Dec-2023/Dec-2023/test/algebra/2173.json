@@ -1,0 +1,7 @@
+{
+    "problem": "Compute the square of 9977 without a calculator.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{99540529}",
+    "is_static": false
+}

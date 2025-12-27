@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest multiple of $7$ which is greater than $-209$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-203}",
+    "is_static": false
+}

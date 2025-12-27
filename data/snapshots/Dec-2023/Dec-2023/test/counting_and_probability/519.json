@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can 5 distinct beads be placed on a bracelet that has a knot in it?  (Beads cannot slide past the knot.  Two ways are considered the same if one is a reflection of the other, since we can flip the bracelet over.)",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{60}",
+    "is_static": false
+}

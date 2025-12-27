@@ -1,0 +1,7 @@
+{
+    "problem": "Alice, Bailey, Cindy, and Daniel walked around their neighborhoods selling pens. Alice earned $\\$28.75$, Bailey earned $\\$48.7$, Cindy earned $\\$49.2$, and Daniel earned $\\$80.45$. After the sale, they pooled their money together and went to the bank to convert the coins into dollars. How many cents in change did they have left after they converted as many of the coins into bills as they could?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

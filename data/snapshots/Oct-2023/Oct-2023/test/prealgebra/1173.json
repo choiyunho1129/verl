@@ -1,0 +1,7 @@
+{
+    "problem": "How many eight-digit positive integers are there?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{90000000}",
+    "is_static": false
+}

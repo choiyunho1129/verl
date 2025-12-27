@@ -1,0 +1,7 @@
+{
+    "problem": "A polynomial with integer coefficients is of the form\n\\[293x^56 + a_{55} x^{55} + a_{54} x^{54} + a_{53} x^{53} + a_{52} x^{52} + a_{51} x^{51} + a_{50} x^{50} + a_{49} x^{49} + a_{48} x^{48} + a_{47} x^{47} + a_{46} x^{46} + a_{45} x^{45} + a_{44} x^{44} + a_{43} x^{43} + a_{42} x^{42} + a_{41} x^{41} + a_{40} x^{40} + a_{39} x^{39} + a_{38} x^{38} + a_{37} x^{37} + a_{36} x^{36} + a_{35} x^{35} + a_{34} x^{34} + a_{33} x^{33} + a_{32} x^{32} + a_{31} x^{31} + a_{30} x^{30} + a_{29} x^{29} + a_{28} x^{28} + a_{27} x^{27} + a_{26} x^{26} + a_{25} x^{25} + a_{24} x^{24} + a_{23} x^{23} + a_{22} x^{22} + a_{21} x^{21} + a_{20} x^{20} + a_{19} x^{19} + a_{18} x^{18} + a_{17} x^{17} + a_{16} x^{16} + a_{15} x^{15} + a_{14} x^{14} + a_{13} x^{13} + a_{12} x^{12} + a_{11} x^{11} + a_{10} x^{10} + a_9 x^9 + a_8 x^8 + a_7 x^7 + a_6 x^6 + a_5 x^5 + a_4 x^4 + a_3 x^3 + a_2 x^2 + a_1 x + 277 = 0.\\]Find the number of different possible rational roots of this polynomial.",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

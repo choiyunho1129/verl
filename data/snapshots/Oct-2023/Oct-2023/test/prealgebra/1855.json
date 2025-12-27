@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $1609 + (3864 \\div 92)$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{1651}",
+    "is_static": false
+}

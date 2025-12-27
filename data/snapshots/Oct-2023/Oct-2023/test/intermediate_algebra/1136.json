@@ -1,0 +1,7 @@
+{
+    "problem": "In the coordinate plane, the graph of\n\\[|x + y - 10| + \\Big| |x| - x \\Big| + \\Big| |x - 1| + x - 1 \\Big| = 0\\]is a certain curve.  Find the length of this curve.",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{\\sqrt{362}}",
+    "is_static": false
+}

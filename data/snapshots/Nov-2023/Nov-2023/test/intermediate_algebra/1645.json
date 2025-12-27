@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ $c$ be positive real numbers such that $a + b + c = 4abc.$  Find the maximum value of\n\\[\\frac{142 \\sqrt{a} + 200 \\sqrt{b} + 80 \\sqrt{c}}{\\sqrt{abc}}.\\]",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{516}",
+    "is_static": false
+}

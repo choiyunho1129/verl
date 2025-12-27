@@ -1,0 +1,7 @@
+{
+    "problem": "If $j$ and $k$ are inversely proportional and $j = 293$ when $k = 3275$, what is the value of $j$ when $k = 655$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1465}",
+    "is_static": false
+}

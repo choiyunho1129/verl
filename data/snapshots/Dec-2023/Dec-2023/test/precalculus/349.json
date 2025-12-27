@@ -1,0 +1,7 @@
+{
+    "problem": "The projection of $\\begin{pmatrix} a \\\\ 547 \\end{pmatrix}$ onto $\\begin{pmatrix} -37277 \\\\ 289 \\end{pmatrix}$ is\n\\[\\frac{120806}{1389658250} \\begin{pmatrix} -37277 \\\\ 289 \\end{pmatrix}.\\]Find $a.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{1}",
+    "is_static": false
+}

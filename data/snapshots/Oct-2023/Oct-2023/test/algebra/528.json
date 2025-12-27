@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the product ${(25p^6 + 1)(14p^6 - 7)}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{350p^12 - 161p^6 - 7}",
+    "is_static": false
+}

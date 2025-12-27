@@ -1,0 +1,7 @@
+{
+    "problem": "Factor the expression $ab+18b+2a+36$.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(a+18)(b+2)}",
+    "is_static": false
+}

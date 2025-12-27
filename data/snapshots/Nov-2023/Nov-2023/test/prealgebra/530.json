@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least common multiple of all positive integers smaller than 13?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{27720}",
+    "is_static": false
+}

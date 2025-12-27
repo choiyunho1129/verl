@@ -1,0 +1,7 @@
+{
+    "problem": "If $(x - 2) + (x - 8) + (x - 15) + (x - 6) = x$, then what is $x$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac{31}{3}}",
+    "is_static": false
+}

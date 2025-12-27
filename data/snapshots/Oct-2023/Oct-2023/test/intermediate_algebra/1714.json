@@ -1,0 +1,7 @@
+{
+    "problem": "Solve\n\\[\\frac{1}{x - 233} > 0.\\]Enter your answer using interval notation.",
+    "level": "Level 1",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(233,\\infty)}",
+    "is_static": false
+}

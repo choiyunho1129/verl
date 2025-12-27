@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $ABC$ with $\\angle B = 90^\\circ$, we have $4\\sin A = 5\\cos A$.  What is $\\tan A$?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{\\frac54}",
+    "is_static": false
+}

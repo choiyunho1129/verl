@@ -1,0 +1,7 @@
+{
+    "problem": "For\n\\[\\mathbf{A} = \\begin{pmatrix} 10 & 6 \\\\ 3 & 9 \\end{pmatrix},\\]compute $(\\mathbf{A}^{-1})^{-1}.$",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} 10 & 6 \\\\ 3 & 9 \\end{pmatrix}}",
+    "is_static": false
+}

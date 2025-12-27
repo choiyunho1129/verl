@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $c$ and $d$ are inversely proportional. If $c=830$ when $d=2394$, find the value of $d$ when $c=114$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{17430}",
+    "is_static": false
+}

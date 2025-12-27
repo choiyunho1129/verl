@@ -1,0 +1,7 @@
+{
+    "problem": "How many of the letters in BOYDFSBFECHCXUWCEQGSRMFCJUAOCATJEQEDSI have a horizontal line of symmetry?",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

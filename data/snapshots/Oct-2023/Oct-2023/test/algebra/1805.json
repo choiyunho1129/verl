@@ -1,0 +1,7 @@
+{
+    "problem": "Define the operation $\\star$ as $K\\star L = (K+L)(K-L)$ for all integers $K$ and $L$. What is the value of $9957\\star5536$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{68494553}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $x + y = 2$ and $x - y = 13$, find $2x^2 + 2y^2$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{173}",
+    "is_static": false
+}

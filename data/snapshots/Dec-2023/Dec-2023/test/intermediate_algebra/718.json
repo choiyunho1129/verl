@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of $y = f(x)$ passes through the point $(1,-62).$  If $f(x)$ is an even function, then what other point must the graph pass through?  Enter your answer as an ordered pair.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{(-1,-62)}",
+    "is_static": false
+}

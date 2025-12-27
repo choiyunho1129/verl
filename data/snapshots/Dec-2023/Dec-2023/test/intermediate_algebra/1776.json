@@ -1,0 +1,7 @@
+{
+    "problem": "Solve the equation \\[\\sqrt[3]{x} + \\sqrt{x+810} = 0\\]for $x.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-729}",
+    "is_static": false
+}

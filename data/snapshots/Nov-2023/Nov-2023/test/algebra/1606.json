@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $x$ and $y$ are real numbers satisfying  \\begin{align*}\n7650y - 2025x^2 &= 7225 \\\\\n7650x - 2025y^2 &= 7225.\n\\end{align*} What is $\\dfrac{1}{x^3 + y^3}$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{0.07419092204355791}",
+    "is_static": false
+}

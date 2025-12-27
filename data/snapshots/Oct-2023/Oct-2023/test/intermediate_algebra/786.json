@@ -1,0 +1,7 @@
+{
+    "problem": "Let $a,$ $b,$ and $c$ be distinct complex numbers such that\n\\begin{align*}\na^3 &= 28a + 40, \\\\\nb^3 &= 28b + 40, \\\\\nc^3 &= 28c + 40.\n\\end{align*}Find $a^3 + b^3 + c^3.$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{120}",
+    "is_static": false
+}

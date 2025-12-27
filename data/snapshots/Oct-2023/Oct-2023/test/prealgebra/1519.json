@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $x$ in the equation $3x + 2 + 12(1+x) = 44$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

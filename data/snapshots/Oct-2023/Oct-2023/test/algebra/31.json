@@ -1,0 +1,7 @@
+{
+    "problem": "If $ \\sqrt{x+\\!\\sqrt{x+\\!\\sqrt{x+\\!\\sqrt{x+\\cdots}}}}=94$, find $x$.",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{8742}",
+    "is_static": false
+}

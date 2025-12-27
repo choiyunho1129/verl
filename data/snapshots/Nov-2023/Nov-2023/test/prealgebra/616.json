@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least common multiple of $17$, $24$, and $27$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{3672}",
+    "is_static": false
+}

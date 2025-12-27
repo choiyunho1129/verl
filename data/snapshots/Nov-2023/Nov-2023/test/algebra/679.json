@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose a function $f(x)$ has domain $(-\\infty,\\infty)$ and range $[29,76]$. If we define a new function $g(x)$ by $$g(x) = f(3x)+62,$$ then what is the range of $g(x)$? Express your answer in interval notation.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{[91,138]}",
+    "is_static": false
+}

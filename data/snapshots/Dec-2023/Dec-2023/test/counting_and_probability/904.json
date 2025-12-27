@@ -1,0 +1,7 @@
+{
+    "problem": "Find the coefficient of $x^5y^9z^9$ in the expansion of $(x+y+z)^23$.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{1636014380}",
+    "is_static": false
+}

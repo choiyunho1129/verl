@@ -1,0 +1,7 @@
+{
+    "problem": "How many positive integers are factors of 10320 and also factors of 1290?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{16}",
+    "is_static": false
+}

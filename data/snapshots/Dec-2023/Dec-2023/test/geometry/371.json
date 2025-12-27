@@ -1,0 +1,7 @@
+{
+    "problem": "Altitudes $\\overline{AX}$ and $\\overline{BY}$ of acute triangle $ABC$ intersect at $H$.  If $\\angle AHB = 111^\\circ$, then what is $\\angle ACB$?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{69^\\circ}",
+    "is_static": false
+}

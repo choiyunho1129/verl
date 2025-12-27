@@ -1,0 +1,7 @@
+{
+    "problem": "Let $m$ and $n$ satisfy $mn=2850$ and $m+n=113$. What is $|m-n|$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{37}",
+    "is_static": false
+}

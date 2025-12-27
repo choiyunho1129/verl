@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest positive integer with factors of 79, 29, and 20?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{45820}",
+    "is_static": false
+}

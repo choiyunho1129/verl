@@ -1,0 +1,7 @@
+{
+    "problem": "Three congruent isosceles triangles $DAO,$ $AOB,$ and $OBC$ have $AD=AO=OB=BC=293845$ and $AB=DO=OC=183194.$ These triangles are arranged to form trapezoid $ABCD,$ as shown. Point $P$ is on side $AB$ so that $OP$ is perpendicular to $AB.$ [asy]\npair A, B, C, D, O, P;\nA= (6, 8);\nB=(18, 8);\nC=(24, 0);\nD=(0,0);\nO=(12,0);\nP=(12,8);\ndraw(A--B--C--D--A);\ndraw(A--O--B);\ndraw(O--P, dashed);\nlabel(\"A\", A, NW);\nlabel(\"B\", B, NE);\nlabel(\"C\", C, SE);\nlabel(\"D\", D, SW);\nlabel(\"O\", O, S);\nlabel(\"P\", P, N);\nlabel(\"183194\", (D+O)/2, S);\nlabel(\"183194\", (O+C)/2, S);\nlabel(\"293845\", (A+D)/2, NW);\nlabel(\"293845\", (B+C)/2, NE);\n[/asy] What is the length of $OP?$",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{279204}",
+    "is_static": false
+}

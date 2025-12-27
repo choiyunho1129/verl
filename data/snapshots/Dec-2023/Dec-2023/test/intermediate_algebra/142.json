@@ -1,0 +1,7 @@
+{
+    "problem": "Two nonzero real numbers $a$ and $b$ satisfy $ab = 9603a - 1584b.$ Find all possible values of $\\frac {92217609a}{b} + \\frac {5017850b}{a} - ab.$\n\nEnter all possible values, separated by commas.",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{30422304}",
+    "is_static": false
+}

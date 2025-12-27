@@ -1,0 +1,7 @@
+{
+    "problem": "A translation of the plane takes $7 + 8i$ to $16 + 13i.$  Find the complex number that the translation takes $1$ to.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{10 + 5i}",
+    "is_static": false
+}

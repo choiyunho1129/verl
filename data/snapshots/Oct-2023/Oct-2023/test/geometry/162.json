@@ -1,0 +1,7 @@
+{
+    "problem": "A paper cone is to be made from a three-quarter circle having radius 2276 inches (shaded). What is the length of the arc on the discarded quarter-circle (dotted portion)? Express your answer in terms of $\\pi$.\n\n[asy]\nsize(80);\nimport graph;\ndraw(Arc((0,0),1,0,90),linetype(\"2 4\"));\nfilldraw((0,0)--(0,1)--Arc((0,0),1,90,360)--cycle,gray(.6),linewidth(1));\nlabel(\"$2276''$\",(.5,0),S,fontsize(12pt));[/asy]",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{1138\\pi}",
+    "is_static": false
+}

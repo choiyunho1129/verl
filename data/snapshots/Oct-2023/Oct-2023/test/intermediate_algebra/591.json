@@ -1,0 +1,7 @@
+{
+    "problem": "Let $p(x)$ be a monic polynomial of degree 4.  Three of the roots of $p(x)$ are 20, 21, and 22.  Find $p(0) + p(42).$",
+    "level": "Level 4",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{388080}",
+    "is_static": false
+}

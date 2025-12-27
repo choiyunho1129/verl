@@ -1,0 +1,7 @@
+{
+    "problem": "The matrix $\\mathbf{M}$ satisfies\n\\[\\mathbf{M} \\begin{pmatrix} 709 \\\\ 581 \\end{pmatrix} = \\begin{pmatrix} 36 \\\\ 13 \\end{pmatrix} \\quad \\text{and} \\quad \\mathbf{M} \\begin{pmatrix} 493 \\\\ 384 \\end{pmatrix} = \\begin{pmatrix} 269 \\\\ 961 \\end{pmatrix} \\quad.\\]Find $\\det \\mathbf{M}.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{-2.193623474642026}",
+    "is_static": false
+}

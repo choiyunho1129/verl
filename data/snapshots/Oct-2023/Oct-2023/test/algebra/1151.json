@@ -1,0 +1,7 @@
+{
+    "problem": "The ratio of two numbers is $20:129$. When 136 is subtracted from the lesser of the two numbers and 617 is added to the larger of the two, the new ratio is $104:2165$. What is the greater of the two numbers before 617 is added to it?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{1548}",
+    "is_static": false
+}

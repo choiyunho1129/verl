@@ -1,0 +1,7 @@
+{
+    "problem": "Benjamin is trying to break a combination lock. This particular type of lock has 6 digits from 0 to 9, and Benjamin just happens to know that there can be no repeated digits in the code for this type of lock. How many valid codes are there?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{151,\\!200}",
+    "is_static": false
+}

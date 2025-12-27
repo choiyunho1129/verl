@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a}$ and $\\mathbf{b}$ be orthogonal vectors.  If $\\operatorname{proj}_{\\mathbf{a}} \\begin{pmatrix} -254 \\\\ 141 \\end{pmatrix} = \\begin{pmatrix} -204 \\\\ -824 \\end{pmatrix},$ then find $\\operatorname{proj}_{\\mathbf{b}} \\begin{pmatrix} -254 \\\\ 141 \\end{pmatrix}.$",
+    "level": "Level 5",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\begin{pmatrix} -50 \\\\ 965 \\end{pmatrix}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "For how many integers $n$ where $36326 \\le n \\le 373188$ is $\\binom{n}{2}$ odd?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{168432}",
+    "is_static": false
+}

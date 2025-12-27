@@ -1,0 +1,7 @@
+{
+    "problem": "In right triangle $ABC$ with $\\angle B = 90^\\circ$, we have $\\sin A = 9\\cos A$.  What is $\\tan A$?",
+    "level": "Level 3",
+    "type": "Geometry",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

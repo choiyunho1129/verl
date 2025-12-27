@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $\\sqrt{36^3}$.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{216}",
+    "is_static": false
+}

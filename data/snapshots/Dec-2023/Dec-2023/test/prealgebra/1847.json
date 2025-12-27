@@ -1,0 +1,7 @@
+{
+    "problem": "The shape of the sign outside Bob's Burger Barn is a regular 75-gon. How many degrees are in the measure of an interior angle of this sign?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{175.2^\\circ}",
+    "is_static": false
+}

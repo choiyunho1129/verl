@@ -1,0 +1,7 @@
+{
+    "problem": "Find the radius of the circle with equation $x^2 + 40x + y^2 - 96y = 0$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{52}",
+    "is_static": false
+}

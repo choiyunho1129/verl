@@ -1,0 +1,7 @@
+{
+    "problem": "Below is the graph of $y = a \\csc bx$ for some positive constants $a$ and $b.$  Find $b.$\n\n[asy]import TrigMacros;\n\nsize(500);\n\nreal g(real x)\n{\n\treturn 2*csc(x/4);\n}\n\ndraw(graph(g,-8*pi + 0.01, -4*pi - 0.01),red);\ndraw(graph(g,-4*pi + 0.01,-0.01),red);\ndraw(graph(g,0.01,4*pi - 0.01),red);\ndraw(graph(g,4*pi + 0.01,8*pi - 0.01),red);\nlimits((-8*pi,-5),(8*pi,5),Crop);\ndraw((-4*pi,-5)--(-4*pi,5),dashed);\ndraw((4*pi,-5)--(4*pi,5),dashed);\ntrig_axes(-8*pi,8*pi,-5,5,pi/2,1);\nlayer();\nrm_trig_labels(-15, 15, 2);\n\nlabel(\"$1$\", (0,1), E);\nlabel(\"$2$\", (0,2), E);\nlabel(\"$3$\", (0,3), E);\nlabel(\"$4$\", (0,4), E);\nlabel(\"$-1$\", (0,-1), E);\nlabel(\"$-2$\", (0,-2), E);\nlabel(\"$-3$\", (0,-3), E);\nlabel(\"$-4$\", (0,-4), E);\n[/asy]",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{1}{4}}",
+    "is_static": false
+}

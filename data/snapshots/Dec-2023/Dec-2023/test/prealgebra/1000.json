@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest multiple of $4$ which is greater than $-69$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{-68}",
+    "is_static": false
+}

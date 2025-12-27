@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the remainder when $$5+98+678+7379+10947+237928+3431575+95536777$$is divided by $1$.",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{0}",
+    "is_static": false
+}

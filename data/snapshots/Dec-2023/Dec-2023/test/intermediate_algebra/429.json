@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x) = ax + b,$ where $a$ and $b$ are constants.  If $f(f(f(x))) = 3375x + 18557,$ find $a + b.$",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{92}",
+    "is_static": false
+}

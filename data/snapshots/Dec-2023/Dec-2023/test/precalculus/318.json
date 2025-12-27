@@ -1,0 +1,7 @@
+{
+    "problem": "Let $ABCD$ be a convex quadrilateral, and let $M$ and $N$ be the midpoints of $\\overline{AC}$ and $\\overline{BD},$ respectively.  Then there exists a constant $k$ so that\n\\[AB^2 + BC^2 + CD^2 + DA^2 = AC^2 + BD^2 + k \\cdot MN^2.\\]Find $735k.$\n\n[asy]\nunitsize(0.8 cm);\n\npair A, B, C, D, M, N;\n\nA = (0,0);\nB = (4,0.5);\nC = (5,-3);\nD = (-2,-2.5);\nM = (A + C)/2;\nN = (B + D)/2;\n\ndraw(A--B--C--D--cycle);\ndraw(A--C);\ndraw(B--D);\ndraw(M--N);\n\nlabel(\"$A$\", A, NW);\nlabel(\"$B$\", B, NE);\nlabel(\"$C$\", C, SE);\nlabel(\"$D$\", D, SW);\ndot(\"$M$\", M, NE);\ndot(\"$N$\", N, NW);\n[/asy]",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{2940}",
+    "is_static": false
+}

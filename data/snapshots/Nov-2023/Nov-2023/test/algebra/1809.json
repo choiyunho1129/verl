@@ -1,0 +1,7 @@
+{
+    "problem": "Find the domain of $\\frac{x^2 + 14x + 17}{x^2 + 10x - 119}$.  (Express your answer using interval notation.)",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{(-\\infty, -17)\\cup(-17, 7)\\cup(7, \\infty)}",
+    "is_static": false
+}

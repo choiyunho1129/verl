@@ -1,0 +1,7 @@
+{
+    "problem": "In isosceles triangle $ABC$, angle $BAC$ and angle $BCA$ measure 3 degrees. What is the measure of angle $CDA$? [asy]\nimport olympiad; import geometry; size(125); defaultpen(linewidth(0.8));\ndraw(circle((0,0),1));\ndot(\"$F$\",(0,0),dir(-90));\npair A = dir(160), B = dir(110), C = dir(40), D = dir(10);\ndraw(A--D--C--A--B--C);\nlabel(\"$A$\",A,W); label(\"$B$\",B,N); label(\"$C$\",C,E); label(\"$D$\",D,E);\n[/asy]",
+    "level": "Level 4",
+    "type": "Geometry",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "I have thirty-three balls numbered 1 through 33 in a bin.  In how many ways can I select 2 balls, if the order in which I draw them doesn't matter?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{528}",
+    "is_static": false
+}

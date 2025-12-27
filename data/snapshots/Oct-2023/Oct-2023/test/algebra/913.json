@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(18a^56)^6$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{34012224a^336}",
+    "is_static": false
+}

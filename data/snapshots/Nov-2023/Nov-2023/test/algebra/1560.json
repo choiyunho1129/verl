@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\&x$ is defined as $\\&x = x + 5749$ and $\\#x$ is defined as $\\#x = x^2$ , what is the value of $\\#(\\&4327)$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{101525776}",
+    "is_static": false
+}

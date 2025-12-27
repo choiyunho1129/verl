@@ -1,0 +1,7 @@
+{
+    "problem": "There are eight furlongs in a mile. There are two weeks in a fortnight. The British cavalry traveled 2464 furlongs in a fortnight. How many miles per day did the cavalry average?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{22}",
+    "is_static": false
+}

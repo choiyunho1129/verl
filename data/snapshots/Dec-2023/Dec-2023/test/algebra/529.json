@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of 117649 consecutive positive integers is $7^19$. What is their median?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{96889010407}",
+    "is_static": false
+}

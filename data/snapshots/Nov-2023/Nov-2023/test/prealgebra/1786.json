@@ -1,0 +1,7 @@
+{
+    "problem": "If $y = 1$ and $4x + 9y = 14$, express the value of $x$ as a common fraction.",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\frac54}",
+    "is_static": false
+}

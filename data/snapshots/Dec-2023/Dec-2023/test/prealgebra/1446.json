@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest multiple of 556 which is less than 6581?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{6116}",
+    "is_static": false
+}

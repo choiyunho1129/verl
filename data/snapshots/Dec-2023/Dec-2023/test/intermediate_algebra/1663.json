@@ -1,0 +1,7 @@
+{
+    "problem": "The complex numbers $a$ and $b$ satisfy\n\\[a \\overline{b} = -67 - 16i.\\]Find $\\overline{a} b.$",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{-67 + 16i}",
+    "is_static": false
+}

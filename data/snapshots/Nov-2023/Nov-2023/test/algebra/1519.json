@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify the following:$$\\frac{13}{\\sqrt{2197}}$$",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{\\sqrt{13}}{13}}",
+    "is_static": false
+}

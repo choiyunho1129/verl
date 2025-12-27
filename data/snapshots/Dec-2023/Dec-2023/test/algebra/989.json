@@ -1,0 +1,7 @@
+{
+    "problem": "What is the numerical value of \\[ x = \\frac{6889}{166-\\frac{6889}{166-\\frac{6889}{166-\\ldots}}} ?\\]",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{83}",
+    "is_static": false
+}

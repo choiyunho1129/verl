@@ -1,0 +1,7 @@
+{
+    "problem": "The number 4826809 is both a perfect cube and a perfect square, since $169^3 = 4826809$ and $2197^2 = 4826809$. What is the next larger number that is both a perfect cube and a perfect square?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{7529536}",
+    "is_static": false
+}

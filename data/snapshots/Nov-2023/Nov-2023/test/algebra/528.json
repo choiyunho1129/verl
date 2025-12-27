@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the product ${(49p^3 - 6)(46p^3 + 7)}$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{2254p^6 + 67p^3 - 42}",
+    "is_static": false
+}

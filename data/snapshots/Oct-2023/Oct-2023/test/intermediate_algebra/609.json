@@ -1,0 +1,7 @@
+{
+    "problem": "Let $x,$ $y,$ and $z$ be real numbers such that $x^2 + y^2 + z^2 = 7744.$  Find the maximum value of\n\\[23x + 46y + 46z.\\]",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{6072}",
+    "is_static": false
+}

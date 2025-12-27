@@ -1,0 +1,7 @@
+{
+    "problem": "Expand the following product: $\\frac{940}{909}\\left(\\frac{126351}{y} + 688113y\\right)$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{130660}{y} + 711580y}",
+    "is_static": false
+}

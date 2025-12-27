@@ -1,0 +1,7 @@
+{
+    "problem": "Find $y$: $\\sqrt{129+10y} = 13$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{4}",
+    "is_static": false
+}

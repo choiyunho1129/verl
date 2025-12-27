@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $j$, $\\frac{1}{j}$, $k$, $\\frac{1}{k}$, $l$, $\\frac{1}{l}$, $m$, $\\frac{1}{m}$, $n$, $\\frac{1}{n}$, $o$, $\\frac{1}{o}$, $p$, $\\frac{1}{p}$, $q$, $\\frac{1}{q}$, $r$, $\\frac{1}{r}$, $s$, $\\frac{1}{s}$, $t$, $\\frac{1}{t}$, $u$, $\\frac{1}{u}$, $v$, $\\frac{1}{v}$, $w$, $\\frac{1}{w}$, $x$, $\\frac{1}{x}$, $y$, $\\frac{1}{y}$, $z$ and $\\frac{1}{z}$ are all integers, how many distinct values of $x+ y+ z$ are possible?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{18}",
+    "is_static": false
+}

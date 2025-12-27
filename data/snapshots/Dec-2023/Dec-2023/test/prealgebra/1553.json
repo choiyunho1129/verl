@@ -1,0 +1,7 @@
+{
+    "problem": "Two interior angles of a convex heptagon are right angles and the other five interior angles are congruent. In degrees, what is the measure of one of the five congruent interior angles?",
+    "level": "Level 3",
+    "type": "Prealgebra",
+    "solution": "\\boxed{144^\\circ}",
+    "is_static": false
+}

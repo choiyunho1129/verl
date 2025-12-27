@@ -1,0 +1,7 @@
+{
+    "problem": "A store carries chocolate, vanilla, peppermint, and lemon candies. One day, the store clerk notices that he has sixty candies total. Furthermore, the number of peppermint and lemon candies together is twice the number of chocolate and vanilla candies together, and there are sixteen more peppermint candies than lemon candies. How many lemon candies are there?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{12}",
+    "is_static": false
+}

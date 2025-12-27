@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that $h(x)=f^{-1}(x)$. If $h(12)=17$, $h(17)=3$ and $h(3)=12$, what is $f(f(17))$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

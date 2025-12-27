@@ -1,0 +1,7 @@
+{
+    "problem": "74 people attend a party. Each person shakes hands with at most 72 other people. What is the maximum possible number of handshakes, assuming that any two people can shake hands at most once?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{2664}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "For a complex number $z,$ find the minimum value of\n\\[|z - 16 + 4i|^2 + |z - 13 + 5i|^2 + |z - 19 + 3i|^2.\\]",
+    "level": "Level 5",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{56}",
+    "is_static": false
+}

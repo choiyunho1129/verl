@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $\\begin{pmatrix} 524 \\\\ -159 \\end{pmatrix} \\cdot \\begin{pmatrix} -767 \\\\ -296 \\end{pmatrix}$.",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-354844}",
+    "is_static": false
+}

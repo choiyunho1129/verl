@@ -1,0 +1,7 @@
+{
+    "problem": "I have a bag with yellow and blue marbles in it. At the moment, the ratio of blue marbles to yellow marbles is 13:24. If I add 361 blue marbles and remove 24 yellow marbles, the ratio will be 47:24. How many blue marbles were in the bag before I added more?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{156}",
+    "is_static": false
+}

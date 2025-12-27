@@ -1,0 +1,7 @@
+{
+    "problem": "How many ways are there to put 26 indistinguishable balls into 2 distinguishable boxes?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{27}",
+    "is_static": false
+}

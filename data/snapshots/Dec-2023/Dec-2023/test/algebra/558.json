@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{z}$, find the value of $y$ when $x = 9669$ and $z = 9668$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{93479892}",
+    "is_static": false
+}

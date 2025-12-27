@@ -1,0 +1,7 @@
+{
+    "problem": "How many perfect squares have a value between 4133 and 8217?",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{26}",
+    "is_static": false
+}

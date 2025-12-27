@@ -1,0 +1,7 @@
+{
+    "problem": "A complete cycle of a traffic light takes 117 seconds. During each cycle the light is green for 48 seconds, yellow for 35 seconds, and red for 34 seconds. At a randomly chosen time, what is the probability that the light will NOT be green?  Express your answer as a common fraction.",
+    "level": "Level 1",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{\\frac{23}{39}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "If $x=80$, then what is $\\sqrt{x^2}-43$?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{37}",
+    "is_static": false
+}

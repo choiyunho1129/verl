@@ -1,0 +1,7 @@
+{
+    "problem": "In this problem, $a$ and $b$ are positive integers.\n\nWhen $a$ is written in base $16$, its last digit is $11$.\n\nWhen $b$ is written in base $8$, its last two digits are $54$.\n\nWhen $a-b$ is written in base $4$, what are its last two digits?  Assume $a-b$ is positive.",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{33}",
+    "is_static": false
+}

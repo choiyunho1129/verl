@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest multiple of 245 greater than 3904?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{3920}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "The dilation, centered at the origin, with scale factor $-8,$ takes $6 - 1i$ to which complex number?",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{-48 + 8i}",
+    "is_static": false
+}

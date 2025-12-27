@@ -1,0 +1,7 @@
+{
+    "problem": "In the circle with center $O$ and diameters $AC$ and $BD$, the angle $AOD$ measures $68$ degrees. What is the measure, in degrees, of angle $AOB$? [asy]\ndraw(circle((0,0),1));\nlabel(\"O\",(0,0),SE);\ndraw((-1,0)--(1,0));\ndraw((0.5877852522924731291,0.80901699437)--(-0.5877852522924731291,-0.80901699437));\nlabel(\"B\",(-1,0),W);\nlabel(\"D\",(1,0),E);\nlabel(\"A\",(0.5877852522924731291,0.80901699437),NE);\nlabel(\"C\",(-0.5877852522924731291,-0.80901699437),SW);\ndot((0,0));\ndot((-0.5877852522924731291,-0.80901699437));\ndot((0.5877852522924731291,0.80901699437));\ndot((-1,0));\ndot((1,0));\n[/asy]",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{112}",
+    "is_static": false
+}

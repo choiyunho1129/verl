@@ -1,0 +1,7 @@
+{
+    "problem": "Compute $89\\operatorname{arccot} (-1).$  Express your answer in radians.",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{267 \\pi}{4}}",
+    "is_static": false
+}

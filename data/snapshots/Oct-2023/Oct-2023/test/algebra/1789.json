@@ -1,0 +1,7 @@
+{
+    "problem": "Compute: $\\frac{13^22-13^21}{13^21-13^20}$",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{13}",
+    "is_static": false
+}

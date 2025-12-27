@@ -1,0 +1,7 @@
+{
+    "problem": "Let $P(x) = 20x^3 + 8x^2 + 17x + 14$, and let $Q(x) = P(x)^2$. What is the y-intercept of $Q(x)$?",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{196}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "What is the least positive integer value of $x$ for which the inequality $22x > 21x+58$ is true?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{59}",
+    "is_static": false
+}

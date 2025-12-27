@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a}$ and $\\mathbf{b}$ be two nonzero vectors such that $869 \\mathbf{a} + 982 \\mathbf{b}$ and $\\mathbf{b}$ are orthogonal, and $870 \\mathbf{a} + 755273970 \\mathbf{b}$ and $\\mathbf{a}$ are orthogonal.  Find $\\frac{\\|\\mathbf{a}\\|}{\\|\\mathbf{b}\\|}.$",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\sqrt{981018}}",
+    "is_static": false
+}

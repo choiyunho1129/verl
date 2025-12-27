@@ -1,0 +1,7 @@
+{
+    "problem": "Express $\\left(\\frac{9765625}{1048576}\\right)^{\\frac110}$ a common fraction.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{\\frac{5}{4}}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "For how many integers $n$ where $21018 \\le n \\le 40400$ is $\\binom{n}{2}$ odd?",
+    "level": "Level 5",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{9692}",
+    "is_static": false
+}

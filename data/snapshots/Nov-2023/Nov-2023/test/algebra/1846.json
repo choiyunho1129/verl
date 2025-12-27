@@ -1,0 +1,7 @@
+{
+    "problem": "The sum of seven consecutive integers is 9485. What is the smallest of the seven integers?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1352}",
+    "is_static": false
+}

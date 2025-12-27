@@ -1,0 +1,7 @@
+{
+    "problem": "Sean has 112 cylindrical containers filled with sand, each of which has a radius of 1 centimeters. He wants to transfer his sand into some new cylindrical containers, which are the same height but have a radius of 4 centimeters. How many new containers will Sean need?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{7}",
+    "is_static": false
+}

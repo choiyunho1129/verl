@@ -1,0 +1,7 @@
+{
+    "problem": "A line is parameterized by\n\\[\\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 42 \\\\ -7 \\end{pmatrix} + t \\begin{pmatrix} -10 \\\\ 6 \\end{pmatrix}.\\]A second line is parameterized by\n\\[\\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 87 \\\\ 48 \\end{pmatrix} + u \\begin{pmatrix} 3 \\\\ -2 \\end{pmatrix}.\\]If $\\theta$ is the acute angle formed by the two lines, then find $\\cos \\theta.$",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{42}{\\sqrt{1768}}}",
+    "is_static": false
+}

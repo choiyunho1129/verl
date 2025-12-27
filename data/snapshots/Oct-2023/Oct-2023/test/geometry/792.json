@@ -1,0 +1,7 @@
+{
+    "problem": "Triangle $AXY$ is similar to triangle $ZBC$. If $AX = 372$ cm, $ZB = 329592$ cm and $ZC = 259598$ cm, what is the length of segment $AY$, in centimeters?",
+    "level": "Level 1",
+    "type": "Geometry",
+    "solution": "\\boxed{293}",
+    "is_static": false
+}

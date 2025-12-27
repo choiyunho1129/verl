@@ -1,0 +1,7 @@
+{
+    "problem": "For any integer $x$, $\\boxed{x}$ is defined to be the product of all its factors greater than 1 not including $x$. Find $\\fbox{1152}$.",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{4742171651023232442485623014555648}",
+    "is_static": false
+}

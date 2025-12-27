@@ -1,0 +1,7 @@
+{
+    "problem": "There exist constants $a$, $b$, $c$, and $d$ such that\n\\[(\\sin x)^{15} = a \\sin 15x + b \\sin 13x + c \\sin 11x + d \\sin 9x + e \\sin 7x + f \\sin 5x + g \\sin 3x + h \\sin x\\]for all angles $x$.  Find $h$.",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{\\frac{6435}{16384}}",
+    "is_static": false
+}

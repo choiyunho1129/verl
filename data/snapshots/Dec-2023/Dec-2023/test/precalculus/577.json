@@ -1,0 +1,7 @@
+{
+    "problem": "There are two possible triangles with $AB = 12,$ $BC = 11,$ and $A = 50^\\circ.$  One of them is shown below.  What is the sum of the two possible values of $\\angle B,$ in degrees?\n\n[asy]\nunitsize (1 cm);\n\npair A, B, C;\n\nA = (0,0);\nB = 5*dir(50);\nC = (5,0);\n\ndraw(A--B--C--cycle);\n\nlabel(\"$A$\", A, SW);\nlabel(\"$B$\", B, N);\nlabel(\"$C$\", C, SE);\nlabel(\"$12$\", (A + B)/2, NW);\nlabel(\"$11$\", (B + C)/2, NE);\nlabel(\"$50^\\circ$\", (1,0.4));\n[/asy]",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{80^\\circ}",
+    "is_static": false
+}

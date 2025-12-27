@@ -1,0 +1,7 @@
+{
+    "problem": "The points $A(1,8), B(9,8), C(8,1)$ and $D(0,1)$ are the vertices of a parallelogram. If the parallelogram is translated down 1 units and right four units, what will be the coordinates of the final image of point $B$?",
+    "level": "Level 2",
+    "type": "Geometry",
+    "solution": "\\boxed{(13, 7)}",
+    "is_static": false
+}

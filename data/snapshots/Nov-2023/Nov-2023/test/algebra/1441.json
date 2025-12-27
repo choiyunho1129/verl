@@ -1,0 +1,7 @@
+{
+    "problem": "Sam decides to start a rumor. Sam tells the rumor to her seven friends. Each of Sam's seven friends then tells the rumor to seven friends who have not heard the rumor. This continues for twenty-three total cycles. Sam telling her seven friends was the first cycle. How many people, not including Sam, will have heard the rumor when the twenty-third cycle is complete?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{31930205230094401536}",
+    "is_static": false
+}

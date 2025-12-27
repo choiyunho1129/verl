@@ -1,0 +1,7 @@
+{
+    "problem": "What is the value of $70^2 + 2(70) + 1$?",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{5041}",
+    "is_static": false
+}

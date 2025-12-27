@@ -1,0 +1,7 @@
+{
+    "problem": "Three distinct circles are drawn in a plane. What is the maximum number of points where at least two of the circles intersect?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{6}",
+    "is_static": false
+}

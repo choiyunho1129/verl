@@ -1,0 +1,7 @@
+{
+    "problem": "Consider the function $g(x) = 559$.  Find $g(-677)$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{559}",
+    "is_static": false
+}

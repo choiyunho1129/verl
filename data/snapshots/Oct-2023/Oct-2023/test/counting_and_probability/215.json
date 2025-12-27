@@ -1,0 +1,7 @@
+{
+    "problem": "In how many ways can 39 different people be seated around a round table with 39 places? Two seatings are considered equivalent if one can be rotated to form the other.",
+    "level": "Level 2",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{523022617466601111760007224100074291200000000}",
+    "is_static": false
+}

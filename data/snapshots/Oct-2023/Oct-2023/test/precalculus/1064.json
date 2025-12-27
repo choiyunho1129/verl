@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose $\\cos V = \\frac{5}{6}$ in the diagram below.  What is $TV$?\n\n\n\n[asy]\npair T,U,V;\nV = (0,0);\nT = (0,16);\nU = (17.89,16);\ndraw(V--T--U--V);\ndraw(rightanglemark(V,T,U,23));\nlabel(\"$V$\",V,SW);\nlabel(\"$U$\",U,NE);\nlabel(\"$T$\",T,NW);\nlabel(\"$30$\",(U-V)/2,SE);\n[/asy]",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{25}",
+    "is_static": false
+}

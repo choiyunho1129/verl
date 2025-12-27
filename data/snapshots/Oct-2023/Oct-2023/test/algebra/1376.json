@@ -1,0 +1,7 @@
+{
+    "problem": "Let $f(x)=x+25$ and $g(x)=2x$.  Also denote the inverses to these functions as $f^{-1}$ and $g^{-1}$.  Compute \\[f(g^{-1}(f^{-1}(f^{-1}(g(f(31)))))).\\]",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{56}",
+    "is_static": false
+}

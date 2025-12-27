@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose that we roll two fair 6-sided dice.  What is the probability that the two numbers rolled sum to 11?",
+    "level": "Level 5",
+    "type": "Prealgebra",
+    "solution": "\\boxed{\\dfrac{1}{18}}",
+    "is_static": false
+}

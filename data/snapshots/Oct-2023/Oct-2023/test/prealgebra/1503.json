@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers are there on the number line between $3\\sqrt{11}$ and $11\\sqrt{3}$?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

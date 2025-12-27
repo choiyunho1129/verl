@@ -1,0 +1,7 @@
+{
+    "problem": "A group of 12 Caltech students go to Lake Street for lunch. Each student eats at either Chipotle or Panda Express.  In how many different ways can the students collectively go to lunch?",
+    "level": "Level 3",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{4096}",
+    "is_static": false
+}

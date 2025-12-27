@@ -1,0 +1,7 @@
+{
+    "problem": "Given that $156^{-1} \\equiv 466 \\pmod{469}$, find $12^{-1} \\pmod{469}$ as a residue modulo 469.  (Give an answer between 0 and 468, inclusive.)",
+    "level": "Level 5",
+    "type": "Number Theory",
+    "solution": "\\boxed{430}",
+    "is_static": false
+}

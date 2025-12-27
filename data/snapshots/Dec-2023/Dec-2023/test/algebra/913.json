@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(48a^27)^9$.",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{1352605460594688a^243}",
+    "is_static": false
+}

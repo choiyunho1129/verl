@@ -1,0 +1,7 @@
+{
+    "problem": "A suitcase lock has 6 dials with the digits $0, 1, 2,..., 9$ on each. How many different settings are possible if all six digits have to be different?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{151200}",
+    "is_static": false
+}

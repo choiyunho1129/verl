@@ -1,0 +1,7 @@
+{
+    "problem": "What is $(37^{1})^{3}$?",
+    "level": "Level 1",
+    "type": "Prealgebra",
+    "solution": "\\boxed{50653}",
+    "is_static": false
+}

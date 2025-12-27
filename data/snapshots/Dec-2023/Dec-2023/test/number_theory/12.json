@@ -1,0 +1,7 @@
+{
+    "problem": "How many integers between 90 and 272 are divisible by 68?",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{2}",
+    "is_static": false
+}

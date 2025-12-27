@@ -1,0 +1,7 @@
+{
+    "problem": "What is the smallest whole number $b$ such that 68 can be expressed in base $b$ using only two digits?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{9}",
+    "is_static": false
+}

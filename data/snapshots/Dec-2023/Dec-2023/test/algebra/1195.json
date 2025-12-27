@@ -1,0 +1,7 @@
+{
+    "problem": "Two consecutive positive even numbers are each squared.  The  difference of the squares is 54.  What is the sum of the original  two numbers?",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{27}",
+    "is_static": false
+}

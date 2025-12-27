@@ -1,0 +1,7 @@
+{
+    "problem": "Factor $r^2+4r+4$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{(r+2)^2}",
+    "is_static": false
+}

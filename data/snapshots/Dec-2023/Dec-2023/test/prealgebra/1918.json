@@ -1,0 +1,7 @@
+{
+    "problem": "What is the largest multiple of 47 less than 20394?",
+    "level": "Level 2",
+    "type": "Prealgebra",
+    "solution": "\\boxed{20351}",
+    "is_static": false
+}

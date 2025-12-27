@@ -1,0 +1,7 @@
+{
+    "problem": "Jan is thinking of a positive integer. Her integer has exactly 16 positive divisors, two of which are 2783 and 713. What is Jan's number?",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{949003}",
+    "is_static": false
+}

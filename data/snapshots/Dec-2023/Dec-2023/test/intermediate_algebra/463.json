@@ -1,0 +1,7 @@
+{
+    "problem": "The graph of the rational function $\\frac{76x^{36}-244x^{15} + 977x^4 -603x+960}{q(x)} $ has a horizontal asymptote. What is the smallest possible degree of $q(x)$?",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{36}",
+    "is_static": false
+}

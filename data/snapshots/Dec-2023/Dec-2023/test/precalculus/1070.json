@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify\n\\[\\frac{10}{1 - \\tan^2 x} + \\frac{10}{1 - \\cot^2 x}.\\]",
+    "level": "Level 1",
+    "type": "Precalculus",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

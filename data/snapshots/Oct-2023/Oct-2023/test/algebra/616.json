@@ -1,0 +1,7 @@
+{
+    "problem": "Given the two functions $f(x)=x^3+2x+1$ and $g(x)=x-1$, find $f(g(16))$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{3406}",
+    "is_static": false
+}

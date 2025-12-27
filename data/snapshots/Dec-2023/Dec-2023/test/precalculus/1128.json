@@ -1,0 +1,7 @@
+{
+    "problem": "The sets $A = \\{z : z^{53} = 1\\}$ and $B = \\{w : w^{29} = 1\\}$ are both sets of complex roots of unity. The set $C = \\{zw : z \\in A ~ \\mbox{and} ~ w \\in B\\}$ is also a set of complex roots of unity. How many distinct elements are in $C^{}_{}$?",
+    "level": "Level 4",
+    "type": "Precalculus",
+    "solution": "\\boxed{1537}",
+    "is_static": false
+}

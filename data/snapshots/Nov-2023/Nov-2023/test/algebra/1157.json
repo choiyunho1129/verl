@@ -1,0 +1,7 @@
+{
+    "problem": "If $j$ and $k$ are inversely proportional and $j = 183$ when $k = 21432$, what is the value of $j$ when $k = 846$?",
+    "level": "Level 2",
+    "type": "Algebra",
+    "solution": "\\boxed{4636}",
+    "is_static": false
+}

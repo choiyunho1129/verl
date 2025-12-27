@@ -1,0 +1,7 @@
+{
+    "problem": "The two positive integer solutions of the equation $x^2 - mx + n = 0$ are $k$ and $t$, where $m$ and $n$ are both prime numbers and $k > t$. What is the value of $50m^n + 50n^m + 50k^t + 50t^k$?",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{1000}",
+    "is_static": false
+}

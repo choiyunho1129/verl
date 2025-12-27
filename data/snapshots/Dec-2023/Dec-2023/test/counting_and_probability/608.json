@@ -1,0 +1,7 @@
+{
+    "problem": "49 white balls and $k$ black balls are placed into a bin.  Two of the balls are drawn at random.  The probability that one of the drawn balls is white and the other is black is $\\frac{98}{219}$.  Find the smallest possible value of $k$.",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{24}",
+    "is_static": false
+}

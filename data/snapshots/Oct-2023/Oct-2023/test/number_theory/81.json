@@ -1,0 +1,7 @@
+{
+    "problem": "Determine the remainder of 139 (mod 8).",
+    "level": "Level 1",
+    "type": "Number Theory",
+    "solution": "\\boxed{3}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "There are two possible triangles with $AB = 20,$ $BC = 19,$ and $A = 34^\\circ.$  One of them is shown below.  What is the sum of the two possible values of $\\angle B,$ in degrees?\n\n[asy]\nunitsize (1 cm);\n\npair A, B, C;\n\nA = (0,0);\nB = 5*dir(34);\nC = (5,0);\n\ndraw(A--B--C--cycle);\n\nlabel(\"$A$\", A, SW);\nlabel(\"$B$\", B, N);\nlabel(\"$C$\", C, SE);\nlabel(\"$20$\", (A + B)/2, NW);\nlabel(\"$19$\", (B + C)/2, NE);\nlabel(\"$34^\\circ$\", (1,0.4));\n[/asy]",
+    "level": "Level 3",
+    "type": "Precalculus",
+    "solution": "\\boxed{112^\\circ}",
+    "is_static": false
+}

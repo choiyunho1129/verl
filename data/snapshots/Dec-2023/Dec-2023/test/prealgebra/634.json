@@ -1,0 +1,7 @@
+{
+    "problem": "How many twenty-inch by twenty-inch square tiles are needed to cover a three hundred and sixty-foot by eighty-foot rectangular section of floor?",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{10368}",
+    "is_static": false
+}

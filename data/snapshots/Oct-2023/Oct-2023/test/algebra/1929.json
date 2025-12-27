@@ -1,0 +1,7 @@
+{
+    "problem": "What is the shortest distance, in units, between the circles $(x-16)^2 + (y-5)^2 = 5.76$ and $(x+13)^2 + (y+4)^2 = 171.61$? Express your answer as a decimal to the nearest tenth.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{14.9}",
+    "is_static": false
+}

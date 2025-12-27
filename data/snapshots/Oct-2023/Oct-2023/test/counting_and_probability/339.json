@@ -1,0 +1,7 @@
+{
+    "problem": "Twelve distinct circles are drawn in a plane. What is the maximum number of points where at least ten of the circles intersect?",
+    "level": "Level 4",
+    "type": "Counting & Probability",
+    "solution": "\\boxed{132}",
+    "is_static": false
+}

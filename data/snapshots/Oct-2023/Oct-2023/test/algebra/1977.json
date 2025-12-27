@@ -1,0 +1,7 @@
+{
+    "problem": "Find the constant $a$ such that \\[(x^2 - 16x + 7)(20x^2 +ax + 17) = 20x^4 --324x^3 +221x^2 --300x +119.\\]",
+    "level": "Level 4",
+    "type": "Algebra",
+    "solution": "\\boxed{81}",
+    "is_static": false
+}

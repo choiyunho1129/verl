@@ -1,0 +1,7 @@
+{
+    "problem": "A sequence of positive real numbers $\\{a_1, a_2, a_3, \\dots\\}$ has the property that for $i \\ge 2,$ each $a_i$ is equal to the sum of all the previous terms.  If $a_{142} = 903,$ then what is $a_{143}$?",
+    "level": "Level 3",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{1806}",
+    "is_static": false
+}

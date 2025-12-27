@@ -1,0 +1,7 @@
+{
+    "problem": "If $\\log_{662}368734 \\approx 1.97$, what is the value of $\\log_{438244} 310249$, accurate to two decimal places?",
+    "level": "Level 2",
+    "type": "Intermediate Algebra",
+    "solution": "\\boxed{0.97}",
+    "is_static": false
+}

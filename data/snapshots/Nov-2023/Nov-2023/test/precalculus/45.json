@@ -1,0 +1,7 @@
+{
+    "problem": "Let $\\mathbf{a}$ be a unit vector.  Compute\n\\[\\|\\mathbf{a} \\times \\mathbf{2i}\\|^2 + \\|\\mathbf{2a} \\times \\mathbf{j}\\|^2 + \\|\\mathbf{2a} \\times \\mathbf{k}\\|^2.\\]",
+    "level": "Level 2",
+    "type": "Precalculus",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

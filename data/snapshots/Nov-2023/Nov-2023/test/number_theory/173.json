@@ -1,0 +1,7 @@
+{
+    "problem": "What is the greatest three-digit integer in which the product of the digits is 72?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{981}",
+    "is_static": false
+}

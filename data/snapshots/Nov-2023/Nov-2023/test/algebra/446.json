@@ -1,0 +1,7 @@
+{
+    "problem": "Simplify $(-3+16i)(42+38i)$.",
+    "level": "Level 3",
+    "type": "Algebra",
+    "solution": "\\boxed{-734+558i}",
+    "is_static": false
+}

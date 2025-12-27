@@ -1,0 +1,7 @@
+{
+    "problem": "What is the remainder when $5186+5187+5188+5189+5190+5191+5192+5193+5194+5195+5196+5197+5198+5199+5200+5201$ is divided by $16$?",
+    "level": "Level 2",
+    "type": "Number Theory",
+    "solution": "\\boxed{8}",
+    "is_static": false
+}

@@ -1,0 +1,7 @@
+{
+    "problem": "Evaluate $65-(6x-y)$ if $x=15$ and $y=68$.",
+    "level": "Level 1",
+    "type": "Algebra",
+    "solution": "\\boxed{43}",
+    "is_static": false
+}

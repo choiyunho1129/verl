@@ -1,0 +1,7 @@
+{
+    "problem": "If $x=446077893547$ and $ax$ is a perfect cube where $a$ is a positive integer, what is the smallest possible value of $\\sqrt[3]{ax}$?",
+    "level": "Level 3",
+    "type": "Number Theory",
+    "solution": "\\boxed{537251}",
+    "is_static": false
+}

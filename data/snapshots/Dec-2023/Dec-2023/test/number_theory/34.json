@@ -1,0 +1,7 @@
+{
+    "problem": "Find $6^{-1} \\pmod{10}$, as a residue modulo 10.  (Give an answer between 0 and 9, inclusive.)",
+    "level": "Level 4",
+    "type": "Number Theory",
+    "solution": "\\boxed{10}",
+    "is_static": false
+}

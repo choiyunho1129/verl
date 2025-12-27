@@ -1,0 +1,7 @@
+{
+    "problem": "If $x$ is a positive number, by how much does $73x+36$ exceed $36-73x$? Express your answer in terms of $x$.",
+    "level": "Level 4",
+    "type": "Prealgebra",
+    "solution": "\\boxed{146x}",
+    "is_static": false
+}

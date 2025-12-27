@@ -1,0 +1,7 @@
+{
+    "problem": "Suppose a function $f(x)$ has domain $(-\\infty,\\infty)$ and range $[10,56]$. If we define a new function $g(x)$ by $$g(x) = f(20x)+97,$$ then what is the range of $g(x)$? Express your answer in interval notation.",
+    "level": "Level 5",
+    "type": "Algebra",
+    "solution": "\\boxed{[107,153]}",
+    "is_static": false
+}
