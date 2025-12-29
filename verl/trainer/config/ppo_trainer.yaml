@@ -60,8 +60,7 @@ custom_reward_function:
 
   # The path to the file containing your customized reward function.
   # If not specified, pre-implemented reward functions will be used.
-  path: /data1/home/yunhochoi/verl/verl/trainer/ppo/custom_rewards/critique_reward.py
-
+  path: null
   # The name of the reward function within the specified file. Default is 'compute_score'.
   name: compute_score
 
@@ -175,7 +174,7 @@ trainer:
   resume_from_path: null
 
   # Whether to run validation before training begins
-  val_before_train: False
+  val_before_train: True
 
   # Whether to run validation only
   val_only: False
