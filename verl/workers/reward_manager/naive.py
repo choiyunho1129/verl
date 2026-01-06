@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import asyncio
+import inspect
 from collections import defaultdict
 from typing import Any
 
@@ -42,6 +44,27 @@ class NaiveRewardManager(AbstractRewardManager):
         self.num_examine = num_examine  # the number of batches of decoded responses to print to the console
         self.compute_score = compute_score or default_compute_score
         self.reward_fn_key = reward_fn_key  # Store the key for accessing the data source
+
+    def _run_compute_score(self, **kwargs) -> Any:
+        """Run compute_score and materialize coroutines in-place.
+
+        We keep execution in the current thread (no background threads) so that downstream
+        math_verify signal-based timeouts keep working.
+        """
+        result = self.compute_score(**kwargs)
+        if inspect.isawaitable(result):
+            try:
+                return asyncio.run(result)
+            except RuntimeError:
+                # Fallback when asyncio.run() is called from a running loop; use a private loop.
+                loop = asyncio.new_event_loop()
+                try:
+                    asyncio.set_event_loop(loop)
+                    return loop.run_until_complete(result)
+                finally:
+                    asyncio.set_event_loop(None)
+                    loop.close()
+        return result
 
     def __call__(self, data: DataProto, return_dict: bool = False) -> torch.Tensor | dict[str, Any]:
         """We will expand this function gradually based on the available datasets"""
@@ -82,7 +105,7 @@ class NaiveRewardManager(AbstractRewardManager):
             extra_info["num_turns"] = num_turns
             extra_info["rollout_reward_scores"] = rollout_reward_scores
 
-            score = self.compute_score(
+            score = self._run_compute_score(
                 data_source=data_source,
                 solution_str=response_str,
                 ground_truth=ground_truth,

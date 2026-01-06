@@ -130,7 +130,14 @@ class RewardLoopWorker:
                 timeout = aiohttp.ClientTimeout(total=None)
                 async with aiohttp.ClientSession(timeout=timeout) as session:
                     async with session.post(url, json=payload) as resp:
-                        resp.raise_for_status()
+                        if resp.status >= 400:
+                            # Log full response text to help root-cause upstream failures.
+                            error_body = await resp.text()
+                            logger.error(
+                                f"Reward request to {url} failed with HTTP {resp.status}. "
+                                f"Payload keys: {list(payload.keys())}. Response body: {error_body}"
+                            )
+                            resp.raise_for_status()
                         return await resp.json()
             except aiohttp.ClientResponseError as e:
                 # Do not retry on 4xx client errors, but retry on 5xx server errors.
@@ -285,7 +292,7 @@ class RewardLoopManager:
         batch = TensorDict({"rm_scores": rm_scores}, batch_size=len(data))
 
         reward_extra_infos = [output.get("reward_extra_info", {}) for output in outputs_flat]
-        reward_extra_keys = list(reward_extra_infos[0].keys())
+        reward_extra_keys = list(reward_extra_infos[0].keys()) if reward_extra_infos else []
         non_tensor_batch = {}
         for key in reward_extra_keys:
             non_tensor_batch[key] = np.array([info[key] for info in reward_extra_infos])

@@ -9,10 +9,13 @@ test_file="${REPO_ROOT}/data/MATH-500/test.parquet"
 reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward_model.py"
 
 # Reward model config (runs inside Ray reward pool)
+export CUDA_VISIBLE_DEVICES=0,1,2,3
 export REWARD_MODEL_PATH="${REWARD_MODEL_PATH:-meta-llama/Llama-3.2-3B-Instruct}"
 export DEBUG_REWARD="${DEBUG_REWARD:-True}"
+export REWARD_NUM_ACTORS="${REWARD_NUM_ACTORS:-2}"
+export REWARD_ACTOR_GPUS_PER_WORKER="${REWARD_ACTOR_GPUS_PER_WORKER:-1}"
+export REWARD_MODEL_TENSOR_PARALLEL_SIZE="${REWARD_MODEL_TENSOR_PARALLEL_SIZE:-$REWARD_ACTOR_GPUS_PER_WORKER}"
 
-export CUDA_VISIBLE_DEVICES=0,1,2 
 
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
@@ -42,29 +45,16 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.rollout.n=8 \
     actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=16 \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
-    actor_rollout_ref.rollout.val_kwargs.temperature=0.6 \
-    actor_rollout_ref.rollout.val_kwargs.top_p=0.9 \
-    actor_rollout_ref.rollout.val_kwargs.n=32 \
-    actor_rollout_ref.rollout.val_kwargs.do_sample=true \
     algorithm.use_kl_in_reward=False \
     custom_reward_function.path="$reward_fn_path" \
-    reward_model.enable=True \
-    reward_model.use_reward_loop=True \
-    reward_model.enable_resource_pool=True \
-    reward_model.n_gpus_per_node=1 \
-    reward_model.nnodes=1 \
-    reward_model.num_workers=1 \
-    reward_model.model.path="$REWARD_M ODEL_PATH" \
-    reward_model.rollout.name=vllm \
-    reward_model.rollout.tensor_model_parallel_size=1 \
-    reward_model.rollout.max_model_len=10240 \
-    reward_model.rollout.gpu_memory_utilization=0.85 \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
     trainer.project_name='verl_grpo_critique' \
-    trainer.experiment_name='qwen2.5_7b_instruct_critique_model' \
-    trainer.n_gpus_per_node=3 \
+    trainer.experiment_name='qwen2.5_7b_instruct_critique_rewardmodel' \
+    trainer.n_gpus_per_node=2 \
     trainer.nnodes=1 \
+    trainer.val_before_train=False \
+    trainer.val_only=False \
     trainer.save_freq=10 \
     trainer.test_freq=5 \
     trainer.total_epochs=3 \

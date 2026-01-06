@@ -622,11 +622,16 @@ class AgentLoopWorkerBase:
             "__num_turns__": np.array([input.num_turns for input in inputs], dtype=np.int32),
         }
 
-        # add reward_extra_info to non_tensor_batch
-        reward_extra_infos = [input.extra_fields.get("reward_extra_info", {}) for input in inputs]
-        reward_extra_keys = list(reward_extra_infos[0].keys())
-        for key in reward_extra_keys:
-            non_tensor_batch[key] = np.array([info[key] for info in reward_extra_infos])
+        # add reward_extra_info to non_tensor_batch only when it exists
+        reward_extra_infos = [input.extra_fields.get("reward_extra_info") for input in inputs]
+        reward_extra_keys = []
+        first_non_empty_info = next((info for info in reward_extra_infos if info), None)
+        if first_non_empty_info:
+            reward_extra_keys = list(first_non_empty_info.keys())
+            for key in reward_extra_keys:
+                non_tensor_batch[key] = np.array(
+                    [info.get(key) if info else None for info in reward_extra_infos], dtype=object
+                )
 
         # Add multi_modal_inputs to non_tensor_batch if any samples have them
         multi_modal_inputs_list = [input.multi_modal_inputs for input in inputs]
@@ -643,10 +648,13 @@ class AgentLoopWorkerBase:
             extra_fields[key] = temp_arr
 
         non_tensor_batch.update(extra_fields)
+        meta_info = {"metrics": metrics}
+        if reward_extra_keys:
+            meta_info["reward_extra_keys"] = reward_extra_keys
         return DataProto(
             batch=batch,
             non_tensor_batch=non_tensor_batch,
-            meta_info={"metrics": metrics, "reward_extra_keys": reward_extra_keys},
+            meta_info=meta_info,
         )
 
     def create_transferqueue_client(

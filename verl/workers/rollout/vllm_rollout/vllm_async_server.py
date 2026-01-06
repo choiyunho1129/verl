@@ -400,7 +400,44 @@ class vLLMHttpServerBase:
         if "disable_log_stats" in fn_args:
             kwargs["disable_log_stats"] = engine_args.disable_log_stats
 
-        engine_client = AsyncLLM.from_vllm_config(vllm_config=vllm_config, usage_context=usage_context, **kwargs)
+        parallel_config = getattr(vllm_config, "parallel_config", None)
+        logger.info(
+            "Starting AsyncLLM init (tp=%s, dp=%s, pp=%s, dp_local=%s, master_port=%s, dp_rpc_port=%s)",
+            getattr(parallel_config, "tensor_parallel_size", None),
+            getattr(parallel_config, "data_parallel_size", None),
+            getattr(parallel_config, "pipeline_parallel_size", None),
+            getattr(parallel_config, "data_parallel_size_local", None),
+            getattr(parallel_config, "data_parallel_master_port", None),
+            getattr(engine_args, "data_parallel_rpc_port", None),
+        )
+
+        try:
+            engine_client = AsyncLLM.from_vllm_config(
+                vllm_config=vllm_config,
+                usage_context=usage_context,
+                **kwargs,
+            )
+        except TimeoutError as e:
+            logger.error(
+                "AsyncLLM init timed out waiting for engine handshake. "
+                "master_port=%s dp_rpc_port=%s zmq_addresses=%s parallel_config=%s",
+                getattr(parallel_config, "data_parallel_master_port", None),
+                getattr(engine_args, "data_parallel_rpc_port", None),
+                os.getenv("VERL_VLLM_ZMQ_ADDRESSES", ""),
+                parallel_config,
+            )
+            raise
+        except Exception as e:
+            logger.exception(
+                "AsyncLLM init failed. model=%s dtype=%s max_model_len=%s master_port=%s dp_rpc_port=%s error=%s",
+                getattr(engine_args, "model", None),
+                getattr(vllm_config, "dtype", None),
+                getattr(vllm_config, "max_model_len", None),
+                getattr(parallel_config, "data_parallel_master_port", None),
+                getattr(engine_args, "data_parallel_rpc_port", None),
+                e,
+            )
+            raise
 
         # Don't keep the dummy data in memory
         await engine_client.reset_mm_cache()

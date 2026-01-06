@@ -151,20 +151,31 @@ class NaiveRouter:
             # Send request to worker
             try:
                 async with self.client.request(request.method, target_url, data=body, headers=headers) as response:
+                    if response.status >= 400:
+                        # Capture response payload for easier debugging of upstream failures.
+                        error_body = await _read_async_response(response)
+                        logger.error(
+                            f"HTTP {response.status} from worker {target_url} for endpoint '{endpoint}'. "
+                            f"Response payload: {error_body}"
+                        )
                     response.raise_for_status()
                     output = await _read_async_response(response)
                     self._release_worker(worker_url)
                     return output
             except asyncio.TimeoutError:
                 logger.warning(f"Async request to {endpoint} timed out (attempt {attempt + 1})")
+                self._release_worker(worker_url)
             except aiohttp.ClientConnectorError:
                 logger.warning(f"Connection error for {endpoint} (attempt {attempt + 1})")
+                self._release_worker(worker_url)
             except aiohttp.ClientResponseError as e:
-                logger.error(f"HTTP error for {endpoint}: {e}")
+                logger.error(f"HTTP error for {endpoint} via {target_url}: {e}")
+                self._release_worker(worker_url)
                 raise
             except Exception as e:
                 logger.error(f"Unexpected error for {endpoint}: {e}")
                 if attempt == self.max_attempts - 1:
+                    self._release_worker(worker_url)
                     raise
 
             if attempt < self.max_attempts - 1:

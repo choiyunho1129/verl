@@ -8,6 +8,7 @@ enable: False
 
 # Whether to deploy the model to a separate resource pool.
 enable_resource_pool: False
+use_gpu_for_reward_loop: True
 n_gpus_per_node: 8
 num_workers: 1
 nnodes: 0
@@ -28,14 +29,14 @@ rollout:
   data_parallel_size: 1
   expert_parallel_size: 1
   tensor_model_parallel_size: 2
-  max_num_batched_tokens: 8192
+  max_num_batched_tokens: 2048
   max_model_len: null
-  max_num_seqs: 1024
+  max_num_seqs: 64
   load_format: auto
   engine_kwargs: {}
   limit_images: null
   enable_chunked_prefill: true
-  enable_prefix_caching: true
+  enable_prefix_caching: false
   disable_log_stats: true
   skip_tokenizer_init: false
 

@@ -17,7 +17,9 @@
 PPO Trainer with Ray-based single controller.
 This trainer supports model-agonistic model initialization with huggingface
 """
+import logging
 
+logger = logging.getLogger(__name__)
 import json
 import os
 import uuid
@@ -436,6 +438,28 @@ class RayPPOTrainer:
                     self.config.critic.optim.total_training_steps = total_training_steps
         except Exception as e:
             print(f"Warning: Could not set total_training_steps in config. Structure missing? Error: {e}")
+
+    def _dataset_signature(self) -> str:
+        """Lightweight signature to detect dataset swaps between resumes."""
+
+        def _normalize_files(files):
+            if files is None:
+                return None
+            if isinstance(files, (list, tuple)):
+                return [str(f) for f in files]
+            return [str(files)]
+
+        try:
+            signature = {
+                "train_files": _normalize_files(getattr(self.train_dataset, "data_files", None)),
+                "val_files": _normalize_files(getattr(self.val_dataset, "data_files", None)),
+                "train_len": len(self.train_dataset) if self.train_dataset is not None else None,
+                "val_len": len(self.val_dataset) if self.val_dataset is not None else None,
+            }
+            return json.dumps(signature, sort_keys=True)
+        except Exception as e:
+            print(f"Warning: Failed to compute dataset signature: {e}")
+            return "unknown"
 
     def _dump_generations(self, inputs, outputs, gts, scores, reward_extra_infos_dict, dump_path):
         """Dump rollout/validation samples as JSONL."""
@@ -869,6 +893,9 @@ class RayPPOTrainer:
         wg_kwargs["device_name"] = self.device_name
 
         for resource_pool, class_dict in self.resource_pool_to_cls.items():
+            if not class_dict:
+                logger.warning(f"Skip empty resource pool: {resource_pool}")
+                continue
             worker_dict_cls = create_colocated_worker_cls(class_dict=class_dict)
             wg_dict = self.ray_worker_group_cls(
                 resource_pool=resource_pool,
@@ -987,7 +1014,11 @@ class RayPPOTrainer:
         local_mkdir_safe(local_global_step_folder)
         dataloader_local_path = os.path.join(local_global_step_folder, "data.pt")
         dataloader_state_dict = self.train_dataloader.state_dict()
-        torch.save(dataloader_state_dict, dataloader_local_path)
+        dataloader_payload = {
+            "state_dict": dataloader_state_dict,
+            "dataset_signature": self._dataset_signature(),
+        }
+        torch.save(dataloader_payload, dataloader_local_path)
 
         # latest checkpointed iteration tracker (for atomic usage)
         if (
@@ -1056,11 +1087,46 @@ class RayPPOTrainer:
         # load dataloader,
         # TODO: from remote not implemented yet
         dataloader_local_path = os.path.join(global_step_folder, "data.pt")
+        reset_global_steps_on_resume = os.getenv("RESET_GLOBAL_STEPS_ON_RESUME", "0") == "1"
+        reset_on_mismatch = os.getenv("RESET_DATALOADER_ON_DATA_MISMATCH", "1") == "1"
+        dataloader_reset = False
+
         if os.path.exists(dataloader_local_path):
-            dataloader_state_dict = torch.load(dataloader_local_path, weights_only=False)
-            self.train_dataloader.load_state_dict(dataloader_state_dict)
+            dataloader_obj = torch.load(dataloader_local_path, weights_only=False)
+
+            # New format stores a dict with state + dataset signature; old format was the raw state_dict.
+            if isinstance(dataloader_obj, dict) and "state_dict" in dataloader_obj:
+                saved_state_dict = dataloader_obj.get("state_dict")
+                saved_sig = dataloader_obj.get("dataset_signature")
+            else:
+                saved_state_dict = dataloader_obj
+                saved_sig = None
+
+            current_sig = self._dataset_signature()
+            dataset_mismatch = saved_sig is not None and saved_sig != current_sig
+
+            if dataset_mismatch and reset_on_mismatch:
+                print(
+                    "Dataset signature mismatch; skipping dataloader state and resetting global_steps to 0. "
+                    f"Saved={saved_sig}, Current={current_sig}"
+                )
+                saved_state_dict = None
+                dataloader_reset = True
+
+            if saved_state_dict is not None and not dataloader_reset:
+                try:
+                    self.train_dataloader.load_state_dict(saved_state_dict)
+                except Exception as e:
+                    print(f"Warning: Failed to load dataloader state from {dataloader_local_path}: {e}")
+                    dataloader_reset = True
+            else:
+                print(f"Warning: Dataloader state not loaded from {dataloader_local_path}")
         else:
             print(f"Warning: No dataloader state found at {dataloader_local_path}, will start from scratch")
+
+        if reset_global_steps_on_resume or dataloader_reset:
+            print("Resetting global_steps to 0 due to resume reset flag or dataloader mismatch.")
+            self.global_steps = 0
 
     def _start_profiling(self, do_profile: bool) -> None:
         """Start profiling for all worker groups if profiling is enabled."""
