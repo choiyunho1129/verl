@@ -12,7 +12,7 @@ resume_ckpt="${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_tra
 export DEBUG_REWARD="${DEBUG_REWARD:-False}"
 export REWARD_MODEL_PATH="${REWARD_MODEL_PATH:-meta-llama/Llama-3.1-8B-Instruct}"
 export ENABLE_RM_POOL="${ENABLE_RM_POOL:-True}"           # standalone RM pool if true
-export RM_NGPUS_PER_NODE="${RM_NGPUS_PER_NODE:-1}"
+export RM_NGPUS_PER_NODE="${RM_NGPUS_PER_NODE:-2}"
 export RM_NNODES="${RM_NNODES:-1}"
 export RM_TP_SIZE="${RM_TP_SIZE:-1}"
 export RM_GPU_UTIL="${RM_GPU_UTIL:-0.80}"
@@ -26,7 +26,7 @@ if [[ "${RESET_DATALOADER_STATE}" == "1" ]]; then
 fi
 # Reset global_steps to 0 when resuming from baseline so total_steps is recomputed for the new dataset
 export RESET_GLOBAL_STEPS_ON_RESUME="${RESET_GLOBAL_STEPS_ON_RESUME:-1}"
-export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0,1,2}"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0,1,2,3}"
 echo "Resuming PPO Training from baseline checkpoint at ${resume_ckpt}..."
 
 python3 -m verl.trainer.main_ppo \
@@ -76,10 +76,10 @@ python3 -m verl.trainer.main_ppo \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
     trainer.project_name='verl_grpo_critique' \
-    trainer.experiment_name='qwen2.5_7b_instruct_critique_resume_from_bl' \
+    trainer.experiment_name='qwen2.5_7b_instruct_critique_resume_from_bl_llama8b' \
     trainer.n_gpus_per_node=2 \
     trainer.nnodes=1 \
-    trainer.save_freq=24 \
+    trainer.save_freq=12 \
     trainer.test_freq=3 \
     trainer.val_only=False \
     trainer.val_before_train=False \
