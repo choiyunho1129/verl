@@ -26,7 +26,7 @@ if [[ "${RESET_DATALOADER_STATE}" == "1" ]]; then
 fi
 # Reset global_steps to 0 when resuming from baseline so total_steps is recomputed for the new dataset
 export RESET_GLOBAL_STEPS_ON_RESUME="${RESET_GLOBAL_STEPS_ON_RESUME:-1}"
-export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0,1,2,3}"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEverl/trainer/main_ppo.pyhVICES:-0,1,2,3}"
 echo "Resuming PPO Training from baseline checkpoint at ${resume_ckpt}..."
 
 python3 -m verl.trainer.main_ppo \
