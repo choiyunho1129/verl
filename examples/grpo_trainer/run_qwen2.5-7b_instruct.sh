@@ -6,7 +6,7 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 
-train_file="${REPO_ROOT}/data/MATH-500/train_MATH3-5.parquet"
+train_file="${REPO_ROOT}/data/MATH-500/train_level3-5.parquet"
 test_file="${REPO_ROOT}/data/MATH-500/test.parquet"
 
 python3 -m verl.trainer.main_ppo \

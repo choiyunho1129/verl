@@ -101,6 +101,9 @@ do_sample: True
 # number of responses (i.e. num sample times). > 1 for grpo
 n: 1
 
+# Stop sequences to truncate generation early. Passed to the rollout backend when provided.
+stop_tokens: null
+
 # The over_sample_rate parameter controls the early termination threshold for training rollouts,
 # where the system will abort remaining requests when (1 - over_sample_rate) * total_requests completions are reached.
 over_sample_rate: 0
@@ -324,4 +327,3 @@ prometheus:
 
   # Specify served_model_name to avoid displaying overly long model paths in Grafana
   served_model_name: ${oc.select:actor_rollout_ref.model.path,null}
-

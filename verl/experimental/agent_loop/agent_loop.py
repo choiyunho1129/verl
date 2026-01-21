@@ -330,6 +330,9 @@ class AgentLoopWorkerBase:
             repetition_penalty=1.0,
             logprobs=config.calculate_log_probs,
         )
+        stop_tokens = batch.meta_info.get("stop_tokens", config.stop_tokens)
+        if stop_tokens:
+            sampling_params["stop"] = list(stop_tokens)
 
         # override sampling params for validation
         if batch.meta_info.get("validate", False):

@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# from . import gsm8k, math, prime_math, prime_code
+import os
 
 from verl.utils.import_utils import deprecated
 
@@ -45,7 +45,13 @@ def default_compute_score(
         from . import gsm8k
 
         res = gsm8k.compute_score(solution_str, ground_truth)
-    elif data_source in ["lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval", "HuggingFaceH4/MATH-500"]:
+    elif data_source in [
+        "lighteval/MATH",
+        "DigitalLearningGmbH/MATH-lighteval",
+        "HuggingFaceH4/MATH-500",
+        "qwen-math",
+        "deepscaler"
+    ]:
         from . import math_reward
 
         res = math_reward.compute_score(solution_str, ground_truth)

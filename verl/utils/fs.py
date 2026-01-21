@@ -211,13 +211,43 @@ def copy_to_local(
     # Save to a local path for persistence.
     local_path = copy_local_path_from_hdfs(src, cache_dir, filelock, verbose, always_recopy)
 
+    # If this looks like a Hugging Face repo id and the local path does not exist,
+    # first try to resolve from the local cache (offline), then fallback to downloading.
+    if not os.path.exists(local_path) and not is_non_local(src):
+        try:
+            from huggingface_hub import snapshot_download
+
+            # Try offline cache reuse first.
+            resolved = snapshot_download(src, cache_dir=cache_dir, local_files_only=True)
+            if isinstance(resolved, str) and os.path.exists(resolved):
+                local_path = resolved
+            elif not os.path.exists(local_path):
+                offline = os.environ.get("HF_HUB_OFFLINE", "").lower() in ("1", "true", "yes")
+                if offline:
+                    if verbose:
+                        print(f"WARNING: HF_HUB_OFFLINE is set; cannot download {src}.")
+                else:
+                    resolved = snapshot_download(src, cache_dir=cache_dir, local_files_only=False)
+                    if isinstance(resolved, str) and os.path.exists(resolved):
+                        local_path = resolved
+        except ImportError:
+            pass
+        except Exception as e:
+            if verbose:
+                print(f"WARNING: Failed to resolve Hugging Face repo {src}: {e}")
+
     if use_shm and isinstance(local_path, str) and not os.path.exists(local_path):
         try:
             from huggingface_hub import snapshot_download
 
-            resolved = snapshot_download(local_path)
-            if isinstance(resolved, str) and os.path.exists(resolved):
-                local_path = resolved
+            offline = os.environ.get("HF_HUB_OFFLINE", "").lower() in ("1", "true", "yes")
+            if offline:
+                if verbose:
+                    print(f"WARNING: HF_HUB_OFFLINE is set; cannot download {src}.")
+            else:
+                resolved = snapshot_download(src, cache_dir=cache_dir, local_files_only=False)
+                if isinstance(resolved, str) and os.path.exists(resolved):
+                    local_path = resolved
         except ImportError:
             pass
         except Exception as e:
