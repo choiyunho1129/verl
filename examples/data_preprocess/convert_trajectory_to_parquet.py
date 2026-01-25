@@ -9,7 +9,7 @@ def make_prompt(question, trajectory, answer):
         f"Correct Answer: {answer}\n\n"
         f"Model Solution Trace:\n{trajectory}\n\n"
         f"Task: Critique the solution trace above based on the correct answer. "
-        f"Identify specific logical errors or confirm the reasoning. Provide constructive feedback."
+        f"Identify specific logical errors or confirm the reasoning. Provide constructive feedback but do not give the direct answer."
     )
 
 def main():
