@@ -64,6 +64,11 @@ cleanup() {
     cp -a "${RAY_TMPDIR}/ray/session_latest/logs/." "${LOG_DIR}/ray_logs/" || true
   fi
 
+  # Optional: stop Ray to clean up sessions after run finishes.
+  if [ "${AUTO_RAY_STOP:-1}" = "1" ] && command -v ray >/dev/null 2>&1; then
+    ray stop -f >/dev/null 2>&1 || true
+  fi
+
   exit "${code}"
 }
 trap cleanup EXIT
@@ -75,14 +80,14 @@ export ENABLE_RM_POOL="${ENABLE_RM_POOL:-False}"           # standalone RM pool 
 export RM_NGPUS_PER_NODE="${RM_NGPUS_PER_NODE:-4}"
 export RM_NNODES="${RM_NNODES:-1}"
 export RM_TP_SIZE="${RM_TP_SIZE:-1}"
-export RM_GPU_UTIL="${RM_GPU_UTIL:-0.80}"
+export RM_GPU_UTIL="${RM_GPU_UTIL:-0.30}"
 export RM_PROMPT_LEN="${RM_PROMPT_LEN:-6144}"
 export RM_RESPONSE_LEN="${RM_RESPONSE_LEN:-2048}"
 
 echo "Starting PPO Training with Reward Loop..."
 
 # override when using a separate RM pool
-export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0,1,2,3}"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-1,2,3,4}"
 
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
@@ -106,9 +111,9 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.actor.fsdp_config.param_offload=False \
     actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
     actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=8 \
-    actor_rollout_ref.rollout.tensor_model_parallel_size=4 \
+    actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
     actor_rollout_ref.rollout.name=vllm \
-    actor_rollout_ref.rollout.gpu_memory_utilization=0.3 \
+    actor_rollout_ref.rollout.gpu_memory_utilization=0.6 \
     actor_rollout_ref.rollout.n=8 \
     actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=8 \
     actor_rollout_ref.ref.fsdp_config.param_offload=False \
@@ -119,6 +124,7 @@ python3 -m verl.trainer.main_ppo \
     reward_model.use_reward_loop=True \
     reward_model.reward_manager=naive \
     reward_model.model.path="$REWARD_MODEL_PATH" \
+    +reward_model.rollout.engine_kwargs.vllm.served_model_name=${REWARD_MODEL_PATH} \
     reward_model.rollout.name=vllm \
     reward_model.rollout.tensor_model_parallel_size=${RM_TP_SIZE} \
     reward_model.rollout.gpu_memory_utilization=${RM_GPU_UTIL} \
@@ -132,12 +138,12 @@ python3 -m verl.trainer.main_ppo \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
     trainer.project_name='verl_grpo_critique' \
-    trainer.experiment_name='qwen2.5_7b_instruct_critique_llama3b_4epoch' \
+    trainer.experiment_name='qwen2.5_7b_instruct_critique_llama3b_directanswer_for_check' \
     trainer.n_gpus_per_node=4 \
     trainer.nnodes=1 \
     trainer.save_freq=12 \
     trainer.test_freq=3 \
     trainer.val_only=False \
-    trainer.val_before_train=True \
+    trainer.val_before_train=False \
     trainer.total_epochs=4 \
     "$@"

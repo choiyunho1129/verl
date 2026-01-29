@@ -4,7 +4,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
-train_file="${REPO_ROOT}/data/train_critique_3.1_4.parquet"
+train_file="${REPO_ROOT}/data/train_critique_no_directanswer_3.2_4.parquet"
 test_file="${REPO_ROOT}/data/MATH-500/test.parquet"
 reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
 resume_ckpt="${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_critique_sample_4/global_step_96"

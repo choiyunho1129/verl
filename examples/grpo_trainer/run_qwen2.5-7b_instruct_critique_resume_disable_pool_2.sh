@@ -23,6 +23,15 @@ export RM_GPU_UTIL="${RM_GPU_UTIL:-0.60}"
 export RM_PROMPT_LEN="${RM_PROMPT_LEN:-6144}"
 export RM_RESPONSE_LEN="${RM_RESPONSE_LEN:-2048}"
 
+cleanup() {
+  local code=$?
+  if [ "${AUTO_RAY_STOP:-1}" = "1" ] && command -v ray >/dev/null 2>&1; then
+    ray stop -f >/dev/null 2>&1 || true
+  fi
+  exit "${code}"
+}
+trap cleanup EXIT
+
 # Drop stale dataloader state from the MATH-500 run so the loader restarts on the new dataset
 RESET_DATALOADER_STATE=${RESET_DATALOADER_STATE:-1}
 if [[ "${RESET_DATALOADER_STATE}" == "1" ]]; then

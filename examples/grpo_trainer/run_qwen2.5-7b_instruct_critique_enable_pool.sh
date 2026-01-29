@@ -7,10 +7,9 @@ export RAY_TMPDIR="${RAY_TMPDIR:-/data1/ray_tmp}"
 export TMPDIR="${TMPDIR:-/data1/tmp}"
 mkdir -p "${RAY_TMPDIR}" "${TMPDIR}"
 
-train_file="${REPO_ROOT}/data/train_critique_3.2_4.parquet"
+train_file="${REPO_ROOT}/data/train_critique_no_directanswer_3.2_4.parquet"
 test_file="${REPO_ROOT}/data/MATH-500/test.parquet"
 reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
-resume_ckpt="${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_MATH500/global_step_80"
 
 export DEBUG_REWARD="${DEBUG_REWARD:-False}"
 export REWARD_MODEL_PATH="${REWARD_MODEL_PATH:-meta-llama/Llama-3.2-3B-Instruct}"
@@ -29,7 +28,7 @@ if [[ "${RESET_DATALOADER_STATE}" == "1" ]]; then
 fi
 # Reset global_steps to 0 when resuming from baseline so total_steps is recomputed for the new dataset
 export RESET_GLOBAL_STEPS_ON_RESUME="${RESET_GLOBAL_STEPS_ON_RESUME:-1}"
-export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0,1,2,3}"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-1,2,3,4}"
 echo "Resuming PPO Training from baseline checkpoint at ${resume_ckpt}..."
 
 python3 -m verl.trainer.main_ppo \
@@ -56,7 +55,7 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=8 \
     actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
     actor_rollout_ref.rollout.name=vllm \
-    actor_rollout_ref.rollout.gpu_memory_utilization=0.8 \
+    actor_rollout_ref.rollout.gpu_memory_utilization=0.85 \
     actor_rollout_ref.rollout.n=8 \
     actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=8 \
     actor_rollout_ref.ref.fsdp_config.param_offload=False \
@@ -67,6 +66,7 @@ python3 -m verl.trainer.main_ppo \
     reward_model.use_reward_loop=True \
     reward_model.reward_manager=naive \
     reward_model.model.path="$REWARD_MODEL_PATH" \
+    +reward_model.rollout.engine_kwargs.vllm.served_model_name=${REWARD_MODEL_PATH} \
     reward_model.rollout.name=vllm \
     reward_model.rollout.tensor_model_parallel_size=${RM_TP_SIZE} \
     reward_model.rollout.gpu_memory_utilization=${RM_GPU_UTIL} \
@@ -79,14 +79,12 @@ python3 -m verl.trainer.main_ppo \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
     trainer.project_name='verl_grpo_critique' \
-    trainer.experiment_name='qwen2.5_7b_instruct_critique_MATH500_llama3b' \
+    trainer.experiment_name='qwen2.5_7b_instruct_critique_llama3b_no_directanswer' \
     trainer.n_gpus_per_node=2 \
     trainer.nnodes=1 \
-    trainer.save_freq=12 \
+    trainer.save_freq=15 \
     trainer.test_freq=3 \
     trainer.val_only=False \
-    trainer.val_before_train=False \
-    trainer.total_epochs=2 \
-    trainer.resume_mode=resume_path \
-    trainer.resume_from_path="$resume_ckpt" \
+    trainer.val_before_train=True \
+    trainer.total_epochs=4 \
     "$@"

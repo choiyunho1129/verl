@@ -24,15 +24,14 @@ NUM_REPEATS = int(_get_env("REWARD_NUM_REPEATS", default="3"))
 REWARD_MODEL_NAME = _get_env("REWARD_MODEL_PATH", default="meta-llama/Llama-3.2-3B-Instruct")
 MAX_NEW_TOKENS = int(_get_env("REWARD_MAX_NEW_TOKENS", default="2048"))
 TEMPERATURE = float(_get_env("REWARD_TEMPERATURE", default="0.6"))
-TOP_P = float(_get_env("REWARD_TOP_P", default="0.9"))
-MAX_CONCURRENCY = int(_get_env("REWARD_MAX_CONCURRENCY", default="512"))  # Concurrency slightly increased
-HTTP_TIMEOUT_S = int(_get_env("REWARD_HTTP_TIMEOUT_S", default="60"))
-MAX_RETRIES = int(_get_env("REWARD_HTTP_RETRIES", default="3")) 
+TOP_P = float(_get_env("REWARD_TOP_P", default="1.0"))
+MAX_CONCURRENCY = int(_get_env("REWARD_MAX_CONCURRENCY", default="4")) 
+HTTP_TIMEOUT_S = int(_get_env("REWARD_HTTP_TIMEOUT_S", default="120"))
+MAX_RETRIES = int(_get_env("REWARD_HTTP_RETRIES", default="4")) 
 SCORING_PROCESSES = int(_get_env("REWARD_SCORING_PROCESSES", default="8"))
 SCORE_MAX_CONCURRENCY = int(
     _get_env("REWARD_SCORE_MAX_CONCURRENCY", default=str(SCORING_PROCESSES))
 )
-
 DEBUG_MODE = (_get_env("REWARD_DEBUG", "DEBUG_REWARD", default="False") or "false").lower() == "true"
 # ---------------------
 

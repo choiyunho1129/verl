@@ -7,7 +7,7 @@ export CUDA_VISIBLE_DEVICES=1,2,3,4
 
 
 train_file="${REPO_ROOT}/data/MATH-500/train_level3-5.parquet"
-test_file="${REPO_ROOT}/data/MATH-500/test.parquet"
+test_file="${REPO_ROOT}/data/snapshots_variants_train/train.parquet"
 reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
 
 python3 -m verl.trainer.main_ppo \
@@ -19,7 +19,7 @@ python3 -m verl.trainer.main_ppo \
     data.max_response_length=2048 \
     data.filter_overlong_prompts=True \
     data.truncation='error' \
-    actor_rollout_ref.model.path=Qwen/Qwen2.5-7B-Instruct \
+    actor_rollout_ref.model.path=meta-llama/Llama-3.2-3B-Instruct \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.actor.ppo_mini_batch_size=128 \
@@ -45,7 +45,7 @@ python3 -m verl.trainer.main_ppo \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
     trainer.project_name='verl_grpo_critique' \
-    trainer.experiment_name='qwen2.5_7b_instruct_MATH3-5_valonly' \
+    trainer.experiment_name='llama_math_variant_valonly' \
     trainer.n_gpus_per_node=4 \
     trainer.nnodes=1 \
     trainer.save_freq=40 \
