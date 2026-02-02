@@ -17,17 +17,17 @@ export ENABLE_RM_POOL="${ENABLE_RM_POOL:-True}"           # standalone RM pool i
 export RM_NGPUS_PER_NODE="${RM_NGPUS_PER_NODE:-2}"
 export RM_NNODES="${RM_NNODES:-1}"
 export RM_TP_SIZE="${RM_TP_SIZE:-1}"
-export RM_GPU_UTIL="${RM_GPU_UTIL:-0.80}"
+export RM_GPU_UTIL="${RM_GPU_UTIL:-0.85}"
 export RM_PROMPT_LEN="${RM_PROMPT_LEN:-6144}"
 export RM_RESPONSE_LEN="${RM_RESPONSE_LEN:-2048}"
 
 # Drop stale dataloader state from the MATH-500 run so the loader restarts on the new dataset
-RESET_DATALOADER_STATE=${RESET_DATALOADER_STATE:-1}
+RESET_DATALOADER_STATE=${RESET_DATALOADER_STATE:-0}
 if [[ "${RESET_DATALOADER_STATE}" == "1" ]]; then
     rm -f "${resume_ckpt}/data.pt"
 fi
 # Reset global_steps to 0 when resuming from baseline so total_steps is recomputed for the new dataset
-export RESET_GLOBAL_STEPS_ON_RESUME="${RESET_GLOBAL_STEPS_ON_RESUME:-1}"
+export RESET_GLOBAL_STEPS_ON_RESUME="${RESET_GLOBAL_STEPS_ON_RESUME:-0}"
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-1,2,3,4}"
 echo "Resuming PPO Training from baseline checkpoint at ${resume_ckpt}..."
 

@@ -27,7 +27,7 @@ TEMPERATURE = float(_get_env("REWARD_TEMPERATURE", default="0.6"))
 TOP_P = float(_get_env("REWARD_TOP_P", default="1.0"))
 MAX_CONCURRENCY = int(_get_env("REWARD_MAX_CONCURRENCY", default="4")) 
 HTTP_TIMEOUT_S = int(_get_env("REWARD_HTTP_TIMEOUT_S", default="120"))
-MAX_RETRIES = int(_get_env("REWARD_HTTP_RETRIES", default="4")) 
+MAX_RETRIES = int(_get_env("REWARD_HTTP_RETRIES", default="6")) 
 SCORING_PROCESSES = int(_get_env("REWARD_SCORING_PROCESSES", default="8"))
 SCORE_MAX_CONCURRENCY = int(
     _get_env("REWARD_SCORE_MAX_CONCURRENCY", default=str(SCORING_PROCESSES))
