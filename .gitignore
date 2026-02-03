@@ -9,6 +9,7 @@
 **/*.tar.gz
 **/playground
 **/wandb
+**/eval/results
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

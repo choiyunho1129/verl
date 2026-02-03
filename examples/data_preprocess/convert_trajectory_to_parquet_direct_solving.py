@@ -17,8 +17,8 @@ def make_prompt(question, trajectory, answer=None):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=str, default="/data01/yunhochoi/verl/data/llama3.2_trajectories_MATH3-5_4.jsonl")
-    parser.add_argument("--output", type=str, default="/data01/yunhochoi/verl/data/train_MATH3-5_w_student_trajectories_llama3.2.parquet")
+    parser.add_argument("--input", type=str, default="/data01/yunhochoi/verl/data/Qwen2.5_7b_instruct_trajectories_4.jsonl")
+    parser.add_argument("--output", type=str, default="/data01/yunhochoi/verl/data/train_MATH3-5_w_student_trajectories_qwen7b.parquet")
     parser.add_argument("--data-source", type=str, default="HuggingFaceH4/MATH-500")
     args = parser.parse_args()
 

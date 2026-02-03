@@ -6,7 +6,7 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 export CUDA_VISIBLE_DEVICES=2,3
 
 
-train_file="${REPO_ROOT}/data/train_MATH3-5_w_student_trajectories_llama3.2.parquet"
+train_file="${REPO_ROOT}/data/math3-5_trajectories/train_MATH3-5_w_student_trajectories_qwen7b.parquet"
 test_file="${REPO_ROOT}/data/MATH-500/test.parquet"
 reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
 
@@ -45,13 +45,13 @@ python3 -m verl.trainer.main_ppo \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
     trainer.project_name='verl_grpo_critique' \
-    trainer.experiment_name='qwen2.5_7b_instruct_MATH3-5_w_student_trajectories' \
+    trainer.experiment_name='qwen2.5_7b_instruct_MATH3-5_w_student_trajectories_qwen7b' \
     trainer.n_gpus_per_node=2 \
     trainer.nnodes=1 \
-    trainer.save_freq=40 \
+    trainer.save_freq=20 \
     trainer.test_freq=5 \
     trainer.val_only=False \
-    trainer.val_before_train=True \
+    trainer.val_before_train=False \
     trainer.total_training_steps=1500 \
     trainer.total_epochs=30 $@
 -
