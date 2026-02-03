@@ -25,7 +25,7 @@ REWARD_MODEL_NAME = _get_env("REWARD_MODEL_PATH", default="meta-llama/Llama-3.2-
 MAX_NEW_TOKENS = int(_get_env("REWARD_MAX_NEW_TOKENS", default="2048"))
 TEMPERATURE = float(_get_env("REWARD_TEMPERATURE", default="0.6"))
 TOP_P = float(_get_env("REWARD_TOP_P", default="1.0"))
-MAX_CONCURRENCY = int(_get_env("REWARD_MAX_CONCURRENCY", default="4")) 
+MAX_CONCURRENCY = int(_get_env("REWARD_MAX_CONCURRENCY", default="6")) 
 HTTP_TIMEOUT_S = int(_get_env("REWARD_HTTP_TIMEOUT_S", default="120"))
 MAX_RETRIES = int(_get_env("REWARD_HTTP_RETRIES", default="6")) 
 SCORING_PROCESSES = int(_get_env("REWARD_SCORING_PROCESSES", default="8"))

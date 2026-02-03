@@ -4,11 +4,6 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
-train_file="${REPO_ROOT}/data/train_critique_3.2_4.parquet"
-test_file="${REPO_ROOT}/data/MATH-500/test.parquet"
-reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
-
-
 # Move Ray/tmp spill to /data1 to avoid /tmp filling up.
 export RAY_TMPDIR="${RAY_TMPDIR:-/data1/ray_tmp}"
 export TMPDIR="${TMPDIR:-/data1/tmp}"
@@ -73,6 +68,10 @@ cleanup() {
 }
 trap cleanup EXIT
 
+train_file="${REPO_ROOT}/data/train_critique_no_directanswer_3.2_4.parquet"
+test_file="${REPO_ROOT}/data/MATH-500/test.parquet"
+reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
+
 # Reward Loop / GenRM configuration
 export DEBUG_REWARD="${DEBUG_REWARD:-False}"
 export REWARD_MODEL_PATH="${REWARD_MODEL_PATH:-meta-llama/Llama-3.2-3B-Instruct}"
@@ -80,7 +79,7 @@ export ENABLE_RM_POOL="${ENABLE_RM_POOL:-False}"           # standalone RM pool 
 export RM_NGPUS_PER_NODE="${RM_NGPUS_PER_NODE:-4}"
 export RM_NNODES="${RM_NNODES:-1}"
 export RM_TP_SIZE="${RM_TP_SIZE:-1}"
-export RM_GPU_UTIL="${RM_GPU_UTIL:-0.30}"
+export RM_GPU_UTIL="${RM_GPU_UTIL:-0.70}"
 export RM_PROMPT_LEN="${RM_PROMPT_LEN:-6144}"
 export RM_RESPONSE_LEN="${RM_RESPONSE_LEN:-2048}"
 
@@ -102,7 +101,7 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.actor.ppo_mini_batch_size=64 \
-    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=8 \
+    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=16 \
     actor_rollout_ref.actor.use_kl_loss=True \
     actor_rollout_ref.actor.kl_loss_coef=0.001 \
     actor_rollout_ref.actor.kl_loss_type=low_var_kl \
@@ -110,13 +109,16 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.model.enable_gradient_checkpointing=True \
     actor_rollout_ref.actor.fsdp_config.param_offload=False \
     actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
-    actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=8 \
+    actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=16 \
     actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
     actor_rollout_ref.rollout.name=vllm \
-    actor_rollout_ref.rollout.gpu_memory_utilization=0.6 \
+    actor_rollout_ref.rollout.gpu_memory_utilization=0.7 \
     actor_rollout_ref.rollout.n=8 \
-    actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=8 \
+    actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=16 \
     actor_rollout_ref.ref.fsdp_config.param_offload=False \
+    actor_rollout_ref_.rollout.val_kwargs.n=4 \
+    actor_rollout_ref.rollout.val_kwargs.temperature=0.6 \
+    actor_rollout_ref.rollout.val_kwargs.do_sample=True \
     algorithm.use_kl_in_reward=False \
     custom_reward_function.path="$reward_fn_path" \
     custom_reward_function.name=compute_score \
@@ -138,7 +140,7 @@ python3 -m verl.trainer.main_ppo \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
     trainer.project_name='verl_grpo_critique' \
-    trainer.experiment_name='qwen2.5_7b_instruct_critique_llama3b_directanswer_for_check' \
+    trainer.experiment_name='qwen2.5_7b_instruct_critique_llama3b_no_directanswer_for_check' \
     trainer.n_gpus_per_node=4 \
     trainer.nnodes=1 \
     trainer.save_freq=12 \
