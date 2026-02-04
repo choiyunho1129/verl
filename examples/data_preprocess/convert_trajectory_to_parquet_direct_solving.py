@@ -17,8 +17,8 @@ def make_prompt(question, trajectory, answer=None):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=str, default="/data01/yunhochoi/verl/data/Qwen2.5_7b_instruct_trajectories_4.jsonl")
-    parser.add_argument("--output", type=str, default="/data01/yunhochoi/verl/data/train_MATH3-5_w_student_trajectories_qwen7b.parquet")
+    parser.add_argument("--input", type=str, default="/data1/home/yunhochoi/verl/data/math3-5_trajectories/llama3.2_3b_instruct_trajectories_4.jsonl")
+    parser.add_argument("--output", type=str, default="/data1/home/yunhochoi/verl/data/train_MATH3-5_w_student_trajectories_llama3b.parquet")
     parser.add_argument("--data-source", type=str, default="HuggingFaceH4/MATH-500")
     args = parser.parse_args()
 
@@ -43,12 +43,14 @@ def main():
                 answer=item.get('answer')
             )
 
-            reward_meta = {
-                "original_question": question,
-                "original_trajectory": item['trajectory'],
-                "variants": item.get('variants', [])  # [{'question':..., 'answer':...}, ...]
-            }
-            ground_truth = json.dumps(reward_meta)
+            # For direct solving, ground_truth should be the final answer string.
+            ground_truth = None
+            if isinstance(item.get("reward_model"), dict):
+                ground_truth = item["reward_model"].get("ground_truth")
+            if ground_truth is None:
+                ground_truth = item.get("answer") or item.get("final_answer") or item.get("ground_truth")
+            if ground_truth is None:
+                raise KeyError("No ground truth answer found in item (reward_model.ground_truth/answer/final_answer).")
 
             data.append({
                 "data_source": args.data_source,
