@@ -242,7 +242,7 @@ async def compute_score(
 
             prompt = _build_prompt(original_q, original_traj, solution_str, var_q)
             if idx == 0:
-                _log_debug(f"Sample GenRM prompt (len={len(prompt)}): {prompt[:100]}...")
+                _log_debug(f"Sample second generation prompt (len={len(prompt)}): {prompt[:100]}...")
 
             tasks.append(
                 asyncio.create_task(
