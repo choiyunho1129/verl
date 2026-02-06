@@ -3,7 +3,7 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 TEMPLATE="${TEMPLATE:-qwen}"
 
-CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_MATH3-5_math_verify/global_step_400}"
+CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_critique_llama3b_no_answer_4epoch/global_step_165}"
 ACTOR_DIR="${ACTOR_DIR:-${CKPT_DIR}/actor}"
 MERGED_DIR="${MERGED_DIR:-${ACTOR_DIR}/hf_merged}"
 
