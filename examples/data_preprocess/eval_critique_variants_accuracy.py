@@ -173,10 +173,10 @@ def main() -> None:
     parser.add_argument(
         "--input",
         type=str,
-        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b_w_answer.parquet",
+        default="data/snapshots_variants_test/prompt_llama_3b_instruct_trajectories_1.parquet",
         help="Path to the test parquet dataset.",
     )
-    parser.add_argument("--output-jsonl", type=str, default="/data1/home/yunhochoi/verl/data/eval_critique_llama3b_w_answer.jsonl")
+    parser.add_argument("--output-jsonl", type=str, default="/data01/yunhochoi/verl/data/eval_critique_llama3b.jsonl")
     parser.add_argument(
         "--critique-cache",
         type=str,
@@ -211,7 +211,7 @@ def main() -> None:
     parser.add_argument("--reward-max-new-tokens", type=int, default=2048)
     parser.add_argument("--reward-temperature", type=float, default=0.6)
     parser.add_argument("--reward-top-p", type=float, default=1.0)
-    parser.add_argument("--reward-batch-size", type=int, default=32)
+    parser.add_argument("--reward-batch-size", type=int, default=16)
     parser.add_argument("--reward-num-repeats", type=int, default=3)
 
     args = parser.parse_args()
