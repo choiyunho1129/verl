@@ -705,6 +705,27 @@ class RayPPOTrainer:
             test_batch = test_batch.union(test_output_gen_batch)
             test_batch.meta_info["validate"] = True
 
+            # For reward loop, compute rm_scores via RewardLoopManager so validation rewards
+            # can access reward_router_address/reward_model_tokenizer.
+            if self.use_reward_loop and "rm_scores" not in test_batch.batch:
+                if self.reward_loop_manager is None:
+                    # Lazily initialize to support validation when reward loop manager
+                    # wasn't created during worker init (e.g. async + resource pool).
+                    from verl.experimental.reward_loop import RewardLoopManager
+
+                    try:
+                        resource_pool = self.resource_pool_manager.get_resource_pool(Role.RewardModel)
+                    except Exception:
+                        resource_pool = None
+
+                    self.reward_loop_manager = RewardLoopManager(
+                        config=self.config,
+                        rm_resource_pool=resource_pool,
+                    )
+
+                rm_scores = self.reward_loop_manager.compute_rm_score(test_batch)
+                test_batch = test_batch.union(rm_scores)
+
             # evaluate using reward_function
             result = self._compute_or_extract_reward(test_batch, reward_fn=self.val_reward_fn, return_dict=True)
             reward_tensor = result["reward_tensor"]

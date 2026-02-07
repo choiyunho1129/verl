@@ -68,8 +68,8 @@ cleanup() {
 }
 trap cleanup EXIT
 
-train_file="${REPO_ROOT}/data/train_critique_no_directanswer_3.2_4.parquet"
-test_file="${REPO_ROOT}/data/MATH-500/test.parquet"
+train_file="${REPO_ROOT}/data/math()_w_criitique_prompt/prompt_llama_3.2_4.parquet"
+test_file="${REPO_ROOT}/data/snapshots_variants_test/prompt_llama_3b_instruct_trajectories_1.parquet"
 reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
 
 # Reward Loop / GenRM configuration
@@ -116,7 +116,7 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.rollout.n=8 \
     actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=16 \
     actor_rollout_ref.ref.fsdp_config.param_offload=False \
-    actor_rollout_ref_.rollout.val_kwargs.n=4 \
+    actor_rollout_ref_.rollout.val_kwargs.n=1 \
     actor_rollout_ref.rollout.val_kwargs.temperature=0.6 \
     actor_rollout_ref.rollout.val_kwargs.do_sample=True \
     algorithm.use_kl_in_reward=False \
@@ -140,12 +140,12 @@ python3 -m verl.trainer.main_ppo \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
     trainer.project_name='verl_grpo_critique' \
-    trainer.experiment_name='qwen2.5_7b_instruct_critique_llama3b_no_directanswer_for_check' \
+    trainer.experiment_name='qwen2.5_7b_instruct_critique_llama3b' \
     trainer.n_gpus_per_node=4 \
     trainer.nnodes=1 \
-    trainer.save_freq=12 \
-    trainer.test_freq=3 \
-    trainer.val_only=False \
-    trainer.val_before_train=False \
+    trainer.save_freq=15 \
+    trainer.test_freq=5 \
+    trainer.val_only=True \
+    trainer.val_before_train=True  \
     trainer.total_epochs=4 \
     "$@"
