@@ -1,6 +1,7 @@
 
 **/*.pt
 **/checkpoints
+**/logs
 **/data
 **/wget-log
 **/_build/

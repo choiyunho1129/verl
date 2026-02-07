@@ -72,6 +72,10 @@ train_file="${REPO_ROOT}/data/math()_w_criitique_prompt/prompt_llama_3.2_4.parqu
 test_file="${REPO_ROOT}/data/snapshots_variants_test/prompt_llama_3b_instruct_trajectories_1.parquet"
 reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
 
+PROJECT_NAME="${PROJECT_NAME:-verl_grpo_critique}"
+EXPERIMENT_NAME="${EXPERIMENT_NAME:-qwen2.5_7b_instruct_critique_llama3b}"
+VAL_DATA_DIR="${REPO_ROOT}/checkpoints/${PROJECT_NAME}/${EXPERIMENT_NAME}/validation"
+
 # Reward Loop / GenRM configuration
 export DEBUG_REWARD="${DEBUG_REWARD:-False}"
 export REWARD_MODEL_PATH="${REWARD_MODEL_PATH:-meta-llama/Llama-3.2-3B-Instruct}"
@@ -139,8 +143,9 @@ python3 -m verl.trainer.main_ppo \
     reward_model.num_workers=4 \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
-    trainer.project_name='verl_grpo_critique' \
-    trainer.experiment_name='qwen2.5_7b_instruct_critique_llama3b' \
+    trainer.project_name="${PROJECT_NAME}" \
+    trainer.experiment_name="${EXPERIMENT_NAME}" \
+    trainer.validation_data_dir="${VAL_DATA_DIR}" \
     trainer.n_gpus_per_node=4 \
     trainer.nnodes=1 \
     trainer.save_freq=15 \
