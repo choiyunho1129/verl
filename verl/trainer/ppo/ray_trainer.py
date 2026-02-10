@@ -489,6 +489,30 @@ class RayPPOTrainer:
 
         print(f"Dumped generations to {filename}")
 
+    @staticmethod
+    def _summarize_reward_extra_info(reward_extra_infos_dict: dict[str, Any]) -> dict[str, float]:
+        """Reduce per-sample reward extras (e.g., num_generations) into scalar metrics."""
+
+        if not reward_extra_infos_dict:
+            return {}
+
+        extra_metrics: dict[str, float] = {}
+
+        for key, values in reward_extra_infos_dict.items():
+            try:
+                arr = np.asarray(values, dtype=float)
+            except Exception:
+                continue  # Skip non-numeric or irregular entries
+
+            if arr.size == 0:
+                continue
+
+            extra_metrics[f"reward_extra/{key}/mean"] = float(np.mean(arr))
+            extra_metrics[f"reward_extra/{key}/max"] = float(np.max(arr))
+            extra_metrics[f"reward_extra/{key}/min"] = float(np.min(arr))
+
+        return extra_metrics
+
     def _log_rollout_data(
         self, batch: DataProto, reward_extra_infos_dict: dict, timing_raw: dict, rollout_data_dir: str
     ):
@@ -1682,6 +1706,8 @@ class RayPPOTrainer:
                         "training/epoch": epoch,
                     }
                 )
+                # reward-extra metrics (e.g., num_generations) surfaced by compute_score
+                metrics.update(self._summarize_reward_extra_info(reward_extra_infos_dict))
                 # collect metrics
                 metrics.update(compute_data_metrics(batch=batch, use_critic=self.use_critic))
                 metrics.update(compute_timing_metrics(batch=batch, timing_raw=timing_raw))
