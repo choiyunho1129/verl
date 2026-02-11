@@ -1,9 +1,11 @@
 import argparse
 import json
+import math
+import multiprocessing as mp
+import os
+import sys
 from pathlib import Path
 from typing import List
-
-import sys
 
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
@@ -21,7 +23,7 @@ QUESTION_KEYS = ("problem", "question", "instruction", "input", "query")
 ANSWER_KEYS = ("answer", "ground_truth")
 
 
-def load_math500(path: Path) -> List[dict]:
+def load_math(path: Path) -> List[dict]:
     samples: List[dict] = []
     with path.open("r", encoding="utf-8") as f:
         for line in f:
@@ -31,6 +33,9 @@ def load_math500(path: Path) -> List[dict]:
 
 
 def _is_nonempty_text(value) -> bool:
+    """Accept strings or simple numerics; coerce numerics to str for checks."""
+    if isinstance(value, (int, float)):
+        value = str(value)
     return isinstance(value, str) and value.strip() != ""
 
 
@@ -119,21 +124,21 @@ def extract_answer(sample: dict, preferred_key: str | None, sample_idx: int) -> 
         tried.append(preferred_key)
         val = _get_nested(sample, preferred_key)
         if _is_nonempty_text(val):
-            return val
+            return str(val)
 
     reward = sample.get("reward_model") or {}
     tried.append("reward_model.ground_truth")
     if isinstance(reward, dict):
         val = reward.get("ground_truth")
         if _is_nonempty_text(val):
-            return val
+            return str(val)
 
     extra = sample.get("extra_info") or {}
     tried.append("extra_info.answer")
     if isinstance(extra, dict):
         val = extra.get("answer")
         if _is_nonempty_text(val):
-            return val
+            return str(val)
 
     for key in ANSWER_KEYS:
         if key == preferred_key:
@@ -166,11 +171,26 @@ def extract_system_prompt(sample: dict) -> str | None:
 
 def build_prompt(tokenizer, sample: dict) -> str:
     messages = sample.get("messages")
-    if not isinstance(messages, list):
+    if isinstance(messages, list):
+        messages = [
+            m
+            for m in messages
+            if isinstance(m, dict)
+            and _is_nonempty_text(m.get("role"))
+            and _is_nonempty_text(m.get("content"))
+        ]
+    else:
         messages = []
-        system_prompt = sample.get("system_prompt")
-        if _is_nonempty_text(system_prompt):
-            messages.append({"role": "system", "content": system_prompt})
+
+    # Always prepend the requested system prompt; drop any existing system messages
+    system_prompt = sample.get("system_prompt")
+    if _is_nonempty_text(system_prompt):
+        messages = [{"role": "system", "content": system_prompt}] + [
+            m for m in messages if m.get("role") != "system"
+        ]
+
+    # Ensure there is exactly one user message with the question content
+    if not any(m.get("role") == "user" for m in messages):
         messages.append({"role": "user", "content": sample["question"]})
 
     return tokenizer.apply_chat_template(
@@ -178,9 +198,93 @@ def build_prompt(tokenizer, sample: dict) -> str:
     )
 
 
+def parse_devices(devices: str) -> list[int]:
+    if not devices:
+        return []
+    parsed = []
+    for part in devices.split(","):
+        part = part.strip()
+        if part:
+            parsed.append(int(part))
+    return parsed
+
+
+def shard_list(items: list, num_shards: int) -> list[list]:
+    if num_shards <= 1:
+        return [items]
+    shard_size = max(1, math.ceil(len(items) / num_shards))
+    return [items[i : i + shard_size] for i in range(0, len(items), shard_size)]
+
+
+def evaluate_shard(worker_id: int, device_id: int | None, tp_size: int, args, samples: list[dict]):
+    if device_id is not None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(device_id)
+
+    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)
+    llm = LLM(
+        model=args.model_path,
+        trust_remote_code=True,
+        dtype=args.dtype,
+        max_model_len=args.max_model_len,
+        gpu_memory_utilization=args.gpu_memory_utilization,
+        tensor_parallel_size=tp_size,
+    )
+    sampling_params = SamplingParams(
+        max_tokens=args.max_new_tokens,
+        temperature=args.temperature,
+        top_p=args.top_p,
+        n=args.num_samples,
+    )
+
+    prompts = [build_prompt(tokenizer, s) for s in samples]
+    total = len(prompts)
+    correct = 0.0
+
+    for i in range(0, total, args.batch_size):
+        batch_prompts = prompts[i : i + args.batch_size]
+        outputs = llm.generate(batch_prompts, sampling_params)
+
+        for j, out in enumerate(outputs):
+            gt = samples[i + j]["answer"]
+            preds = [o.text for o in out.outputs if o.text]
+            if not preds:
+                preds = [""]
+
+            scores = []
+            for pred_text in preds:
+                if args.metric == "math_verify":
+                    score = math_verify_metric.compute_score(pred_text, gt)
+                else:
+                    score = default_compute_score(
+                        data_source="HuggingFaceH4/MATH-500",
+                        solution_str=pred_text,
+                        ground_truth=gt,
+                    )
+                scores.append(float(score))
+
+            correct += sum(scores) / len(scores)
+
+        done = i + len(batch_prompts)
+        print(
+            f"[worker {worker_id} | gpu {device_id}] Progress {done}/{total} | accuracy so far: {correct / done:.3f}",
+            flush=True,
+        )
+
+    return correct, total
+
+
+def worker_entry(worker_id: int, device_id: int | None, tp_size: int, args, samples: list[dict], queue):
+    try:
+        result = evaluate_shard(worker_id, device_id, tp_size, args, samples)
+        queue.put((worker_id, *result))
+    except Exception as e:
+        # Propagate error to parent
+        queue.put((worker_id, "error", repr(e)))
+
+
 def evaluate(args):
     data_path = Path(args.data_path).expanduser()
-    samples = load_math500(data_path)
+    samples = load_math(data_path)
 
     processed_samples = []
     skipped = 0
@@ -201,7 +305,10 @@ def evaluate(args):
                 "question": question,
                 "answer": answer,
                 "messages": messages,
-                "system_prompt": extract_system_prompt(sample),
+                # Force the requested system prompt for consistency across samples
+                "system_prompt": args.system_prompt
+                if _is_nonempty_text(args.system_prompt)
+                else (extract_system_prompt(sample) or args.system_prompt),
             }
         )
 
@@ -216,72 +323,67 @@ def evaluate(args):
             f"Evaluating {len(processed_samples)} samples."
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)
-    llm = LLM(
-        model=args.model_path,
-        trust_remote_code=True,
-        dtype=args.dtype,
-        max_model_len=args.max_model_len,    
-        gpu_memory_utilization=args.gpu_memory_utilization,
-        tensor_parallel_size=args.tensor_parallel_size,
-    )
-    sampling_params = SamplingParams(
-        max_tokens=args.max_new_tokens,
-        temperature=args.temperature,
-        top_p=args.top_p,
-        n=args.num_samples,
-    )
+    devices = parse_devices(args.devices)
+    num_workers = len(devices) if devices else 1
+    tp_size = args.tensor_parallel_size
+    if num_workers > 1 and tp_size != 1:
+        print(
+            f"Data-parallel over {num_workers} GPUs requested; overriding tensor_parallel_size={tp_size} -> 1 per worker."
+        )
+        tp_size = 1
 
-    prompts = [build_prompt(tokenizer, s) for s in processed_samples]
-    total = len(prompts)
-    correct = 0.0
+    if num_workers == 1:
+        device = devices[0] if devices else None
+        correct, total = evaluate_shard(0, device, tp_size, args, processed_samples)
+    else:
+        shards = shard_list(processed_samples, num_workers)
+        ctx = mp.get_context("spawn")
+        queue = ctx.SimpleQueue()
+        procs: list[mp.Process] = []
+        for worker_id, (device_id, shard) in enumerate(zip(devices, shards)):
+            p = ctx.Process(
+                target=worker_entry,
+                args=(worker_id, device_id, tp_size, args, shard, queue),
+            )
+            p.start()
+            procs.append(p)
 
-    for i in range(0, total, args.batch_size):
-        batch_prompts = prompts[i : i + args.batch_size]
-        outputs = llm.generate(batch_prompts, sampling_params)
+        results = []
+        for _ in procs:
+            results.append(queue.get())
 
-        for j, out in enumerate(outputs):
-            gt = processed_samples[i + j]["answer"]
-            preds = [o.text for o in out.outputs if o.text]
-            if not preds:
-                preds = [""]
+        # Join and check for errors
+        for p in procs:
+            p.join()
 
-            scores = []
-            for pred_text in preds:
-                if args.metric == "math_verify":
-                    score = math_verify_metric.compute_score(pred_text, gt)
-                else:
-                    score = default_compute_score(
-                        data_source="HuggingFaceH4/MATH-500",
-                        solution_str=pred_text,
-                        ground_truth=gt,
-                    )
-                scores.append(float(score))
+        errors = [r for r in results if len(r) == 3 and r[1] == "error"]
+        if errors:
+            msgs = [f"worker {wid} failed: {msg}" for wid, _, msg in errors]
+            raise RuntimeError("; ".join(msgs))
 
-            correct += sum(scores) / len(scores)
-
-        done = i + len(batch_prompts)
-        print(f"Progress {done}/{total} | accuracy so far: {correct / done:.3f}")
+        correct = sum(r[1] for r in results)
+        total = sum(r[2] for r in results)
 
     print(f"Final accuracy: {correct}/{total} = {correct / total:.3%}")
 
 
 if __name__ == "__main__":
-    repo_root = Path(__file__).resolve().parents[3]
-    default_data = "/data1/home/yunhochoi/verl/data/MATH-500/test_mathsystemprompt.jsonl"
+    # REPO_ROOT already points to the project root (../.. from this file)
+    repo_root = REPO_ROOT
+    default_data = repo_root / "data/snapshots_variants_test/variants_only_qa.jsonl"
 
-    parser = argparse.ArgumentParser(description="Evaluate MATH-500")
+    parser = argparse.ArgumentParser(description="Evaluate math problems")
     parser.add_argument(
         "--model-path",
         type=str,
-        default="Qwen/Qwen2.5-7B-Instruct",
+        default="meta-llama/Llama-3.2-3B-Instruct",
         help="Local path or HF model ID (must be cached locally).",
     )
     parser.add_argument(
         "--data-path",
         type=str,
         default=str(default_data),
-        help="Path to MATH-500 jsonl.",
+        help="Path to math problems jsonl.",
     )
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--max-new-tokens", type=int, default=2048)
@@ -331,6 +433,21 @@ if __name__ == "__main__":
             "Preferred key name (or dotted path) for the answer. "
             "If missing, falls back to reward_model.ground_truth, extra_info.answer, or common keys."
         ),
+    )
+    parser.add_argument(
+        "--devices",
+        type=str,
+        default="2,3",
+        help=(
+            "Comma-separated GPU ids for data-parallel evaluation. "
+            "Leave empty to use current CUDA_VISIBLE_DEVICES or CPU."
+        ),
+    )
+    parser.add_argument(
+        "--system-prompt",
+        type=str,
+        default="Please reason step by step, and put your final answer within \\boxed{}.",
+        help="System prompt prepended to every sample.",
     )
 
     evaluate(parser.parse_args())

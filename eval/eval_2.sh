@@ -3,7 +3,7 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 TEMPLATE="${TEMPLATE:-own}"
 
-CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_MATH3-5_n_16/global_step_120}"
+CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_MATH3-5_dapo/global_step_180}"
 ACTOR_DIR="${ACTOR_DIR:-${CKPT_DIR}/actor}"
 MERGED_DIR="${MERGED_DIR:-${ACTOR_DIR}/hf_merged}"
 
@@ -13,7 +13,7 @@ MODEL_PATH="${MODEL_PATH:-${MERGED_DIR}}"
 OUTPUT_DIR="${OUTPUT_DIR:-${SCRIPT_DIR}/results}"
 
 DATA="${DATA:-${REPO_ROOT}/data/eval/test.id.parquet}"
-MODEL_NAME="${MODEL_NAME:-qwen2.5_7b_instruct_MATH3-5_n_16_step_120_instuctprompt}"
+MODEL_NAME="${MODEL_NAME:-qwen2.5_7b_instruct_MATH3-5_dapo_step_180_instructprompt}"
 
 mkdir -p "$OUTPUT_DIR"
 
