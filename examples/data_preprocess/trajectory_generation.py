@@ -9,6 +9,9 @@ from typing import List
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 
+# Local evaluation
+from verl.utils.reward_score import math_verify as math_verify_metric
+
 def load_data(path: Path) -> List[dict]:
     samples = []
     with path.open("r", encoding="utf-8") as f:
@@ -19,6 +22,75 @@ def load_data(path: Path) -> List[dict]:
                 except json.JSONDecodeError:
                     continue
     return samples
+
+
+def compute_accuracy_from_file(path: Path):
+    """Compute math_verify accuracy from a generated trajectory file.
+
+    This keeps the dataset untouched and only reads the JSONL file to
+    report trajectory-level and best-of-question accuracies.
+    """
+
+    trajectory_correct = 0.0
+    trajectory_total = 0
+    per_question_scores = {}
+
+    if not path.exists():
+        print(f"[accuracy] File not found: {path}")
+        return None
+
+    with path.open("r", encoding="utf-8") as f:
+        for line_no, line in enumerate(f, 1):
+            if not line.strip():
+                continue
+            try:
+                item = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+
+            gt = item.get("answer")
+            pred = item.get("trajectory")
+            if gt is None or pred is None:
+                continue
+
+            score = float(math_verify_metric.compute_score(str(pred), str(gt)))
+            trajectory_correct += score
+            trajectory_total += 1
+
+            qkey = (
+                item.get("unique_id"),
+                item.get("question"),
+                item.get("answer"),
+            )
+            per_question_scores.setdefault(qkey, []).append(score)
+
+    if trajectory_total == 0:
+        print("[accuracy] No trajectories with answers found; accuracy not computed.")
+        return None
+
+    best_per_question = sum(max(scores) for scores in per_question_scores.values())
+    question_total = len(per_question_scores)
+
+    return {
+        "trajectory_correct": trajectory_correct,
+        "trajectory_total": trajectory_total,
+        "trajectory_accuracy": trajectory_correct / trajectory_total,
+        "question_correct": best_per_question,
+        "question_total": question_total,
+        "question_accuracy": best_per_question / question_total if question_total else 0.0,
+    }
+
+
+def print_accuracy_report(metrics: dict, label: str):
+    if not metrics:
+        return
+    print(
+        f"[accuracy] {label} | per-trajectory: {metrics['trajectory_accuracy']:.4f} "
+        f"({metrics['trajectory_correct']:.1f}/{metrics['trajectory_total']}), "
+        f"best-of-question: {metrics['question_accuracy']:.4f} "
+        f"({metrics['question_correct']:.1f}/{metrics['question_total']})"
+    )
+
 
 def generate(args):
     data_path = Path(args.data_path).expanduser()
@@ -115,8 +187,8 @@ def run_worker(worker_args, device_id):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     
-    parser.add_argument("--data-path", type=str, default="/data1/home/yunhochoi/verl/data/snapshots_variants_test/data.jsonl", help="Input JSONL path")
-    parser.add_argument("--output-path", type=str, default="/data1/home/yunhochoi/verl/data/llama_3b_instruct_trajectories_test.jsonl", help="Output JSONL path")
+    parser.add_argument("--data-path", type=str, default="/data01/yunhochoi/verl/data/math_variants_train.jsonl", help="Input JSONL path")
+    parser.add_argument("--output-path", type=str, default="/data1/home/yunhochoi/verl/data/math_variant_train_llama_3b_trajectories.jsonl", help="Output JSONL path")
     
     parser.add_argument("--model-path", type=str, default="meta-llama/Llama-3.2-3B-Instruct")
     # Keep one full copy of the model per GPU (data-parallel)
@@ -133,7 +205,12 @@ if __name__ == "__main__":
     # Run a single process by default so all samples are processed unless the user opts into sharding
     parser.add_argument("--num-shards", type=int, default=1, help="Total number of shards (processes)")
     parser.add_argument("--shard-id", type=int, default=0, help="Shard index for this process")
-    parser.add_argument("--gpu-ids", type=str, default="0", help="Comma-separated GPU ids for data-parallel inference (each GPU loads full model). Overrides num_shards.")
+    parser.add_argument("--gpu-ids", type=str, default="2,3", help="Comma-separated GPU ids for data-parallel inference (each GPU loads full model). Overrides num_shards.")
+    parser.add_argument(
+        "--report-accuracy",
+        action="store_true",
+        help="After generation, compute math_verify accuracy over the saved trajectories (dataset format remains unchanged).",
+    )
 
     args = parser.parse_args()
     if args.gpu_ids:
@@ -171,5 +248,16 @@ if __name__ == "__main__":
                     for line in fin:
                         fout.write(line)
         print(f"Merged {len(shard_paths)} shards into {args.output_path}")
+
+        if args.report_accuracy:
+            metrics = compute_accuracy_from_file(final_path)
+            print_accuracy_report(metrics, "merged")
     else:
         generate(args)
+
+        if args.report_accuracy:
+            if args.num_shards == 1:
+                metrics = compute_accuracy_from_file(Path(args.output_path))
+                print_accuracy_report(metrics, "single")
+            else:
+                print("[accuracy] Skipped: this run only covers a shard; run after merging all shards.")

@@ -4,69 +4,69 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
-# # Move Ray/tmp spill to /data1 to avoid /tmp filling up.
-# export RAY_TMPDIR="${RAY_TMPDIR:-/data1/ray_tmp}"
-# export TMPDIR="${TMPDIR:-/data1/tmp}"
-# mkdir -p "${RAY_TMPDIR}" "${TMPDIR}"
+# Move Ray/tmp spill to /data1 to avoid /tmp filling up.
+export RAY_TMPDIR="${RAY_TMPDIR:-/data1/ray_tmp}"
+export TMPDIR="${TMPDIR:-/data1/tmp}"
+mkdir -p "${RAY_TMPDIR}" "${TMPDIR}"
 
-# # Per-run log directory and run metadata.
-# RUN_ID="${RUN_ID:-$(date +%Y%m%d_%H%M%S)}"
-# LOG_ROOT="${LOG_ROOT:-${REPO_ROOT}/logs}"
-# LOG_DIR="${LOG_ROOT}/grpo_critique_${RUN_ID}"
-# mkdir -p "${LOG_DIR}"
-# {
-#   echo "run_id=${RUN_ID}"
-#   echo "script=$0"
-#   echo "args=$*"
-#   echo "cwd=$(pwd)"
-# } > "${LOG_DIR}/run.meta"
-# env | sort > "${LOG_DIR}/env.txt"
-# exec > >(tee -a "${LOG_DIR}/train.log") 2>&1
+# Per-run log directory and run metadata.
+RUN_ID="${RUN_ID:-$(date +%Y%m%d_%H%M%S)}"
+LOG_ROOT="${LOG_ROOT:-${REPO_ROOT}/logs}"
+LOG_DIR="${LOG_ROOT}/grpo_critique_${RUN_ID}"
+mkdir -p "${LOG_DIR}"
+{
+  echo "run_id=${RUN_ID}"
+  echo "script=$0"
+  echo "args=$*"
+  echo "cwd=$(pwd)"
+} > "${LOG_DIR}/run.meta"
+env | sort > "${LOG_DIR}/env.txt"
+exec > >(tee -a "${LOG_DIR}/train.log") 2>&1
 
-# if [ "${ENABLE_SYS_MONITOR:-1}" = "1" ]; then
-#   (
-#     while true; do
-#       date
-#       free -h
-#       ps -eo pid,ppid,cmd,rss,%mem --sort=-rss | head -n 30
-#       nvidia-smi --query-gpu=timestamp,index,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv || true
-#       sleep "${MONITOR_INTERVAL:-300}"
-#     done
-#   ) > "${LOG_DIR}/sys_monitor.log" &
-#   MONITOR_PID=$!
-# fi
+if [ "${ENABLE_SYS_MONITOR:-1}" = "1" ]; then
+  (
+    while true; do
+      date
+      free -h
+      ps -eo pid,ppid,cmd,rss,%mem --sort=-rss | head -n 30
+      nvidia-smi --query-gpu=timestamp,index,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv || true
+      sleep "${MONITOR_INTERVAL:-300}"
+    done
+  ) > "${LOG_DIR}/sys_monitor.log" &
+  MONITOR_PID=$!
+fi
 
-# cleanup() {
-#   local code=$?
+cleanup() {
+  local code=$?
 
-#   if [ -n "${MONITOR_PID:-}" ]; then
-#     kill "${MONITOR_PID}" >/dev/null 2>&1 || true
-#   fi
+  if [ -n "${MONITOR_PID:-}" ]; then
+    kill "${MONITOR_PID}" >/dev/null 2>&1 || true
+  fi
 
-#   free -h > "${LOG_DIR}/free.txt" || true
-#   ps -eo pid,ppid,cmd,rss,%mem --sort=-rss | head -n 50 > "${LOG_DIR}/ps_top_mem.txt" || true
-#   nvidia-smi > "${LOG_DIR}/nvidia-smi.txt" 2>&1 || true
-#   nvidia-smi -q -d MEMORY > "${LOG_DIR}/nvidia-smi.mem.txt" 2>&1 || true
-#   dmesg -T | tail -n 200 > "${LOG_DIR}/dmesg_tail.txt" 2>&1 || true
+  free -h > "${LOG_DIR}/free.txt" || true
+  ps -eo pid,ppid,cmd,rss,%mem --sort=-rss | head -n 50 > "${LOG_DIR}/ps_top_mem.txt" || true
+  nvidia-smi > "${LOG_DIR}/nvidia-smi.txt" 2>&1 || true
+  nvidia-smi -q -d MEMORY > "${LOG_DIR}/nvidia-smi.mem.txt" 2>&1 || true
+  dmesg -T | tail -n 200 > "${LOG_DIR}/dmesg_tail.txt" 2>&1 || true
 
-#   if command -v ray >/dev/null 2>&1; then
-#     ray status > "${LOG_DIR}/ray_status.txt" 2>&1 || true
-#     ray memory --stats-only > "${LOG_DIR}/ray_memory.txt" 2>&1 || true
-#   fi
+  if command -v ray >/dev/null 2>&1; then
+    ray status > "${LOG_DIR}/ray_status.txt" 2>&1 || true
+    ray memory --stats-only > "${LOG_DIR}/ray_memory.txt" 2>&1 || true
+  fi
 
-#   if [ -d "${RAY_TMPDIR}/ray/session_latest/logs" ]; then
-#     mkdir -p "${LOG_DIR}/ray_logs"
-#     cp -a "${RAY_TMPDIR}/ray/session_latest/logs/." "${LOG_DIR}/ray_logs/" || true
-#   fi
+  if [ -d "${RAY_TMPDIR}/ray/session_latest/logs" ]; then
+    mkdir -p "${LOG_DIR}/ray_logs"
+    cp -a "${RAY_TMPDIR}/ray/session_latest/logs/." "${LOG_DIR}/ray_logs/" || true
+  fi
 
-#   # Optional: stop Ray to clean up sessions after run finishes.
-#   if [ "${AUTO_RAY_STOP:-1}" = "1" ] && command -v ray >/dev/null 2>&1; then
-#     ray stop -f >/dev/null 2>&1 || true
-#   fi
+  # Optional: stop Ray to clean up sessions after run finishes.
+  if [ "${AUTO_RAY_STOP:-1}" = "1" ] && command -v ray >/dev/null 2>&1; then
+    ray stop -f >/dev/null 2>&1 || true
+  fi
 
-#   exit "${code}"
-# }
-# trap cleanup EXIT
+  exit "${code}"
+}
+trap cleanup EXIT
 
 train_file="${REPO_ROOT}/data/math_variant_criitique_prompt/prompt_llama_3.2_4.parquet"
 test_file="${REPO_ROOT}/data/snapshots_variants_test/prompt_llama_3b_instruct_trajectories_1.parquet"
