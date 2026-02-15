@@ -173,7 +173,7 @@ def main() -> None:
     parser.add_argument(
         "--input",
         type=str,
-        default="data/snapshots_variants_test/prompt_llama_3b_instruct_trajectories_1.parquet",
+        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b.parquet",
         help="Path to the test parquet dataset.",
     )
     parser.add_argument("--output-jsonl", type=str, default="/data01/yunhochoi/verl/data/eval_critique_llama3b.jsonl")

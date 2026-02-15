@@ -9,12 +9,13 @@ from math_verify.parser import ExprExtractionConfig, LatexExtractionConfig
 
 
 
-def make_prompt(trajectory: str) -> tuple[str, str]:
+def make_prompt(question: str, trajectory: str) -> tuple[str, str]:
     system_prompt = (
-        "You are a math solution critic. Critique the solution trace based only on the trace itself. "
-        "Identify specific logical errors or confirm the reasoning. Provide constructive feedback but do not give the direct answer."
+        "You are a math teacher. Review the student's solution trace and provide critique that helps them solve similar "
+        "variant problems well. Identify specific logical errors or confirm the reasoning. Provide constructive feedback "
+        "but do not give the direct answer."
     )
-    user_prompt = f"Model Solution Trace:\n{trajectory}\n\n"
+    user_prompt = f"Question:\n{question}\n\nModel Solution Trace:\n{trajectory}\n\n"
     return system_prompt, user_prompt
 
 
@@ -23,19 +24,19 @@ def main() -> None:
     parser.add_argument(
         "--input",
         type=str,
-        default="/data1/home/yunhochoi/verl/data/llama_3b_instruct_trajectories_test.jsonl",
+        default="/data1/home/yunhochoi/verl/data/fnmath_test/llama_3b_instruct_trajectories_4.jsonl",
         help="Path to the trajectory JSONL input.",
     )
     parser.add_argument(
         "--output-parquet",
         type=str,
-        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b_trace_only.parquet",
+        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b.parquet",
         help="Destination parquet file with chat-formatted prompts.",
     )
     parser.add_argument(
         "--output-jsonl",
         type=str,
-        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b_trace_only.jsonl",
+        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b.jsonl",
         help="Destination JSONL file with chat-formatted prompts.",
     )
     parser.add_argument("--data-source", type=str, default="critique_variants")
@@ -48,7 +49,10 @@ def main() -> None:
                 continue
             item = json.loads(line)
 
-            system_prompt, user_prompt = make_prompt(trajectory=item["trajectory"])
+            system_prompt, user_prompt = make_prompt(
+                question=item["question"],
+                trajectory=item["trajectory"],
+            )
 
             reward_meta = {
                 "original_question": item["question"],
