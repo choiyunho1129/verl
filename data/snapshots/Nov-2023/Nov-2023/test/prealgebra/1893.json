@@ -1,7 +1,0 @@
-{
-    "problem": "When $A$ is doubled, the new value is 82038 more than $A$. What is the value of $A$?",
-    "level": "Level 1",
-    "type": "Prealgebra",
-    "solution": "\\boxed{82038}",
-    "is_static": false
-}

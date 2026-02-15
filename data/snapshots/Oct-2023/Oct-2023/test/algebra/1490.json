@@ -1,7 +1,0 @@
-{
-    "problem": "Evaluate $(\\sqrt[3]{18})^12$.",
-    "level": "Level 1",
-    "type": "Algebra",
-    "solution": "\\boxed{104976}",
-    "is_static": false
-}

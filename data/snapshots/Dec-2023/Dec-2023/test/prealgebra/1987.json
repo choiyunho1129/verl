@@ -1,7 +1,0 @@
-{
-    "problem": "What is $(24^{3})^{1}$?",
-    "level": "Level 1",
-    "type": "Prealgebra",
-    "solution": "\\boxed{13824}",
-    "is_static": false
-}

@@ -42,19 +42,19 @@ def main() -> None:
     parser.add_argument(
         "--input",
         type=str,
-        default="/data1/home/yunhochoi/verl/data/llama_3b_instruct_trajectories_test.jsonl",
+        default="/data1/home/yunhochoi/verl/data/math_variant_valid_llama_3b_trajectories.jsonl",
         help="Path to the trajectory JSONL input.",
     )
     parser.add_argument(
         "--output-parquet",
         type=str,
-        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b_w_verification_answer.parquet",
+        default="/data1/home/yunhochoi/verl/data/math_variant_valid_llama3b.parquet",
         help="Destination parquet file with chat-formatted prompts.",
     )
     parser.add_argument(
         "--output-jsonl",
         type=str,
-        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b_w_verification_answer.jsonl",
+        default="/data1/home/yunhochoi/verl/data/math_variant_valid_llama3b.jsonl",
         help="Destination JSONL file with chat-formatted prompts.",
     )
     parser.add_argument("--data-source", type=str, default="critique_variants")

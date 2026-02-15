@@ -1,7 +1,0 @@
-{
-    "problem": "How many integers $x$ satisfy $|x|+21<60$ and $|x-38|>9$?",
-    "level": "Level 2",
-    "type": "Intermediate Algebra",
-    "solution": "\\boxed{67}",
-    "is_static": false
-}

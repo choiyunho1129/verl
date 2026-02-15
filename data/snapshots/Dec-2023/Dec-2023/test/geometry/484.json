@@ -1,7 +1,0 @@
-{
-    "problem": "Compute $18\\tan 45^\\circ$.",
-    "level": "Level 1",
-    "type": "Geometry",
-    "solution": "\\boxed{18}",
-    "is_static": false
-}

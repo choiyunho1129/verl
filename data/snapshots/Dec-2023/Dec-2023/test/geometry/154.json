@@ -1,7 +1,0 @@
-{
-    "problem": "How many edges does eight hexagonal prism have?",
-    "level": "Level 1",
-    "type": "Geometry",
-    "solution": "\\boxed{144}",
-    "is_static": false
-}

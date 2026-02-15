@@ -1,7 +1,0 @@
-{
-    "problem": "How many positive 6-digit integers have only odd digits?",
-    "level": "Level 4",
-    "type": "Prealgebra",
-    "solution": "\\boxed{15625}",
-    "is_static": false
-}

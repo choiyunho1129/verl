@@ -1,7 +1,0 @@
-{
-    "problem": "What is the units digit of $2^{2430}$?",
-    "level": "Level 3",
-    "type": "Number Theory",
-    "solution": "\\boxed{4}",
-    "is_static": false
-}

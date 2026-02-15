@@ -1,7 +1,0 @@
-{
-    "problem": "Find the domain of $\\sqrt{912-64x-x^2}$.",
-    "level": "Level 5",
-    "type": "Algebra",
-    "solution": "\\boxed{[-76,12]}",
-    "is_static": false
-}

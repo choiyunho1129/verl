@@ -1,7 +1,0 @@
-{
-    "problem": "Simplify $(683-428i)-(-55-428i)$.",
-    "level": "Level 2",
-    "type": "Algebra",
-    "solution": "\\boxed{738}",
-    "is_static": false
-}

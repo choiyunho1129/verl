@@ -2,12 +2,18 @@ import argparse
 import json
 import os
 import multiprocessing as mp
+import sys
 from types import SimpleNamespace
 from pathlib import Path
 from typing import List
 
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
+
+# Ensure repo root is on PYTHONPATH
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 # Local evaluation
 from verl.utils.reward_score import math_verify as math_verify_metric
@@ -187,10 +193,10 @@ def run_worker(worker_args, device_id):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     
-    parser.add_argument("--data-path", type=str, default="/data01/yunhochoi/verl/data/math_variants_train.jsonl", help="Input JSONL path")
-    parser.add_argument("--output-path", type=str, default="/data1/home/yunhochoi/verl/data/math_variant_train_llama_3b_trajectories.jsonl", help="Output JSONL path")
+    parser.add_argument("--data-path", type=str, default="/data1/home/yunhochoi/verl/data/math_variants_valid_variants_qa.jsonl", help="Input JSONL path")
+    parser.add_argument("--output-path", type=str, default="/data1/home/yunhochoi/verl/data/math_variant_valid_qwen_trajectories_4.jsonl", help="Output JSONL path")
     
-    parser.add_argument("--model-path", type=str, default="meta-llama/Llama-3.2-3B-Instruct")
+    parser.add_argument("--model-path", type=str, default="Qwen/Qwen2.5-7B-Instruct")
     # Keep one full copy of the model per GPU (data-parallel)
     parser.add_argument("--tensor-parallel-size", type=int, default=1)
     parser.add_argument("--max-model-len", type=int, default=6144)
@@ -205,7 +211,7 @@ if __name__ == "__main__":
     # Run a single process by default so all samples are processed unless the user opts into sharding
     parser.add_argument("--num-shards", type=int, default=1, help="Total number of shards (processes)")
     parser.add_argument("--shard-id", type=int, default=0, help="Shard index for this process")
-    parser.add_argument("--gpu-ids", type=str, default="2,3", help="Comma-separated GPU ids for data-parallel inference (each GPU loads full model). Overrides num_shards.")
+    parser.add_argument("--gpu-ids", type=str, default="1,2,3,4", help="Comma-separated GPU ids for data-parallel inference (each GPU loads full model). Overrides num_shards.")
     parser.add_argument(
         "--report-accuracy",
         action="store_true",

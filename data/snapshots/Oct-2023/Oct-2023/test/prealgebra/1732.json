@@ -1,7 +1,0 @@
-{
-    "problem": "How many positive integers less than 40 have an odd number of positive divisors?",
-    "level": "Level 5",
-    "type": "Prealgebra",
-    "solution": "\\boxed{6}",
-    "is_static": false
-}

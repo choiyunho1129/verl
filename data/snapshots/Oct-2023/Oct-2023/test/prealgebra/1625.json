@@ -1,7 +1,0 @@
-{
-    "problem": "Calculate $(.\\overline{6})(99)$.",
-    "level": "Level 4",
-    "type": "Prealgebra",
-    "solution": "\\boxed{66}",
-    "is_static": false
-}

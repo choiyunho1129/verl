@@ -1,7 +1,0 @@
-{
-    "problem": "For how many ordered pairs of positive integers $(x,y)$ is $x+20y =\n1560$?",
-    "level": "Level 3",
-    "type": "Counting & Probability",
-    "solution": "\\boxed{77}",
-    "is_static": false
-}

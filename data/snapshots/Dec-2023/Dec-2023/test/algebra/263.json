@@ -1,7 +1,0 @@
-{
-    "problem": "Find $y$: $\\sqrt{191+5y} = 16$.",
-    "level": "Level 1",
-    "type": "Algebra",
-    "solution": "\\boxed{13}",
-    "is_static": false
-}

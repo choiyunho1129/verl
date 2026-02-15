@@ -1,7 +1,0 @@
-{
-    "problem": "Find the modulo 10 residue of $8 \\cdot 30$.",
-    "level": "Level 1",
-    "type": "Number Theory",
-    "solution": "\\boxed{0}",
-    "is_static": false
-}

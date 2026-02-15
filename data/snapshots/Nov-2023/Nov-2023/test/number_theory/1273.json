@@ -1,7 +1,0 @@
-{
-    "problem": "Find the units digit of $1! + 2! + 3! + 4! + \\ldots + 170! + 158$.",
-    "level": "Level 4",
-    "type": "Number Theory",
-    "solution": "\\boxed{1}",
-    "is_static": false
-}

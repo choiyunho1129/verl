@@ -1,7 +1,0 @@
-{
-    "problem": "Simplify $(80x-34)+(25x+17)$.",
-    "level": "Level 3",
-    "type": "Prealgebra",
-    "solution": "\\boxed{105x -17}",
-    "is_static": false
-}

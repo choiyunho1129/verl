@@ -1,7 +1,0 @@
-{
-    "problem": "Evaluate $\\log_91\\frac{1}{567869252041}$.",
-    "level": "Level 2",
-    "type": "Algebra",
-    "solution": "\\boxed{-6}",
-    "is_static": false
-}

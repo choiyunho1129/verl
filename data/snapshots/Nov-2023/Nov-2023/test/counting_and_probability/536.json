@@ -1,7 +1,0 @@
-{
-    "problem": "Simplify: $\\frac{55!}{53!}$",
-    "level": "Level 1",
-    "type": "Counting & Probability",
-    "solution": "\\boxed{2970}",
-    "is_static": false
-}

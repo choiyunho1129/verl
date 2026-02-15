@@ -68,19 +68,19 @@ cleanup() {
 }
 trap cleanup EXIT
 
-train_file="${REPO_ROOT}/data/math_variant_criitique_prompt/prompt_llama_3.2_4.parquet"
-test_file="${REPO_ROOT}/data/snapshots_variants_test/prompt_llama_3b_instruct_trajectories_1.parquet"
+train_file="${REPO_ROOT}/data/math_variants/math_variant_train_llama3b.parquet"
+test_file="${REPO_ROOT}/data/math_variants/math_variant_valid_llama3b.parquet"
 reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
 
 PROJECT_NAME="${PROJECT_NAME:-verl_grpo_critique}"
-EXPERIMENT_NAME="${EXPERIMENT_NAME:-qwen2.5_7b_instruct_critique_llama3b_val_only}"
+EXPERIMENT_NAME="${EXPERIMENT_NAME:-qwen2.5_7b_instruct_critique_llama3b_math_variants}"
 VAL_DATA_DIR="${REPO_ROOT}/checkpoints/${PROJECT_NAME}/${EXPERIMENT_NAME}/validation"
 
 # Reward Loop / GenRM configuration
 export DEBUG_REWARD="${DEBUG_REWARD:-False}"
 export REWARD_MODEL_PATH="${REWARD_MODEL_PATH:-meta-llama/Llama-3.2-3B-Instruct}"
 export ENABLE_RM_POOL="${ENABLE_RM_POOL:-False}"           # standalone RM pool if true
-export RM_NGPUS_PER_NODE="${RM_NGPUS_PER_NODE:-2}"
+export RM_NGPUS_PER_NODE="${RM_NGPUS_PER_NODE:-4}"
 export RM_NNODES="${RM_NNODES:-1}"
 export RM_TP_SIZE="${RM_TP_SIZE:-1}"
 export RM_GPU_UTIL="${RM_GPU_UTIL:-0.70}"
@@ -90,7 +90,7 @@ export RM_RESPONSE_LEN="${RM_RESPONSE_LEN:-2048}"
 echo "Starting PPO Training with Reward Loop..."
 
 # override when using a separate RM pool
-export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-2,3}"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-1,2,3,4}"
 
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
@@ -105,7 +105,7 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.actor.ppo_mini_batch_size=64 \
-    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=4 \
+    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=16 \
     actor_rollout_ref.actor.use_kl_loss=True \
     actor_rollout_ref.actor.kl_loss_coef=0.001 \
     actor_rollout_ref.actor.kl_loss_type=low_var_kl \
@@ -113,12 +113,12 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.model.enable_gradient_checkpointing=True \
     actor_rollout_ref.actor.fsdp_config.param_offload=False \
     actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
-    actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=4 \
+    actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=16 \
     actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.gpu_memory_utilization=0.7 \
     actor_rollout_ref.rollout.n=8 \
-    actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=4 \
+    actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=16 \
     actor_rollout_ref.ref.fsdp_config.param_offload=False \
     actor_rollout_ref.rollout.val_kwargs.n=1 \
     actor_rollout_ref.rollout.val_kwargs.temperature=0.6 \
@@ -140,17 +140,17 @@ python3 -m verl.trainer.main_ppo \
     reward_model.enable_resource_pool=${ENABLE_RM_POOL} \
     reward_model.n_gpus_per_node=${RM_NGPUS_PER_NODE} \
     reward_model.nnodes=${RM_NNODES} \
-    reward_model.num_workers=2 \
+    reward_model.num_workers=4 \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
     trainer.project_name="${PROJECT_NAME}" \
     trainer.experiment_name="${EXPERIMENT_NAME}" \
     trainer.validation_data_dir="${VAL_DATA_DIR}" \
-    trainer.n_gpus_per_node=2 \
+    trainer.n_gpus_per_node=4 \
     trainer.nnodes=1 \
-    trainer.save_freq=15 \
+    trainer.save_freq=40 \
     trainer.test_freq=5 \
-    trainer.val_only=True \
+    trainer.val_only=False \
     trainer.val_before_train=True  \
     trainer.total_epochs=4 \
     "$@"

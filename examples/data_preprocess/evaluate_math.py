@@ -370,8 +370,7 @@ def evaluate(args):
 if __name__ == "__main__":
     # REPO_ROOT already points to the project root (../.. from this file)
     repo_root = REPO_ROOT
-    default_data = repo_root / "data/snapshots_variants_test/variants_only_qa.jsonl"
-
+    default_data = repo_root / "data/math_variants_valid_variants_qa.jsonl"
     parser = argparse.ArgumentParser(description="Evaluate math problems")
     parser.add_argument(
         "--model-path",
@@ -437,7 +436,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--devices",
         type=str,
-        default="2,3",
+        default="1,2,3,4",
         help=(
             "Comma-separated GPU ids for data-parallel evaluation. "
             "Leave empty to use current CUDA_VISIBLE_DEVICES or CPU."

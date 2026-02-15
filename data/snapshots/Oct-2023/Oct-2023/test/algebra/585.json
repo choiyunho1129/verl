@@ -1,7 +1,0 @@
-{
-    "problem": "What is the sum of the odd integers between 84 and 138?",
-    "level": "Level 2",
-    "type": "Algebra",
-    "solution": "\\boxed{2997}",
-    "is_static": false
-}

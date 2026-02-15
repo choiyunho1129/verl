@@ -1,7 +1,0 @@
-{
-    "problem": "Compute $\\dbinom{16}{7}$.",
-    "level": "Level 2",
-    "type": "Counting & Probability",
-    "solution": "\\boxed{11440}",
-    "is_static": false
-}

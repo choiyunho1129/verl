@@ -1,7 +1,0 @@
-{
-    "problem": "Compute $\\dbinom{14}{4}\\times \\dbinom{10}{3}$.",
-    "level": "Level 2",
-    "type": "Counting & Probability",
-    "solution": "\\boxed{120120}",
-    "is_static": false
-}

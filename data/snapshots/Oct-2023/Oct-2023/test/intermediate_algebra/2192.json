@@ -1,7 +1,0 @@
-{
-    "problem": "Evaluate $|{-18+i\\sqrt92}|$.",
-    "level": "Level 2",
-    "type": "Intermediate Algebra",
-    "solution": "\\boxed{20.396}",
-    "is_static": false
-}

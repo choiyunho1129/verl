@@ -1,7 +1,0 @@
-{
-    "problem": "Simplify: $\\frac{35!}{33!}$",
-    "level": "Level 1",
-    "type": "Counting & Probability",
-    "solution": "\\boxed{1190}",
-    "is_static": false
-}

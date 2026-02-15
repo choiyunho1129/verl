@@ -1,7 +1,0 @@
-{
-    "problem": "Compute $\\dbinom{506}{2}$.",
-    "level": "Level 2",
-    "type": "Counting & Probability",
-    "solution": "\\boxed{127765}",
-    "is_static": false
-}

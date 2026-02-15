@@ -1,7 +1,0 @@
-{
-    "problem": "Compute $\\dbinom{435}{433}$.",
-    "level": "Level 2",
-    "type": "Counting & Probability",
-    "solution": "\\boxed{94395}",
-    "is_static": false
-}

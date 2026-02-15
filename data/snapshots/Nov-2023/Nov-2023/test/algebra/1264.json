@@ -1,7 +1,0 @@
-{
-    "problem": "Evaluate $22-(3x-y)$ if $x=63$ and $y=37$.",
-    "level": "Level 1",
-    "type": "Algebra",
-    "solution": "\\boxed{-130}",
-    "is_static": false
-}

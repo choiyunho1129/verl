@@ -1,7 +1,0 @@
-{
-    "problem": "Find $x$ such that $23^{\\log_x 225} = 529$.",
-    "level": "Level 2",
-    "type": "Algebra",
-    "solution": "\\boxed{15}",
-    "is_static": false
-}

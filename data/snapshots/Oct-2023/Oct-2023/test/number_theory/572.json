@@ -1,7 +1,0 @@
-{
-    "problem": "How many positive whole-number divisors does 13492928512 have?",
-    "level": "Level 3",
-    "type": "Number Theory",
-    "solution": "\\boxed{120}",
-    "is_static": false
-}

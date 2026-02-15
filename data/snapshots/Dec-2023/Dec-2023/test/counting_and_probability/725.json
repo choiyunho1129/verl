@@ -1,7 +1,0 @@
-{
-    "problem": "Find the greatest integer less than $10.7^3$ without using a calculator.",
-    "level": "Level 3",
-    "type": "Counting & Probability",
-    "solution": "\\boxed{1225}",
-    "is_static": false
-}

@@ -1,7 +1,0 @@
-{
-    "problem": "Evaluate \\[x^{{(x-6)}^x}\\] when $x = 7$.",
-    "level": "Level 2",
-    "type": "Algebra",
-    "solution": "\\boxed{7}",
-    "is_static": false
-}

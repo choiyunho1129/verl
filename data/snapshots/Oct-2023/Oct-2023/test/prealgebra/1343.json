@@ -1,7 +1,0 @@
-{
-    "problem": "What is the least, positive four-digit multiple of 30?",
-    "level": "Level 2",
-    "type": "Prealgebra",
-    "solution": "\\boxed{1020}",
-    "is_static": false
-}

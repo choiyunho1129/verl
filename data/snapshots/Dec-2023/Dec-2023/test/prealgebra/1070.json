@@ -1,7 +1,0 @@
-{
-    "problem": "Evaluate $\\sqrt{65536}$.",
-    "level": "Level 2",
-    "type": "Prealgebra",
-    "solution": "\\boxed{256}",
-    "is_static": false
-}

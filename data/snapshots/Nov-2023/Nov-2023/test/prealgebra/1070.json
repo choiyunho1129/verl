@@ -1,7 +1,0 @@
-{
-    "problem": "Evaluate $\\sqrt{140625}$.",
-    "level": "Level 2",
-    "type": "Prealgebra",
-    "solution": "\\boxed{375}",
-    "is_static": false
-}

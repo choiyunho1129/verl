@@ -1,7 +1,0 @@
-{
-    "problem": "What is the units digit of the sum of the squares of the first fifty positive integers?",
-    "level": "Level 3",
-    "type": "Number Theory",
-    "solution": "\\boxed{5}",
-    "is_static": false
-}

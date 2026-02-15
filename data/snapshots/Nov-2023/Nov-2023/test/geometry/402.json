@@ -1,7 +1,0 @@
-{
-    "problem": "Compute $1466\\cos 300^\\circ$.",
-    "level": "Level 3",
-    "type": "Geometry",
-    "solution": "\\boxed{\\frac{1466}{2}}",
-    "is_static": false
-}
