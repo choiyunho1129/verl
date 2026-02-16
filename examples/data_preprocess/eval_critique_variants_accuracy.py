@@ -1,6 +1,8 @@
 import argparse
 import gc
 import json
+import multiprocessing as mp
+import os
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -39,10 +41,16 @@ def normalize_messages(prompt: Any) -> Optional[List[Dict[str, str]]]:
     return None
 
 
-def build_chat_prompt(tokenizer, messages: List[Dict[str, str]]) -> str:
+def build_chat_prompt(
+    tokenizer,
+    messages: List[Dict[str, str]],
+) -> str:
     try:
         return tokenizer.apply_chat_template(
-            messages, add_generation_prompt=True, tokenize=False
+            messages,
+            add_generation_prompt=True,
+            tokenize=False,
+            enable_thinking=False,
         )
     except Exception:
         parts = []
@@ -74,6 +82,109 @@ def batched_generate(llm, prompts: List[str], sampling_params, batch_size: int) 
                 outputs.append(result.outputs[0].text)
             else:
                 outputs.append("")
+    return outputs
+
+
+def parse_gpu_ids(num_gpus: int, gpu_ids: str) -> List[str]:
+    if num_gpus <= 0:
+        raise ValueError("--num-gpus must be >= 1")
+
+    if gpu_ids:
+        ids = [d.strip() for d in gpu_ids.split(",") if d.strip()]
+        if len(ids) < num_gpus:
+            raise ValueError(
+                f"Requested {num_gpus} GPUs but only {len(ids)} provided in --gpu-ids"
+            )
+        return ids[:num_gpus]
+
+    return [str(i) for i in range(num_gpus)]
+
+
+def _generate_worker(
+    device_id: str,
+    tasks: List[Tuple[int, str]],
+    llm_kwargs: Dict[str, Any],
+    sampling_kwargs: Dict[str, Any],
+    batch_size: int,
+    stage_name: str,
+    queue: mp.Queue,
+):
+    try:
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(device_id)
+
+        # Each worker keeps tensor_parallel_size=1 to avoid spanning multiple GPUs per process
+        worker_kwargs = {**llm_kwargs, "tensor_parallel_size": 1}
+        llm = LLM(**worker_kwargs)
+        sampling = SamplingParams(**sampling_kwargs)
+
+        results: List[Tuple[int, str]] = []
+        for i in range(0, len(tasks), batch_size):
+            batch = tasks[i : i + batch_size]
+            batch_prompts = [p for _, p in batch]
+            outputs = llm.generate(batch_prompts, sampling)
+            for (idx, _), out in zip(batch, outputs):
+                results.append((idx, out.outputs[0].text if out.outputs else ""))
+
+        queue.put({"device": device_id, "stage": stage_name, "results": results})
+    except Exception as exc:  # surface errors to parent
+        queue.put({"device": device_id, "stage": stage_name, "error": str(exc)})
+
+
+def distributed_generate(
+    prompts: List[str],
+    llm_kwargs: Dict[str, Any],
+    sampling_kwargs: Dict[str, Any],
+    batch_size: int,
+    gpu_ids: List[str],
+    stage_name: str,
+) -> List[str]:
+    """Run generation in data-parallel fashion across provided GPU ids."""
+
+    if not prompts:
+        return []
+
+    if len(gpu_ids) == 1:
+        llm = LLM(**llm_kwargs)
+        sampling = SamplingParams(**sampling_kwargs)
+        return batched_generate(llm, prompts, sampling, batch_size)
+
+    mp.set_start_method("spawn", force=True)
+    ctx = mp.get_context("spawn")
+
+    # Round-robin distribute prompts to workers
+    shards: List[List[Tuple[int, str]]] = [[] for _ in gpu_ids]
+    for idx, prompt in enumerate(prompts):
+        shards[idx % len(gpu_ids)].append((idx, prompt))
+
+    outputs = ["" for _ in prompts]
+    procs: List[mp.Process] = []
+    queue: mp.Queue = ctx.Queue()
+
+    for dev, shard in zip(gpu_ids, shards):
+        if not shard:
+            continue
+        p = ctx.Process(
+            target=_generate_worker,
+            args=(dev, shard, llm_kwargs, sampling_kwargs, batch_size, stage_name, queue),
+        )
+        p.start()
+        procs.append(p)
+
+    for _ in procs:
+        wr = queue.get()
+        if "error" in wr:
+            # Ensure all workers terminate before raising
+            for p in procs:
+                p.join()
+            raise RuntimeError(
+                f"[{stage_name}] worker on device {wr.get('device')} failed: {wr['error']}"
+            )
+        for idx, text in wr["results"]:
+            outputs[idx] = text
+
+    for p in procs:
+        p.join()
+
     return outputs
 
 
@@ -128,7 +239,10 @@ def build_reward_prompts(
             if not var_q or not var_a:
                 continue
             prompt_text = build_variant_prompt(original_q, original_traj, critiques[idx], var_q)
-            prompt = build_chat_prompt(tokenizer, [{"role": "user", "content": prompt_text}])
+            prompt = build_chat_prompt(
+                tokenizer,
+                [{"role": "user", "content": prompt_text}]
+            )
             for _ in range(num_repeats):
                 prompts.append(prompt)
                 mappings.append((idx, v_idx, var_a))
@@ -173,10 +287,10 @@ def main() -> None:
     parser.add_argument(
         "--input",
         type=str,
-        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b.parquet",
+        default="/data01/yunhochoi/verl/data/test_critique_llama3b.parquet",
         help="Path to the test parquet dataset.",
     )
-    parser.add_argument("--output-jsonl", type=str, default="/data01/yunhochoi/verl/data/eval_critique_llama3b.jsonl")
+    parser.add_argument("--output-jsonl", type=str, default="/data01/yunhochoi/verl/data/qwen3_eval_critique_llama3b.jsonl")
     parser.add_argument(
         "--critique-cache",
         type=str,
@@ -191,15 +305,28 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--log-every", type=int, default=25)
 
-    # Critique model (Qwen 2.5 7B Instruct)
-    parser.add_argument("--critique-model", type=str, default="Qwen/Qwen2.5-7B-Instruct")
+    parser.add_argument(
+        "--num-gpus",
+        type=int,
+        default=2,
+        help="Number of GPUs to launch in data-parallel for both critique and reward stages.",
+    )
+    parser.add_argument(
+        "--gpu-ids",
+        type=str,
+        default="0,1",
+        help="Comma-separated GPU ids. If empty, uses [0..num_gpus-1] automatically.",
+    )
+
+    # Critique model (default: Qwen3 1.7B Instruct)
+    parser.add_argument("--critique-model", type=str, default="Qwen/Qwen3-1.7B")
     parser.add_argument("--critique-dtype", type=str, default="auto")
     parser.add_argument("--critique-max-model-len", type=int, default=6144)
     parser.add_argument("--critique-gpu-memory-utilization", type=float, default=0.90)
     parser.add_argument("--critique-tensor-parallel-size", type=int, default=1)
     parser.add_argument("--critique-max-new-tokens", type=int, default=2048)
-    parser.add_argument("--critique-temperature", type=float, default=0.6)
-    parser.add_argument("--critique-top-p", type=float, default=1.0)
+    parser.add_argument("--critique-temperature", type=float, default=0.7)
+    parser.add_argument("--critique-top-p", type=float, default=0.8)
     parser.add_argument("--critique-batch-size", type=int, default=32)
 
     # Reward model (Llama 3.2 3B Instruct)
@@ -211,10 +338,12 @@ def main() -> None:
     parser.add_argument("--reward-max-new-tokens", type=int, default=2048)
     parser.add_argument("--reward-temperature", type=float, default=0.6)
     parser.add_argument("--reward-top-p", type=float, default=1.0)
-    parser.add_argument("--reward-batch-size", type=int, default=16)
+    parser.add_argument("--reward-batch-size", type=int, default=32)
     parser.add_argument("--reward-num-repeats", type=int, default=3)
 
     args = parser.parse_args()
+
+    gpu_ids = parse_gpu_ids(args.num_gpus, args.gpu_ids)
 
     df = pd.read_parquet(args.input)
     rows = df.to_dict(orient="records")
@@ -236,7 +365,7 @@ def main() -> None:
     critique_tokenizer = AutoTokenizer.from_pretrained(
         args.critique_model, trust_remote_code=True
     )
-    critique_llm = LLM(
+    critique_llm_kwargs = dict(
         model=args.critique_model,
         trust_remote_code=True,
         dtype=args.critique_dtype,
@@ -244,7 +373,7 @@ def main() -> None:
         gpu_memory_utilization=args.critique_gpu_memory_utilization,
         tensor_parallel_size=args.critique_tensor_parallel_size,
     )
-    critique_sampling = SamplingParams(
+    critique_sampling_kwargs = dict(
         max_tokens=args.critique_max_new_tokens,
         temperature=args.critique_temperature,
         top_p=args.critique_top_p,
@@ -285,7 +414,10 @@ def main() -> None:
 
         valid_mask[idx] = True
         if not critique_done[idx]:
-            critique_prompt = build_chat_prompt(critique_tokenizer, messages)
+            critique_prompt = build_chat_prompt(
+                critique_tokenizer,
+                messages,
+            )
             critique_prompts.append(critique_prompt)
             critique_indices.append(idx)
 
@@ -295,11 +427,13 @@ def main() -> None:
         critique_cache_path.parent.mkdir(parents=True, exist_ok=True)
         cache_mode = "a" if critique_cache_path.exists() and not args.overwrite_critique_cache else "w"
         with critique_cache_path.open(cache_mode, encoding="utf-8") as cache_f:
-            critique_outputs = batched_generate(
-                critique_llm,
+            critique_outputs = distributed_generate(
                 critique_prompts,
-                critique_sampling,
+                critique_llm_kwargs,
+                critique_sampling_kwargs,
                 batch_size=args.critique_batch_size,
+                gpu_ids=gpu_ids,
+                stage_name="critique",
             )
             for i, (row_idx, text) in enumerate(zip(critique_indices, critique_outputs)):
                 critique_text = text or ""
@@ -317,8 +451,7 @@ def main() -> None:
             "and `reward_model.ground_truth` is a JSON string."
         )
 
-    # Release critique model before loading reward model
-    del critique_llm
+    # Release critique tokenizer; LLMs are recreated per worker in distributed_generate
     del critique_tokenizer
     gc.collect()
     try:
@@ -332,7 +465,7 @@ def main() -> None:
     reward_tokenizer = AutoTokenizer.from_pretrained(
         args.reward_model, trust_remote_code=True
     )
-    reward_llm = LLM(
+    reward_llm_kwargs = dict(
         model=args.reward_model,
         trust_remote_code=True,
         dtype=args.reward_dtype,
@@ -340,7 +473,7 @@ def main() -> None:
         gpu_memory_utilization=args.reward_gpu_memory_utilization,
         tensor_parallel_size=args.reward_tensor_parallel_size,
     )
-    reward_sampling = SamplingParams(
+    reward_sampling_kwargs = dict(
         max_tokens=args.reward_max_new_tokens,
         temperature=args.reward_temperature,
         top_p=args.reward_top_p,
@@ -363,11 +496,13 @@ def main() -> None:
     sample_variant_count: Dict[int, int] = {}
     sample_gen_count: Dict[int, int] = {}
     if reward_prompts:
-        reward_generations = batched_generate(
-            reward_llm,
+        reward_generations = distributed_generate(
             reward_prompts,
-            reward_sampling,
+            reward_llm_kwargs,
+            reward_sampling_kwargs,
             batch_size=args.reward_batch_size,
+            gpu_ids=gpu_ids,
+            stage_name="reward",
         )
         sample_variant_sum, sample_variant_count, sample_gen_count = aggregate_scores(
             reward_generations, reward_mappings
