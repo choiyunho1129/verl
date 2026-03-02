@@ -66,6 +66,7 @@ class TeacherClient:
         temperature=1,
         only_response=False,
         max_seq_len=None,
+        use_sampled_token_logprobs=False,
     ) -> None:
         self.server_ip = server_ip
         self.server_port = server_port
@@ -78,6 +79,7 @@ class TeacherClient:
         self.temperature = temperature
         self.only_response = only_response
         self.max_seq_len = max_seq_len
+        self.use_sampled_token_logprobs = use_sampled_token_logprobs
         self._run()
 
     def bg_task(self):
@@ -108,6 +110,8 @@ class TeacherClient:
                     request["temperature"] = self.temperature
                 if self.only_response:
                     request["only_response"] = True
+                if self.use_sampled_token_logprobs:
+                    request["use_sampled_token_logprobs"] = True
 
                 socket.send(serialize(request))
                 raw = socket.recv()

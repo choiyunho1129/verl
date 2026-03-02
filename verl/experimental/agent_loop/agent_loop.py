@@ -36,6 +36,7 @@ from verl.experimental.reward_loop import RewardLoopWorker
 from verl.protocol import DataProto
 from verl.single_controller.ray.base import RayResourcePool, RayWorkerGroup
 from verl.utils import hf_processor, hf_tokenizer
+from verl.utils.config import omega_conf_to_dataclass
 from verl.utils.fs import copy_to_local
 from verl.utils.model import compute_position_id_with_mask
 from verl.utils.ray_utils import get_event_loop
@@ -46,9 +47,27 @@ from verl.utils.rollout_trace import (
 )
 from verl.utils.transferqueue_utils import tqbridge
 from verl.workers.rollout.replica import TokenOutput, get_rollout_replica_class
+from verl.workers.config.rollout import PrometheusConfig
 
 logger = logging.getLogger(__file__)
 logger.setLevel(os.getenv("VERL_LOGGING_LEVEL", "WARN"))
+
+
+def _safe_get_prometheus_config(rollout_config: DictConfig) -> PrometheusConfig | None:
+    """Return normalized prometheus config if present, otherwise None.
+
+    Some recipe configs (e.g. GKD) do not define rollout.prometheus explicitly.
+    In that case, agent loop should simply treat prometheus as disabled.
+    """
+    try:
+        prom_cfg = rollout_config.prometheus
+    except Exception:
+        return None
+    if prom_cfg is None:
+        return None
+    if isinstance(prom_cfg, DictConfig | dict):
+        return omega_conf_to_dataclass(prom_cfg, dataclass_type=PrometheusConfig)
+    return prom_cfg
 
 
 class AsyncLLMServerManager:
@@ -783,10 +802,11 @@ class AgentLoopManager:
         print(f"AgentLoopManager: {self.server_addresses}")
 
         # Update Prometheus configuration with server addresses
-        if rollout_config.prometheus.enable:
+        prom_cfg = _safe_get_prometheus_config(rollout_config)
+        if prom_cfg is not None and prom_cfg.enable:
             if rollout_config.disable_log_stats:
                 raise ValueError("PROMETHEUS needs disable_log_stats==False, but it is currently True.")
-            update_prometheus_config(rollout_config.prometheus, self.server_addresses)
+            update_prometheus_config(prom_cfg, self.server_addresses)
 
     def _init_agent_loop_workers(self):
         self.agent_loop_workers = []

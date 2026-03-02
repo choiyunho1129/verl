@@ -9,17 +9,15 @@ set -x
 
 # 1. download the dist_ckpt format model from https://huggingface.co/BearBiscuit05/dpsk-v3-671B-BF16-dist_ckpt/tree/main
 # change the HF_MODEL_PATH to your own path
-HF_MODEL_PATH=/path/to/Qwen3-0.6B
+HF_MODEL_PATH="Qwen/Qwen2.5-1.5B-Instruct"
 export NVTE_ALLOW_NONDETERMINISTIC_ALGO=0
 export NVTE_FLASH_ATTN=1
 export NVTE_DEBUG=1 
 export NVTE_DEBUG_LEVEL=2
 
 # 2. run the script
-gsm8k_train_path=/path/to/train.parquet
-gsm8k_test_path=/path/to/test.parquet
-train_files=$gsm8k_train_path
-test_files=$gsm8k_test_path
+train_files="/data01/yunhochoi/verl/data/MATH-500/train_MATH3-5_systemprompt.parquet"
+test_files="/data01/yunhochoi/verl/data/MATH-500/test_mathsystemprompt.parquet"
 
 # 512 H20(96GB)
 NODES=1
@@ -36,11 +34,13 @@ INFER_TP=1
 # +actor_rollout_ref.actor.megatron.override_transformer_config.recompute_num_layers=1 \
 
 WORKING_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${WORKING_DIR}/../.." && pwd)"
 RUNTIME_ENV=${RUNTIME_ENV:-"${WORKING_DIR}/config/runtime_env.yaml"}
-# RAY_ADDRESS='auto' ray job submit --working-dir . --
-ray job submit --no-wait --runtime-env="${RUNTIME_ENV}" \
-    --working-dir "${WORKING_DIR}" \
-    -- python3 -m main_gkd --config-name on_policy_distill_trainer \
+
+# Run locally from repo root so package imports (recipe.gkd.*) work; main_gkd will ray.init() if needed.
+cd "${REPO_ROOT}"
+PYTHONPATH="${REPO_ROOT}:${PYTHONPATH}" \
+python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     data.train_files="$train_files" \
     data.val_files="$test_files" \
     data.prompt_key=prompt \
@@ -50,39 +50,48 @@ ray job submit --no-wait --runtime-env="${RUNTIME_ENV}" \
     data.filter_overlong_prompts=True \
     data.truncation='error' \
     data.trust_remote_code=True \
+    data.return_raw_chat=True \
     +teacher.server_ip=127.0.0.1 \
     +teacher.server_port=15555 \
+    +actor_rollout_ref.teacher.use_sampled_token_logprobs=True \
     actor_rollout_ref.model.path=$HF_MODEL_PATH \
     actor_rollout_ref.model.trust_remote_code=True \
     actor_rollout_ref.actor.megatron.sequence_parallel=False \
     +actor_rollout_ref.actor.megatron.override_transformer_config.sequence_parallel=False \
+    +actor_rollout_ref.actor.router_replay.mode=disabled \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     +actor_rollout_ref.actor.ppo_mini_batch_size=64 \
     +actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=1 \
     +actor_rollout_ref.actor.use_kl_loss=False \
+    +actor_rollout_ref.actor.distill_loss.name=rkl_logprob_diff \
+    +actor_rollout_ref.actor.distill_loss.topk=1 \
     actor_rollout_ref.actor.use_torch_compile=False \
     actor_rollout_ref.rollout.name=vllm \
+    actor_rollout_ref.rollout.n=1 \
     actor_rollout_ref.rollout.gpu_memory_utilization=0.8 \
-    actor_rollout_ref.rollout.temperature=1.0 \
-    actor_rollout_ref.rollout.top_p=0.99 \
+    actor_rollout_ref.rollout.temperature=0.6 \
+    actor_rollout_ref.rollout.top_p=0.95 \
     actor_rollout_ref.rollout.top_k=-1 \
+    actor_rollout_ref.rollout.free_cache_engine=False \
+    actor_rollout_ref.rollout.agent.num_workers=1 \
     actor_rollout_ref.rollout.tensor_model_parallel_size=$INFER_TP \
     actor_rollout_ref.rollout.load_format='auto' \
     +algorithm.use_kl_in_reward=False \
     trainer.logger=['console'] \
     trainer.project_name='verl_examples' \
     trainer.experiment_name='qwen-distill' \
-    trainer.n_gpus_per_node=4 \
+    trainer.n_gpus_per_node=1 \
     trainer.nnodes=$NODES \
-    rollout.n_gpus_per_node=4 \
+    rollout.n_gpus_per_node=1 \
     rollout.nnodes=$NODES \
     trainer.save_freq=-1 \
     trainer.test_freq=25 \
+    trainer.scheduler=one_step_off \
     actor_rollout_ref.actor.megatron.pipeline_model_parallel_size=$PP \
     actor_rollout_ref.actor.megatron.tensor_model_parallel_size=$TP \
     actor_rollout_ref.actor.megatron.expert_model_parallel_size=$EP \
     actor_rollout_ref.actor.megatron.expert_tensor_parallel_size=$ETP \
-    trainer.val_before_train=False \
+    trainer.val_before_train=True \
     trainer.total_training_steps=10 \
-    trainer.total_epochs=1 $@
+    trainer.total_epochs=1 "$@"
     # +actor_rollout_ref.actor.megatron.override_transformer_config.num_layers_in_first_pipeline_stage=11 \

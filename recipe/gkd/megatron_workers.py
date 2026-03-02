@@ -27,7 +27,7 @@ from megatron.core import parallel_state as mpu
 from megatron.core.distributed import finalize_model_grads
 from megatron.core.optimizer import DistributedOptimizer
 from megatron.core.pipeline_parallel import get_forward_backward_func
-from megatron_kl_loss import vocab_parallel_kl_divergence
+from .megatron_distill_losses import build_vocab_parallel_distill_loss
 from omegaconf import DictConfig, OmegaConf
 from torch import nn
 
@@ -165,6 +165,21 @@ class OnPolicyDistillActor:
         self.tf_config = tf_config
         self.actor_module = actor_module
         self.actor_optimizer: DistributedOptimizer = actor_optimizer
+        self.distill_loss_op = build_vocab_parallel_distill_loss(self.config.get("distill_loss", None))
+        distill_topk = OmegaConf.select(self.config, "distill_loss.topk")
+        self.distill_topk = int(distill_topk) if distill_topk is not None else None
+        if self.distill_topk is not None and self.distill_topk <= 0:
+            self.distill_topk = None
+        loss_name = str(OmegaConf.select(self.config, "distill_loss.name", "")).lower()
+        self.exclude_teacher_generated_last = loss_name in {
+            "rkl_logprob_diff",
+            "reverse_kl_logprob_diff",
+            "reverse-kl-logprob-diff",
+            "rkl_logprob",
+            "reverse_kl_logprob",
+            "reverse-kl-logprob",
+            "logprob_diff",
+        }
         self.prof = Profiler(self.config.profiler)
         self.optimizer_step_args = OmegaConf.create(
             {
@@ -214,7 +229,12 @@ class OnPolicyDistillActor:
         #     group=mpu.get_pipeline_model_parallel_group(),
         # )
         # split into micro-batches
-        data.batch["attention_mask"] = data.batch["attention_mask"].to(bool)
+        # `data.batch` can be a locked TensorDict. `set_()` keeps destination dtype,
+        # so `int64` 0/1 masks stay int64 and are interpreted as index tensors later.
+        # Clone and replace to guarantee a real boolean attention mask.
+        if hasattr(data.batch, "is_locked") and data.batch.is_locked:
+            data.batch = data.batch.clone(recurse=True)
+        data.batch["attention_mask"] = data.batch["attention_mask"].to(torch.bool)
 
         indices = None
         if use_dynamic_bsz:
@@ -227,12 +247,14 @@ class OnPolicyDistillActor:
                     num_batches_divided_by=microbatch_group_size_per_vp_stage,
                     max_token_len=max_token_len,
                 )
+                micro_batches = list(micro_batches)
                 assert len(micro_batches) % self.tf_config.microbatch_group_size_per_vp_stage == 0, (
                     f"micro_batches {len(micro_batches)} must be divisible by microbatch_group_size_per_vp_stage "
                     f"{microbatch_group_size_per_vp_stage} for megatron backend"
                 )
             else:
                 micro_batches, indices = rearrange_micro_batches(batch=data.batch, max_token_len=max_token_len)
+                micro_batches = list(micro_batches)
             # total_seqlen = max_token_len
             if mpu.is_pipeline_last_stage():
                 teacher_topk_logps_tensor = torch.tensor(data.non_tensor_batch["teacher_topk_logps"])
@@ -250,33 +272,49 @@ class OnPolicyDistillActor:
                     teacher_topk_indices.append(curr_idx_micro_batch)
 
                 for i, mb in enumerate(micro_batches):
+                    if hasattr(mb, "is_locked") and mb.is_locked:
+                        mb = mb.clone()
                     responses = mb["responses"]
                     response_length = responses.size(1)
                     calc_kl_mask = mb["attention_mask"].clone()
                     calc_kl_mask[:, : (-response_length - 1)] = False
+                    if self.exclude_teacher_generated_last:
+                        valid_lens = mb["attention_mask"].sum(dim=-1)
+                        row_idx = torch.arange(valid_lens.size(0), device=valid_lens.device)
+                        last_valid_idx = (valid_lens - 1).clamp(min=0)
+                        calc_kl_mask[row_idx, last_valid_idx] = False
                     mb["calc_kl_mask"] = calc_kl_mask
                     mb["kl_losses"] = torch.zeros_like(calc_kl_mask, dtype=torch.float32)
                     mb["teacher_topk_logps"] = teacher_topk_logps[i].pin_memory()
                     mb["teacher_topk_indices"] = teacher_topk_indices[i].pin_memory()
+                    micro_batches[i] = mb
         else:
             assert micro_batch_size is not None, (
                 "micro_batch_size is needed to be passed in when not using dynamic batch size"
             )
-            micro_batches = data.batch.split(micro_batch_size)
+            micro_batches = list(data.batch.split(micro_batch_size))
             # seq_len = micro_batches[0]["input_ids"].shape[1]
             # total_seqlen = micro_batch_size * seq_len
             if mpu.is_pipeline_last_stage():
                 teacher_topk_logps = np.array_split(data.non_tensor_batch["teacher_topk_logps"], len(micro_batches))
                 teacher_topk_indices = np.array_split(data.non_tensor_batch["teacher_topk_indices"], len(micro_batches))
                 for i, mb in enumerate(micro_batches):
+                    if hasattr(mb, "is_locked") and mb.is_locked:
+                        mb = mb.clone()
                     responses = mb["responses"]
                     response_length = responses.size(1)
                     calc_kl_mask = mb["attention_mask"].clone()
                     calc_kl_mask[:, : (-response_length - 1)] = False
+                    if self.exclude_teacher_generated_last:
+                        valid_lens = mb["attention_mask"].sum(dim=-1)
+                        row_idx = torch.arange(valid_lens.size(0), device=valid_lens.device)
+                        last_valid_idx = (valid_lens - 1).clamp(min=0)
+                        calc_kl_mask[row_idx, last_valid_idx] = False
                     mb["calc_kl_mask"] = calc_kl_mask
                     mb["kl_losses"] = torch.zeros_like(calc_kl_mask, dtype=torch.float32)
                     mb["teacher_topk_logps"] = torch.tensor(teacher_topk_logps[i]).pin_memory()
                     mb["teacher_topk_indices"] = torch.tensor(teacher_topk_indices[i]).pin_memory()
+                    micro_batches[i] = mb
 
         # compute input shapes for pp stages
         n_micro_batch = len(micro_batches)
@@ -314,11 +352,15 @@ class OnPolicyDistillActor:
                 assert logits.shape[:2] == teacher_topk_indices.shape[:2]
                 assert logits.shape[:2] == teacher_topk_logps.shape[:2]
 
+                if self.distill_topk is not None:
+                    teacher_topk_logps = teacher_topk_logps[..., : self.distill_topk]
+                    teacher_topk_indices = teacher_topk_indices[..., : self.distill_topk]
+
                 masked_logits = logits[calc_kl_mask]
                 masked_teacher_topk_logps = teacher_topk_logps[calc_kl_mask]
                 masked_teacher_topk_indices = teacher_topk_indices[calc_kl_mask]
 
-                kl_losses[calc_kl_mask] = vocab_parallel_kl_divergence(
+                kl_losses[calc_kl_mask] = self.distill_loss_op(
                     masked_logits, masked_teacher_topk_logps, masked_teacher_topk_indices
                 )
                 return {"kl_losses": kl_losses, "calc_kl_mask": calc_kl_mask}
@@ -458,7 +500,7 @@ class MegatronOnPolicyDistillActorWorker(ActorRolloutRefWorker):
             generator = self.bridge.export_weights(self.actor.actor_module)
         else:
             # from verl.utils.megatron_utils import per_tensor_generator
-            from megatron_utils import per_tensor_generator
+            from .megatron_utils import per_tensor_generator
 
             from verl.models.mcore import get_mcore_weight_converter
 
@@ -670,7 +712,7 @@ class MegatronOnPolicyDistillRolloutWorker(ActorRolloutRefWorker):
 
         # NOTE: In colocation mode, rollout config may not take effect (follow the actor config)
         # This is for extendability in AsyncRL cases
-        omega_profiler_config = config.rollout.get("profiler", {})
+        omega_profiler_config = config.rollout.get("profiler", {}) or {}
 
         # omega_profiler_config is DictConfig
         # profiler_config is a ProfilerConfig dataclass
@@ -750,6 +792,22 @@ class MegatronOnPolicyDistillRolloutWorker(ActorRolloutRefWorker):
     def async_generate_sequences(self, *args, **kwargs):
         return self.generate_sequences(*args, **kwargs)
 
+    @register(dispatch_mode=Dispatch.DIRECT_ROLLOUT_METHOD)
+    async def wake_up(self):
+        # Rollout-only worker: just wake inference engine buffers if sleep mode is enabled.
+        await self.rollout.resume(tags=["weights", "kv_cache"])
+        return True
+
+    @register(dispatch_mode=Dispatch.DIRECT_ROLLOUT_METHOD)
+    async def sleep(self):
+        # Rollout-only worker: release inference engine buffers if sleep mode is enabled.
+        await self.rollout.release()
+        return True
+
+    @register(dispatch_mode=Dispatch.DIRECT_ROLLOUT_METHOD)
+    def get_zeromq_address(self):
+        return self.rollout.get_zeromq_address()
+
     @register(dispatch_mode=Dispatch.ONE_TO_ALL, blocking=False)
     def sync_rollout_weights(self):
         from ray.util.collective import collective
@@ -758,9 +816,20 @@ class MegatronOnPolicyDistillRolloutWorker(ActorRolloutRefWorker):
         assert hasattr(self, "_weights_info") and self._weights_info is not None
         rollout_name = self.config.rollout.name
         if rollout_name == "vllm":
-            inference_model = (
-                self.rollout.inference_engine.llm_engine.model_executor.driver_worker.worker.model_runner.model
-            )
+            inference_engine = getattr(self.rollout, "inference_engine", None)
+            # vLLM async rollout may initialize its engine lazily; skip this round safely.
+            if inference_engine is None:
+                logger.warning("Skip rollout weight sync because vLLM inference_engine is not initialized yet.")
+                return
+            if hasattr(inference_engine, "llm_engine"):
+                inference_model = inference_engine.llm_engine.model_executor.driver_worker.worker.model_runner.model
+            elif hasattr(inference_engine, "worker"):
+                inference_model = inference_engine.worker.model_runner.model
+            else:
+                raise AttributeError(
+                    f"Unsupported inference_engine type: {type(inference_engine)}. "
+                    "Expected engine with `llm_engine` or `worker`."
+                )
             from verl.utils.vllm.patch import patch_vllm_moe_model_weight_loader
 
             patch_vllm_moe_model_weight_loader(inference_model)

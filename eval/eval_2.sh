@@ -7,7 +7,7 @@ TEMPERATURE="${TEMPERATURE:-0.7}"
 TOP_P="${TOP_P:-0.8}"
 MAX_TOKENS="${MAX_TOKENS:-8192}"
 
-CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_critique_llama3b_math_variants/global_step_180}"
+CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_MATH3-5_n_16/global_step_120}"
 ACTOR_DIR="${ACTOR_DIR:-${CKPT_DIR}/actor}"
 MERGED_DIR="${MERGED_DIR:-${ACTOR_DIR}/hf_merged}"
 

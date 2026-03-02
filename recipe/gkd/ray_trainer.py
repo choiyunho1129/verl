@@ -167,11 +167,17 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         self._create_dataloader(train_dataset, val_dataset, collate_fn, train_sampler)
         self.teacher_config = self.config.actor_rollout_ref.teacher
         self.n_server_workers = self.teacher_config.n_server_workers
+        use_sampled_token_logprobs = bool(OmegaConf.select(self.teacher_config, "use_sampled_token_logprobs", False))
         self.teacher_client = TeacherClient(
-            self.teacher_config.server_ip, self.teacher_config.server_port, n_server_workers=self.n_server_workers
+            self.teacher_config.server_ip,
+            self.teacher_config.server_port,
+            n_server_workers=self.n_server_workers,
+            use_sampled_token_logprobs=use_sampled_token_logprobs,
         )
 
         self.params_dtype = PrecisionType.to_dtype("bfloat16")
+        self.async_rollout_mode = False
+        self.async_rollout_manager = None
 
     def _create_dataloader(self, train_dataset, val_dataset, collate_fn, train_sampler: Optional[Sampler]):
         """
@@ -323,6 +329,17 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
             group_name="actor_rollout",
         )
 
+        # Async server-mode rollout for vLLM/SGLang via AgentLoopManager
+        self.async_rollout_mode = self.config.actor_rollout_ref.rollout.mode == "async"
+        if self.async_rollout_mode:
+            from verl.experimental.agent_loop import AgentLoopManager
+
+            self.async_rollout_manager = AgentLoopManager(
+                config=self.config,
+                worker_group=self.rollout_wg,
+                rm_resource_pool=None,
+            )
+
     def sync_rollout_weights(self):
         assert not self.hybrid_engine
         self.actor_wg.sync_rollout_weights()
@@ -361,8 +378,12 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         # sync weights from actor to rollout
         if sync_before_generation:
             self.sync_rollout_weights()
-        # Call non-blocking rollout (worker method registered with blocking=False)
-        gen_batch_output = self.rollout_wg.async_generate_sequences(gen_batch)
+        if self.async_rollout_mode and "raw_prompt" in gen_batch.non_tensor_batch:
+            # Use async server interface (vLLMReplica + AsyncLLMServerManager).
+            gen_batch_output = self.async_rollout_manager.generate_sequences(gen_batch)
+        else:
+            # Fallback to legacy direct rollout path.
+            gen_batch_output = self.rollout_wg.async_generate_sequences(gen_batch)
         return GenerationBatchFuture(epoch, batch, gen_batch_output)
 
     def _async_get_teacher_knowledge(self, future: GenerationBatchFuture):

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import argparse
+import inspect
 import random
 from typing import NamedTuple
 
@@ -20,6 +21,7 @@ import torch
 from codetiming import Timer
 from transformers import AutoConfig
 from vllm import LLM, SamplingParams
+from vllm.inputs import TokensPrompt
 
 # from vllm.v1.outputs import LogprobsTensors
 from vllm.v1.engine.logprobs import LogprobsProcessor
@@ -147,8 +149,25 @@ class VLLMEngine:
             max_logprobs=n_logprobs,
             gpu_memory_utilization=0.7,
         )
+        # vLLM>=0.11 removed `prompt_token_ids=` from LLM.generate().
+        # Keep compatibility with both old/new APIs.
+        self._generate_accepts_prompt_token_ids = "prompt_token_ids" in inspect.signature(self.llm.generate).parameters
 
-    def get_topk_logprobs(self, prompt_token_ids, temperature=0.8, max_new_tokens=1, only_response=False):
+    def _generate_from_token_ids(self, prompt_token_ids, sampling_params):
+        if self._generate_accepts_prompt_token_ids:
+            return self.llm.generate(prompt_token_ids=prompt_token_ids, sampling_params=sampling_params)
+
+        prompts = [TokensPrompt(prompt_token_ids=ids) for ids in prompt_token_ids]
+        return self.llm.generate(prompts, sampling_params=sampling_params)
+
+    def get_topk_logprobs(
+        self,
+        prompt_token_ids,
+        temperature=0.8,
+        max_new_tokens=1,
+        only_response=False,
+        use_sampled_token_logprobs=False,
+    ):
         def make_sampling_params(i=None):
             return SamplingParams(
                 temperature=temperature,
@@ -165,26 +184,34 @@ class VLLMEngine:
         else:
             sampling_params = make_sampling_params()
 
-        outputs = self.llm.generate(prompt_token_ids=prompt_token_ids, sampling_params=sampling_params)
+        outputs = self._generate_from_token_ids(prompt_token_ids=prompt_token_ids, sampling_params=sampling_params)
 
         responses, teacher_topk_logprobs, teacher_topk_indices = [], [], []
         for output in outputs:
             responses.append(torch.tensor(output.outputs[0].token_ids, dtype=torch.int32))
             if self.n_logprobs > 0:
+                # vLLM returns shape [n_tokens, n_logprobs + 1]:
+                # col 0 is sampled token, col 1.. are top-k logprobs excluding sampled token.
+                if use_sampled_token_logprobs:
+                    col_start, col_end = 0, 1
+                else:
+                    col_start, col_end = 1, None
                 response_topk_logprobs = torch.tensor(
                     [x.logprobs[0] for x in output.outputs[0].logprobs],
                     dtype=torch.float32,
-                )[:, 1:]
+                )[:, col_start:col_end]
                 response_topk_indices = torch.tensor(
                     [x.logprob_token_ids[0] for x in output.outputs[0].logprobs],
                     dtype=torch.int32,
-                )[:, 1:]
+                )[:, col_start:col_end]
                 if only_response:
                     teacher_topk_logprobs.append(response_topk_logprobs)
                     teacher_topk_indices.append(response_topk_indices)
                 else:
-                    prompt_topk_logprobs = output.prompt_logprobs[1].logprobs[:, 1:].to(torch.float32)
-                    prompt_topk_indices = output.prompt_logprobs[1].logprob_token_ids[:, 1:].to(torch.int32)
+                    prompt_topk_logprobs = output.prompt_logprobs[1].logprobs[:, col_start:col_end].to(torch.float32)
+                    prompt_topk_indices = output.prompt_logprobs[1].logprob_token_ids[:, col_start:col_end].to(
+                        torch.int32
+                    )
                     teacher_topk_logprobs.append(torch.vstack([prompt_topk_logprobs, response_topk_logprobs]))
                     teacher_topk_indices.append(torch.vstack([prompt_topk_indices, response_topk_indices]))
 

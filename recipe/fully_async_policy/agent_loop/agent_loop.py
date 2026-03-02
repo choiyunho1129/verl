@@ -278,10 +278,15 @@ class FullyAsyncAgentLoopManager(AgentLoopManager):
 
         print(f"AgentLoopManager: {self.server_addresses}")
         # Update Prometheus configuration with server addresses
-        if rollout_config.prometheus.enable:
+        prom_cfg = None
+        try:
+            prom_cfg = rollout_config.prometheus
+        except Exception:
+            prom_cfg = None
+        if prom_cfg is not None and getattr(prom_cfg, "enable", False):
             if rollout_config.disable_log_stats:
                 raise ValueError("PROMETHEUS needs disable_log_stats==False, but it is currently True.")
-            await asyncio.to_thread(update_prometheus_config, rollout_config.prometheus, self.server_addresses)
+            await asyncio.to_thread(update_prometheus_config, prom_cfg, self.server_addresses)
 
     async def generate_single_sample_async(
         self,
