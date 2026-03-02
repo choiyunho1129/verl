@@ -167,7 +167,9 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         self._create_dataloader(train_dataset, val_dataset, collate_fn, train_sampler)
         self.teacher_config = self.config.actor_rollout_ref.teacher
         self.n_server_workers = self.teacher_config.n_server_workers
-        use_sampled_token_logprobs = bool(OmegaConf.select(self.teacher_config, "use_sampled_token_logprobs", False))
+        use_sampled_token_logprobs = bool(
+            OmegaConf.select(self.teacher_config, "use_sampled_token_logprobs", default=False)
+        )
         self.teacher_client = TeacherClient(
             self.teacher_config.server_ip,
             self.teacher_config.server_port,
