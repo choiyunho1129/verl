@@ -50,7 +50,7 @@ def make_conv_zero_code(question):
     content = f"A conversation between User and Assistant. The user asks a question, and the Assistant solves it. The assistant first thinks about the reasoning process in the mind and then provides the user with the answer. The reasoning process and answer are enclosed within <think> </think> and <answer> </answer> tags, respectively, i.e., <think> reasoning process here </think> <answer> answer here </answer>. User: {question}. Assistant:"
     return content
 
-def make_conv_prime_sft(question, tokenizer):
+def make_conv_prime_sft(question, tokenizer, enable_thinking=None):
     # for math problem
     content = question + "\n\nPresent the answer in LaTex format: \\boxed{Your answer}"
     # for code problem
@@ -58,14 +58,28 @@ def make_conv_prime_sft(question, tokenizer):
     msg = [
         {"role": "user", "content": content}
     ]
-    chat = tokenizer.apply_chat_template(msg, tokenize=False, add_generation_prompt=True)
+    apply_kwargs = {}
+    if enable_thinking is not None:
+        apply_kwargs["enable_thinking"] = enable_thinking
+    chat = tokenizer.apply_chat_template(msg, tokenize=False, add_generation_prompt=True, **apply_kwargs)
     return chat
 
-def apply_qwen_math_template(question: str):
-    return (
-        "<|im_start|>system\nPlease reason step by step, and put your final answer within \\boxed{}.<|im_end|>\n<|im_start|>user\n"
-        + question
-        + "<|im_end|>\n<|im_start|>assistant\n"
+def apply_qwen_math_template(question: str, tokenizer, enable_thinking=None):
+    messages = [
+        {
+            "role": "system",
+            "content": "Please reason step by step, and put your final answer within \\boxed{}.",
+        },
+        {"role": "user", "content": question},
+    ]
+    apply_kwargs = {}
+    if enable_thinking is not None:
+        apply_kwargs["enable_thinking"] = enable_thinking
+    return tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=True,
+        **apply_kwargs,
     )
 
 def simplerl_template(question: str):
@@ -76,21 +90,29 @@ def simplerl_template(question: str):
     )
 
 
-def make_repo_template(question, tokenizer):
+def make_repo_template(question, tokenizer, enable_thinking=None):
     msg = [
         {"role": "user", "content": question}
     ]
-    chat = tokenizer.apply_chat_template(msg, tokenize=False, add_generation_prompt=True)
+    apply_kwargs = {}
+    if enable_thinking is not None:
+        apply_kwargs["enable_thinking"] = enable_thinking
+    chat = tokenizer.apply_chat_template(msg, tokenize=False, add_generation_prompt=True, **apply_kwargs)
     return chat
 
 
-def main(input_file, output_file, model_path, debug=False, remove_system=True, template='own', temperature=0.6, top_p=1.0, max_tokens=8192, n=1, force_generate=True, add_think_before_answer=False, add_oat_evaluate=False, any_true=False, skip_scoring=False, output_eval=None, no_split_think=False):
+def main(input_file, output_file, model_path, debug=False, remove_system=True, template='own', temperature=0.6, top_p=1.0, max_tokens=8192, n=1, force_generate=True, add_think_before_answer=False, add_oat_evaluate=False, any_true=False, skip_scoring=False, output_eval=None, no_split_think=False, enable_thinking=None):
+    if isinstance(enable_thinking, str):
+        normalized = enable_thinking.strip().lower()
+        if normalized in {"true", "1", "yes", "y", "t"}:
+            enable_thinking = True
+        elif normalized in {"false", "0", "no", "n", "f"}:
+            enable_thinking = False
 
     df = pd.read_parquet(input_file)
     dec_output_path = output_file.replace('.jsonl', '') + '.decoded.jsonl'
 
     if force_generate or (not os.path.exists(dec_output_path)):
-        # 数据处理
         messages = df['prompt'].tolist()
         
         assert remove_system is True
@@ -110,8 +132,8 @@ def main(input_file, output_file, model_path, debug=False, remove_system=True, t
         assert len(messages) == len(answers)
                 
         print(messages[0])
-        print(f"temperature: {temperature}, top_p: {top_p}, max_tokens: {max_tokens}, n: {n}")
-        outputs = generate_vllm(messages, model_path, template=template, temperature=temperature, top_p=top_p, max_tokens=max_tokens, n=n)
+        print(f"temperature: {temperature}, top_p: {top_p}, max_tokens: {max_tokens}, n: {n}, enable_thinking: {enable_thinking}")
+        outputs = generate_vllm(messages, model_path, template=template, temperature=temperature, top_p=top_p, max_tokens=max_tokens, n=n, enable_thinking=enable_thinking)
         # rets = {}
         
         # save the outputs first
@@ -225,12 +247,16 @@ def main(input_file, output_file, model_path, debug=False, remove_system=True, t
         print(f'Error: {e}')
         print(f'Output file: {output_file}')
 
-def generate_vllm(messages, model_path, template='own', temperature=0.6, top_p=1.0, max_tokens=8192, n=1):
+def generate_vllm(messages, model_path, template='own', temperature=0.6, top_p=1.0, max_tokens=8192, n=1, enable_thinking=None):
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     # max_tokens is for the maximum length for generation.
-    sampling_params = SamplingParams(temperature=temperature, top_p=top_p, max_tokens=8192, n=n)
+    sampling_params = SamplingParams(temperature=temperature, top_p=top_p, max_tokens=max_tokens, n=n)
     print(torch.cuda.device_count())
     llm = LLM(model=model_path, tensor_parallel_size=torch.cuda.device_count(), gpu_memory_utilization=0.85)
+
+    apply_chat_template_kwargs = {}
+    if enable_thinking is not None:
+        apply_chat_template_kwargs["enable_thinking"] = enable_thinking
 
     gen_prompts = []
     for i in range(len(messages)):
@@ -239,20 +265,25 @@ def generate_vllm(messages, model_path, template='own', temperature=0.6, top_p=1
             gen_prompt = tokenizer.apply_chat_template(
                 cur_message,
                 tokenize=False,
-                add_generation_prompt=True
+                add_generation_prompt=True,
+                **apply_chat_template_kwargs,
             )
         elif template == 'simplerl':
             gen_prompt = simplerl_template(cur_message[0]['content'])
         elif template == 'qwen':
-            gen_prompt = apply_qwen_math_template(cur_message[0]['content'])
+            gen_prompt = apply_qwen_math_template(
+                cur_message[0]['content'],
+                tokenizer,
+                enable_thinking=enable_thinking,
+            )
         elif template == 'prime':
             gen_prompt = make_conv_zero(cur_message[0]['content'])
         elif template == 'prime_sft':
-            gen_prompt = make_conv_prime_sft(cur_message[0]['content'], tokenizer)
+            gen_prompt = make_conv_prime_sft(cur_message[0]['content'], tokenizer, enable_thinking=enable_thinking)
         elif template == 'prime_code':
             gen_prompt = make_conv_zero_code(cur_message[0]['content'])
         elif template == 'repo':
-            gen_prompt = make_repo_template(cur_message[0]['content'], tokenizer)
+            gen_prompt = make_repo_template(cur_message[0]['content'], tokenizer, enable_thinking=enable_thinking)
         elif template == 'no':
             gen_prompt = cur_message[0]['content']
         else: raise ValueError(f'Invalid template: {template}')

@@ -287,10 +287,10 @@ def main() -> None:
     parser.add_argument(
         "--input",
         type=str,
-        default="/data01/yunhochoi/verl/data/test_critique_llama3b.parquet",
+        default="/data1/home/yunhochoi/verl/data/test_critique_llama3b.parquet",
         help="Path to the test parquet dataset.",
     )
-    parser.add_argument("--output-jsonl", type=str, default="/data01/yunhochoi/verl/data/qwen3_eval_critique_llama3b.jsonl")
+    parser.add_argument("--output-jsonl", type=str, default="/data1/home/yunhochoi/verl/data/qwen3_eval_critique_llama3b.jsonl")
     parser.add_argument(
         "--critique-cache",
         type=str,
@@ -322,7 +322,7 @@ def main() -> None:
     parser.add_argument("--critique-model", type=str, default="Qwen/Qwen3-1.7B")
     parser.add_argument("--critique-dtype", type=str, default="auto")
     parser.add_argument("--critique-max-model-len", type=int, default=6144)
-    parser.add_argument("--critique-gpu-memory-utilization", type=float, default=0.90)
+    parser.add_argument("--critique-gpu-memory-utilization", type=float, default=0.80)
     parser.add_argument("--critique-tensor-parallel-size", type=int, default=1)
     parser.add_argument("--critique-max-new-tokens", type=int, default=2048)
     parser.add_argument("--critique-temperature", type=float, default=0.7)
@@ -333,7 +333,7 @@ def main() -> None:
     parser.add_argument("--reward-model", type=str, default="meta-llama/Llama-3.2-3B-Instruct")
     parser.add_argument("--reward-dtype", type=str, default="auto")
     parser.add_argument("--reward-max-model-len", type=int, default=8192)
-    parser.add_argument("--reward-gpu-memory-utilization", type=float, default=0.90)
+    parser.add_argument("--reward-gpu-memory-utilization", type=float, default=0.80)
     parser.add_argument("--reward-tensor-parallel-size", type=int, default=1)
     parser.add_argument("--reward-max-new-tokens", type=int, default=2048)
     parser.add_argument("--reward-temperature", type=float, default=0.6)

@@ -3,7 +3,7 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 TEMPLATE="${TEMPLATE:-qwen}"
 
-CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_critique_llama3b_4epoch/global_step_165}"
+CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_pure_critique_llama3b_math_variants/global_step_320}"
 ACTOR_DIR="${ACTOR_DIR:-${CKPT_DIR}/actor}"
 MERGED_DIR="${MERGED_DIR:-${ACTOR_DIR}/hf_merged}"
 
@@ -13,7 +13,7 @@ MODEL_PATH="${MODEL_PATH:-${MERGED_DIR}}"
 OUTPUT_DIR="${OUTPUT_DIR:-${SCRIPT_DIR}/results}"
 
 DATA="${DATA:-${REPO_ROOT}/data/eval/test.id.parquet}"
-MODEL_NAME="${MODEL_NAME:-qwen2.5_7b_instruct_critique_llama_3b_fnmath_step_165_mathprompt}"
+MODEL_NAME="${MODEL_NAME:-qwen2.5_7b_instruct_pure_critique_step_360}"
 
 mkdir -p "$OUTPUT_DIR"
 

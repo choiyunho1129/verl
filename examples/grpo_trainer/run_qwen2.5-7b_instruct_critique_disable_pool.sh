@@ -68,12 +68,12 @@ cleanup() {
 }
 trap cleanup EXIT
 
-train_file="${REPO_ROOT}/data/math_variants/math_variant_train_llama3b.parquet"
-test_file="${REPO_ROOT}/data/math_variants/math_variant_valid_llama3b.parquet"
+train_file="${REPO_ROOT}/data/math_variants/math_variant_train.parquet"
+test_file="${REPO_ROOT}/data/math_variants/math_variant_valid.parquet"
 reward_fn_path="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
 
 PROJECT_NAME="${PROJECT_NAME:-verl_grpo_critique}"
-EXPERIMENT_NAME="${EXPERIMENT_NAME:-qwen2.5_7b_instruct_critique_llama3b_math_variants}"
+EXPERIMENT_NAME="${EXPERIMENT_NAME:-qwen2.5_7b_instruct_pure_critique_llama3b_math_variants}"
 VAL_DATA_DIR="${REPO_ROOT}/checkpoints/${PROJECT_NAME}/${EXPERIMENT_NAME}/validation"
 
 # Reward Loop / GenRM configuration
@@ -118,6 +118,8 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.gpu_memory_utilization=0.7 \
     actor_rollout_ref.rollout.n=8 \
+    actor_rollout_ref.rollout.temperature=1.0 \
+    actor_rollout_ref.rollout.do_sample=True \
     actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=16 \
     actor_rollout_ref.ref.fsdp_config.param_offload=False \
     actor_rollout_ref.rollout.val_kwargs.n=1 \
@@ -152,5 +154,5 @@ python3 -m verl.trainer.main_ppo \
     trainer.test_freq=5 \
     trainer.val_only=False \
     trainer.val_before_train=True  \
-    trainer.total_epochs=4 \
+    trainer.total_epochs=2 \
     "$@"
