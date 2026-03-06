@@ -40,6 +40,188 @@ RAY_RUNTIME_ENV = {
 }
 
 
+def _is_global_step_dir(path: str) -> bool:
+    return os.path.basename(os.path.normpath(path)).startswith("global_step_")
+
+
+def _is_hf_artifact_dir(path: str | None) -> bool:
+    if not isinstance(path, str) or not os.path.isdir(path):
+        return False
+    if not os.path.exists(os.path.join(path, "config.json")):
+        return False
+    if os.path.exists(os.path.join(path, "tokenizer.json")):
+        return True
+    return os.path.exists(os.path.join(path, "vocab.json")) and os.path.exists(os.path.join(path, "merges.txt"))
+
+
+def _has_hf_weight_files(path: str | None) -> bool:
+    """Return True if a directory looks like it contains HF model weights."""
+    if not isinstance(path, str) or not os.path.isdir(path):
+        return False
+    direct_files = {
+        "pytorch_model.bin",
+        "model.safetensors",
+        "pytorch_model.bin.index.json",
+        "model.safetensors.index.json",
+    }
+    names = set(os.listdir(path))
+    if names & direct_files:
+        return True
+    # Sharded checkpoint naming convention.
+    for name in names:
+        if (name.startswith("pytorch_model-") and name.endswith(".bin")) or (
+            name.startswith("model-") and name.endswith(".safetensors")
+        ):
+            return True
+    return False
+
+
+def _infer_ckpt_and_hf_path(path: str | None) -> tuple[str | None, str | None]:
+    """
+    Infer checkpoint/global_step folder and actor/huggingface folder from a local path.
+
+    Supported inputs:
+    - .../global_step_xx
+    - .../global_step_xx/actor
+    - .../global_step_xx/actor/huggingface
+    - checkpoint root containing latest_checkpointed_iteration.txt
+    """
+    from verl.utils.checkpoint.checkpoint_manager import find_latest_ckpt_path
+
+    if not isinstance(path, str):
+        return None, None
+    if path.startswith(("hdfs://", "http://", "https://", "file://")):
+        return None, None
+    if not os.path.exists(path):
+        return None, None
+
+    norm_path = os.path.normpath(os.path.abspath(path))
+    base_name = os.path.basename(norm_path)
+
+    if base_name == "huggingface":
+        actor_dir = os.path.dirname(norm_path)
+        global_step_dir = os.path.dirname(actor_dir)
+        if os.path.basename(actor_dir) == "actor" and _is_global_step_dir(global_step_dir):
+            return global_step_dir, norm_path
+
+    if base_name == "actor":
+        global_step_dir = os.path.dirname(norm_path)
+        if _is_global_step_dir(global_step_dir):
+            return global_step_dir, os.path.join(norm_path, "huggingface")
+
+    if _is_global_step_dir(norm_path):
+        return norm_path, os.path.join(norm_path, "actor", "huggingface")
+
+    tracker_file = os.path.join(norm_path, "latest_checkpointed_iteration.txt")
+    if os.path.exists(tracker_file):
+        latest_ckpt = find_latest_ckpt_path(norm_path)
+        if latest_ckpt is not None:
+            latest_ckpt = os.path.normpath(os.path.abspath(latest_ckpt))
+            return latest_ckpt, os.path.join(latest_ckpt, "actor", "huggingface")
+
+    return None, None
+
+
+def _resolve_ckpt_from_trainer_config(config) -> str | None:
+    """
+    Resolve checkpoint folder from trainer resume settings.
+
+    This follows RayPPOTrainer._load_checkpoint semantics:
+    - resume_path: use trainer.resume_from_path
+    - auto: find latest under trainer.default_local_dir
+    """
+    from verl.utils.checkpoint.checkpoint_manager import find_latest_ckpt_path
+
+    resume_mode = OmegaConf.select(config, "trainer.resume_mode", default="auto")
+    if resume_mode == "disable":
+        return None
+
+    if resume_mode == "resume_path":
+        resume_from_path = OmegaConf.select(config, "trainer.resume_from_path", default=None)
+        ckpt_from_resume, _ = _infer_ckpt_and_hf_path(resume_from_path)
+        return ckpt_from_resume
+
+    if resume_mode != "auto":
+        return None
+
+    checkpoint_folder = OmegaConf.select(config, "trainer.default_local_dir", default=None)
+    if not isinstance(checkpoint_folder, str):
+        return None
+    if not os.path.isabs(checkpoint_folder):
+        checkpoint_folder = os.path.join(os.getcwd(), checkpoint_folder)
+
+    # Avoid noisy logs from find_latest_ckpt_path when no tracker exists.
+    tracker_file = os.path.join(checkpoint_folder, "latest_checkpointed_iteration.txt")
+    if not os.path.exists(tracker_file):
+        return None
+
+    latest_ckpt = find_latest_ckpt_path(checkpoint_folder)
+    if latest_ckpt is None:
+        return None
+    return os.path.normpath(os.path.abspath(latest_ckpt))
+
+
+def _resolve_resume_and_model_paths(config) -> None:
+    """
+    Resolve resume checkpoint and tokenizer/model path before tokenizer initialization.
+
+    Priority:
+    1) trainer.resume_mode/default_local_dir (same as main_ppo auto-resume)
+    2) checkpoint-like actor_rollout_ref.model.path
+    """
+    from omegaconf import open_dict
+
+    model_path = OmegaConf.select(config, "actor_rollout_ref.model.path", default=None)
+    ckpt_from_model, hf_from_model = _infer_ckpt_and_hf_path(model_path)
+    ckpt_from_trainer = _resolve_ckpt_from_trainer_config(config)
+
+    resolved_ckpt = ckpt_from_trainer if ckpt_from_trainer is not None else ckpt_from_model
+
+    resolved_tokenizer_path = None
+    if resolved_ckpt is not None:
+        hf_from_ckpt = os.path.join(resolved_ckpt, "actor", "huggingface")
+        if _is_hf_artifact_dir(hf_from_ckpt):
+            resolved_tokenizer_path = hf_from_ckpt
+    if resolved_tokenizer_path is None and _is_hf_artifact_dir(hf_from_model):
+        resolved_tokenizer_path = hf_from_model
+
+    # Keep model.path as the actual weight source (for vLLM init),
+    # and use tokenizer_path to point at checkpoint hf artifacts.
+    if resolved_tokenizer_path is not None:
+        with open_dict(config):
+            config.actor_rollout_ref.model.tokenizer_path = resolved_tokenizer_path
+        print(f"[ResumeResolve] actor_rollout_ref.model.tokenizer_path -> {resolved_tokenizer_path}")
+
+    # If model.path itself is a checkpoint-like folder but lacks model weights,
+    # fail early with a clear message instead of vLLM RuntimeError later.
+    if ckpt_from_model is not None:
+        model_hf_candidate = hf_from_model
+        if not _has_hf_weight_files(model_hf_candidate):
+            raise ValueError(
+                "Resolved checkpoint HuggingFace folder does not contain model weights. "
+                "Set `actor_rollout_ref.model.path` to a base HF model path that contains weights "
+                "(e.g. Qwen/... or a local HF snapshot), and use "
+                "`trainer.resume_mode`/`trainer.resume_from_path` for checkpoint resume."
+            )
+        # model.path points to a checkpoint-style input that does include full HF weights:
+        # normalize it to huggingface subfolder for consistency.
+        with open_dict(config):
+            config.actor_rollout_ref.model.path = model_hf_candidate
+        print(f"[ResumeResolve] actor_rollout_ref.model.path -> {model_hf_candidate}")
+
+    if OmegaConf.select(config, "trainer.resume_mode", default="auto") != "disable" and resolved_ckpt is not None:
+        with open_dict(config):
+            config.trainer.resume_mode = "resume_path"
+            config.trainer.resume_from_path = resolved_ckpt
+            # When resuming, model/optimizer states come from checkpoint.
+            # Skip initial HF weight load to avoid requiring full model weights
+            # under actor/huggingface (it may only contain config/tokenizer artifacts).
+            if OmegaConf.select(config, "actor_rollout_ref.actor.load_weight", default=True):
+                config.actor_rollout_ref.actor.load_weight = False
+        print(f"[ResumeResolve] trainer.resume_from_path -> {resolved_ckpt}")
+        print("[ResumeResolve] actor_rollout_ref.actor.load_weight -> False (resume from checkpoint)")
+
+
 @hydra.main(config_path="config", config_name="on_policy_distill_trainer", version_base=None)
 def main(config):
     """Main entry point for PPO training with Hydra configuration management.
@@ -118,24 +300,32 @@ class TaskRunner:
         from omegaconf import OmegaConf
 
         from verl.utils.fs import copy_to_local
+        from verl.trainer.ppo.reward import load_reward_manager
 
         print(f"TaskRunner hostname: {socket.gethostname()}, PID: {os.getpid()}")
 
         pprint(OmegaConf.to_container(config, resolve=True))
 
         OmegaConf.resolve(config)
+        _resolve_resume_and_model_paths(config)
 
         # Download the checkpoint from HDFS to the local machine.
         # `use_shm` determines whether to use shared memory, which could lead to faster model loading if turned on
-        local_path = copy_to_local(
-            config.actor_rollout_ref.model.path, use_shm=config.actor_rollout_ref.model.get("use_shm", False)
-        )
+        model_cfg = config.actor_rollout_ref.model
+        local_path = copy_to_local(model_cfg.path, use_shm=model_cfg.get("use_shm", False))
+        tokenizer_path = model_cfg.get("tokenizer_path", None) or model_cfg.path
+        local_tokenizer_path = copy_to_local(tokenizer_path, use_shm=model_cfg.get("use_shm", False))
 
         # Instantiate the tokenizer and processor.
         from verl.utils import hf_tokenizer
 
         trust_remote_code = config.data.get("trust_remote_code", False)
-        tokenizer = hf_tokenizer(local_path, trust_remote_code=trust_remote_code)
+        tokenizer = hf_tokenizer(local_tokenizer_path, trust_remote_code=trust_remote_code)
+
+        # Load validation reward manager (supports custom_reward_function.path/name)
+        val_reward_fn = load_reward_manager(
+            config, tokenizer, num_examine=1, **config.reward_model.get("reward_kwargs", {})
+        )
 
         # Version validation for vllm.
         if config.actor_rollout_ref.rollout.name in ["vllm"]:
@@ -212,6 +402,7 @@ class TaskRunner:
             role_worker_mapping=role_worker_mapping,
             resource_pool_manager=resource_pool_manager,
             ray_worker_group_cls=ray_worker_group_cls,
+            val_reward_fn=val_reward_fn,
             train_dataset=train_dataset,
             val_dataset=val_dataset,
             collate_fn=collate_fn,

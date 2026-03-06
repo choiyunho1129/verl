@@ -121,7 +121,9 @@ class ToolAgentLoop(AgentLoopBase):
         self.apply_chat_template_kwargs = config.data.get("apply_chat_template_kwargs", {})
         self.prompt_length = config.actor_rollout_ref.rollout.prompt_length
         self.response_length = config.actor_rollout_ref.rollout.response_length
-        self.system_prompt = initialize_system_prompt(self.tokenizer, **self.apply_chat_template_kwargs)
+        self.system_prompt = (
+            initialize_system_prompt(self.tokenizer, **self.apply_chat_template_kwargs) if self.use_chat_template else []
+        )
 
         # Initialize interactions from config file
         self.interaction_config_file = config.actor_rollout_ref.rollout.multi_turn.interaction_config_path
@@ -200,30 +202,16 @@ class ToolAgentLoop(AgentLoopBase):
 
     async def _handle_pending_state(self, agent_data: AgentData, sampling_params: dict[str, Any]) -> AgentState:
         """Handle the pending state: prepare the prompt and start generation."""
-        if self.processor is not None:
-            raw_prompt = await self.loop.run_in_executor(
-                None,
-                lambda: self.processor.apply_chat_template(
-                    agent_data.messages,
-                    tools=self.tool_schemas,
-                    add_generation_prompt=True,
-                    tokenize=False,
-                    **self.apply_chat_template_kwargs,
-                ),
-            )
-            model_inputs = self.processor(text=[raw_prompt], images=agent_data.image_data, return_tensors="pt")
-            agent_data.prompt_ids = model_inputs.pop("input_ids").squeeze(0).tolist()
-        else:
-            agent_data.prompt_ids = await self.loop.run_in_executor(
-                None,
-                lambda: self.tokenizer.apply_chat_template(
-                    agent_data.messages,
-                    tools=self.tool_schemas,
-                    add_generation_prompt=True,
-                    tokenize=True,
-                    **self.apply_chat_template_kwargs,
-                ),
-            )
+        agent_data.prompt_ids = await self.loop.run_in_executor(
+            None,
+            lambda: self._build_prompt_ids(
+                agent_data.messages,
+                add_generation_prompt=True,
+                apply_chat_template_kwargs=self.apply_chat_template_kwargs,
+                image_data=agent_data.image_data,
+                tools=self.tool_schemas,
+            ),
+        )
         return AgentState.GENERATING
 
     async def _handle_generating_state(

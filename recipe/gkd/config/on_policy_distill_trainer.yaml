@@ -19,6 +19,7 @@ data:
   val_batch_size: null # DEPRECATED: Validation datasets are sent to inference engines as a whole batch, which will schedule the memory themselves
   return_raw_input_ids: False  # This should be set to true when the tokenizer between policy and rm differs
   return_raw_chat: False
+  use_chat_template: True  # set False for base models without chat template
   return_full_prompt: False
   shuffle: True
   filter_overlong_prompts: False # for large-scale dataset, filtering overlong prompts could be timeconsuming. You cat set the filter_overlong_prompts_workers to use multiprocessing to speed up.
@@ -57,10 +58,54 @@ actor_rollout_ref:
     #   activations_checkpoint_num_layers: null # not used with 'selective'
     trust_remote_code: False
   actor:
-    # Whether to automatically adjust batch size at runtime
+    _target_: verl.workers.config.McoreActorConfig
     strategy: megatron
-    micro_batch_size: 2
+    rollout_n: ${oc.select:actor_rollout_ref.rollout.n,1}
+    ppo_mini_batch_size: 256
+    ppo_micro_batch_size: null
+    ppo_micro_batch_size_per_gpu: 2
+    use_dynamic_bsz: False
+    ppo_max_token_len_per_gpu: 1024
+    clip_ratio: 0.2
+    clip_ratio_low: 0.2
+    clip_ratio_high: 0.2
+    freeze_vision_tower: False
+    policy_loss:
+      _target_: verl.workers.config.PolicyLossConfig
+      loss_mode: vanilla
+      clip_cov_ratio: 0.0002
+      clip_cov_lb: 1.0
+      clip_cov_ub: 5.0
+      kl_cov_ratio: 0.0002
+      ppo_kl_coef: 0.1
+    clip_ratio_c: 3.0
+    loss_agg_mode: token-mean
+    loss_scale_factor: null
+    entropy_coeff: 0
+    calculate_entropy: False
+    use_kl_loss: False
+    use_torch_compile: False
+    kl_loss_coef: 0.001
+    kl_loss_type: low_var_kl
+    ppo_epochs: 1
+    shuffle: False
+    data_loader_seed: 42
+    load_weight: True
+    use_fused_kernels: ${oc.select:actor_rollout_ref.model.use_fused_kernels,false}
+    checkpoint:
+      _target_: verl.trainer.config.CheckpointConfig
+      async_save: False # save checkpoint asynchronously
+      # What to include in saved checkpoints
+      # with 'hf_model' you can save whole model as hf format, now only use sharded model checkpoint to save space
+      save_contents: ['model', 'optimizer', 'extra']
+      load_contents: ${.save_contents}
+    router_replay:
+      _target_: verl.workers.config.RouterReplayConfig
+      mode: disabled
+      record_file: null
+      replay_file: null
     megatron:
+      _target_: verl.workers.config.McoreEngineConfig
       param_offload: False
       grad_offload: False
       optimizer_offload: False
@@ -74,25 +119,34 @@ actor_rollout_ref:
       use_distributed_optimizer: True
       use_dist_checkpointing: False
       dist_checkpointing_path: null
+      dist_checkpointing_prefix: ''
       seed: 42
+      override_ddp_config: {}
       # additional transformer config like: num_layers_in_first(/last)_pipeline_stage
       override_transformer_config: {}
+      override_mcore_model_config: {}
       use_mbridge: False
+      vanilla_mbridge: True
+      use_remove_padding: ${oc.select:actor_rollout_ref.model.use_remove_padding,True}
+      forward_only: False
+      dtype: bfloat16 # ["bfloat16", "float16"]
     optim:
+      _target_: verl.workers.config.McoreOptimizerConfig
       # Learning rate
-      lr: 1e-6
+      lr: 2e-5
       # Warmup steps ratio (used if lr_warmup_steps is negative)
       lr_warmup_steps_ratio: 0.0
       # Total training steps (must be overridden at runtime)
       total_training_steps: -1
       # Weight decay
       weight_decay: 0.01
+      # Prioritized. None, 0 or Negative values mean delegating to lr_warmup_steps_ratio.
+      lr_warmup_steps: -1
+      betas: [0.9, 0.999]
       optimizer: adam
       clip_grad: 1.0
       # initial learning rate for warmup, default to 0.0
       lr_warmup_init: 0.0
-      # Prioritized. None, 0 or Negative values mean delegating to lr_warmup_steps_ratio.
-      lr_warmup_steps: null
       lr_decay_steps: null
       # select from constant/linear/cosine/inverse_square_root
       lr_decay_style: constant
@@ -105,18 +159,7 @@ actor_rollout_ref:
       lr_wsd_decay_steps: null
       # use checkpoint optimizer parameter scheduler
       use_checkpoint_opt_param_scheduler: False
-    data_loader_seed: null
-    load_weight: True
-    checkpoint: 
-      async_save: False # save checkpoint asynchronously
-      # What to include in saved checkpoints
-      # with 'hf_model' you can save whole model as hf format, now only use sharded model checkpoint to save space
-      save_contents: ['model', 'optimizer', 'extra']
-      load_contents: ${actor_rollout_ref.actor.checkpoint.save_contents}
-    use_dynamic_bsz: False
-    max_token_len: 1024
-    use_torch_compile: False
-    shuffle: False
+      override_optimizer_config: {}
     # profile the actor model in `update_policy` 
     profiler:
 
@@ -143,6 +186,7 @@ actor_rollout_ref:
 
         # nsys tool config
         nsys:
+          _target_: verl.utils.profiler.config.NsightToolConfig
 
           # True for each task has its own database, False for all tasks in one training step share one database.
           discrete: ${oc.select:global_profiler.global_tool_config.nsys.discrete}
@@ -176,6 +220,12 @@ actor_rollout_ref:
 
           # stop profile mini-batch in training
           step_end: null
+
+        # torch memory profiler config
+        torch_memory:
+          _target_: verl.utils.profiler.config.TorchMemoryToolConfig
+          trace_alloc_max_entries: ${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}
+          stack_depth: ${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}
 
 
   rollout:
@@ -351,6 +401,9 @@ actor_rollout_ref:
   teacher:
     server_ip: localhost
     server_port: 15555
+    # KD logprob temperature. Keep 1.0 to use pre-temperature logits.
+    # Rollout sampling temperature is configured by actor_rollout_ref.rollout.temperature.
+    temperature: 1.0
     overlap_rollout: False
     n_server_workers: 1
     use_sampled_token_logprobs: False
@@ -360,6 +413,20 @@ reward_model:
   enable: False
   enable_resource_pool: False
   use_reward_loop: False
+
+reward_manager:
+  _target_: verl.trainer.config.RewardManagerConfig
+  source: register
+  name: naive
+  module:
+    _target_: verl.trainer.config.ModuleConfig
+    path: null
+    name: null
+
+custom_reward_function:
+  path: null
+  name: compute_score
+  reward_kwargs: {}
 
 trainer:
   balance_batch: True

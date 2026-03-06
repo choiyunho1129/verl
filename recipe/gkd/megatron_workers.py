@@ -20,9 +20,7 @@ import os
 import time
 
 import numpy as np
-import psutil
 import torch
-from codetiming import Timer
 from megatron.core import parallel_state as mpu
 from megatron.core.distributed import finalize_model_grads
 from megatron.core.optimizer import DistributedOptimizer
@@ -37,9 +35,7 @@ from verl.single_controller.base.decorator import (
     make_nd_compute_dataproto_dispatch_fn,
     register,
 )
-from verl.utils.checkpoint.megatron_checkpoint_manager import MegatronCheckpointManager
 from verl.utils.device import get_device_id, get_device_name, get_torch_device
-from verl.utils.flops_counter import FlopsCounter
 from verl.utils.megatron.pipeline_parallel import make_batch_generator
 from verl.utils.megatron_utils import get_model_config
 from verl.utils.profiler import (
@@ -170,7 +166,7 @@ class OnPolicyDistillActor:
         self.distill_topk = int(distill_topk) if distill_topk is not None else None
         if self.distill_topk is not None and self.distill_topk <= 0:
             self.distill_topk = None
-        loss_name = str(OmegaConf.select(self.config, "distill_loss.name", "")).lower()
+        loss_name = str(OmegaConf.select(self.config, "distill_loss.name", default="")).lower()
         self.exclude_teacher_generated_last = loss_name in {
             "rkl_logprob_diff",
             "reverse_kl_logprob_diff",
@@ -520,91 +516,15 @@ class MegatronOnPolicyDistillActorWorker(ActorRolloutRefWorker):
 
     @register(dispatch_mode=Dispatch.ONE_TO_ALL)
     def init_model(self):
-        from verl.utils.torch_dtypes import PrecisionType
-
-        override_model_config = OmegaConf.to_container(self.config.model.get("override_config", OmegaConf.create()))
-        override_transformer_config = OmegaConf.to_container(
-            self.config.actor.megatron.get("override_transformer_config", OmegaConf.create()), resolve=True
-        )
-
-        self.param_dtype = torch.bfloat16
-        log_gpu_memory_usage("Before init actor model and optimizer", logger=logger)
-        self.dtype = PrecisionType.to_dtype(self.param_dtype)
-        # we need the model for actor and rollout
-        optim_config = self.config.actor.optim
-        (
-            self.actor_module,
-            self.actor_optimizer,
-            self.actor_optimizer_scheduler,
-            self.actor_model_config,
-            self.actor_optim_config,
-        ) = self._build_model_optimizer(
-            model_path=self.config.model.path,
-            optim_config=optim_config,
-            override_model_config=override_model_config,
-            override_transformer_config=override_transformer_config,
-        )
-
-        self.actor = OnPolicyDistillActor(
-            config=self.config.actor,
-            model_config=self.actor_model_config,
-            hf_config=self.hf_config,
-            tf_config=self.tf_config,
-            actor_module=self.actor_module,
-            actor_optimizer=self.actor_optimizer,
-        )
-        log_gpu_memory_usage("After OnPolicyDistillActor init", logger=logger)
-
-        self.flops_counter = FlopsCounter(self.actor_model_config)
-        self.checkpoint_mananager = MegatronCheckpointManager(
-            config=self.config,
-            checkpoint_config=self.config.actor.checkpoint,
-            model_config=self.actor_model_config,
-            transformer_config=self.tf_config,
-            role="actor",
-            model=self.actor_module,
-            arch=self.architectures[0],
-            hf_config=self.hf_config,
-            param_dtype=self.param_dtype,
-            share_embeddings_and_output_weights=self.share_embeddings_and_output_weights,
-            processing_class=self.processor if self.processor is not None else self.tokenizer,
-            optimizer=self.actor_optimizer,
-            optimizer_scheduler=self.actor_optimizer_scheduler,
-            use_distributed_optimizer=self.config.actor.megatron.use_distributed_optimizer,
-            use_checkpoint_opt_param_scheduler=self.config.actor.optim.use_checkpoint_opt_param_scheduler,
-            bridge=self.bridge,
-            use_dist_checkpointing=self.config.actor.megatron.use_dist_checkpointing,
-        )
-        get_torch_device().empty_cache()
-        log_gpu_memory_usage("Actor init_model finished", logger=logger)
+        # Switch to the standard PPO actor path (MegatronPPOActor) so actor loss
+        # is driven by old_log_probs / advantages instead of distill-only KL.
+        return super().init_model()
 
     @register(dispatch_mode=make_nd_compute_dataproto_dispatch_fn(mesh_name="actor"))
     @GPUMemoryLogger(role="update_actor", logger=logger)
     @DistProfiler.annotate(color="red")
     def update_actor(self, data: DataProto):
-        assert self._is_actor and not self._is_rollout
-
-        with Timer(name="update_policy", logger=None) as timer:
-            metrics = self.actor.update_policy(data=data)
-
-        delta_time = timer.last
-        global_num_tokens = data.meta_info["global_token_num"]
-        estimated_flops, promised_flops = self.flops_counter.estimate_flops(global_num_tokens, delta_time)
-        metrics["perf/mfu/actor"] = estimated_flops / promised_flops / self.world_size
-        metrics["perf/max_memory_allocated_gb"] = get_torch_device().max_memory_allocated() / (1024**3)
-        metrics["perf/max_memory_reserved_gb"] = get_torch_device().max_memory_reserved() / (1024**3)
-        metrics["perf/cpu_memory_used_gb"] = psutil.virtual_memory().used / (1024**3)
-        from verl.utils.megatron.optimizer import get_megatron_last_lr
-
-        metrics["actor/lr"] = get_megatron_last_lr(self.actor_optimizer)
-        self.actor_optimizer_scheduler.step(1)
-
-        # TODO: here, we should return all metrics
-        output = DataProto(meta_info={"metrics": metrics})
-        output = output.to("cpu")
-
-        get_torch_device().empty_cache()
-        return output
+        return super().update_actor(data)
 
     @register(dispatch_mode=Dispatch.ONE_TO_ALL, blocking=False)
     def sync_rollout_weights(self):
@@ -685,7 +605,7 @@ class MegatronOnPolicyDistillRolloutWorker(ActorRolloutRefWorker):
 
         MegatronWorker.__init__(self)
         self.config = config
-        self.local_path = copy_to_local(self.config.model.path)
+        self.local_path = copy_to_local(self.config.model.path, hf_required_files=("config.json",))
 
         # NOTE(sgm): We utilize colocate WorkerGroup by default.
         # As a result, Workers for different model share the same process.

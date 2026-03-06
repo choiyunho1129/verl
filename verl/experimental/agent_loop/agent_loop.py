@@ -226,7 +226,84 @@ class AgentLoopBase(ABC):
         self.server_manager = server_manager
         self.tokenizer = tokenizer
         self.processor = processor
+        self.use_chat_template = self.config.data.get("use_chat_template", True)
         self.loop = get_event_loop()
+
+    @staticmethod
+    def _message_content_to_text(content: object) -> str:
+        if isinstance(content, str):
+            return content
+        if isinstance(content, list):
+            parts = []
+            for segment in content:
+                if isinstance(segment, dict):
+                    segment_type = segment.get("type")
+                    if segment_type == "text":
+                        parts.append(str(segment.get("text", "")))
+                    elif segment_type == "image":
+                        parts.append("<image>")
+                    elif segment_type == "video":
+                        parts.append("<video>")
+                    elif "text" in segment:
+                        parts.append(str(segment.get("text", "")))
+                    else:
+                        parts.append(str(segment))
+                else:
+                    parts.append(str(segment))
+            return "".join(parts)
+        return str(content)
+
+    def _messages_to_plain_prompt(self, messages: list, add_generation_prompt: bool = True) -> str:
+        # Keep the prompt as plain text when chat template is disabled.
+        del add_generation_prompt  # no-op in plain prompt mode
+        parts = []
+        for message in messages:
+            if isinstance(message, dict):
+                content = self._message_content_to_text(message.get("content", ""))
+            else:
+                content = self._message_content_to_text(message)
+            if content:
+                parts.append(content)
+        return "\n".join(parts)
+
+    def _build_prompt_ids(
+        self,
+        messages: list,
+        *,
+        add_generation_prompt: bool,
+        apply_chat_template_kwargs: dict[str, Any],
+        image_data: Optional[list[Any]] = None,
+        tools: Optional[list[dict[str, Any]]] = None,
+    ) -> list[int]:
+        if self.use_chat_template:
+            if self.processor is not None:
+                raw_prompt = self.processor.apply_chat_template(
+                    messages,
+                    tools=tools,
+                    add_generation_prompt=add_generation_prompt,
+                    tokenize=False,
+                    **apply_chat_template_kwargs,
+                )
+                model_inputs = self.processor(text=[raw_prompt], images=image_data, return_tensors="pt")
+                return model_inputs.pop("input_ids").squeeze(0).tolist()
+
+            return self.tokenizer.apply_chat_template(
+                messages,
+                tools=tools,
+                add_generation_prompt=add_generation_prompt,
+                tokenize=True,
+                **apply_chat_template_kwargs,
+            )
+
+        raw_prompt = self._messages_to_plain_prompt(messages, add_generation_prompt=add_generation_prompt)
+        if self.processor is not None:
+            model_inputs = self.processor(text=[raw_prompt], images=image_data, return_tensors="pt")
+            return model_inputs.pop("input_ids").squeeze(0).tolist()
+
+        prompt_ids = self.tokenizer(raw_prompt, add_special_tokens=False)["input_ids"]
+        if prompt_ids and isinstance(prompt_ids[0], list):
+            prompt_ids = prompt_ids[0]
+        return prompt_ids
 
     @abstractmethod
     async def run(self, sampling_params: dict[str, Any], **kwargs) -> AgentLoopOutput:

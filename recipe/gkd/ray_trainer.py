@@ -19,6 +19,8 @@ This trainer supports model-agonistic model initialization with huggingface
 """
 
 import time
+import uuid
+from collections import defaultdict
 from typing import Optional
 
 import numpy as np
@@ -33,12 +35,14 @@ from recipe.gkd.teacher import TeacherClient
 from recipe.gkd.teacher_utils import get_teacher_knowledge
 from verl import DataProto
 from verl.experimental.dataset.sampler import AbstractCurriculumSampler
+from verl.protocol import pad_dataproto_to_divisor, unpad_dataproto
 from verl.single_controller.base import Worker
 from verl.single_controller.ray import RayClassWithInitArgs, RayWorkerGroup
 from verl.single_controller.ray.base import create_colocated_worker_cls
 from verl.trainer.ppo.metric_utils import (
     compute_throughout_metrics,
     compute_timing_metrics,
+    process_validation_metrics,
 )
 from verl.trainer.ppo.ray_trainer import RayPPOTrainer, ResourcePoolManager, Role
 from verl.utils.debug import marked_timer
@@ -124,6 +128,8 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         role_worker_mapping: dict[Role, WorkerType],
         resource_pool_manager: ResourcePoolManager,
         ray_worker_group_cls: RayWorkerGroup = RayWorkerGroup,
+        reward_fn=None,
+        val_reward_fn=None,
         train_dataset: Optional[Dataset] = None,
         val_dataset: Optional[Dataset] = None,
         collate_fn=None,
@@ -163,6 +169,8 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         self.device_name = device_name
         self.validation_generations_logger = ValidationGenerationsLogger()
         self.use_critic = False
+        self.reward_fn = reward_fn
+        self.val_reward_fn = val_reward_fn
 
         self._create_dataloader(train_dataset, val_dataset, collate_fn, train_sampler)
         self.teacher_config = self.config.actor_rollout_ref.teacher
@@ -170,12 +178,29 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         use_sampled_token_logprobs = bool(
             OmegaConf.select(self.teacher_config, "use_sampled_token_logprobs", default=False)
         )
+        rollout_temperature = float(self.config.actor_rollout_ref.rollout.temperature)
+        # Distillation advantage should use pre-temperature log probs.
+        # Keep rollout temperature for sampling only.
+        self.distill_log_prob_temperature = 1.0
+        configured_teacher_temperature = OmegaConf.select(self.teacher_config, "temperature", default=None)
+        if configured_teacher_temperature is not None and float(configured_teacher_temperature) != 1.0:
+            print(
+                "[Info] Ignore configured teacher temperature for KD logprob computation: "
+                f"{configured_teacher_temperature} -> {self.distill_log_prob_temperature}"
+            )
         self.teacher_client = TeacherClient(
             self.teacher_config.server_ip,
             self.teacher_config.server_port,
             n_server_workers=self.n_server_workers,
+            temperature=self.distill_log_prob_temperature,
             use_sampled_token_logprobs=use_sampled_token_logprobs,
         )
+        if rollout_temperature != self.distill_log_prob_temperature:
+            print(
+                "[Info] rollout temperature is used only for sampling; "
+                "KD logprob/advantage temperature is fixed to pre-temperature logits: "
+                f"rollout={rollout_temperature}, kd_logprob={self.distill_log_prob_temperature}"
+            )
 
         self.params_dtype = PrecisionType.to_dtype("bfloat16")
         self.async_rollout_mode = False
@@ -412,6 +437,81 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         )
         return future
 
+    @staticmethod
+    def _compute_response_mask(batch: DataProto) -> torch.Tensor:
+        responses = batch.batch["responses"]
+        response_length = responses.size(1)
+        attention_mask = batch.batch["attention_mask"].to(torch.bool)
+        return attention_mask[:, -response_length:]
+
+    @staticmethod
+    def _extract_teacher_response_log_probs(batch: DataProto) -> torch.Tensor:
+        response_length = batch.batch["responses"].size(1)
+        teacher_topk_logps = torch.as_tensor(batch.non_tensor_batch["teacher_topk_logps"], dtype=torch.float32)
+        if teacher_topk_logps.ndim != 3:
+            raise ValueError(
+                f"teacher_topk_logps must be rank-3 [bs, seq_len, topk], got shape={tuple(teacher_topk_logps.shape)}"
+            )
+        if teacher_topk_logps.size(-1) < 1:
+            raise ValueError("teacher_topk_logps topk dim is empty; expected sampled token logprob at index 0.")
+
+        teacher_sampled_logps = teacher_topk_logps[..., 0]
+        # Align to actor log_prob slice: log_probs[:, -response_length - 1 : -1].
+        if teacher_sampled_logps.size(1) >= response_length + 1:
+            return teacher_sampled_logps[:, -response_length - 1 : -1].contiguous()
+        if teacher_sampled_logps.size(1) >= response_length:
+            return teacher_sampled_logps[:, -response_length:].contiguous()
+
+        raise ValueError(
+            "teacher sequence length is shorter than response length: "
+            f"{teacher_sampled_logps.size(1)} < {response_length}"
+        )
+
+    def _compute_student_response_log_probs(self, batch: DataProto, timing_raw: Optional[dict] = None) -> torch.Tensor:
+        # Recompute from actor with pre-temperature logits so advantage uses
+        # q = log pi_student(x) - log pi_teacher(x) at temperature=1.
+        batch.meta_info["temperature"] = self.distill_log_prob_temperature
+        if timing_raw is not None:
+            with marked_timer("old_log_prob", timing_raw, color="blue"):
+                old_log_prob = self.actor_wg.compute_log_prob(batch)
+        else:
+            old_log_prob = self.actor_wg.compute_log_prob(batch)
+        return old_log_prob.batch["old_log_probs"].to(torch.float32)
+
+    def _prepare_actor_batch_for_reinforce(self, batch: DataProto, timing_raw: dict, metrics: dict) -> DataProto:
+        response_mask = self._compute_response_mask(batch)
+        batch.batch["response_mask"] = response_mask
+
+        # Always recompute student token log_probs from untempered logits.
+        # rollout_log_probs are sampled-policy log probs and may include rollout temperature.
+        old_log_probs = self._compute_student_response_log_probs(batch=batch, timing_raw=timing_raw)
+
+        teacher_log_probs = self._extract_teacher_response_log_probs(batch).to(torch.float32)
+        if teacher_log_probs.shape != old_log_probs.shape:
+            raise ValueError(
+                "old_log_probs and teacher_log_probs shape mismatch: "
+                f"{tuple(old_log_probs.shape)} vs {tuple(teacher_log_probs.shape)}"
+            )
+
+        reverse_kl = old_log_probs - teacher_log_probs
+        mask_float = response_mask.to(reverse_kl.dtype)
+        advantages = (-reverse_kl) * mask_float
+
+        batch.batch["old_log_probs"] = old_log_probs
+        batch.batch["advantages"] = advantages
+
+        valid_tokens = mask_float.sum().clamp_min(1.0)
+        metrics["actor/reverse_kl"] = ((reverse_kl * mask_float).sum() / valid_tokens).item()
+        metrics["actor/advantage_mean"] = ((advantages * mask_float).sum() / valid_tokens).item()
+
+        # Megatron PPO actor expects this in meta_info during update.
+        # Keep update-time logprob temperature consistent with old_log_probs.
+        rollout_cfg = self.config.actor_rollout_ref.rollout
+        batch.meta_info["temperature"] = self.distill_log_prob_temperature
+        batch.meta_info["multi_turn"] = rollout_cfg.multi_turn.enable
+
+        return batch
+
     def one_step_off_scheduler(self, continuous_iterator):
         """One-step-off scheduler implementation (version 1) for GKD training with improved pipeline.
 
@@ -553,6 +653,193 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
             result = teacher_future.get()
         yield *result, timing
 
+    def _validate(self):
+        if not hasattr(self, "val_dataloader"):
+            return {}
+
+        val_repeat = max(1, int(self.config.actor_rollout_ref.rollout.val_kwargs.n))
+
+        response_lens_all = []
+        data_source_lst = []
+        sample_uids = []
+        sample_inputs = []
+        sample_outputs = []
+        sample_gts = []
+        sample_scores = []  # reward scores when val_reward_fn is available; otherwise reverse_kl
+        reward_extra_infos_dict: dict[str, list] = defaultdict(list)
+        reverse_kl_numerator = 0.0
+        reverse_kl_denominator = 0.0
+
+        # Ensure rollout uses the latest actor weights for validation generation.
+        self.sync_rollout_weights()
+
+        for test_data in self.val_dataloader:
+            test_batch = DataProto.from_single_dict(test_data)
+            if val_repeat > 1:
+                test_batch = test_batch.repeat(repeat_times=val_repeat, interleave=True)
+
+            if "uid" not in test_batch.non_tensor_batch:
+                test_batch.non_tensor_batch["uid"] = np.array(
+                    [str(uuid.uuid4()) for _ in range(len(test_batch.batch))], dtype=object
+                )
+
+            # Must be collected before `_get_gen_batch`, which pops prompt tensors from `test_batch`.
+            input_ids = test_batch.batch["input_ids"]
+            input_attention_mask = test_batch.batch["attention_mask"].to(torch.bool)
+            for ids, mask in zip(input_ids, input_attention_mask, strict=False):
+                sample_inputs.append(self.tokenizer.decode(ids[mask].tolist(), skip_special_tokens=True))
+            sample_gts.extend(
+                [item.non_tensor_batch.get("reward_model", {}).get("ground_truth", None) for item in test_batch]
+            )
+
+            test_gen_batch = self._get_gen_batch(test_batch)
+            test_gen_batch.meta_info = {
+                "eos_token_id": self.tokenizer.eos_token_id,
+                "pad_token_id": self.tokenizer.pad_token_id,
+                "recompute_log_prob": False,
+                "do_sample": self.config.actor_rollout_ref.rollout.val_kwargs.do_sample,
+                "validate": True,
+                "global_steps": self.global_steps,
+            }
+
+            use_agent_loop = self.async_rollout_mode and "raw_prompt" in test_gen_batch.non_tensor_batch
+            size_divisor = (
+                self.config.actor_rollout_ref.rollout.agent.num_workers
+                if use_agent_loop
+                else self.rollout_wg.world_size
+            )
+            test_gen_batch_padded, pad_size = pad_dataproto_to_divisor(test_gen_batch, size_divisor)
+
+            if not use_agent_loop:
+                test_output_gen_batch_padded = self.rollout_wg.async_generate_sequences(test_gen_batch_padded)
+                if hasattr(test_output_gen_batch_padded, "get"):
+                    test_output_gen_batch_padded = test_output_gen_batch_padded.get()
+            else:
+                test_output_gen_batch_padded = self.async_rollout_manager.generate_sequences(test_gen_batch_padded)
+
+            test_output_gen_batch = unpad_dataproto(test_output_gen_batch_padded, pad_size=pad_size)
+
+            output_ids = test_output_gen_batch.batch["responses"]
+            output_texts = [self.tokenizer.decode(ids, skip_special_tokens=True) for ids in output_ids]
+            sample_outputs.extend(output_texts)
+
+            response_lens = (test_output_gen_batch.batch["responses"] != self.tokenizer.pad_token_id).sum(dim=-1)
+            response_lens_all.extend(response_lens.tolist())
+
+            teacher_batch_output = get_teacher_knowledge(
+                test_output_gen_batch,
+                self.teacher_client,
+                self.n_server_workers,
+                is_async=False,
+            )
+            # DataProto.union requires overlapping meta_info keys to be identical.
+            # Rollout and teacher both emit a "timing" dict, so drop it before union.
+            test_output_gen_batch.meta_info.pop("timing", None)
+            teacher_batch_output.meta_info.pop("timing", None)
+            val_batch = test_output_gen_batch.union(teacher_batch_output)
+
+            response_mask = self._compute_response_mask(val_batch)
+            mask_float = response_mask.to(torch.float32)
+
+            old_log_probs = self._compute_student_response_log_probs(batch=val_batch, timing_raw=None)
+
+            teacher_log_probs = self._extract_teacher_response_log_probs(val_batch).to(torch.float32)
+            if teacher_log_probs.shape != old_log_probs.shape:
+                raise ValueError(
+                    "old_log_probs and teacher_log_probs shape mismatch in validation: "
+                    f"{tuple(old_log_probs.shape)} vs {tuple(teacher_log_probs.shape)}"
+                )
+
+            reverse_kl = old_log_probs - teacher_log_probs
+            token_reverse_kl = reverse_kl * mask_float
+
+            reverse_kl_numerator += token_reverse_kl.sum().item()
+            reverse_kl_denominator += mask_float.sum().item()
+
+            per_sample_reverse_kl = token_reverse_kl.sum(dim=-1) / mask_float.sum(dim=-1).clamp_min(1.0)
+            reverse_kl_scores = per_sample_reverse_kl.cpu().tolist()
+
+            if self.val_reward_fn is not None:
+                reward_batch = test_batch.union(test_output_gen_batch)
+                reward_batch.meta_info["validate"] = True
+                reward_result = self._compute_or_extract_reward(reward_batch, reward_fn=self.val_reward_fn, return_dict=True)
+                reward_tensor = reward_result["reward_tensor"]
+                reward_scores = reward_tensor.sum(-1).cpu().tolist()
+                sample_scores.extend(reward_scores)
+                sample_uids.extend(test_batch.non_tensor_batch["uid"])
+
+                reward_extra_infos_dict["reward"].extend(reward_scores)
+                reward_extra_info = reward_result.get("reward_extra_info", {})
+                for key, values in reward_extra_info.items():
+                    if key not in reward_extra_infos_dict:
+                        reward_extra_infos_dict[key] = []
+                    if isinstance(values, np.ndarray):
+                        reward_extra_infos_dict[key].extend(values.tolist())
+                    else:
+                        reward_extra_infos_dict[key].extend(values if isinstance(values, list) else [values])
+
+                data_source_lst.append(
+                    reward_batch.non_tensor_batch.get("data_source", ["unknown"] * reward_tensor.shape[0])
+                )
+            else:
+                sample_scores.extend(reverse_kl_scores)
+
+        val_metrics = {}
+        if response_lens_all:
+            val_metrics["val/response_seq_len/average"] = sum(response_lens_all) / len(response_lens_all)
+            val_metrics["val/response_seq_len/max"] = max(response_lens_all)
+            val_metrics["val/response_seq_len/min"] = min(response_lens_all)
+
+        if reverse_kl_denominator > 0:
+            val_metrics["val/reverse_kl"] = reverse_kl_numerator / reverse_kl_denominator
+
+        if self.val_reward_fn is not None and len(data_source_lst) > 0 and len(sample_uids) > 0:
+            for key_info, lst in reward_extra_infos_dict.items():
+                assert len(lst) == 0 or len(lst) == len(sample_scores), (
+                    f"{key_info}: len={len(lst)} vs sample_scores={len(sample_scores)}"
+                )
+
+            data_sources = np.concatenate(data_source_lst, axis=0)
+            data_src2var2metric2val = process_validation_metrics(data_sources, sample_uids, reward_extra_infos_dict)
+            for data_source, var2metric2val in data_src2var2metric2val.items():
+                core_var = "acc" if "acc" in var2metric2val else "reward"
+                for var_name, metric2val in var2metric2val.items():
+                    n_max = max([int(name.split("@")[-1].split("/")[0]) for name in metric2val.keys()])
+                    for metric_name, metric_val in metric2val.items():
+                        if (
+                            (var_name == core_var)
+                            and any(metric_name.startswith(pfx) for pfx in ["mean", "maj", "best"])
+                            and (f"@{n_max}" in metric_name)
+                        ):
+                            metric_sec = "val-core"
+                        else:
+                            metric_sec = "val-aux"
+                        pfx = f"{metric_sec}/{data_source}/{var_name}/{metric_name}"
+                        val_metrics[pfx] = metric_val
+
+            # Add compact aliases for dashboard visibility.
+            # Detailed metrics are still logged as val-core/val-aux per data source.
+            if "acc" in reward_extra_infos_dict and len(reward_extra_infos_dict["acc"]) > 0:
+                val_metrics["val/accuracy"] = float(np.mean(reward_extra_infos_dict["acc"]))
+            if "reward" in reward_extra_infos_dict and len(reward_extra_infos_dict["reward"]) > 0:
+                val_metrics["val/reward"] = float(np.mean(reward_extra_infos_dict["reward"]))
+
+        if sample_inputs and sample_outputs and sample_scores:
+            self._maybe_log_val_generations(inputs=sample_inputs, outputs=sample_outputs, scores=sample_scores)
+            # Optional local JSONL dump for validation generations.
+            val_data_dir = self.config.trainer.get("validation_data_dir", None)
+            if val_data_dir:
+                self._dump_generations(
+                    inputs=sample_inputs,
+                    outputs=sample_outputs,
+                    gts=sample_gts if len(sample_gts) == len(sample_inputs) else [None] * len(sample_inputs),
+                    scores=sample_scores,
+                    reward_extra_infos_dict=reward_extra_infos_dict,
+                    dump_path=val_data_dir,
+                )
+
+        return val_metrics
+
     def fit(self):
         """
         The training loop of PPO.
@@ -575,6 +862,14 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
 
         # load checkpoint before doing anything
         self._load_checkpoint()
+
+        if hasattr(self, "val_dataloader") and self.config.trainer.get("val_before_train", True):
+            val_metrics = self._validate()
+            if val_metrics:
+                print(f"Initial validation metrics: {val_metrics}")
+                logger.log(data=val_metrics, step=self.global_steps)
+            if self.config.trainer.get("val_only", False):
+                return
 
         # add tqdm
         progress_bar = tqdm(total=self.total_training_steps, initial=self.global_steps, desc="Training Progress")
@@ -669,6 +964,9 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
 
                 batch = batch.union(teacher_batch_output)
 
+                with marked_timer("prepare_actor_batch", timing_raw, color="blue"):
+                    batch = self._prepare_actor_batch_for_reinforce(batch=batch, timing_raw=timing_raw, metrics=metrics)
+
                 # # update actor
                 # with marked_timer("send_teacher_knowledge", timing_raw, color="red"):
                 #     self.actor_wg.send_teacher_knowledge(teacher_batch_output)
@@ -680,6 +978,14 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
                 print("INFO:", "update actor done.")
                 actor_output_metrics = reduce_metrics(actor_output.meta_info["metrics"])
                 metrics.update(actor_output_metrics)
+
+                test_freq = self.config.trainer.get("test_freq", -1)
+                if test_freq > 0 and hasattr(self, "val_dataloader") and (
+                    is_last_step or self.global_steps % test_freq == 0
+                ):
+                    with marked_timer("testing", timing_raw, color="green"):
+                        val_metrics = self._validate()
+                    metrics.update(val_metrics)
 
                 # save model
                 if self.config.trainer.save_freq > 0 and (

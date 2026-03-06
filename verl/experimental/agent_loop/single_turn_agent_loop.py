@@ -41,26 +41,15 @@ class SingleTurnAgentLoop(AgentLoopBase):
         metrics = {}
         request_id = uuid4().hex
 
-        # Use processor if available for multimodal support
-        if self.processor is not None:
-            raw_prompt = await self.loop.run_in_executor(
-                None,
-                lambda: self.processor.apply_chat_template(
-                    messages,
-                    add_generation_prompt=True,
-                    tokenize=False,
-                    **self.apply_chat_template_kwargs,
-                ),
-            )
-            model_inputs = self.processor(text=[raw_prompt], images=image_data, return_tensors="pt")
-            prompt_ids = model_inputs.pop("input_ids").squeeze(0).tolist()
-        else:
-            prompt_ids = await self.loop.run_in_executor(
-                None,
-                lambda: self.tokenizer.apply_chat_template(
-                    messages, add_generation_prompt=True, tokenize=True, **self.apply_chat_template_kwargs
-                ),
-            )
+        prompt_ids = await self.loop.run_in_executor(
+            None,
+            lambda: self._build_prompt_ids(
+                messages,
+                add_generation_prompt=True,
+                apply_chat_template_kwargs=self.apply_chat_template_kwargs,
+                image_data=image_data,
+            ),
+        )
 
         with simple_timer("generate_sequences", metrics):
             output = await self.server_manager.generate(

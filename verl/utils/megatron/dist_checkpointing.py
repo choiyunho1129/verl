@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import numpy as np
 import torch
 from megatron.core import dist_checkpointing, mpu
 from megatron.core.dist_checkpointing.serialization import (
@@ -22,6 +23,10 @@ from megatron.core.dist_checkpointing.strategies.fully_parallel import (
     FullyParallelLoadStrategyWrapper,
     FullyParallelSaveStrategyWrapper,
 )
+
+# NumPy 2.x removed `np.product`; older Megatron versions still call it.
+if not hasattr(np, "product"):
+    np.product = np.prod
 
 
 def save_dist_checkpointing(sharded_state_dict, ckpt_path, async_save=False):

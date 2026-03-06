@@ -121,7 +121,7 @@ class MegatronWorker(Worker):
         from verl.utils.model import update_model_config
 
         # Step 1: initialize the tokenizer
-        self.local_path = copy_to_local(model_path)
+        self.local_path = copy_to_local(model_path, hf_required_files=("config.json",))
         if tokenizer_or_path is None:
             self.tokenizer = hf_tokenizer(self.local_path, trust_remote_code=trust_remote_code)
             self.processor = hf_processor(self.local_path, trust_remote_code=trust_remote_code)
@@ -849,7 +849,8 @@ class ActorRolloutRefWorker(MegatronWorker, DistProfilerExtension):
         data.meta_info["micro_batch_size"] = self.config.rollout.log_prob_micro_batch_size_per_gpu
         data.meta_info["max_token_len"] = self.config.rollout.log_prob_max_token_len_per_gpu
         data.meta_info["use_dynamic_bsz"] = self.config.rollout.log_prob_use_dynamic_bsz
-        data.meta_info["temperature"] = self.config.rollout.temperature
+        log_prob_temperature = float(data.meta_info.get("temperature", self.config.rollout.temperature))
+        data.meta_info["temperature"] = log_prob_temperature
 
         if self.enable_routing_replay and self.config.actor.router_replay.mode == "R2":
             RouterReplay.set_global_router_replay_action(RouterReplayAction.RECORD)
@@ -860,7 +861,7 @@ class ActorRolloutRefWorker(MegatronWorker, DistProfilerExtension):
         output, entropys, layers_topk_idx = self.actor.compute_log_prob(data=data, calculate_entropy=True)
         output = DataProto.from_dict(
             tensors={"old_log_probs": output, "entropys": entropys},
-            meta_info={"temperature": self.config.rollout.temperature},
+            meta_info={"temperature": log_prob_temperature},
         )
         if self.config.actor.router_replay.mode == "R2":
             output.batch["routed_experts"] = layers_topk_idx

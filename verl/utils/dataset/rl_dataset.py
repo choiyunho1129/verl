@@ -111,6 +111,7 @@ class RLHFDataset(Dataset):
         self.return_full_prompt = config.get("return_full_prompt", False)
         self.truncation = config.get("truncation", "error")
         self.filter_overlong_prompts = config.get("filter_overlong_prompts", True)
+        self.use_chat_template = config.get("use_chat_template", True)
         self.apply_chat_template_kwargs = config.get("apply_chat_template_kwargs", {})
 
         self.tool_config_path = config.get("tool_config_path", None)
@@ -177,7 +178,6 @@ class RLHFDataset(Dataset):
         if self.filter_overlong_prompts:
             tokenizer = self.tokenizer
             processor = self.processor
-            prompt_key = self.prompt_key
             image_key = self.image_key
             video_key = self.video_key
 
@@ -187,14 +187,7 @@ class RLHFDataset(Dataset):
                 def doc2len(doc) -> int:
                     try:
                         messages = self._build_messages(doc)
-                        # pass tool schemas if available so the processor can format prompts
-                        apply_kwargs = dict(**self.apply_chat_template_kwargs)
-                        if self.tool_schemas is not None:
-                            apply_kwargs["tools"] = self.tool_schemas
-
-                        raw_prompt = self.processor.apply_chat_template(
-                            messages, add_generation_prompt=True, tokenize=False, **apply_kwargs
-                        )
+                        raw_prompt = self._build_raw_prompt(messages, add_generation_prompt=True)
                         if image_key in doc and doc[image_key]:
                             images = [
                                 process_image(image, image_patch_size=self.image_patch_size) for image in doc[image_key]
@@ -233,13 +226,9 @@ class RLHFDataset(Dataset):
 
                 def doc2len(doc) -> int:
                     try:
-                        apply_kwargs = dict(**self.apply_chat_template_kwargs)
-                        if self.tool_schemas is not None:
-                            apply_kwargs["tools"] = self.tool_schemas
-
-                        return len(
-                            tokenizer.apply_chat_template(doc[prompt_key], add_generation_prompt=True, **apply_kwargs)
-                        )
+                        messages = self._build_messages(doc)
+                        raw_prompt = self._build_raw_prompt(messages, add_generation_prompt=True)
+                        return len(tokenizer(raw_prompt, add_special_tokens=False)["input_ids"])
                     except Exception:
                         print("Error processing one of the samples, skipping...")
                         traceback.print_exc()
@@ -287,6 +276,59 @@ class RLHFDataset(Dataset):
 
         return messages
 
+    def _message_content_to_text(self, content: object) -> str:
+        if isinstance(content, str):
+            return content
+        if isinstance(content, list):
+            parts = []
+            for segment in content:
+                if isinstance(segment, dict):
+                    segment_type = segment.get("type")
+                    if segment_type == "text":
+                        parts.append(str(segment.get("text", "")))
+                    elif segment_type == "image":
+                        parts.append("<image>")
+                    elif segment_type == "video":
+                        parts.append("<video>")
+                    elif "text" in segment:
+                        parts.append(str(segment.get("text", "")))
+                    else:
+                        parts.append(str(segment))
+                else:
+                    parts.append(str(segment))
+            return "".join(parts)
+        return str(content)
+
+    def _messages_to_plain_prompt(self, messages: list, add_generation_prompt: bool = True) -> str:
+        # `use_chat_template=False` should keep prompts as plain text instead of chat-formatted turns.
+        del add_generation_prompt  # no-op in plain prompt mode
+        parts = []
+        for message in messages:
+            if isinstance(message, dict):
+                content = self._message_content_to_text(message.get("content", ""))
+            else:
+                content = self._message_content_to_text(message)
+            if content:
+                parts.append(content)
+        return "\n".join(parts)
+
+    def _build_raw_prompt(self, messages: list, add_generation_prompt: bool = True) -> str:
+        if not self.use_chat_template:
+            return self._messages_to_plain_prompt(messages, add_generation_prompt=add_generation_prompt)
+
+        apply_kwargs = dict(**self.apply_chat_template_kwargs)
+        if self.tool_schemas is not None:
+            apply_kwargs["tools"] = self.tool_schemas
+
+        if self.processor is not None:
+            return self.processor.apply_chat_template(
+                messages, add_generation_prompt=add_generation_prompt, tokenize=False, **apply_kwargs
+            )
+
+        return self.tokenizer.apply_chat_template(
+            messages, add_generation_prompt=add_generation_prompt, tokenize=False, **apply_kwargs
+        )
+
     def __getitem__(self, item):
         """
         Note that we also return the raw_input_ids so that it can be combined with other chat template
@@ -298,9 +340,7 @@ class RLHFDataset(Dataset):
         if self.processor is not None:
             from verl.utils.dataset.vision_utils import process_image, process_video
 
-            raw_prompt = self.processor.apply_chat_template(
-                messages, add_generation_prompt=True, tokenize=False, **self.apply_chat_template_kwargs
-            )
+            raw_prompt = self._build_raw_prompt(messages, add_generation_prompt=True)
             multi_modal_data = {}
 
             images = None
@@ -355,14 +395,12 @@ class RLHFDataset(Dataset):
                 row_dict["multi_modal_inputs"].pop("second_per_grid_ts", None)
 
         else:
-            if self.apply_chat_template_kwargs.get("chat_template") is None:
-                assert hasattr(self.tokenizer, "chat_template"), (
+            if self.use_chat_template and self.apply_chat_template_kwargs.get("chat_template") is None:
+                assert hasattr(self.tokenizer, "chat_template") and self.tokenizer.chat_template is not None, (
                     "chat_template should be provided in apply_chat_template_kwargs or tokenizer config, "
                     "models like GLM can copy chat_template.jinja from instruct models"
                 )
-            raw_prompt = self.tokenizer.apply_chat_template(
-                messages, add_generation_prompt=True, tokenize=False, **self.apply_chat_template_kwargs
-            )
+            raw_prompt = self._build_raw_prompt(messages, add_generation_prompt=True)
             model_inputs = self.tokenizer(raw_prompt, return_tensors="pt", add_special_tokens=False)
             input_ids = model_inputs.pop("input_ids")
             attention_mask = model_inputs.pop("attention_mask")
