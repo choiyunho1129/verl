@@ -335,48 +335,36 @@ class TaskRunner:
                 if not is_version_ge(pkg="vllm", minver="0.7.3"):
                     raise NotImplementedError("PPO LoRA is not supported before vllm 0.7.3")
 
-        # Megatron-only workers, split into rollout and actor
-        if config.actor_rollout_ref.actor.strategy == "megatron":
-            from verl.single_controller.ray import RayWorkerGroup
-
-            from .megatron_workers import (
-                MegatronOnPolicyDistillActorWorker,
-                MegatronOnPolicyDistillRolloutWorker,
-            )
-
-            rollout_cls = MegatronOnPolicyDistillRolloutWorker
-            actor_cls = MegatronOnPolicyDistillActorWorker
-            ray_worker_group_cls = RayWorkerGroup
-
-        else:
+        # GKD recipe is now maintained for hybrid actor+rollout execution only.
+        assert config.actor_rollout_ref.hybrid_engine, "GKD trainer requires actor_rollout_ref.hybrid_engine=True"
+        if config.actor_rollout_ref.actor.strategy != "megatron":
             raise NotImplementedError
+
+        from verl.single_controller.ray import RayWorkerGroup
+        from verl.workers.megatron_workers import AsyncActorRolloutRefWorker
+
+        actor_rollout_cls = AsyncActorRolloutRefWorker
+        ray_worker_group_cls = RayWorkerGroup
 
         # Worker mapping and resource pools
         from verl.trainer.ppo.ray_trainer import ResourcePoolManager, Role
 
         # Map roles to their corresponding remote worker classes.
         role_worker_mapping = {
-            Role.Rollout: ray.remote(rollout_cls),
-            Role.Actor: ray.remote(actor_cls),
+            Role.ActorRollout: ray.remote(actor_rollout_cls),
         }
 
         # Define the resource pool specification.
         # Map roles to the resource pool.
         assert config.trainer.n_gpus_per_node > 0, "config.trainer.n_gpus_per_node must be greater than 0"
         assert config.trainer.nnodes > 0, "config.trainer.nnodes must be greater than 0"
-        assert config.rollout.n_gpus_per_node > 0, "config.rollout.n_gpus_per_node must be greater than 0"
-        assert config.rollout.nnodes > 0, "config.rollout.nnodes must be greater than 0"
 
-        actor_pool = [config.trainer.n_gpus_per_node] * config.trainer.nnodes
-        rollout_pool = [config.rollout.n_gpus_per_node] * config.rollout.nnodes
-
+        shared_pool = [config.trainer.n_gpus_per_node] * config.trainer.nnodes
         resource_pool_spec = {
-            "rollout_pool": rollout_pool,
-            "actor_pool": actor_pool,
+            "shared_pool": shared_pool,
         }
         mapping = {
-            Role.Rollout: "rollout_pool",
-            Role.Actor: "actor_pool",
+            Role.ActorRollout: "shared_pool",
         }
         print(f"resource_pool_spec: {resource_pool_spec}")
 

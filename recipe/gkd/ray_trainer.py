@@ -24,7 +24,6 @@ from collections import defaultdict
 from typing import Optional
 
 import numpy as np
-import ray
 import torch
 from omegaconf import OmegaConf, open_dict
 from torch.utils.data import Dataset, Sampler
@@ -161,7 +160,7 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         self.config = config
 
         self.hybrid_engine = config.actor_rollout_ref.hybrid_engine
-        assert not self.hybrid_engine
+        assert self.hybrid_engine, "GKD trainer requires actor_rollout_ref.hybrid_engine=True"
 
         self.role_worker_mapping = role_worker_mapping
         self.resource_pool_manager = resource_pool_manager
@@ -288,23 +287,13 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         # Build Ray classes per pool
         resource_pool_to_cls = {pool: {} for pool in self.resource_pool_manager.resource_pool_dict.values()}
 
-        # Rollout group
-        rollout_pool = self.resource_pool_manager.get_resource_pool(Role.Rollout)
-        rollout_cls = RayClassWithInitArgs(
-            cls=self.role_worker_mapping[Role.Rollout],
+        actor_rollout_pool = self.resource_pool_manager.get_resource_pool(Role.ActorRollout)
+        actor_rollout_cls = RayClassWithInitArgs(
+            cls=self.role_worker_mapping[Role.ActorRollout],
             config=self.config.actor_rollout_ref,
-            role="rollout",
+            role="actor_rollout",
         )
-        resource_pool_to_cls[rollout_pool]["rollout"] = rollout_cls
-
-        # Actor group
-        actor_pool = self.resource_pool_manager.get_resource_pool(Role.Actor)
-        actor_cls = RayClassWithInitArgs(
-            cls=self.role_worker_mapping[Role.Actor],
-            config=self.config.actor_rollout_ref,
-            role="actor",
-        )
-        resource_pool_to_cls[actor_pool]["actor"] = actor_cls
+        resource_pool_to_cls[actor_rollout_pool]["actor_rollout"] = actor_rollout_cls
 
         # initialize WorkerGroup
         # NOTE: if you want to use a different resource pool for each role, which can support different parallel size,
@@ -336,25 +325,10 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
             all_wg.update(spawn_wg)
             time.sleep(20)  # avoid port conflict
 
-        self.rollout_wg = all_wg["rollout"]
-        self.actor_wg = all_wg["actor"]
-
-        # Initialize both groups
-        self.rollout_wg.init_model()
-        self.actor_wg.init_model()
-        self.actor_rollout_wg = self.actor_wg  # to be compatible with the functions that not be modified
-        weights_info = self.actor_wg.get_actor_weights_info()[0]
-        self.rollout_wg.set_actor_weights_info(weights_info)
-        from ray.util.collective import collective
-
-        actor_rollout_workers = self.actor_wg.workers + self.rollout_wg.workers
-        collective.create_collective_group(
-            actor_rollout_workers,
-            len(actor_rollout_workers),
-            list(range(0, len(actor_rollout_workers))),
-            backend="nccl",
-            group_name="actor_rollout",
-        )
+        self.actor_rollout_wg = all_wg["actor_rollout"]
+        self.actor_rollout_wg.init_model()
+        self.actor_wg = self.actor_rollout_wg
+        self.rollout_wg = self.actor_rollout_wg
 
         # Async server-mode rollout for vLLM/SGLang via AgentLoopManager
         self.async_rollout_mode = self.config.actor_rollout_ref.rollout.mode == "async"
@@ -368,9 +342,8 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
             )
 
     def sync_rollout_weights(self):
-        assert not self.hybrid_engine
-        self.actor_wg.sync_rollout_weights()
-        ray.get(self.rollout_wg.sync_rollout_weights())
+        # Hybrid actor-rollout worker shares weights in-process.
+        return
 
     def _create_continuous_iterator(self):
         """
@@ -512,146 +485,29 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
 
         return batch
 
-    def one_step_off_scheduler(self, continuous_iterator):
-        """One-step-off scheduler implementation (version 1) for GKD training with improved pipeline.
+    def sync_scheduler(self, continuous_iterator):
+        """Synchronous on-policy scheduler.
 
-        This scheduler optimizes the training pipeline by:
-        1. Overlapping rollout weight synchronization with teacher knowledge processing
-        2. Maintaining consistent timing measurement across iterations
-        3. Reducing idle time between generation and knowledge distillation phases
-
-        The scheduler maintains the following timing metrics:
-        - sync_rollout_weights: Time taken to synchronize rollout weights
-        - wait_prev_gen: Time waiting for previous generation to complete
-        - wait_prev_teacher: Time waiting for teacher knowledge to be ready
-
-        Args:
-            continuous_iterator: Iterator providing (epoch, batch_dict) tuples for training
-
-        Yields:
-            tuple: Contains (batch, gen_batch_output, teacher_batch_output, timing_metrics)
-                - batch: Original input batch data
-                - gen_batch_output: Generated sequences from main model
-                - teacher_batch_output: Knowledge distillation from teacher model
-                - timing_metrics: Dictionary of timing measurements
+        This scheduler disables one-step/two-step off-policy pipelining and executes
+        generation -> teacher knowledge -> update in-order per batch.
         """
-        timing = {}
-        for i, (epoch, batch_dict) in enumerate(continuous_iterator):
-            if i == 0:
-                # sync weights and start first async rollout
-                with marked_timer("sync_rollout_weights", timing):
-                    fut = self._async_gen_next_batch(epoch, batch_dict)
-                # wait for previous rollout finish and start async generate teacher knowledge
-                with marked_timer("wait_prev_gen", timing):
-                    prev_fut = self._async_get_teacher_knowledge(fut)
-                # no yield here, so we will continue to the next loop and enter `else` block
-            if i == 1:
-                # we don't need to sync weights here because we have not trained the actor yet
-                # start second async rollout
-                fut = self._async_gen_next_batch(epoch, batch_dict, sync_before_generation=False)
-                # wait for generating teacher knowledge finish
-                # and get previous result including rollout and teacher knowledge
-                with marked_timer("wait_prev_teacher", timing):
-                    prev_result = prev_fut.get()
-                yield *prev_result, timing
+        for epoch, batch_dict in continuous_iterator:
+            timing = {}
 
-                # start next step from here
-                timing = {}
-                # wait for previous rollout finish and start async generate teacher knowledge
-                with marked_timer("wait_prev_gen", timing):
-                    prev_fut = self._async_get_teacher_knowledge(fut)
-            else:
-                # sync weights and start next async rollout
-                with marked_timer("sync_rollout_weights", timing):
-                    fut = self._async_gen_next_batch(epoch, batch_dict)
-                # wait for generating teacher knowledge finish
-                # and get previous result including rollout and teacher knowledge
-                with marked_timer("wait_prev_teacher", timing):
-                    prev_result = prev_fut.get()
-                yield *prev_result, timing
+            with marked_timer("gen_and_sync", timing):
+                fut = self._async_gen_next_batch(
+                    epoch,
+                    batch_dict,
+                    sync_before_generation=False,
+                )
 
-                # start next step from here
-                timing = {}
-                # wait for previous rollout finish and start async generate teacher knowledge
-                with marked_timer("wait_prev_gen", timing):
-                    prev_fut = self._async_get_teacher_knowledge(fut)
+            with marked_timer("teacher", timing):
+                fut = self._async_get_teacher_knowledge(fut)
 
-        # for last step
-        with marked_timer("wait_prev_teacher", timing):
-            prev_result = prev_fut.get()
-        yield *prev_result, timing
+            with marked_timer("wait_teacher", timing):
+                result = fut.get()
 
-    def two_step_off_scheduler(self, continuous_iterator):
-        """Two-step-off scheduler implementation for GKD training with optimized pipeline.
-
-        This scheduler implements a double-buffered pipeline that overlaps:
-        1. Sequence generation with teacher knowledge distillation
-        2. Weight synchronization with previous batch processing
-
-        Key features:
-        - Maintains two parallel processing streams (current and previous batches)
-        - Overlaps computation and communication where possible
-        - Provides consistent timing metrics across iterations
-
-        Pipeline stages:
-        1. Initialization: Start first generation without teacher processing
-        2. Steady state: Alternate between processing teacher knowledge and starting new generation
-        3. Final state: Process last batch of teacher knowledge
-
-        Timing metrics collected:
-        - sync_rollout_weights: Time for weight synchronization between actor and rollout workers
-        - wait_prev_prev_teacher: Time waiting for teacher knowledge from two batches ago
-        - wait_prev_gen: Time waiting for previous generation to complete
-
-        Args:
-            continuous_iterator: Iterator providing (epoch, batch_dict) tuples for training
-
-        Yields:
-            tuple: Contains (batch, gen_batch_output, teacher_batch_output, timing_metrics)
-                - batch: Original input batch data
-                - gen_batch_output: Generated sequences from main model
-                - teacher_batch_output: Knowledge distillation from teacher model
-                - timing_metrics: Dictionary of timing measurements
-        """
-        timing = {}
-        for i, (epoch, batch_dict) in enumerate(continuous_iterator):
-            if i == 0:
-                with marked_timer("sync_rollout_weights", timing):
-                    rollout_future = self._async_gen_next_batch(epoch, batch_dict)
-                continue
-            elif i == 1:
-                teacher_future = self._async_get_teacher_knowledge(rollout_future)
-                rollout_future = self._async_gen_next_batch(epoch, batch_dict, sync_before_generation=False)
-                continue
-            elif i == 2:
-                with marked_timer("wait_prev_prev_teacher", timing):
-                    result = teacher_future.get()
-                with marked_timer("wait_prev_gen", timing):
-                    teacher_future = self._async_get_teacher_knowledge(rollout_future)
-                rollout_future = self._async_gen_next_batch(epoch, batch_dict, sync_before_generation=False)
-                yield *result, timing
-                timing = {}
-            else:
-                with marked_timer("wait_prev_prev_teacher", timing):
-                    result = teacher_future.get()
-                with marked_timer("wait_prev_gen", timing):
-                    teacher_future = self._async_get_teacher_knowledge(rollout_future)
-                with marked_timer("sync_rollout_weights", timing):
-                    rollout_future = self._async_gen_next_batch(epoch, batch_dict)
-                yield *result, timing
-                timing = {}
-
-        # for second to last step
-        with marked_timer("wait_prev_prev_teacher", timing):
-            result = teacher_future.get()
-        with marked_timer("wait_prev_gen", timing):
-            teacher_future = self._async_get_teacher_knowledge(rollout_future)
-        yield *result, timing
-
-        # for last step
-        with marked_timer("wait_prev_prev_teacher", timing):
-            result = teacher_future.get()
-        yield *result, timing
+            yield *result, timing
 
     def _validate(self):
         if not hasattr(self, "val_dataloader"):
@@ -882,13 +738,12 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         continuous_iterator = self._create_continuous_iterator()
 
         scheduler_type = self.config.trainer.scheduler
-
-        if scheduler_type == "one_step_off":
-            scheduler = self.one_step_off_scheduler(continuous_iterator)
-        elif scheduler_type == "two_step_off":
-            scheduler = self.two_step_off_scheduler(continuous_iterator)
-        else:
-            raise TypeError(f"unrecognized scheduler type: {scheduler_type}")
+        if scheduler_type != "sync":
+            print(
+                "[Info] GKD hybrid trainer uses synchronous scheduler only: "
+                f"{scheduler_type} -> sync"
+            )
+        scheduler = self.sync_scheduler(continuous_iterator)
 
         # Main loop
         while True:
