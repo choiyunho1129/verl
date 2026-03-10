@@ -79,8 +79,8 @@ def convert_to_parquet(input_path: Path, output_path: Path, data_source: str) ->
 def parse_args() -> argparse.Namespace:
     repo_root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description="Convert MATH-500 jsonl to Verl parquet format.")
-    parser.add_argument("--input", type=Path, default='/data1/home/yunhochoi/verl/data/MATH-500/train.jsonl')
-    parser.add_argument("--output", type=Path, default='/data1/home/yunhochoi/verl/data/MATH-500/train.parquet')
+    parser.add_argument("--input", type=Path, default='/data1/home/yunhochoi/verl/data/DeepMath-103K/train.jsonl')
+    parser.add_argument("--output", type=Path, default='/data1/home/yunhochoi/verl/data/DeepMath-103K/train.parquet')
     parser.add_argument("--data-source", type=str, default=DEFAULT_DATA_SOURCE)
     return parser.parse_args()
 

@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES="1"
+export CUDA_VISIBLE_DEVICES="2"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
@@ -18,21 +18,21 @@ REVISE_TEMPERATURE="${REVISE_TEMPERATURE:-0.6}"
 REVISE_TOP_P="${REVISE_TOP_P:-1.0}"
 REVISE_MAX_TOKENS="${REVISE_MAX_TOKENS:-2048}"
 
-CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_pure_critique_llama3b_math_variants/global_step_400}"
-ACTOR_DIR="${ACTOR_DIR:-${CKPT_DIR}/actor}"
-MERGED_DIR="${MERGED_DIR:-${ACTOR_DIR}/hf_merged}"
+# CKPT_DIR="${CKPT_DIR:-${REPO_ROOT}/checkpoints/checkpoints/verl_grpo_critique/qwen2.5_7b_instruct_pure_critique_llama3b_math_variants/global_step_400}"
+# ACTOR_DIR="${ACTOR_DIR:-${CKPT_DIR}/actor}"
+# MERGED_DIR="${MERGED_DIR:-${ACTOR_DIR}/hf_merged}"
 
 # Default to merged HF model path for vLLM
-MODEL_PATH="${MODEL_PATH:-${MERGED_DIR}}"
-#MODEL_PATH="Qwen/Qwen2.5-7B-Instruct"
-HF_MODEL_REPO="${HF_MODEL_REPO:-yunhowhour/qwen2_5_7b_instruct_critique_step400}"
-HF_MODEL_REVISION="${HF_MODEL_REVISION:-9b2395cbd7719620dc275f3005edeca40fb705ac}"
-HF_MODEL_CACHE_DIR="${HF_MODEL_CACHE_DIR:-${REPO_ROOT}/.cache/huggingface}"
-HF_MODEL_TOKEN="${HF_MODEL_TOKEN:-${HF_TOKEN:-}}"
+#MODEL_PATH="${MODEL_PATH:-${MERGED_DIR}}"
+MODEL_PATH="Qwen/Qwen2.5-7B-Instruct"
+# HF_MODEL_REPO="${HF_MODEL_REPO:-yunhowhour/qwen2_5_7b_instruct_critique_step400}"
+# HF_MODEL_REVISION="${HF_MODEL_REVISION:-9b2395cbd7719620dc275f3005edeca40fb705ac}"
+# HF_MODEL_CACHE_DIR="${HF_MODEL_CACHE_DIR:-${REPO_ROOT}/.cache/huggingface}"
+# HF_MODEL_TOKEN="${HF_MODEL_TOKEN:-${HF_TOKEN:-}}"
 OUTPUT_DIR="${OUTPUT_DIR:-${SCRIPT_DIR}/results}"
 
 DATA="${DATA:-${REPO_ROOT}/data/eval/test.id.parquet}"
-MODEL_NAME="${MODEL_NAME:-qwen2.5_7b_instruct_pure_critique_step_400_self_improvement}"
+MODEL_NAME="${MODEL_NAME:-qwen2.5_7b_instruct_self_improvement}"
 
 mkdir -p "$OUTPUT_DIR"
 

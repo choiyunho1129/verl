@@ -312,9 +312,26 @@ class RLHFDataset(Dataset):
                 parts.append(content)
         return "\n".join(parts)
 
+    @staticmethod
+    def _has_system_prompt(messages: list) -> bool:
+        return any(
+            isinstance(message, dict)
+            and isinstance(message.get("role"), str)
+            and message.get("role", "").strip().lower() == "system"
+            for message in messages
+        )
+
+    def _build_user_assistant_prompt(self, messages: list) -> str:
+        question = self._messages_to_plain_prompt(messages, add_generation_prompt=False).strip()
+        if question:
+            return f"User: {question}\nAssistant:"
+        return "User:\nAssistant:"
+
     def _build_raw_prompt(self, messages: list, add_generation_prompt: bool = True) -> str:
-        if not self.use_chat_template:
-            return self._messages_to_plain_prompt(messages, add_generation_prompt=add_generation_prompt)
+        # If system prompt exists, keep system-aware chat-template behavior.
+        if not self._has_system_prompt(messages):
+            del add_generation_prompt  # fixed-format prompt does not use generation prompt semantics
+            return self._build_user_assistant_prompt(messages)
 
         apply_kwargs = dict(**self.apply_chat_template_kwargs)
         if self.tool_schemas is not None:
@@ -323,6 +340,12 @@ class RLHFDataset(Dataset):
         if self.processor is not None:
             return self.processor.apply_chat_template(
                 messages, add_generation_prompt=add_generation_prompt, tokenize=False, **apply_kwargs
+            )
+
+        if apply_kwargs.get("chat_template") is None:
+            assert hasattr(self.tokenizer, "chat_template") and self.tokenizer.chat_template is not None, (
+                "chat_template should be provided in apply_chat_template_kwargs or tokenizer config, "
+                "models like GLM can copy chat_template.jinja from instruct models"
             )
 
         return self.tokenizer.apply_chat_template(
@@ -395,11 +418,6 @@ class RLHFDataset(Dataset):
                 row_dict["multi_modal_inputs"].pop("second_per_grid_ts", None)
 
         else:
-            if self.use_chat_template and self.apply_chat_template_kwargs.get("chat_template") is None:
-                assert hasattr(self.tokenizer, "chat_template") and self.tokenizer.chat_template is not None, (
-                    "chat_template should be provided in apply_chat_template_kwargs or tokenizer config, "
-                    "models like GLM can copy chat_template.jinja from instruct models"
-                )
             raw_prompt = self._build_raw_prompt(messages, add_generation_prompt=True)
             model_inputs = self.tokenizer(raw_prompt, return_tensors="pt", add_special_tokens=False)
             input_ids = model_inputs.pop("input_ids")

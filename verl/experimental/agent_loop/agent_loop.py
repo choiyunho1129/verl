@@ -266,6 +266,21 @@ class AgentLoopBase(ABC):
                 parts.append(content)
         return "\n".join(parts)
 
+    @staticmethod
+    def _has_system_prompt(messages: list) -> bool:
+        return any(
+            isinstance(message, dict)
+            and isinstance(message.get("role"), str)
+            and message.get("role", "").strip().lower() == "system"
+            for message in messages
+        )
+
+    def _build_user_assistant_prompt(self, messages: list) -> str:
+        question = self._messages_to_plain_prompt(messages, add_generation_prompt=False).strip()
+        if question:
+            return f"User: {question}\nAssistant:"
+        return "User:\nAssistant:"
+
     def _build_prompt_ids(
         self,
         messages: list,
@@ -275,35 +290,36 @@ class AgentLoopBase(ABC):
         image_data: Optional[list[Any]] = None,
         tools: Optional[list[dict[str, Any]]] = None,
     ) -> list[int]:
-        if self.use_chat_template:
+        # If system prompt exists, keep system-aware chat-template behavior.
+        if not self._has_system_prompt(messages):
+            raw_prompt = self._build_user_assistant_prompt(messages)
             if self.processor is not None:
-                raw_prompt = self.processor.apply_chat_template(
-                    messages,
-                    tools=tools,
-                    add_generation_prompt=add_generation_prompt,
-                    tokenize=False,
-                    **apply_chat_template_kwargs,
-                )
                 model_inputs = self.processor(text=[raw_prompt], images=image_data, return_tensors="pt")
                 return model_inputs.pop("input_ids").squeeze(0).tolist()
 
-            return self.tokenizer.apply_chat_template(
+            prompt_ids = self.tokenizer(raw_prompt, add_special_tokens=False)["input_ids"]
+            if prompt_ids and isinstance(prompt_ids[0], list):
+                prompt_ids = prompt_ids[0]
+            return prompt_ids
+
+        if self.processor is not None:
+            raw_prompt = self.processor.apply_chat_template(
                 messages,
                 tools=tools,
                 add_generation_prompt=add_generation_prompt,
-                tokenize=True,
+                tokenize=False,
                 **apply_chat_template_kwargs,
             )
-
-        raw_prompt = self._messages_to_plain_prompt(messages, add_generation_prompt=add_generation_prompt)
-        if self.processor is not None:
             model_inputs = self.processor(text=[raw_prompt], images=image_data, return_tensors="pt")
             return model_inputs.pop("input_ids").squeeze(0).tolist()
 
-        prompt_ids = self.tokenizer(raw_prompt, add_special_tokens=False)["input_ids"]
-        if prompt_ids and isinstance(prompt_ids[0], list):
-            prompt_ids = prompt_ids[0]
-        return prompt_ids
+        return self.tokenizer.apply_chat_template(
+            messages,
+            tools=tools,
+            add_generation_prompt=add_generation_prompt,
+            tokenize=True,
+            **apply_chat_template_kwargs,
+        )
 
     @abstractmethod
     async def run(self, sampling_params: dict[str, Any], **kwargs) -> AgentLoopOutput:
