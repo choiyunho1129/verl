@@ -29,9 +29,9 @@ When working with Megatron:
 import getpass
 import logging
 import os
-from dataclasses import asdict
+from dataclasses import asdict, is_dataclass
 from types import MethodType
-from typing import Any, Generator
+from typing import Any, Generator, Iterable
 
 import cloudpickle as pickle
 import ray
@@ -111,6 +111,15 @@ def _monkey_patch_compute_logits(model, vocab_size: int):
 
 class vLLMAsyncRollout(BaseRollout):
     """vLLMAsyncRollout is a thin wrapper of WorkerWrapperBase, which is engine in single worker process."""
+
+    _LORA_SPLIT_TO_FUSED = {
+        "q_proj": "qkv_proj",
+        "k_proj": "qkv_proj",
+        "v_proj": "qkv_proj",
+        "gate_proj": "gate_up_proj",
+        "up_proj": "gate_up_proj",
+    }
+    _LORA_DIRECT_MODULE_SUFFIXES = {"qkv_proj", "o_proj", "gate_up_proj", "down_proj"}
 
     def __init__(
         self,
@@ -204,6 +213,63 @@ class vLLMAsyncRollout(BaseRollout):
         self.inference_engine.load_model(*args, **kwargs)
         _monkey_patch_compute_logits(self.inference_engine.worker.model_runner.model, len(self.tokenizer))
 
+    def _normalize_weight_names_for_vllm(
+        self, weights: Generator[tuple[str, torch.Tensor], None, None] | Iterable[tuple[str, torch.Tensor]]
+    ):
+        """Normalize streamed HF names to what vLLM loaders expect.
+
+        Megatron-Bridge may export Qwen weights as `layers.*` / `embed_tokens.*`
+        while vLLM expects `model.layers.*` / `model.embed_tokens.*`.
+        """
+        model_param_names: set[str] | None = None
+        if self.lora_config:
+            model = self.inference_engine.worker.model_runner.model
+            try:
+                model_param_names = {name for name, _ in model.named_parameters(remove_duplicate=False)}
+            except TypeError:
+                model_param_names = {name for name, _ in model.named_parameters()}
+
+        model_type = getattr(self.vllm_config.model_config.hf_config, "model_type", "")
+        is_qwen_family = isinstance(model_type, str) and model_type.startswith("qwen")
+
+        needs_model_prefix = ("layers.", "embed_tokens.", "norm.")
+        for name, tensor in weights:
+            if is_qwen_family and name.startswith(needs_model_prefix):
+                name = f"model.{name}"
+            if model_param_names is not None:
+                name = self._rewrite_lora_base_layer_name(name, model_param_names)
+            yield name, tensor
+
+    def _rewrite_lora_base_layer_name(self, name: str, model_param_names: set[str]) -> str:
+        """Map linear parameter names to `.base_layer.*` when LoRA wrappers are active."""
+        if ".base_layer." in name:
+            return name
+        if name.endswith(".weight"):
+            param_suffix = ".weight"
+        elif name.endswith(".bias"):
+            param_suffix = ".bias"
+        else:
+            return name
+
+        module_name = name[: -len(param_suffix)]
+        if "." in module_name:
+            module_prefix, module_suffix = module_name.rsplit(".", maxsplit=1)
+        else:
+            module_prefix, module_suffix = "", module_name
+
+        candidate_name = f"{module_name}.base_layer{param_suffix}"
+        if module_suffix in self._LORA_DIRECT_MODULE_SUFFIXES and candidate_name in model_param_names:
+            return candidate_name
+
+        fused_suffix = self._LORA_SPLIT_TO_FUSED.get(module_suffix)
+        if fused_suffix is None:
+            return name
+        fused_module_name = f"{module_prefix}.{fused_suffix}" if module_prefix else fused_suffix
+        fused_candidate_name = f"{fused_module_name}.base_layer{param_suffix}"
+        if fused_candidate_name in model_param_names:
+            return candidate_name
+        return name
+
     async def _execute_method(self, method: str | bytes, *args, **kwargs):
         if method == "init_worker":
             return self._init_worker(*args, **kwargs)
@@ -237,11 +303,15 @@ class vLLMAsyncRollout(BaseRollout):
             # In async mode, make sure the old lora is removed before adding the new one
             self.inference_engine.worker.remove_lora(VLLM_LORA_INT_ID)
             weights = dict(weights)
+            if is_dataclass(peft_config):
+                peft_config = asdict(peft_config)
+            elif not isinstance(peft_config, dict):
+                peft_config = dict(peft_config)
             lora_request = TensorLoRARequest(
                 lora_name=VLLM_LORA_NAME,
                 lora_int_id=VLLM_LORA_INT_ID,
                 lora_path=VLLM_LORA_PATH,
-                peft_config=asdict(peft_config),
+                peft_config=peft_config,
                 lora_tensors=weights,
             )
             self.inference_engine.worker.add_lora(lora_request)
@@ -251,18 +321,24 @@ class vLLMAsyncRollout(BaseRollout):
 
             model_runner = self.inference_engine.worker.model_runner
             model = model_runner.model
+            # Full-weight sync path should not keep stale runtime LoRA adapters.
+            try:
+                self.inference_engine.worker.remove_lora(VLLM_LORA_INT_ID)
+            except Exception:
+                pass
             patch_vllm_moe_model_weight_loader(model)
+            normalized_weights = self._normalize_weight_names_for_vllm(weights)
 
             # Add the FP8 related logic here as sharding manager has been deprecated.
             # Check if FP8 quantization is enabled and apply appropriate weight loading
             if is_fp8_model(model_runner.vllm_config):
                 logger.info(f"FP8 model detected (async): {model_runner.vllm_config.quant_config}")
                 # Convert bf16 weights to fp8 format before loading
-                loaded_params = load_quanted_weights(weights, model_runner)
+                loaded_params = load_quanted_weights(normalized_weights, model_runner)
                 logger.info(f"FP8 weights loaded (async), loaded_params: {len(loaded_params)}")
             else:
                 logger.info("Loading standard weights (non-FP8, async)")
-                model.load_weights(weights)
+                model.load_weights(normalized_weights)
 
     def generate_sequences(self, prompts: DataProto) -> DataProto:
         """Batch generate sequences in sync mode."""

@@ -16,7 +16,7 @@ export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=2
 # W&B logging defaults.
 WANDB_PROJECT=${WANDB_PROJECT:-verl_examples}
-WANDB_RUN_NAME=${WANDB_RUN_NAME:-qwen_1_7B-onpolicydistillation_deepmath_lora}
+WANDB_RUN_NAME=${WANDB_RUN_NAME:-qwen_1_7B-onpolicydistillation_deepmath}
 WANDB_LOGGER=${WANDB_LOGGER:-'["console","wandb"]'}
 PROJECT_NAME=${PROJECT_NAME:-${WANDB_PROJECT}}
 EXPERIMENT_NAME=${EXPERIMENT_NAME:-${WANDB_RUN_NAME}}
@@ -25,8 +25,8 @@ EXPERIMENT_NAME=${EXPERIMENT_NAME:-${WANDB_RUN_NAME}}
 export WANDB_MODE=${WANDB_MODE:-online}
 
 # 2. run the script
-train_files="/data1/home/yunhochoi/verl/data/MATH-500/train.parquet"
-test_files="/data1/home/yunhochoi/verl/data/MATH-500/test.parquet"
+train_files="/data01/yunhochoi/verl/data/DeepMath-103K/train.parquet"
+test_files="/data01/yunhochoi/verl/data/MATH-500/test.parquet"
 
 # 512 H20(96GB)
 NODES=1
@@ -36,8 +36,20 @@ EP=1
 ETP=1
 INFER_TP=1
 # Set GPU ids manually (example: "0" or "0,1").
+export TORCH_CUDA_ARCH_LIST="8.0"
 CUDA_VISIBLE_DEVICES="1,2"
 # consider TP/ETP, and enable recompute if short of memory
+
+# LoRA config (set LORA_RANK=0 to disable)
+LORA_RANK=${LORA_RANK:-0}
+LORA_ALPHA=${LORA_ALPHA:-32}
+LORA_DROPOUT=${LORA_DROPOUT:-0.0}
+# LoRA rollout sync mode:
+# - merged (default, safer): sync effective merged weights from actor to vLLM
+# - adapter: sync adapter tensors only (faster, but can be fragile with fused modules)
+export VERL_VLLM_LORA_SYNC_MODE=${VERL_VLLM_LORA_SYNC_MODE:-merged}
+# Optional: resume from an existing adapter checkpoint
+LORA_ADAPTER_PATH=${LORA_ADAPTER_PATH:-}
 
 # full recompute
 # +actor_rollout_ref.actor.megatron.override_transformer_config.recompute_method=uniform \
@@ -51,6 +63,22 @@ REWARD_FN_PATH="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
 VAL_DATA_DIR=${VAL_DATA_DIR:-"${REPO_ROOT}/checkpoints/${PROJECT_NAME}/${EXPERIMENT_NAME}/validation"}
 mkdir -p "${VAL_DATA_DIR}"
 
+LORA_ARGS=()
+if [ "${LORA_RANK}" -gt 0 ]; then
+    LORA_ARGS+=(
+        actor_rollout_ref.actor.megatron.use_mbridge=True
+        actor_rollout_ref.actor.megatron.vanilla_mbridge=False
+        +actor_rollout_ref.model.lora_rank="${LORA_RANK}"
+        +actor_rollout_ref.model.lora_alpha="${LORA_ALPHA}"
+        +actor_rollout_ref.model.lora.rank="${LORA_RANK}"
+        +actor_rollout_ref.model.lora.alpha="${LORA_ALPHA}"
+        +actor_rollout_ref.model.lora.dropout="${LORA_DROPOUT}"
+    )
+    if [ -n "${LORA_ADAPTER_PATH}" ]; then
+        LORA_ARGS+=(+actor_rollout_ref.model.lora.adapter_path="${LORA_ADAPTER_PATH}")
+    fi
+fi
+
 # Run locally from repo root so package imports (recipe.gkd.*) work; main_gkd will ray.init() if needed.
 cd "${REPO_ROOT}"
 CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES}" \
@@ -59,7 +87,7 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     data.train_files="$train_files" \
     data.val_files="$test_files" \
     data.prompt_key=prompt \
-    data.train_batch_size=128 \
+    data.train_batch_size=256 \
     data.max_prompt_length=1024 \
     data.max_response_length=4096 \
     data.filter_overlong_prompts=True \
@@ -77,8 +105,8 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     +actor_rollout_ref.actor.megatron.override_transformer_config.sequence_parallel=False \
     actor_rollout_ref.actor.router_replay.mode=disabled \
     actor_rollout_ref.actor.optim.lr=1e-6 \
-    actor_rollout_ref.actor.ppo_mini_batch_size=128 \
-    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=4 \
+    actor_rollout_ref.actor.ppo_mini_batch_size=32 \
+    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=2 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.rollout.calculate_log_probs=True \
     actor_rollout_ref.actor.policy_loss.loss_mode=bypass_mode \
@@ -87,7 +115,7 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     +actor_rollout_ref.actor.policy_loss.rollout_correction.rollout_is_threshold=2.0 \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.n=4 \
-    actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=4 \
+    actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=2 \
     actor_rollout_ref.rollout.gpu_memory_utilization=0.6 \
     actor_rollout_ref.rollout.temperature=1.0 \
     actor_rollout_ref.rollout.top_p=1.0 \
@@ -117,5 +145,6 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     actor_rollout_ref.actor.megatron.expert_tensor_parallel_size=$ETP \
     trainer.val_before_train=True \
     trainer.total_training_steps=500 \
-    trainer.total_epochs=30 "$@"
+    trainer.total_epochs=30 \
+    "${LORA_ARGS[@]}" "$@"
     # +actor_rollout_ref.actor.megatron.override_transformer_config.num_layers_in_first_pipeline_stage=11 \

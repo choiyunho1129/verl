@@ -238,12 +238,76 @@ class MegatronCheckpointManager(BaseCheckpointManager):
             return common_path
         return os.path.join(common_path, basename)
 
+    def _get_checkpoint_config(self, key: str, default=None):
+        if self.checkpoint_config is None:
+            return default
+        if hasattr(self.checkpoint_config, "get"):
+            return self.checkpoint_config.get(key, default)
+        return getattr(self.checkpoint_config, key, default)
+
+    @staticmethod
+    def _extract_optimizer_sharding_type(state):
+        if isinstance(state, dict):
+            sharding_type = state.get("param_state_sharding_type")
+            if isinstance(sharding_type, str):
+                return sharding_type
+            for value in state.values():
+                sharding_type = MegatronCheckpointManager._extract_optimizer_sharding_type(value)
+                if sharding_type is not None:
+                    return sharding_type
+        elif isinstance(state, (list, tuple)):
+            for value in state:
+                sharding_type = MegatronCheckpointManager._extract_optimizer_sharding_type(value)
+                if sharding_type is not None:
+                    return sharding_type
+        return None
+
+    def _infer_optimizer_sharding_type_from_checkpoint(self, dist_checkpoint_path: str):
+        if dist_checkpoint_path is None or not os.path.exists(dist_checkpoint_path):
+            return None
+        try:
+            from megatron.core.dist_checkpointing.serialization import load_common_state_dict
+
+            common_state_dict = load_common_state_dict(dist_checkpoint_path)
+            optimizer_state = common_state_dict.get("optimizer")
+            return self._extract_optimizer_sharding_type(optimizer_state)
+        except Exception as e:
+            log_with_rank(
+                "Failed to infer optimizer sharding type from checkpoint "
+                f"{dist_checkpoint_path}, fallback to default setting. Exception: {e}",
+                rank=self.rank,
+                logger=logger,
+            )
+            return None
+
+    def _get_optimizer_sharded_state_metadata(self, is_loading: bool, dist_checkpoint_path: str | None = None):
+        if not self.use_distributed_optimizer:
+            return {}
+
+        metadata = {"chained_optim_avoid_prefix": True}
+
+        sharding_type = self._get_checkpoint_config("distrib_optim_sharding_type", None)
+        if sharding_type is None and is_loading:
+            sharding_type = self._infer_optimizer_sharding_type_from_checkpoint(dist_checkpoint_path)
+        if sharding_type is None:
+            # Avoid MCore default `fully_sharded_model_space` path, which can emit
+            # `flattened_range` metadata not accepted by newer checkpoint mapping.
+            sharding_type = "dp_reshardable"
+
+        metadata["distrib_optim_sharding_type"] = sharding_type
+        if sharding_type == "fully_reshardable":
+            metadata["distrib_optim_fully_reshardable_mem_efficient"] = bool(
+                self._get_checkpoint_config("distrib_optim_fully_reshardable_mem_efficient", False)
+            )
+        return metadata
+
     def generate_state_dict(
         self,
         generate_model: bool = True,
         generate_optimizer: bool = True,
         generate_extra: bool = True,
         is_loading: bool = False,
+        optimizer_sharded_state_metadata: dict | None = None,
     ):
         # For save dist checkpointing
         state_dict = {}
@@ -264,7 +328,11 @@ class MegatronCheckpointManager(BaseCheckpointManager):
         # Optimizer State Dict
         if generate_optimizer:
             torch.distributed.barrier()
-            optimizer_sharded_states = self.optimizer.sharded_state_dict(state_dict, is_loading=is_loading)
+            optimizer_sharded_states = self.optimizer.sharded_state_dict(
+                state_dict,
+                is_loading=is_loading,
+                metadata=optimizer_sharded_state_metadata,
+            )
             state_dict["optimizer"] = optimizer_sharded_states
 
             if self.lr_scheduler is not None:
@@ -311,6 +379,9 @@ class MegatronCheckpointManager(BaseCheckpointManager):
         torch.serialization.add_safe_globals([transformer_engine.pytorch.optimizers.fused_adam.FusedAdam])
 
         dist_checkpoint_path = get_dist_checkpoint_path(local_path)
+        optimizer_sharded_state_metadata = self._get_optimizer_sharded_state_metadata(
+            is_loading=True, dist_checkpoint_path=dist_checkpoint_path
+        )
 
         # Get State Dict for loading
         sharded_state_dict = self.generate_state_dict(
@@ -318,6 +389,7 @@ class MegatronCheckpointManager(BaseCheckpointManager):
             self.should_load_optimizer,
             self.should_load_extra,
             is_loading=True,
+            optimizer_sharded_state_metadata=optimizer_sharded_state_metadata,
         )
         log_with_rank(f"Generated state dict for loading: {sharded_state_dict.keys()}", rank=self.rank, logger=logger)
 
@@ -429,9 +501,13 @@ class MegatronCheckpointManager(BaseCheckpointManager):
         # Note that model weights, optimizer states, and extra states are generated
         # together in a state dict, we save them in one time
         if self.use_dist_checkpointing:
+            optimizer_sharded_state_metadata = self._get_optimizer_sharded_state_metadata(is_loading=False)
             # Generate state dict for saving
             state_dict = self.generate_state_dict(
-                self.should_save_model, self.should_save_optimizer, self.should_save_extra
+                self.should_save_model,
+                self.should_save_optimizer,
+                self.should_save_extra,
+                optimizer_sharded_state_metadata=optimizer_sharded_state_metadata,
             )
             log_with_rank(f"Generated state dict for saving: {state_dict.keys()}", rank=self.rank, logger=logger)
             for vpp_rank, model in enumerate(self.model):
@@ -456,10 +532,12 @@ class MegatronCheckpointManager(BaseCheckpointManager):
         else:
             assert self.use_hf_checkpoint, "When not using distributed checkpointing, use_hf_checkpoint should be True."
             # Generate optimizer and exra state dicts
+            optimizer_sharded_state_metadata = self._get_optimizer_sharded_state_metadata(is_loading=False)
             state_dict = self.generate_state_dict(
                 generate_model=False,
                 generate_optimizer=self.should_save_optimizer,
                 generate_extra=self.should_save_extra,
+                optimizer_sharded_state_metadata=optimizer_sharded_state_metadata,
             )
             # Save optimizer and extra states to local path
             # Start Async save if enabled
