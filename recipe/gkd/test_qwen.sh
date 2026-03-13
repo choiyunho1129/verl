@@ -16,7 +16,7 @@ export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=2
 # W&B logging defaults.
 WANDB_PROJECT=${WANDB_PROJECT:-verl_examples}
-WANDB_RUN_NAME=${WANDB_RUN_NAME:-qwen_1_7B-onpolicydistillation_deepmath}
+WANDB_RUN_NAME=${WANDB_RUN_NAME:-qwen_1_7B-onpolicydistillation_deepmath_lora}
 WANDB_LOGGER=${WANDB_LOGGER:-'["console","wandb"]'}
 PROJECT_NAME=${PROJECT_NAME:-${WANDB_PROJECT}}
 EXPERIMENT_NAME=${EXPERIMENT_NAME:-${WANDB_RUN_NAME}}
@@ -25,8 +25,8 @@ EXPERIMENT_NAME=${EXPERIMENT_NAME:-${WANDB_RUN_NAME}}
 export WANDB_MODE=${WANDB_MODE:-online}
 
 # 2. run the script
-train_files="/data01/yunhochoi/verl/data/DeepMath-103K/train.parquet"
-test_files="/data01/yunhochoi/verl/data/MATH-500/test.parquet"
+train_files="/data1/home/yunhochoi/verl/data/DeepMath-103K/train.parquet"
+test_files="/data1/home/yunhochoi/verl/data/MATH-500/test.parquet"
 
 # 512 H20(96GB)
 NODES=1
@@ -37,17 +37,17 @@ ETP=1
 INFER_TP=1
 # Set GPU ids manually (example: "0" or "0,1").
 export TORCH_CUDA_ARCH_LIST="8.0"
-CUDA_VISIBLE_DEVICES="1,2"
+CUDA_VISIBLE_DEVICES="2,3"
 # consider TP/ETP, and enable recompute if short of memory
 
 # LoRA config (set LORA_RANK=0 to disable)
-LORA_RANK=${LORA_RANK:-0}
+LORA_RANK=${LORA_RANK:-128}
 LORA_ALPHA=${LORA_ALPHA:-32}
 LORA_DROPOUT=${LORA_DROPOUT:-0.0}
 # LoRA rollout sync mode:
 # - merged (default, safer): sync effective merged weights from actor to vLLM
 # - adapter: sync adapter tensors only (faster, but can be fragile with fused modules)
-export VERL_VLLM_LORA_SYNC_MODE=${VERL_VLLM_LORA_SYNC_MODE:-merged}
+export VERL_VLLM_LORA_SYNC_MODE=${VERL_VLLM_LORA_SYNC_MODE:-adapter}
 # Optional: resume from an existing adapter checkpoint
 LORA_ADAPTER_PATH=${LORA_ADAPTER_PATH:-}
 
@@ -104,8 +104,8 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     actor_rollout_ref.actor.megatron.sequence_parallel=False \
     +actor_rollout_ref.actor.megatron.override_transformer_config.sequence_parallel=False \
     actor_rollout_ref.actor.router_replay.mode=disabled \
-    actor_rollout_ref.actor.optim.lr=1e-6 \
-    actor_rollout_ref.actor.ppo_mini_batch_size=32 \
+    actor_rollout_ref.actor.optim.lr=1e-5 \
+    actor_rollout_ref.actor.ppo_mini_batch_size=64 \
     actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=2 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.rollout.calculate_log_probs=True \
