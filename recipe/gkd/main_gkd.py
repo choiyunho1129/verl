@@ -29,7 +29,7 @@ RAY_RUNTIME_ENV = {
     "env_vars": {
         "TOKENIZERS_PARALLELISM": "true",
         "VLLM_LOGGING_LEVEL": "WARN",
-        "VLLM_ALLOW_RUNTIME_LORA_UPDATING": "true",
+        "VLLM_ALLOW_RUNTIME_LORA_UPDATING": "false",
         "CUDA_DEVICE_MAX_CONNECTIONS": "1",
         # To prevent hanging or crash during synchronization of weights between actor and rollout
         # in disaggregated mode. See:

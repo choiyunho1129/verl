@@ -2,7 +2,7 @@ export PROXY_FRONTEND_PORT=15555
 export PROXY_BACKEND_PORT=15556
 
 BACKEND=vllm
-CKPT_PATH="Qwen/Qwen3-1.7B"
+CKPT_PATH="Qwen/Qwen3-8B"
 
 wait_server_ready() {
     server=$1

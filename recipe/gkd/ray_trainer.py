@@ -32,6 +32,7 @@ from tqdm import tqdm
 
 from recipe.gkd.teacher import TeacherClient
 from recipe.gkd.teacher_utils import get_teacher_knowledge
+from recipe.gkd.validation_visualizer import build_validation_feedback_record, dump_validation_feedback
 from verl import DataProto
 from verl.experimental.dataset.sampler import AbstractCurriculumSampler
 from verl.protocol import pad_dataproto_to_divisor, unpad_dataproto
@@ -514,6 +515,8 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
             return {}
 
         val_repeat = max(1, int(self.config.actor_rollout_ref.rollout.val_kwargs.n))
+        val_data_dir = self.config.trainer.get("validation_data_dir", None)
+        collect_feedback = bool(val_data_dir)
 
         response_lens_all = []
         data_source_lst = []
@@ -522,6 +525,7 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         sample_outputs = []
         sample_gts = []
         sample_scores = []  # reward scores when val_reward_fn is available; otherwise reverse_kl
+        validation_feedback_records = []
         reward_extra_infos_dict: dict[str, list] = defaultdict(list)
         reverse_kl_numerator = 0.0
         reverse_kl_denominator = 0.0
@@ -615,6 +619,13 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
             per_sample_reverse_kl = token_reverse_kl.sum(dim=-1) / mask_float.sum(dim=-1).clamp_min(1.0)
             reverse_kl_scores = per_sample_reverse_kl.cpu().tolist()
 
+            batch_uids = test_batch.non_tensor_batch.get("uid", [None] * len(output_texts))
+            if isinstance(batch_uids, np.ndarray):
+                batch_uids = batch_uids.tolist()
+            batch_data_sources = test_batch.non_tensor_batch.get("data_source", ["unknown"] * len(output_texts))
+            if isinstance(batch_data_sources, np.ndarray):
+                batch_data_sources = batch_data_sources.tolist()
+
             if self.val_reward_fn is not None:
                 reward_batch = test_batch.union(test_output_gen_batch)
                 reward_batch.meta_info["validate"] = True
@@ -623,6 +634,7 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
                 reward_scores = reward_tensor.sum(-1).cpu().tolist()
                 sample_scores.extend(reward_scores)
                 sample_uids.extend(test_batch.non_tensor_batch["uid"])
+                batch_scores = reward_scores
 
                 reward_extra_infos_dict["reward"].extend(reward_scores)
                 reward_extra_info = reward_result.get("reward_extra_info", {})
@@ -639,6 +651,41 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
                 )
             else:
                 sample_scores.extend(reverse_kl_scores)
+                batch_scores = reverse_kl_scores
+                reward_extra_info = {}
+
+            if collect_feedback:
+                response_ids_cpu = output_ids.cpu()
+                response_mask_cpu = response_mask.cpu()
+                old_log_probs_cpu = old_log_probs.cpu()
+                teacher_log_probs_cpu = teacher_log_probs.cpu()
+
+                for local_idx in range(len(output_texts)):
+                    valid_mask = response_mask_cpu[local_idx].to(torch.bool)
+                    response_token_ids = response_ids_cpu[local_idx][valid_mask].tolist()
+                    student_logprobs = old_log_probs_cpu[local_idx][valid_mask].tolist()
+                    teacher_token_logprobs = teacher_log_probs_cpu[local_idx][valid_mask].tolist()
+
+                    extra = {}
+                    for key, values in reward_extra_info.items():
+                        cur_values = values.tolist() if isinstance(values, np.ndarray) else values
+                        if isinstance(cur_values, list) and len(cur_values) == len(output_texts):
+                            extra[key] = cur_values[local_idx]
+
+                    validation_feedback_records.append(
+                        build_validation_feedback_record(
+                            tokenizer=self.tokenizer,
+                            prompt_text=sample_inputs[-len(output_texts) + local_idx],
+                            response_token_ids=response_token_ids,
+                            student_logprobs=student_logprobs,
+                            teacher_logprobs=teacher_token_logprobs,
+                            score=batch_scores[local_idx] if local_idx < len(batch_scores) else None,
+                            sample_index=len(validation_feedback_records),
+                            uid=str(batch_uids[local_idx]) if local_idx < len(batch_uids) and batch_uids[local_idx] is not None else None,
+                            data_source=str(batch_data_sources[local_idx]) if local_idx < len(batch_data_sources) else None,
+                            extra=extra or None,
+                        )
+                    )
 
         val_metrics = {}
         if response_lens_all:
@@ -683,7 +730,6 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         if sample_inputs and sample_outputs and sample_scores:
             self._maybe_log_val_generations(inputs=sample_inputs, outputs=sample_outputs, scores=sample_scores)
             # Optional local JSONL dump for validation generations.
-            val_data_dir = self.config.trainer.get("validation_data_dir", None)
             if val_data_dir:
                 self._dump_generations(
                     inputs=sample_inputs,
@@ -693,6 +739,15 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
                     reward_extra_infos_dict=reward_extra_infos_dict,
                     dump_path=val_data_dir,
                 )
+                if validation_feedback_records:
+                    try:
+                        dump_validation_feedback(
+                            dump_root=val_data_dir,
+                            step=self.global_steps,
+                            records=validation_feedback_records,
+                        )
+                    except Exception as exc:
+                        print(f"[Warning] Failed to dump validation token feedback for step {self.global_steps}: {exc}")
 
         return val_metrics
 
