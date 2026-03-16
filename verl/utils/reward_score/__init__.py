@@ -49,8 +49,9 @@ def default_compute_score(
         "lighteval/MATH",
         "DigitalLearningGmbH/MATH-lighteval",
         "HuggingFaceH4/MATH-500",
+        "deepmath",
         "qwen-math",
-        "deepscaler"
+        "deepscaler",
     ]:
         from . import math_reward
 

@@ -9,14 +9,14 @@ set -x
 
 # 1. download the dist_ckpt format model from https://huggingface.co/BearBiscuit05/dpsk-v3-671B-BF16-dist_ckpt/tree/main
 # change the HF_MODEL_PATH to your own path
-HF_MODEL_PATH="Qwen/Qwen3-1.7B-Base"
+HF_MODEL_PATH="Qwen/Qwen3-8B-Base"
 export NVTE_ALLOW_NONDETERMINISTIC_ALGO=0
 export NVTE_FLASH_ATTN=1
-export NVTE_DEBUG=1 
+export NVTE_DEBUG=0
 export NVTE_DEBUG_LEVEL=2
 # W&B logging defaults.
 WANDB_PROJECT=${WANDB_PROJECT:-verl_examples}
-WANDB_RUN_NAME=${WANDB_RUN_NAME:-qwen_1_7B-onpolicydistillation_deepmath_lora}
+WANDB_RUN_NAME=${WANDB_RUN_NAME:-qwen3_8B_Base-onpolicydistillation_deepmath_teacher_8B_lora}
 WANDB_LOGGER=${WANDB_LOGGER:-'["console","wandb"]'}
 PROJECT_NAME=${PROJECT_NAME:-${WANDB_PROJECT}}
 EXPERIMENT_NAME=${EXPERIMENT_NAME:-${WANDB_RUN_NAME}}
@@ -25,8 +25,8 @@ EXPERIMENT_NAME=${EXPERIMENT_NAME:-${WANDB_RUN_NAME}}
 export WANDB_MODE=${WANDB_MODE:-online}
 
 # 2. run the script
-train_files="/data1/home/yunhochoi/verl/data/DeepMath-103K/train.parquet"
-test_files="/data1/home/yunhochoi/verl/data/MATH-500/test.parquet"
+train_files="/data1/home/yunhochoi/verl/data/DeepMath-103K/train_90.parquet"
+test_files="/data1/home/yunhochoi/verl/data/DeepMath-103K/validation_1k.parquet"
 
 # 512 H20(96GB)
 NODES=1
@@ -35,9 +35,9 @@ TP=1
 EP=1
 ETP=1
 INFER_TP=1
+export TORCH_CUDA_ARCH_LIST="9.0"
 # Set GPU ids manually (example: "0" or "0,1").
-export TORCH_CUDA_ARCH_LIST="8.0"
-CUDA_VISIBLE_DEVICES="2,3"
+CUDA_VISIBLE_DEVICES="1,2"
 # consider TP/ETP, and enable recompute if short of memory
 
 # LoRA config (set LORA_RANK=0 to disable)
@@ -47,9 +47,16 @@ LORA_DROPOUT=${LORA_DROPOUT:-0.0}
 # LoRA rollout sync mode:
 # - merged (default, safer): sync effective merged weights from actor to vLLM
 # - adapter: sync adapter tensors only (faster, but can be fragile with fused modules)
-export VERL_VLLM_LORA_SYNC_MODE=${VERL_VLLM_LORA_SYNC_MODE:-adapter}
-# Optional: resume from an existing adapter checkpoint
 LORA_ADAPTER_PATH=${LORA_ADAPTER_PATH:-}
+
+# vLLM throughput tuning (override via env if needed)
+VLLM_MAX_NUM_BATCHED_TOKENS=${VLLM_MAX_NUM_BATCHED_TOKENS:-32768}
+VLLM_MAX_NUM_SEQS=${VLLM_MAX_NUM_SEQS:-2048}
+ROLLOUT_AGENT_WORKERS=${ROLLOUT_AGENT_WORKERS:-8}
+ROLLOUT_ENABLE_CHUNKED_PREFILL=${ROLLOUT_ENABLE_CHUNKED_PREFILL:-true}
+ROLLOUT_ENFORCE_EAGER=${ROLLOUT_ENFORCE_EAGER:-false}
+# Pass real newlines for stop sequence (not literal "\\n").
+STOP_TOKENS_JSON=${STOP_TOKENS_JSON:-$'["\n\nUser:"]'}
 
 # full recompute
 # +actor_rollout_ref.actor.megatron.override_transformer_config.recompute_method=uniform \
@@ -87,7 +94,7 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     data.train_files="$train_files" \
     data.val_files="$test_files" \
     data.prompt_key=prompt \
-    data.train_batch_size=256 \
+    data.train_batch_size=512 \
     data.max_prompt_length=1024 \
     data.max_response_length=4096 \
     data.filter_overlong_prompts=True \
@@ -108,7 +115,7 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     actor_rollout_ref.actor.ppo_mini_batch_size=64 \
     actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=2 \
     actor_rollout_ref.actor.use_kl_loss=False \
-    actor_rollout_ref.rollout.calculate_log_probs=True \
+    actor_rollout_ref.rollout.calculate_log_probs=False \
     actor_rollout_ref.actor.policy_loss.loss_mode=bypass_mode \
     +actor_rollout_ref.actor.policy_loss.rollout_correction.loss_type=reinforce \
     +actor_rollout_ref.actor.policy_loss.rollout_correction.rollout_is=token \
@@ -116,13 +123,17 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.n=4 \
     actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=2 \
-    actor_rollout_ref.rollout.gpu_memory_utilization=0.6 \
+    actor_rollout_ref.rollout.gpu_memory_utilization=0.7 \
+    actor_rollout_ref.rollout.max_num_batched_tokens=${VLLM_MAX_NUM_BATCHED_TOKENS} \
+    actor_rollout_ref.rollout.max_num_seqs=${VLLM_MAX_NUM_SEQS} \
+    actor_rollout_ref.rollout.enable_chunked_prefill=${ROLLOUT_ENABLE_CHUNKED_PREFILL} \
+    actor_rollout_ref.rollout.enforce_eager=${ROLLOUT_ENFORCE_EAGER} \
     actor_rollout_ref.rollout.temperature=1.0 \
     actor_rollout_ref.rollout.top_p=1.0 \
     actor_rollout_ref.rollout.top_k=-1 \
-    actor_rollout_ref.rollout.stop_tokens='["\n\nUser:"]' \
+    actor_rollout_ref.rollout.stop_tokens="${STOP_TOKENS_JSON}" \
     actor_rollout_ref.rollout.free_cache_engine=True \
-    actor_rollout_ref.rollout.agent.num_workers=2 \
+    actor_rollout_ref.rollout.agent.num_workers=${ROLLOUT_AGENT_WORKERS} \
     actor_rollout_ref.rollout.tensor_model_parallel_size=$INFER_TP \
     actor_rollout_ref.rollout.load_format='auto' \
     custom_reward_function.path="${REWARD_FN_PATH}" \
@@ -137,7 +148,7 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     +trainer.validation_data_dir="${VAL_DATA_DIR}" \
     trainer.n_gpus_per_node=2 \
     trainer.nnodes=$NODES \
-    trainer.save_freq=40 \
+    trainer.save_freq=50 \
     trainer.test_freq=5 \
     actor_rollout_ref.actor.megatron.pipeline_model_parallel_size=$PP \
     actor_rollout_ref.actor.megatron.tensor_model_parallel_size=$TP \

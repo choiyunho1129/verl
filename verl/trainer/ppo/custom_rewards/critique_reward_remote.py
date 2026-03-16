@@ -232,7 +232,7 @@ def compute_score(
     extra_info: Any = None,
     **kwargs,
 ) -> float:
-    if data_source in {"HuggingFaceH4/MATH-500", "lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval"}:
+    if data_source in {"HuggingFaceH4/MATH-500", "lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval", "deepmath"}:
         try:
             return float(default_compute_score(data_source, solution_str, ground_truth))
         except Exception:

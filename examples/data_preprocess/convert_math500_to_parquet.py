@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 
-DEFAULT_DATA_SOURCE = "HuggingFaceH4/MATH-500"
+DEFAULT_DATA_SOURCE = "deepmath"
 
 
 def remove_boxed(text: str) -> str:

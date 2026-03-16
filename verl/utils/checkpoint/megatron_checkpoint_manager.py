@@ -16,8 +16,8 @@ import json
 import logging
 import os
 import random
-from collections.abc import Callable
-from dataclasses import asdict
+from dataclasses import fields, is_dataclass
+from enum import Enum
 
 import numpy as np
 import torch
@@ -98,6 +98,8 @@ class MegatronCheckpointManager(BaseCheckpointManager):
         )
         ```
     """
+
+    _SKIP_JSON_FIELD = object()
 
     def __init__(
         self,
@@ -237,6 +239,95 @@ class MegatronCheckpointManager(BaseCheckpointManager):
         if return_base_dir:
             return common_path
         return os.path.join(common_path, basename)
+
+    @classmethod
+    def _serialize_transformer_config_value(cls, value, visited: set[int]):
+        """Serialize transformer config values into JSON-safe objects.
+
+        This avoids dataclasses.asdict/deepcopy so non-picklable runtime objects
+        (e.g. torch distributed process groups) do not break checkpoint saving.
+        """
+        if isinstance(value, (str, int, float, bool)) or value is None:
+            return value
+
+        if isinstance(value, np.generic):
+            return value.item()
+
+        if isinstance(value, (torch.dtype, AttnBackend, Enum)):
+            return str(value)
+
+        if callable(value):
+            return cls._SKIP_JSON_FIELD
+
+        if isinstance(value, torch.distributed.ProcessGroup):
+            return cls._SKIP_JSON_FIELD
+
+        if isinstance(value, bytes):
+            return value.decode("utf-8", errors="replace")
+
+        if is_dataclass(value):
+            object_id = id(value)
+            if object_id in visited:
+                return cls._SKIP_JSON_FIELD
+            visited.add(object_id)
+            output = {}
+            for field in fields(value):
+                if not hasattr(value, field.name):
+                    # Some dataclass fields (e.g. init=False) may not be initialized.
+                    continue
+                try:
+                    field_value = getattr(value, field.name)
+                except Exception:
+                    continue
+                serialized = cls._serialize_transformer_config_value(field_value, visited)
+                if serialized is cls._SKIP_JSON_FIELD:
+                    continue
+                output[field.name] = serialized
+            visited.remove(object_id)
+            return output
+
+        if isinstance(value, dict):
+            object_id = id(value)
+            if object_id in visited:
+                return cls._SKIP_JSON_FIELD
+            visited.add(object_id)
+            output = {}
+            for key, item in value.items():
+                serialized_key = cls._serialize_transformer_config_value(key, visited)
+                serialized_item = cls._serialize_transformer_config_value(item, visited)
+                if serialized_key is cls._SKIP_JSON_FIELD or serialized_item is cls._SKIP_JSON_FIELD:
+                    continue
+                output[str(serialized_key)] = serialized_item
+            visited.remove(object_id)
+            return output
+
+        if isinstance(value, (list, tuple, set)):
+            object_id = id(value)
+            if object_id in visited:
+                return cls._SKIP_JSON_FIELD
+            visited.add(object_id)
+            output = []
+            for item in value:
+                serialized_item = cls._serialize_transformer_config_value(item, visited)
+                if serialized_item is cls._SKIP_JSON_FIELD:
+                    continue
+                output.append(serialized_item)
+            visited.remove(object_id)
+            return output
+
+        try:
+            json.dumps(value)
+            return value
+        except TypeError:
+            try:
+                return str(value)
+            except Exception:
+                return cls._SKIP_JSON_FIELD
+
+    @classmethod
+    def _serialize_transformer_config(cls, transformer_config) -> dict:
+        serialized = cls._serialize_transformer_config_value(transformer_config, visited=set())
+        return serialized if isinstance(serialized, dict) else {}
 
     def _get_checkpoint_config(self, key: str, default=None):
         if self.checkpoint_config is None:
@@ -612,34 +703,7 @@ class MegatronCheckpointManager(BaseCheckpointManager):
             if self.rank == 0:
                 # Save transformer config
                 print(self.transformer_config)
-                bypass_keys = [
-                    "finalize_model_grads_func",
-                    "grad_scale_func",
-                    "no_sync_func",
-                    "grad_sync_func",
-                    "param_sync_func",
-                    "generation_config",
-                ]
-                backup = {}
-                for k in bypass_keys:
-                    if hasattr(self.transformer_config, k):
-                        backup[k] = getattr(self.transformer_config, k, None)
-                        delattr(self.transformer_config, k)
-                transformer_config_dict = asdict(self.transformer_config)
-                for k in backup:
-                    setattr(self.transformer_config, k, backup[k])
-                to_convert_types = {torch.dtype: str, AttnBackend: str}
-                ignore_types = [Callable]
-                pop_keys = []
-                for key, value in transformer_config_dict.items():
-                    if type(value) in to_convert_types:
-                        transformer_config_dict[key] = to_convert_types[type(value)](value)
-                    if type(value) in ignore_types:
-                        pop_keys.append(key)
-                    if callable(value):
-                        pop_keys.append(key)
-                for key in pop_keys:
-                    transformer_config_dict.pop(key)
+                transformer_config_dict = self._serialize_transformer_config(self.transformer_config)
                 transformer_config_path = get_transformer_config_checkpoint_path(local_path)
                 with open(transformer_config_path, "w") as f:
                     json.dump(transformer_config_dict, f, indent=2)

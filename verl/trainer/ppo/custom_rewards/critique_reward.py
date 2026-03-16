@@ -198,7 +198,7 @@ async def compute_score(
 ) -> dict[str, Any] | float:
 
     # Fast-path scoring for standard MATH datasets
-    if data_source in {"HuggingFaceH4/MATH-500", "lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval"}:
+    if data_source in {"HuggingFaceH4/MATH-500", "lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval", "deepmath"}:
         score = await _score_math_verify(solution_str, ground_truth)
         if score > 0.0:
             return {"score": score, "acc": score, "num_variants": 1, "num_generations": 0}
