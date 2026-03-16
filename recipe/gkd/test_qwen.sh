@@ -44,9 +44,8 @@ CUDA_VISIBLE_DEVICES="1,2"
 LORA_RANK=${LORA_RANK:-128}
 LORA_ALPHA=${LORA_ALPHA:-32}
 LORA_DROPOUT=${LORA_DROPOUT:-0.0}
-# LoRA rollout sync mode:
-# - merged (default, safer): sync effective merged weights from actor to vLLM
-# - adapter: sync adapter tensors only (faster, but can be fragile with fused modules)
+# LoRA rollout sync uses merged weights only in Megatron-Bridge path.
+# Optional: resume from an existing adapter checkpoint
 LORA_ADAPTER_PATH=${LORA_ADAPTER_PATH:-}
 
 # vLLM throughput tuning (override via env if needed)

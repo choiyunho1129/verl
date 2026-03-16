@@ -17,6 +17,7 @@ Note that we don't combine the main with ray_trainer as ray_trainer is used by o
 """
 
 import os
+import signal
 import socket
 
 import hydra
@@ -254,26 +255,68 @@ def run_on_policy_distill(config) -> None:
             num_cpus=config.ray_init.num_cpus,
         )
 
-    # Create a remote instance of the TaskRunner class, and
-    # Execute the `run` method of the TaskRunner instance remotely and wait for it to complete
-    if (
-        config.global_profiler.tool == "nsys"
-        and OmegaConf.select(config.global_profiler, "steps") is not None
-        and len(OmegaConf.select(config.global_profiler, "steps")) > 0
-    ):
-        nsight_options = OmegaConf.to_container(
-            config.global_profiler.global_tool_config.nsys.controller_nsight_options
-        )
-        runner = TaskRunner.options(runtime_env={"nsight": nsight_options}).remote()
-    else:
-        runner = TaskRunner.remote()
-    ray.get(runner.run.remote(config))
+    runner = None
+    run_ref = None
+    previous_signal_handlers = {}
 
-    # [Optional] get the path of the timeline trace file from the configuration, default to None
-    # This file is used for performance analysis
-    timeline_json_file = config.ray_init.get("timeline_json_file", None)
-    if timeline_json_file:
-        ray.timeline(filename=timeline_json_file)
+    def _cancel_and_kill_runner() -> None:
+        if run_ref is not None:
+            try:
+                ray.cancel(run_ref, force=True)
+            except Exception:
+                # Best-effort cancellation: task may already be finished.
+                pass
+        if runner is not None:
+            try:
+                ray.kill(runner, no_restart=True)
+            except Exception:
+                # Best-effort actor kill: actor may already be dead.
+                pass
+
+    def _sig_handler(signum, frame):
+        del frame
+        sig_name = signal.Signals(signum).name
+        print(f"[Signal] Received {sig_name}; shutting down Ray tasks...")
+        _cancel_and_kill_runner()
+        raise KeyboardInterrupt
+
+    for sig in (signal.SIGINT, signal.SIGTERM):
+        previous_signal_handlers[sig] = signal.getsignal(sig)
+        signal.signal(sig, _sig_handler)
+
+    try:
+        # Create a remote instance of the TaskRunner class, and
+        # Execute the `run` method of the TaskRunner instance remotely and wait for it to complete
+        if (
+            config.global_profiler.tool == "nsys"
+            and OmegaConf.select(config.global_profiler, "steps") is not None
+            and len(OmegaConf.select(config.global_profiler, "steps")) > 0
+        ):
+            nsight_options = OmegaConf.to_container(
+                config.global_profiler.global_tool_config.nsys.controller_nsight_options
+            )
+            runner = TaskRunner.options(runtime_env={"nsight": nsight_options}).remote()
+        else:
+            runner = TaskRunner.remote()
+
+        run_ref = runner.run.remote(config)
+        ray.get(run_ref)
+
+        # [Optional] get the path of the timeline trace file from the configuration, default to None
+        # This file is used for performance analysis
+        timeline_json_file = config.ray_init.get("timeline_json_file", None)
+        if timeline_json_file:
+            ray.timeline(filename=timeline_json_file)
+    except KeyboardInterrupt:
+        _cancel_and_kill_runner()
+        raise
+    finally:
+        for sig, handler in previous_signal_handlers.items():
+            signal.signal(sig, handler)
+
+        _cancel_and_kill_runner()
+        if ray.is_initialized():
+            ray.shutdown()
 
 
 @ray.remote(num_cpus=1)  # please make sure main_task is not scheduled on head

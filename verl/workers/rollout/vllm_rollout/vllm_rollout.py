@@ -237,10 +237,19 @@ class vLLMAsyncRollout(BaseRollout):
             if is_qwen_family and name.startswith(needs_model_prefix):
                 name = f"model.{name}"
             if model_param_names is not None:
-                name = self._rewrite_lora_base_layer_name(name, model_param_names)
+                name = self._rewrite_lora_base_layer_name(
+                    name,
+                    model_param_names,
+                    prefer_split_name_for_fused=is_qwen_family,
+                )
             yield name, tensor
 
-    def _rewrite_lora_base_layer_name(self, name: str, model_param_names: set[str]) -> str:
+    def _rewrite_lora_base_layer_name(
+        self,
+        name: str,
+        model_param_names: set[str],
+        prefer_split_name_for_fused: bool = False,
+    ) -> str:
         """Map linear parameter names to `.base_layer.*` when LoRA wrappers are active."""
         if ".base_layer." in name:
             return name
@@ -258,7 +267,7 @@ class vLLMAsyncRollout(BaseRollout):
             module_prefix, module_suffix = "", module_name
 
         candidate_name = f"{module_name}.base_layer{param_suffix}"
-        if module_suffix in self._LORA_DIRECT_MODULE_SUFFIXES and candidate_name in model_param_names:
+        if candidate_name in model_param_names:
             return candidate_name
 
         fused_suffix = self._LORA_SPLIT_TO_FUSED.get(module_suffix)
@@ -267,7 +276,11 @@ class vLLMAsyncRollout(BaseRollout):
         fused_module_name = f"{module_prefix}.{fused_suffix}" if module_prefix else fused_suffix
         fused_candidate_name = f"{fused_module_name}.base_layer{param_suffix}"
         if fused_candidate_name in model_param_names:
-            return candidate_name
+            # For models such as Qwen, vLLM's loader still expects split HF names
+            # and performs split->fused remapping internally.
+            if prefer_split_name_for_fused:
+                return candidate_name
+            return fused_candidate_name
         return name
 
     async def _execute_method(self, method: str | bytes, *args, **kwargs):

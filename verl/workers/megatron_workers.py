@@ -353,13 +353,8 @@ class ActorRolloutRefWorker(MegatronWorker, DistProfilerExtension):
                 )
             self._ref_is_offload_param = self.config.ref.megatron.get("param_offload", False)
 
-        # For LoRA + vLLM rollout sync:
-        # - If rollout loads real base weights (e.g. load_format=auto), only LoRA adapters are needed.
-        # - If rollout uses dummy init, base weights must be synchronized once first.
-        self.base_sync_done = True
+        # For LoRA + vLLM rollout sync, Megatron-Bridge path always uses merged weights.
         self._logged_lora_sync_mode = False
-        if self._is_rollout:
-            self.base_sync_done = "dummy" not in self.config.rollout.get("load_format", "auto")
 
     def _build_model_optimizer(
         self, model_path, optim_config, override_model_config, override_transformer_config, override_ddp_config=None
@@ -672,37 +667,6 @@ class ActorRolloutRefWorker(MegatronWorker, DistProfilerExtension):
         get_torch_device().empty_cache()
         log_gpu_memory_usage("After init_model finish", logger=logger)
 
-    def _build_vllm_peft_config(self) -> Optional[dict[str, Any]]:
-        lora_cfg = self.config.model.get("lora", None)
-        if lora_cfg is None:
-            return None
-        if OmegaConf.is_config(lora_cfg):
-            lora_cfg = OmegaConf.to_container(lora_cfg, resolve=True)
-        if not isinstance(lora_cfg, dict):
-            return None
-
-        rank = int(lora_cfg.get("rank", 0))
-        if rank <= 0:
-            return None
-
-        target_modules = lora_cfg.get("target_modules", ["linear_qkv", "linear_proj", "linear_fc1", "linear_fc2"])
-        if isinstance(target_modules, str):
-            target_modules = [target_modules]
-        elif isinstance(target_modules, tuple):
-            target_modules = list(target_modules)
-        elif not isinstance(target_modules, list):
-            target_modules = list(target_modules)
-
-        return {
-            "r": rank,
-            "lora_alpha": int(lora_cfg.get("alpha", 32)),
-            "target_modules": target_modules,
-            "bias": "none",
-            "modules_to_save": None,
-            "use_rslora": bool(lora_cfg.get("use_rslora", False)),
-            "use_dora": bool(lora_cfg.get("type", "lora") == "dora"),
-        }
-
     async def rollout_mode(self):
         """Context switch hybridengine to rollout mode."""
         aggressive_empty_cache(force_sync=True)
@@ -712,32 +676,18 @@ class ActorRolloutRefWorker(MegatronWorker, DistProfilerExtension):
             load_megatron_model_to_gpu(self.actor.actor_module, load_grad=False)
             log_gpu_memory_usage("After load actor params during rollout_mode", logger=logger)
 
-        peft_config = self._build_vllm_peft_config()
         lora_ready_for_bridge_sync = (
-            peft_config is not None
-            and self.bridge is not None
+            self.bridge is not None
             and not self.vanilla_bridge
-            and hasattr(self.bridge, "export_adapter_weights")
             and self.config.model.get("lora_rank", 0) > 0
         )
-        lora_sync_mode = os.environ.get("VERL_VLLM_LORA_SYNC_MODE", "merged").lower()
-        use_adapter_sync = lora_ready_for_bridge_sync and lora_sync_mode == "adapter"
-        use_merged_lora_sync = lora_ready_for_bridge_sync and not use_adapter_sync
         if lora_ready_for_bridge_sync and not self._logged_lora_sync_mode:
             logger.warning(
-                "LoRA rollout sync mode: %s (set VERL_VLLM_LORA_SYNC_MODE=adapter to use adapter-only sync).",
-                "adapter" if use_adapter_sync else "merged",
+                "LoRA rollout sync mode: merged (Megatron-Bridge adapter-only sync is disabled for compatibility)."
             )
             self._logged_lora_sync_mode = True
 
-        if use_adapter_sync:
-            if self.base_sync_done:
-                per_tensor_param = self.bridge.export_adapter_weights(self.actor.actor_module)
-            else:
-                per_tensor_param = self.bridge.export_hf_weights(
-                    self.actor.actor_module, merge_adapter_weights=False
-                )
-        elif use_merged_lora_sync:
+        if lora_ready_for_bridge_sync:
             # Safety-first path: synchronize effective model weights (base + LoRA merged)
             # to avoid adapter-format mismatch between Megatron-Bridge and vLLM.
             per_tensor_param = self.bridge.export_hf_weights(
@@ -759,15 +709,7 @@ class ActorRolloutRefWorker(MegatronWorker, DistProfilerExtension):
 
         if self.config.rollout.free_cache_engine:
             await self.rollout.resume(tags=["weights"])
-        if use_adapter_sync:
-            await self.rollout.update_weights(
-                per_tensor_param,
-                peft_config=peft_config,
-                base_sync_done=self.base_sync_done,
-            )
-            self.base_sync_done = True
-        else:
-            await self.rollout.update_weights(per_tensor_param)
+        await self.rollout.update_weights(per_tensor_param)
         if self._is_offload_param:
             offload_megatron_model_to_cpu(self.actor.actor_module)
         aggressive_empty_cache(force_sync=True)
