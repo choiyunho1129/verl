@@ -407,6 +407,17 @@ actor_rollout_ref:
     overlap_rollout: False
     n_server_workers: 1
     use_sampled_token_logprobs: False
+    # Optional: reformat teacher input prompt with teacher tokenizer chat template
+    # before querying teacher logprobs. This is useful when student and teacher
+    # use different prompt formats (e.g., base student + instruct teacher).
+    use_chat_template_for_prompt: False
+    tokenizer_path: null
+    trust_remote_code: null
+    prompt_truncation: error
+    apply_chat_template_kwargs: {}
+    # If set, forwarded as apply_chat_template(enable_thinking=...).
+    # Set False for Qwen instruct "no thinking" mode.
+    enable_thinking: null
 
 # Required by AgentLoopManager when rollout.mode=async.
 reward_model:

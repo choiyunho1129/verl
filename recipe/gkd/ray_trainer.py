@@ -173,6 +173,7 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
 
         self._create_dataloader(train_dataset, val_dataset, collate_fn, train_sampler)
         self.teacher_config = self.config.actor_rollout_ref.teacher
+        self._init_teacher_prompt_reformat()
         self.n_server_workers = self.teacher_config.n_server_workers
         use_sampled_token_logprobs = bool(
             OmegaConf.select(self.teacher_config, "use_sampled_token_logprobs", default=False)
@@ -204,6 +205,178 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         self.params_dtype = PrecisionType.to_dtype("bfloat16")
         self.async_rollout_mode = False
         self.async_rollout_manager = None
+
+    def _init_teacher_prompt_reformat(self) -> None:
+        self.teacher_use_chat_template_for_prompt = bool(
+            OmegaConf.select(self.teacher_config, "use_chat_template_for_prompt", default=False)
+        )
+        self.teacher_prompt_tokenizer = None
+        self.teacher_prompt_truncation = str(
+            OmegaConf.select(self.teacher_config, "prompt_truncation", default="error")
+        ).lower()
+        self.teacher_apply_chat_template_kwargs = {}
+        self._teacher_enable_thinking_unsupported = False
+        self._teacher_prompt_warning_emitted = False
+        if not self.teacher_use_chat_template_for_prompt:
+            return
+
+        from verl.utils import hf_tokenizer
+        from verl.utils.fs import copy_to_local
+
+        tokenizer_path = OmegaConf.select(self.teacher_config, "tokenizer_path", default=None)
+        if tokenizer_path is None:
+            tokenizer_path = (
+                OmegaConf.select(self.config.actor_rollout_ref.model, "tokenizer_path", default=None)
+                or self.config.actor_rollout_ref.model.path
+            )
+        model_use_shm = bool(OmegaConf.select(self.config.actor_rollout_ref.model, "use_shm", default=False))
+        local_tokenizer_path = copy_to_local(tokenizer_path, use_shm=model_use_shm)
+        trust_remote_code = OmegaConf.select(
+            self.teacher_config,
+            "trust_remote_code",
+            default=OmegaConf.select(self.config.data, "trust_remote_code", default=False),
+        )
+        self.teacher_prompt_tokenizer = hf_tokenizer(local_tokenizer_path, trust_remote_code=bool(trust_remote_code))
+
+        apply_chat_template_kwargs = OmegaConf.select(self.teacher_config, "apply_chat_template_kwargs", default={}) or {}
+        if not isinstance(apply_chat_template_kwargs, dict):
+            apply_chat_template_kwargs = OmegaConf.to_container(apply_chat_template_kwargs, resolve=True)
+        if apply_chat_template_kwargs is None:
+            apply_chat_template_kwargs = {}
+        self.teacher_apply_chat_template_kwargs = dict(apply_chat_template_kwargs)
+
+        enable_thinking = OmegaConf.select(self.teacher_config, "enable_thinking", default=None)
+        if enable_thinking is not None:
+            self.teacher_apply_chat_template_kwargs.setdefault("enable_thinking", bool(enable_thinking))
+
+        print(
+            "[Info] Teacher prompt reformat enabled: "
+            f"tokenizer_path={tokenizer_path}, prompt_truncation={self.teacher_prompt_truncation}, "
+            f"apply_chat_template_kwargs={self.teacher_apply_chat_template_kwargs}"
+        )
+
+    def _apply_teacher_chat_template(self, raw_prompt: list) -> list[int]:
+        apply_kwargs = dict(self.teacher_apply_chat_template_kwargs)
+        if self._teacher_enable_thinking_unsupported:
+            apply_kwargs.pop("enable_thinking", None)
+
+        try:
+            prompt_ids = self.teacher_prompt_tokenizer.apply_chat_template(
+                raw_prompt,
+                add_generation_prompt=True,
+                tokenize=True,
+                **apply_kwargs,
+            )
+        except TypeError as e:
+            if "enable_thinking" in apply_kwargs and "enable_thinking" in str(e):
+                print(
+                    "[Info] Tokenizer chat template does not support enable_thinking; "
+                    "retrying without enable_thinking."
+                )
+                self._teacher_enable_thinking_unsupported = True
+                apply_kwargs.pop("enable_thinking", None)
+                prompt_ids = self.teacher_prompt_tokenizer.apply_chat_template(
+                    raw_prompt,
+                    add_generation_prompt=True,
+                    tokenize=True,
+                    **apply_kwargs,
+                )
+            else:
+                raise
+
+        if isinstance(prompt_ids, torch.Tensor):
+            prompt_ids = prompt_ids.tolist()
+        return [int(x) for x in prompt_ids]
+
+    def _build_teacher_query_batch(self, batch: DataProto) -> DataProto:
+        if not self.teacher_use_chat_template_for_prompt or self.teacher_prompt_tokenizer is None:
+            return batch
+
+        if "raw_prompt" not in batch.non_tensor_batch:
+            if not self._teacher_prompt_warning_emitted:
+                print(
+                    "[Info] teacher.use_chat_template_for_prompt=True but raw_prompt is missing. "
+                    "Fallback to original teacher input ids."
+                )
+                self._teacher_prompt_warning_emitted = True
+            return batch
+
+        input_ids = batch.batch["input_ids"]
+        attention_mask = batch.batch["attention_mask"].to(torch.bool)
+        responses = batch.batch["responses"]
+        raw_prompts = batch.non_tensor_batch["raw_prompt"]
+
+        batch_size, seq_len = input_ids.shape
+        response_length = responses.size(1)
+        prompt_length = seq_len - response_length
+        if prompt_length <= 0:
+            raise ValueError(
+                "Invalid prompt length for teacher prompt reformat: "
+                f"seq_len={seq_len}, response_length={response_length}"
+            )
+
+        if len(raw_prompts) != batch_size:
+            raise ValueError(
+                "raw_prompt batch size mismatch for teacher prompt reformat: "
+                f"{len(raw_prompts)} vs {batch_size}"
+            )
+
+        pad_token_id = self.tokenizer.pad_token_id
+        if pad_token_id is None:
+            pad_token_id = 0
+
+        teacher_input_ids = torch.full_like(input_ids, fill_value=pad_token_id)
+        teacher_attention_mask = torch.zeros_like(batch.batch["attention_mask"])
+
+        for i in range(batch_size):
+            raw_prompt = raw_prompts[i]
+            if isinstance(raw_prompt, np.ndarray):
+                raw_prompt = raw_prompt.tolist()
+            if not isinstance(raw_prompt, list):
+                raise TypeError(
+                    f"raw_prompt must be a list or numpy array, got {type(raw_prompts[i])} at index {i}."
+                )
+
+            prompt_ids = self._apply_teacher_chat_template(raw_prompt)
+            if len(prompt_ids) > prompt_length:
+                if self.teacher_prompt_truncation == "left":
+                    prompt_ids = prompt_ids[-prompt_length:]
+                elif self.teacher_prompt_truncation == "right":
+                    prompt_ids = prompt_ids[:prompt_length]
+                elif self.teacher_prompt_truncation == "error":
+                    raise RuntimeError(
+                        "Teacher chat-template prompt length exceeds available prompt_length budget: "
+                        f"{len(prompt_ids)} > {prompt_length} at sample index {i}. "
+                        "Increase data.max_prompt_length/model max length or set "
+                        "actor_rollout_ref.teacher.prompt_truncation=left/right."
+                    )
+                else:
+                    raise ValueError(
+                        "Invalid actor_rollout_ref.teacher.prompt_truncation: "
+                        f"{self.teacher_prompt_truncation}"
+                    )
+
+            response_mask = attention_mask[i, -response_length:]
+            valid_response_ids = responses[i][response_mask].tolist()
+            valid_response_len = len(valid_response_ids)
+            if valid_response_len > response_length:
+                valid_response_ids = valid_response_ids[:response_length]
+                valid_response_len = response_length
+
+            prompt_pad_len = prompt_length - len(prompt_ids)
+            response_pad_len = response_length - valid_response_len
+
+            row_ids = [pad_token_id] * prompt_pad_len + prompt_ids + valid_response_ids + [pad_token_id] * response_pad_len
+            row_mask = [0] * prompt_pad_len + [1] * len(prompt_ids) + [1] * valid_response_len + [0] * response_pad_len
+            teacher_input_ids[i] = torch.tensor(row_ids, dtype=input_ids.dtype)
+            teacher_attention_mask[i] = torch.tensor(row_mask, dtype=batch.batch["attention_mask"].dtype)
+
+        return DataProto.from_dict(
+            tensors={
+                "input_ids": teacher_input_ids,
+                "attention_mask": teacher_attention_mask,
+            }
+        )
 
     def _create_dataloader(self, train_dataset, val_dataset, collate_fn, train_sampler: Optional[Sampler]):
         """
@@ -405,8 +578,9 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
         _, _, gen_batch_output = future.get()
         gen_batch_output.meta_info["response_length"] = self.config.data.max_response_length
 
+        teacher_query_batch = self._build_teacher_query_batch(gen_batch_output)
         future.set_teacher_batch_output(
-            get_teacher_knowledge(gen_batch_output, self.teacher_client, self.n_server_workers, is_async=True)
+            get_teacher_knowledge(teacher_query_batch, self.teacher_client, self.n_server_workers, is_async=True)
         )
         return future
 
@@ -582,8 +756,9 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
             response_lens = (test_output_gen_batch.batch["responses"] != self.tokenizer.pad_token_id).sum(dim=-1)
             response_lens_all.extend(response_lens.tolist())
 
+            teacher_query_batch = self._build_teacher_query_batch(test_output_gen_batch)
             teacher_batch_output = get_teacher_knowledge(
-                test_output_gen_batch,
+                teacher_query_batch,
                 self.teacher_client,
                 self.n_server_workers,
                 is_async=False,

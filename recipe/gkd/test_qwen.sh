@@ -24,6 +24,15 @@ EXPERIMENT_NAME=${EXPERIMENT_NAME:-${WANDB_RUN_NAME}}
 # when user explicitly sets WANDB_MODE.
 export WANDB_MODE=${WANDB_MODE:-online}
 
+# Optional teacher prompt reformat (for base-student / instruct-teacher setups).
+# Example:
+#   export TEACHER_USE_CHAT_TEMPLATE_FOR_PROMPT=true
+#   export TEACHER_TOKENIZER_PATH=Qwen/Qwen3-8B-Instruct
+#   export TEACHER_ENABLE_THINKING=false
+TEACHER_USE_CHAT_TEMPLATE_FOR_PROMPT=${TEACHER_USE_CHAT_TEMPLATE_FOR_PROMPT:-True}
+TEACHER_TOKENIZER_PATH=${TEACHER_TOKENIZER_PATH:-}
+TEACHER_ENABLE_THINKING=${TEACHER_ENABLE_THINKING:-false}
+
 # 2. run the script
 train_files="/data1/home/yunhochoi/verl/data/DeepMath-103K/train_90.parquet"
 test_files="/data1/home/yunhochoi/verl/data/DeepMath-103K/validation_1k.parquet"
@@ -82,6 +91,19 @@ if [ "${LORA_RANK}" -gt 0 ]; then
     )
     if [ -n "${LORA_ADAPTER_PATH}" ]; then
         LORA_ARGS+=(+actor_rollout_ref.model.lora.adapter_path="${LORA_ADAPTER_PATH}")
+    fi
+fi
+
+TEACHER_PROMPT_ARGS=()
+if [ "${TEACHER_USE_CHAT_TEMPLATE_FOR_PROMPT}" = "true" ]; then
+    TEACHER_PROMPT_ARGS+=(
+        actor_rollout_ref.teacher.use_chat_template_for_prompt=True
+        actor_rollout_ref.teacher.enable_thinking="${TEACHER_ENABLE_THINKING}"
+    )
+    if [ -n "${TEACHER_TOKENIZER_PATH}" ]; then
+        TEACHER_PROMPT_ARGS+=(
+            actor_rollout_ref.teacher.tokenizer_path="${TEACHER_TOKENIZER_PATH}"
+        )
     fi
 fi
 
@@ -156,5 +178,6 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     trainer.val_before_train=True \
     trainer.total_training_steps=500 \
     trainer.total_epochs=30 \
+    "${TEACHER_PROMPT_ARGS[@]}" \
     "${LORA_ARGS[@]}" "$@"
     # +actor_rollout_ref.actor.megatron.override_transformer_config.num_layers_in_first_pipeline_stage=11 \
