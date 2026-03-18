@@ -2,14 +2,12 @@ import asyncio
 import json
 import os
 import multiprocessing as mp
+import re
 from concurrent.futures import ProcessPoolExecutor
 from typing import Any, Dict, List, Optional, Tuple
 
 import aiohttp
 from transformers import PreTrainedTokenizer
-
-from verl.utils.reward_score.math_verify import compute_score as mv_compute_score
-
 
 def _get_env(*keys: str, default: str | None = None) -> str | None:
     for k in keys:
@@ -34,11 +32,201 @@ SCORE_MAX_CONCURRENCY = int(
 )
 DEBUG_MODE = (_get_env("REWARD_DEBUG", "DEBUG_REWARD", default="False") or "false").lower() == "true"
 # ---------------------
+_MATH_VERIFY_UNAVAILABLE_LOGGED = False
 
 
 def _log_debug(msg: str) -> None:
     if DEBUG_MODE:
         print(f"[RewardDebug] {msg}", flush=True)
+
+
+def _try_math_verify_score(model_output: str, ground_truth: str) -> Optional[float]:
+    global _MATH_VERIFY_UNAVAILABLE_LOGGED
+    try:
+        from verl.utils.reward_score.math_verify import compute_score as mv_compute_score
+    except Exception:
+        if not _MATH_VERIFY_UNAVAILABLE_LOGGED:
+            print(
+                "[RewardWarn] math_verify is unavailable. "
+                "Solve/verification rewards will return 0 when labels are not precomputed.",
+                flush=True,
+            )
+            _MATH_VERIFY_UNAVAILABLE_LOGGED = True
+        return None
+
+    try:
+        return float(mv_compute_score(model_output, ground_truth))
+    except Exception:
+        return 0.0
+
+
+_VERDICT_PATTERN = re.compile(r"final\s*verdict\s*[:\-]\s*(correct|incorrect)\b", re.IGNORECASE)
+_VERDICT_TOKEN_PATTERN = re.compile(r"\b(correct|incorrect)\b", re.IGNORECASE)
+
+_SOLVE_DATA_SOURCES = {
+    "huggingfaceh4/math-500",
+    "lighteval/math",
+    "digitallearninggmbh/math-lighteval",
+    "deepmath",
+    "qwen-math",
+    "deepscaler",
+    "math",
+    "math_dapo",
+    "math_dapo_reasoning",
+}
+_CRITIQUE_DATA_SOURCES = {
+    "critique",
+    "critique_variants",
+}
+
+
+def _normalize_data_source(data_source: str) -> str:
+    return (data_source or "").strip().lower()
+
+
+def _is_verification_data_source(data_source: str) -> bool:
+    normalized = _normalize_data_source(data_source)
+    return "verification" in normalized
+
+
+def _is_critique_data_source(data_source: str) -> bool:
+    normalized = _normalize_data_source(data_source)
+    return normalized in _CRITIQUE_DATA_SOURCES or "critique" in normalized
+
+
+def _is_solve_data_source(data_source: str) -> bool:
+    normalized = _normalize_data_source(data_source)
+    return normalized in _SOLVE_DATA_SOURCES or "solve" in normalized or normalized.startswith("aime")
+
+
+def _parse_ground_truth_dict(ground_truth: Any) -> Dict[str, Any]:
+    if isinstance(ground_truth, dict):
+        return ground_truth
+    if isinstance(ground_truth, str):
+        try:
+            payload = json.loads(ground_truth)
+            if isinstance(payload, dict):
+                return payload
+        except Exception:
+            return {}
+    return {}
+
+
+def _extract_solve_ground_truth(ground_truth: Any, meta: Dict[str, Any]) -> str:
+    for key in ("answer", "ground_truth", "label", "target"):
+        value = meta.get(key)
+        if isinstance(value, str) and value.strip():
+            return value
+    return str(ground_truth) if ground_truth is not None else ""
+
+
+def _to_bool(value: Any) -> Optional[bool]:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, int | float):
+        if value == 1:
+            return True
+        if value == 0:
+            return False
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"true", "1", "yes", "y", "correct"}:
+            return True
+        if normalized in {"false", "0", "no", "n", "incorrect"}:
+            return False
+    return None
+
+
+def _parse_verification_verdict(solution_str: str) -> Optional[bool]:
+    if not solution_str:
+        return None
+
+    verdict_matches = _VERDICT_PATTERN.findall(solution_str)
+    if verdict_matches:
+        return verdict_matches[-1].lower() == "correct"
+
+    token_matches = _VERDICT_TOKEN_PATTERN.findall(solution_str)
+    if token_matches:
+        return token_matches[-1].lower() == "correct"
+
+    return None
+
+
+def _resolve_actual_correct(meta: Dict[str, Any], extra_info: Any) -> Optional[bool]:
+    for key in ("actual_correct", "verified_correct", "trajectory_is_correct"):
+        resolved = _to_bool(meta.get(key))
+        if resolved is not None:
+            return resolved
+
+    if isinstance(extra_info, dict):
+        for key in ("actual_correct", "verified_correct", "trajectory_is_correct"):
+            resolved = _to_bool(extra_info.get(key))
+            if resolved is not None:
+                return resolved
+
+    trajectory = meta.get("trajectory")
+    answer = meta.get("answer")
+    if trajectory is not None and answer is not None:
+        score = _try_math_verify_score(str(trajectory), str(answer))
+        if score is None:
+            return None
+        return score > 0.0
+
+    verification_score = meta.get("verification_score")
+    if isinstance(verification_score, int | float):
+        return float(verification_score) > 0.0
+
+    return None
+
+
+def _resolve_task_type(data_source: str, meta: Dict[str, Any]) -> str:
+    if _is_verification_data_source(data_source):
+        return "verification"
+    if _is_critique_data_source(data_source):
+        return "critique"
+    if _is_solve_data_source(data_source):
+        return "solve"
+
+    if meta:
+        if any(k in meta for k in ("actual_correct", "verified_correct", "trajectory_is_correct")):
+            return "verification"
+        variants = meta.get("variants")
+        if isinstance(variants, list) and variants:
+            return "critique"
+        if meta.get("trajectory") is not None and meta.get("answer") is not None:
+            return "verification"
+
+    return "solve"
+
+
+def _compute_verification_reward(solution_str: str, ground_truth: Any, extra_info: Any) -> dict[str, Any]:
+    meta = _parse_ground_truth_dict(ground_truth)
+    actual_correct = _resolve_actual_correct(meta, extra_info)
+    model_pred_correct = _parse_verification_verdict(solution_str or "")
+    parsed = model_pred_correct is not None
+
+    if actual_correct is None:
+        return {
+            "score": 0.0,
+            "acc": 0.0,
+            "verification_accuracy": 0.0,
+            "parsed": 1.0 if parsed else 0.0,
+            "model_pred_correct": -1.0 if model_pred_correct is None else (1.0 if model_pred_correct else 0.0),
+            "actual_correct": -1.0,
+            "task_type_id": 1.0,
+        }
+
+    match = parsed and (model_pred_correct == actual_correct)
+    score = 1.0 if match else 0.0
+    return {
+        "score": score,
+        "acc": score,
+        "verification_accuracy": score,
+        "parsed": 1.0 if parsed else 0.0,
+        "model_pred_correct": -1.0 if model_pred_correct is None else (1.0 if model_pred_correct else 0.0),
+        "actual_correct": 1.0 if actual_correct else 0.0,
+        "task_type_id": 1.0,
+    }
 
 
 def _build_prompt(original_q: str, original_traj: str, critique: str, variant_q: str) -> str:
@@ -160,7 +348,10 @@ async def _score_variant(
         async with score_semaphore:
             try:
                 # Running CPU-bound scoring in a separate process (spawn context)
-                return await loop.run_in_executor(pool, mv_compute_score, gen, ground_truth)
+                score = await loop.run_in_executor(pool, _try_math_verify_score, gen, ground_truth)
+                if score is None:
+                    return 0.0
+                return float(score)
             except Exception:
                 return 0.0
 
@@ -179,7 +370,9 @@ async def _score_math_verify(solution_str: str, ground_truth: str) -> float:
     loop = asyncio.get_running_loop()
     pool = _get_process_pool()
     try:
-        score = await loop.run_in_executor(pool, mv_compute_score, solution_str, ground_truth)
+        score = await loop.run_in_executor(pool, _try_math_verify_score, solution_str, ground_truth)
+        if score is None:
+            return 0.0
         return float(score)
     except Exception as exc:
         _log_debug(f"Math-verify scoring failed: {exc}")
@@ -196,35 +389,42 @@ async def compute_score(
     reward_model_tokenizer: PreTrainedTokenizer | None = None,
     **_: Any,
 ) -> dict[str, Any] | float:
+    meta = _parse_ground_truth_dict(ground_truth)
+    task_type = _resolve_task_type(data_source=data_source, meta=meta)
 
-    # Fast-path scoring for standard MATH datasets
-    if data_source in {"HuggingFaceH4/MATH-500", "lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval", "deepmath"}:
-        score = await _score_math_verify(solution_str, ground_truth)
-        if score > 0.0:
-            return {"score": score, "acc": score, "num_variants": 1, "num_generations": 0}
-        return {"score": 0.0, "acc": 0.0, "num_variants": 0, "num_generations": 0}
+    if task_type == "verification":
+        result = _compute_verification_reward(solution_str=solution_str, ground_truth=ground_truth, extra_info=extra_info)
+        result["task_type"] = "verification"
+        return result
+
+    if task_type == "solve":
+        solve_ground_truth = _extract_solve_ground_truth(ground_truth, meta)
+        score = await _score_math_verify(solution_str, solve_ground_truth)
+        return {
+            "score": score,
+            "acc": score,
+            "solve_accuracy": score,
+            "num_variants": 1 if score > 0.0 else 0,
+            "num_generations": 0,
+            "task_type_id": 0.0,
+            "task_type": "solve",
+        }
 
     if reward_router_address is None or reward_model_tokenizer is None:
         raise ValueError(
-            "reward_router_address and reward_model_tokenizer are required. "
-            "Ensure reward_model.enable=True and reward_model.use_reward_loop=True."
+            "Critique reward requires reward_router_address and reward_model_tokenizer. "
+            f"Current data_source={data_source!r} was resolved as critique."
         )
 
     if not solution_str or len(solution_str.strip()) < 5:
-        return {"score": 0.0, "acc": 0.0, "num_variants": 0, "num_generations": 0}
-
-    try:
-        meta = json.loads(ground_truth)
-    except Exception:
-        _log_debug("Failed to parse ground_truth JSON.")
-        return {"score": 0.0, "acc": 0.0, "num_variants": 0, "num_generations": 0}
+        return {"score": 0.0, "acc": 0.0, "num_variants": 0, "num_generations": 0, "task_type_id": 2.0, "task_type": "critique"}
 
     original_q = meta.get("original_question") or meta.get("question", "") or ""
     original_traj = meta.get("original_trajectory") or meta.get("trajectory", "") or ""
     variants = meta.get("variants", []) or []
     
     if not variants:
-        return {"score": 0.0, "acc": 0.0, "num_variants": 0, "num_generations": 0}
+        return {"score": 0.0, "acc": 0.0, "num_variants": 0, "num_generations": 0, "task_type_id": 2.0, "task_type": "critique"}
 
     timeout = aiohttp.ClientTimeout(total=HTTP_TIMEOUT_S)
     http_semaphore = asyncio.Semaphore(MAX_CONCURRENCY)
@@ -259,7 +459,7 @@ async def compute_score(
             )
 
         if not tasks:
-            return {"score": 0.0, "acc": 0.0}
+            return {"score": 0.0, "acc": 0.0, "task_type_id": 2.0, "task_type": "critique"}
 
         results = await asyncio.gather(*tasks)
 
@@ -277,7 +477,7 @@ async def compute_score(
     if not valid_scores:
         # All variants failed to generate. Return 0.0 or handled as failure.
         _log_debug("All variants failed to generate valid responses.")
-        return {"score": 0.0, "acc": 0.0, "num_variants": 0, "num_generations": 0}
+        return {"score": 0.0, "acc": 0.0, "num_variants": 0, "num_generations": 0, "task_type_id": 2.0, "task_type": "critique"}
 
     # Calculate average only on valid scores
     final_score = float(sum(valid_scores) / len(valid_scores))
@@ -290,4 +490,6 @@ async def compute_score(
         "acc": final_score,
         "num_variants": len(valid_scores),
         "num_generations": sum(len(g) for g in all_generations),
+        "task_type_id": 2.0,
+        "task_type": "critique",
     }

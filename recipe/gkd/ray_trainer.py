@@ -850,7 +850,11 @@ class OnPolicyDistillTrainer(RayPPOTrainer):
 
             # Add compact aliases for dashboard visibility.
             # Detailed metrics are still logged as val-core/val-aux per data source.
-            if "acc" in reward_extra_infos_dict and len(reward_extra_infos_dict["acc"]) > 0:
+            if "verification_accuracy" in reward_extra_infos_dict and len(reward_extra_infos_dict["verification_accuracy"]) > 0:
+                verification_acc = float(np.mean(reward_extra_infos_dict["verification_accuracy"]))
+                val_metrics["val/verification_accuracy"] = verification_acc
+                val_metrics["val/accuracy"] = verification_acc
+            elif "acc" in reward_extra_infos_dict and len(reward_extra_infos_dict["acc"]) > 0:
                 val_metrics["val/accuracy"] = float(np.mean(reward_extra_infos_dict["acc"]))
             if "reward" in reward_extra_infos_dict and len(reward_extra_infos_dict["reward"]) > 0:
                 val_metrics["val/reward"] = float(np.mean(reward_extra_infos_dict["reward"]))

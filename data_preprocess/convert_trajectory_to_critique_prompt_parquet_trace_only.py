@@ -41,6 +41,11 @@ def main() -> None:
     )
     parser.add_argument("--data-source", type=str, default="critique_variants")
     args = parser.parse_args()
+    if "critique" not in args.data_source.strip().lower():
+        print(
+            f"[warn] data_source={args.data_source!r} does not include 'critique'. "
+            "Use an explicit task name so unified reward routing is unambiguous."
+        )
 
     rows = []
     with open(args.input, "r", encoding="utf-8") as f:

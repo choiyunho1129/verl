@@ -16,7 +16,7 @@ export NVTE_DEBUG=0
 export NVTE_DEBUG_LEVEL=2
 # W&B logging defaults.
 WANDB_PROJECT=${WANDB_PROJECT:-verl_examples}
-WANDB_RUN_NAME=${WANDB_RUN_NAME:-qwen3_8B_Base-onpolicydistillation_deepmath_teacher_8B_lora}
+WANDB_RUN_NAME=${WANDB_RUN_NAME:-qwen3_8B_Base-opd-teacher-8B-lora-nothink}
 WANDB_LOGGER=${WANDB_LOGGER:-'["console","wandb"]'}
 PROJECT_NAME=${PROJECT_NAME:-${WANDB_PROJECT}}
 EXPERIMENT_NAME=${EXPERIMENT_NAME:-${WANDB_RUN_NAME}}
@@ -34,8 +34,10 @@ TEACHER_TOKENIZER_PATH=${TEACHER_TOKENIZER_PATH:-}
 TEACHER_ENABLE_THINKING=${TEACHER_ENABLE_THINKING:-false}
 
 # 2. run the script
-train_files="/data1/home/yunhochoi/verl/data/DeepMath-103K/train_90.parquet"
-test_files="/data1/home/yunhochoi/verl/data/DeepMath-103K/validation_1k.parquet"
+# These files are expected to be prepared from trajectory JSONL by:
+#   data_preprocess/convert_trajectory_to_verification_prompt_parquet.py
+train_files=${TRAIN_FILES:-"/data01/yunhochoi/verl/data/DeepMath-103K/train_90.parquet"}
+test_files=${VAL_FILES:-"/data01/yunhochoi/verl/data/DeepMath-103K/validation_1k.parquet"}
 
 # 512 H20(96GB)
 NODES=1
@@ -44,7 +46,7 @@ TP=1
 EP=1
 ETP=1
 INFER_TP=1
-export TORCH_CUDA_ARCH_LIST="9.0"
+export TORCH_CUDA_ARCH_LIST="8.0"
 # Set GPU ids manually (example: "0" or "0,1").
 CUDA_VISIBLE_DEVICES="1,2"
 # consider TP/ETP, and enable recompute if short of memory
@@ -74,7 +76,8 @@ STOP_TOKENS_JSON=${STOP_TOKENS_JSON:-$'["\n\nUser:"]'}
 WORKING_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${WORKING_DIR}/../.." && pwd)"
 RUNTIME_ENV=${RUNTIME_ENV:-"${WORKING_DIR}/config/runtime_env.yaml"}
-REWARD_FN_PATH="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
+# Use pkg:// path (not file path) to keep multiprocessing import-safe.
+REWARD_FN_PATH=${REWARD_FN_PATH:-"pkg://verl.trainer.ppo.custom_rewards.unified_reward"}
 VAL_DATA_DIR=${VAL_DATA_DIR:-"${REPO_ROOT}/checkpoints/${PROJECT_NAME}/${EXPERIMENT_NAME}/validation"}
 mkdir -p "${VAL_DATA_DIR}"
 
@@ -115,7 +118,7 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     data.train_files="$train_files" \
     data.val_files="$test_files" \
     data.prompt_key=prompt \
-    data.train_batch_size=512 \
+    data.train_batch_size=256 \
     data.max_prompt_length=1024 \
     data.max_response_length=4096 \
     data.filter_overlong_prompts=True \
@@ -134,7 +137,7 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     actor_rollout_ref.actor.router_replay.mode=disabled \
     actor_rollout_ref.actor.optim.lr=1e-5 \
     actor_rollout_ref.actor.ppo_mini_batch_size=64 \
-    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=2 \
+    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=1 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.rollout.calculate_log_probs=False \
     actor_rollout_ref.actor.policy_loss.loss_mode=bypass_mode \
