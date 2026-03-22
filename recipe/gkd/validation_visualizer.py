@@ -31,6 +31,8 @@ def build_validation_feedback_record(
     response_token_ids: list[int],
     student_logprobs: list[float],
     teacher_logprobs: list[float],
+    teacher_top1_token_ids: list[int] | None = None,
+    teacher_top1_logprobs: list[float] | None = None,
     score: float | None,
     sample_index: int,
     uid: str | None = None,
@@ -43,17 +45,28 @@ def build_validation_feedback_record(
             f"{len(response_token_ids)=}, {len(student_logprobs)=}, {len(teacher_logprobs)=}"
         )
 
-    special_ids = set(getattr(tokenizer, "all_special_ids", []) or [])
-    kept_ids = []
-    kept_student = []
-    kept_teacher = []
-
-    for token_id, student_logprob, teacher_logprob in zip(response_token_ids, student_logprobs, teacher_logprobs):
-        if token_id in special_ids:
-            continue
-        kept_ids.append(int(token_id))
-        kept_student.append(float(student_logprob))
-        kept_teacher.append(float(teacher_logprob))
+    kept_ids = [int(token_id) for token_id in response_token_ids]
+    kept_student = [float(student_logprob) for student_logprob in student_logprobs]
+    kept_teacher = [float(teacher_logprob) for teacher_logprob in teacher_logprobs]
+    if teacher_top1_token_ids is not None and len(teacher_top1_token_ids) != len(kept_ids):
+        raise ValueError(
+            "teacher_top1_token_ids length must match response ids length: "
+            f"{len(teacher_top1_token_ids)=}, {len(kept_ids)=}"
+        )
+    if teacher_top1_logprobs is not None and len(teacher_top1_logprobs) != len(kept_ids):
+        raise ValueError(
+            "teacher_top1_logprobs length must match response ids length: "
+            f"{len(teacher_top1_logprobs)=}, {len(kept_ids)=}"
+        )
+    teacher_top1_ids = [int(token_id) for token_id in teacher_top1_token_ids] if teacher_top1_token_ids is not None else None
+    teacher_top1_logps = (
+        [float(logprob) for logprob in teacher_top1_logprobs] if teacher_top1_logprobs is not None else None
+    )
+    teacher_top1_texts = (
+        [tokenizer.decode([token_id], skip_special_tokens=False, clean_up_tokenization_spaces=False) for token_id in teacher_top1_ids]
+        if teacher_top1_ids is not None
+        else None
+    )
 
     output_text = tokenizer.decode(
         kept_ids,
@@ -94,6 +107,9 @@ def build_validation_feedback_record(
         "token_texts": token_texts,
         "student_logprobs": kept_student,
         "teacher_logprobs": kept_teacher,
+        "teacher_top1_token_ids": teacher_top1_ids,
+        "teacher_top1_logprobs": teacher_top1_logps,
+        "teacher_top1_token_texts": teacher_top1_texts,
         "advantage": advantages,
         "reverse_kl": reverse_kls,
         "mean_advantage": float(np.mean(advantages)) if advantages else 0.0,
@@ -271,9 +287,63 @@ def _render_step_html(step: int, records: list[dict[str, Any]], metric: str, sel
       font-size: 1.03rem;
       line-height: 1.82;
     }}
+    .aux-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin: 12px 0 16px;
+    }}
+    .aux-block {{
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
+    }}
+    .aux-block h4 {{
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }}
     .tok {{
       border-radius: 4px;
       padding: 0.04em 0.02em;
+    }}
+    .token-strip {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 4px;
+      align-items: flex-start;
+      margin-top: 8px;
+    }}
+    .token-chip {{
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      max-width: 12rem;
+      padding: 4px 6px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.78);
+    }}
+    .token-chip.diff {{
+      border-color: rgba(143, 47, 36, 0.38);
+      background: rgba(143, 47, 36, 0.08);
+    }}
+    .token-chip .chip-label {{
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }}
+    .token-chip .chip-text {{
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.82rem;
+      white-space: pre-wrap;
+      line-height: 1.35;
+      word-break: break-word;
     }}
     table {{
       width: 100%;
@@ -367,9 +437,9 @@ def _render_record_detail(record: dict[str, Any], metric: str) -> str:
     values = _record_metric_values(record, metric)
     scale = _percentile_scale(values, signed=metric in {"advantage", "reverse_kl"})
     prompt_text = record.get("prompt_text", "")
-    output_text = record.get("output_text", "")
     score = record.get("score")
     score_text = f"{float(score):.4f}" if score is not None else "n/a"
+    extra_sections = _render_extra_sections(record)
 
     return f"""
     <div class="card">
@@ -377,10 +447,68 @@ def _render_record_detail(record: dict[str, Any], metric: str) -> str:
       <p class="mono">uid={html.escape(str(record.get("uid") or ""))} | data_source={html.escape(str(record.get("data_source") or ""))} | color_scale={scale:.4f}</p>
       <h3>Prompt</h3>
       <div class="text-block">{html.escape(prompt_text)}</div>
+      {extra_sections}
       <h3>Response</h3>
       <div class="text-block">{_render_response_tokens(record, metric=metric, scale=scale)}</div>
+      {_render_teacher_top1_tokens(record)}
     </div>
     """
+
+
+def _format_extra_value(value: Any) -> str:
+    if isinstance(value, float):
+        return f"{value:.4f}" if math.isfinite(value) else str(value)
+    return str(value)
+
+
+def _render_extra_sections(record: dict[str, Any]) -> str:
+    extra = record.get("extra")
+    if not isinstance(extra, dict) or not extra:
+        return ""
+
+    sections = []
+
+    stat_pairs = []
+    for key, label in (
+        ("subject", "Subject"),
+        ("ability", "Ability"),
+        ("level", "Level"),
+        ("student_score", "Student score"),
+        ("teacher_preview_score", "Teacher preview score"),
+        ("student_mean_logprob", "Student mean logprob"),
+        ("teacher_mean_logprob_on_student", "Teacher mean logprob"),
+    ):
+        value = extra.get(key)
+        if value not in (None, ""):
+            stat_pairs.append(
+                "<div class='stat'>"
+                f"<span class='label'>{html.escape(label)}</span>"
+                f"<span class='value'>{html.escape(_format_extra_value(value))}</span>"
+                "</div>"
+            )
+
+    if stat_pairs:
+        sections.append(f"<div class='aux-grid'>{''.join(stat_pairs)}</div>")
+
+    ground_truth = extra.get("ground_truth")
+    if ground_truth not in (None, ""):
+        sections.append(
+            "<div class='aux-block'>"
+            "<h4>Ground Truth</h4>"
+            f"<div class='text-block'>{html.escape(str(ground_truth))}</div>"
+            "</div>"
+        )
+
+    teacher_preview_text = extra.get("teacher_preview_text")
+    if teacher_preview_text not in (None, ""):
+        sections.append(
+            "<div class='aux-block'>"
+            "<h4>Teacher Preview</h4>"
+            f"<div class='text-block'>{html.escape(str(teacher_preview_text))}</div>"
+            "</div>"
+        )
+
+    return "".join(sections)
 
 
 def _percentile_scale(values: list[float], signed: bool) -> float:
@@ -410,6 +538,9 @@ def _render_response_tokens(record: dict[str, Any], metric: str, scale: float) -
     values = _record_metric_values(record, metric)
     student_logprobs = record.get("student_logprobs", [])
     teacher_logprobs = record.get("teacher_logprobs", [])
+    teacher_top1_texts = record.get("teacher_top1_token_texts") or []
+    teacher_top1_logprobs = record.get("teacher_top1_logprobs") or []
+    teacher_top1_token_ids = record.get("teacher_top1_token_ids") or []
     signed = metric in {"advantage", "reverse_kl"}
 
     offsets = record.get("offsets")
@@ -430,6 +561,21 @@ def _render_response_tokens(record: dict[str, Any], metric: str, scale: float) -
                         f"text={token_text!r}",
                         f"student_logprob={float(student_logprob):.4f}",
                         f"teacher_logprob={float(teacher_logprob):.4f}",
+                        (
+                            f"teacher_top1={teacher_top1_texts[idx]!r}"
+                            if idx < len(teacher_top1_texts)
+                            else "teacher_top1=n/a"
+                        ),
+                        (
+                            f"teacher_top1_id={int(teacher_top1_token_ids[idx])}"
+                            if idx < len(teacher_top1_token_ids)
+                            else "teacher_top1_id=n/a"
+                        ),
+                        (
+                            f"teacher_top1_logprob={float(teacher_top1_logprobs[idx]):.4f}"
+                            if idx < len(teacher_top1_logprobs)
+                            else "teacher_top1_logprob=n/a"
+                        ),
                         f"advantage={float(record['advantage'][idx]):.4f}",
                         f"reverse_kl={float(record['reverse_kl'][idx]):.4f}",
                     ]
@@ -460,6 +606,21 @@ def _render_response_tokens(record: dict[str, Any], metric: str, scale: float) -
                     f"text={token_text!r}",
                     f"student_logprob={float(student_logprob):.4f}",
                     f"teacher_logprob={float(teacher_logprob):.4f}",
+                    (
+                        f"teacher_top1={teacher_top1_texts[idx]!r}"
+                        if idx < len(teacher_top1_texts)
+                        else "teacher_top1=n/a"
+                    ),
+                    (
+                        f"teacher_top1_id={int(teacher_top1_token_ids[idx])}"
+                        if idx < len(teacher_top1_token_ids)
+                        else "teacher_top1_id=n/a"
+                    ),
+                    (
+                        f"teacher_top1_logprob={float(teacher_top1_logprobs[idx]):.4f}"
+                        if idx < len(teacher_top1_logprobs)
+                        else "teacher_top1_logprob=n/a"
+                    ),
                     f"advantage={float(record['advantage'][idx]):.4f}",
                     f"reverse_kl={float(record['reverse_kl'][idx]):.4f}",
                 ]
@@ -471,3 +632,56 @@ def _render_response_tokens(record: dict[str, Any], metric: str, scale: float) -
             f'<span class="tok" style="background:{bg}" title="{title}">{html.escape(token_text) if token_text else "&nbsp;"}</span>'
         )
     return "".join(pieces)
+
+
+def _render_teacher_top1_tokens(record: dict[str, Any]) -> str:
+    teacher_top1_texts = record.get("teacher_top1_token_texts") or []
+    if not teacher_top1_texts:
+        return ""
+
+    token_ids = record.get("token_ids") or []
+    top1_ids = record.get("teacher_top1_token_ids") or []
+    top1_logprobs = record.get("teacher_top1_logprobs") or []
+
+    chips = []
+    for idx, token_text in enumerate(teacher_top1_texts):
+        sampled_token_id = token_ids[idx] if idx < len(token_ids) else None
+        teacher_top1_id = top1_ids[idx] if idx < len(top1_ids) else None
+        differs = sampled_token_id is not None and teacher_top1_id is not None and sampled_token_id != teacher_top1_id
+        classes = "token-chip diff" if differs else "token-chip"
+        title = html.escape(
+            " | ".join(
+                [
+                    f"idx={idx}",
+                    (
+                        f"teacher_top1_id={int(teacher_top1_id)}"
+                        if teacher_top1_id is not None
+                        else "teacher_top1_id=n/a"
+                    ),
+                    (
+                        f"teacher_top1_logprob={float(top1_logprobs[idx]):.4f}"
+                        if idx < len(top1_logprobs)
+                        else "teacher_top1_logprob=n/a"
+                    ),
+                    (
+                        f"matches_sampled={not differs}"
+                        if sampled_token_id is not None and teacher_top1_id is not None
+                        else "matches_sampled=n/a"
+                    ),
+                ]
+            ),
+            quote=True,
+        )
+        chips.append(
+            f"<span class='{classes}' title=\"{title}\">"
+            f"<span class='chip-label'>t{idx}</span>"
+            f"<span class='chip-text'>{html.escape(token_text) if token_text else '&nbsp;'}</span>"
+            "</span>"
+        )
+
+    return (
+        "<h3>Teacher Top-1 By Position</h3>"
+        "<div class='token-strip'>"
+        + "".join(chips)
+        + "</div>"
+    )
