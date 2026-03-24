@@ -67,6 +67,7 @@ class TeacherClient:
         only_response=False,
         max_seq_len=None,
         use_sampled_token_logprobs=False,
+        return_full_logprobs=False,
     ) -> None:
         self.server_ip = server_ip
         self.server_port = server_port
@@ -80,6 +81,7 @@ class TeacherClient:
         self.only_response = only_response
         self.max_seq_len = max_seq_len
         self.use_sampled_token_logprobs = use_sampled_token_logprobs
+        self.return_full_logprobs = return_full_logprobs
         self._run()
 
     def bg_task(self):
@@ -112,6 +114,8 @@ class TeacherClient:
                     request["only_response"] = True
                 if self.use_sampled_token_logprobs:
                     request["use_sampled_token_logprobs"] = True
+                if self.return_full_logprobs:
+                    request["return_full_logprobs"] = True
 
                 socket.send(serialize(request))
                 raw = socket.recv()

@@ -14,12 +14,18 @@
 
 import argparse
 import inspect
+import os
 import random
 from typing import NamedTuple
 
 import torch
 from codetiming import Timer
 from transformers import AutoConfig
+
+# vLLM library entrypoints default to `fork`, but CUDA workers in this repo's
+# standalone scripts need `spawn` just like the vLLM CLI/Ray paths do.
+os.environ.setdefault("VLLM_WORKER_MULTIPROC_METHOD", "spawn")
+
 from vllm import LLM, SamplingParams
 from vllm.inputs import TokensPrompt
 
@@ -136,7 +142,19 @@ class LogprobsTensors(NamedTuple):
 
 
 class VLLMEngine:
-    def __init__(self, ckpt_path, n_logprobs=0, tp_size=1):
+    def __init__(
+        self,
+        ckpt_path,
+        n_logprobs=0,
+        tp_size=1,
+        gpu_memory_utilization=0.7,
+        trust_remote_code=True,
+        dtype="bfloat16",
+        seed=0,
+        enable_chunked_prefill=False,
+        download_dir=None,
+        max_model_len=None,
+    ):
         self.n_logprobs = n_logprobs
         # self.llm = LLM(ckpt_path, tensor_parallel_size=tp_size, trust_remote_code=True,
         #                enable_chunked_prefill=False, distributed_executor_backend="ray",
@@ -144,10 +162,14 @@ class VLLMEngine:
         self.llm = LLM(
             ckpt_path,
             tensor_parallel_size=tp_size,
-            trust_remote_code=True,
-            enable_chunked_prefill=False,
+            trust_remote_code=trust_remote_code,
+            enable_chunked_prefill=enable_chunked_prefill,
             max_logprobs=n_logprobs,
-            gpu_memory_utilization=0.7,
+            gpu_memory_utilization=gpu_memory_utilization,
+            dtype=dtype,
+            seed=seed,
+            download_dir=download_dir,
+            max_model_len=max_model_len,
         )
         # vLLM>=0.11 removed `prompt_token_ids=` from LLM.generate().
         # Keep compatibility with both old/new APIs.
@@ -164,14 +186,16 @@ class VLLMEngine:
         self,
         prompt_token_ids,
         temperature=0.8,
+        top_p=0.95,
         max_new_tokens=1,
         only_response=False,
         use_sampled_token_logprobs=False,
+        return_full_logprobs=False,
     ):
         def make_sampling_params(i=None):
             return SamplingParams(
                 temperature=temperature,
-                top_p=0.95,
+                top_p=top_p,
                 detokenize=False,
                 logprobs=self.n_logprobs,
                 prompt_logprobs=None if only_response else self.n_logprobs,
@@ -192,7 +216,9 @@ class VLLMEngine:
             if self.n_logprobs > 0:
                 # vLLM returns shape [n_tokens, n_logprobs + 1]:
                 # col 0 is sampled token, col 1.. are top-k logprobs excluding sampled token.
-                if use_sampled_token_logprobs:
+                if return_full_logprobs:
+                    col_start, col_end = 0, None
+                elif use_sampled_token_logprobs:
                     col_start, col_end = 0, 1
                 else:
                     col_start, col_end = 1, None

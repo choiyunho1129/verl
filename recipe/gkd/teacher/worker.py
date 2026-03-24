@@ -64,6 +64,7 @@ def main():
             max_tokens = request.get("max_tokens", 1)
             only_response = request.get("only_response", False)
             use_sampled_token_logprobs = request.get("use_sampled_token_logprobs", False)
+            return_full_logprobs = request.get("return_full_logprobs", False)
             if isinstance(prompt_token_ids, torch.Tensor):
                 prompt_token_ids = prompt_token_ids.tolist()
             with Timer(name="get_prompt_topk_logprobs", initial_text=True, logger=functools.partial(print, flush=True)):
@@ -75,6 +76,7 @@ def main():
                         max_new_tokens=max_tokens,
                         only_response=only_response,
                         use_sampled_token_logprobs=use_sampled_token_logprobs,
+                        return_full_logprobs=return_full_logprobs,
                     )
                 except Exception as e:
                     print("[Server Error] Exception occurred during generation:", str(e))

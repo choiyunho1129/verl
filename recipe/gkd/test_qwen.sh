@@ -24,10 +24,6 @@ EXPERIMENT_NAME=${EXPERIMENT_NAME:-${WANDB_RUN_NAME}}
 # when user explicitly sets WANDB_MODE.
 export WANDB_MODE=${WANDB_MODE:-online}
 
-# 2. run the script
-train_files="/data1/home/yunhochoi/verl/data/MATH-500/train.parquet"
-test_files="/data1/home/yunhochoi/verl/data/MATH-500/test.parquet"
-
 # 512 H20(96GB)
 NODES=1
 PP=1
@@ -35,8 +31,8 @@ TP=1
 EP=1
 ETP=1
 INFER_TP=1
-# Set GPU ids manually (example: "0" or "0,1").
-CUDA_VISIBLE_DEVICES="1,2"
+# Set GPU ids manually (example: "0" or "0,1,2").
+CUDA_VISIBLE_DEVICES="0,1,2"
 # consider TP/ETP, and enable recompute if short of memory
 
 # full recompute
@@ -49,6 +45,9 @@ REPO_ROOT="$(cd "${WORKING_DIR}/../.." && pwd)"
 RUNTIME_ENV=${RUNTIME_ENV:-"${WORKING_DIR}/config/runtime_env.yaml"}
 REWARD_FN_PATH="${REPO_ROOT}/verl/trainer/ppo/custom_rewards/critique_reward.py"
 VAL_DATA_DIR=${VAL_DATA_DIR:-"${REPO_ROOT}/checkpoints/${PROJECT_NAME}/${EXPERIMENT_NAME}/validation"}
+# 2. run the script
+train_files=${TRAIN_FILES:-"${REPO_ROOT}/data/MATH-500/train.parquet"}
+test_files=${TEST_FILES:-"${REPO_ROOT}/data/MATH-500/test.parquet"}
 mkdir -p "${VAL_DATA_DIR}"
 
 # Run locally from repo root so package imports (recipe.gkd.*) work; main_gkd will ray.init() if needed.
@@ -106,10 +105,10 @@ python3 -m recipe.gkd.main_gkd --config-name on_policy_distill_trainer \
     trainer.project_name="${PROJECT_NAME}" \
     trainer.experiment_name="${EXPERIMENT_NAME}" \
     +trainer.validation_data_dir="${VAL_DATA_DIR}" \
-    trainer.n_gpus_per_node=2 \
+    trainer.n_gpus_per_node=3 \
     trainer.nnodes=$NODES \
     trainer.save_freq=40 \
-    trainer.test_freq=5 \
+    trainer.test_freq=10 \
     actor_rollout_ref.actor.megatron.pipeline_model_parallel_size=$PP \
     actor_rollout_ref.actor.megatron.tensor_model_parallel_size=$TP \
     actor_rollout_ref.actor.megatron.expert_model_parallel_size=$EP \
