@@ -97,6 +97,16 @@ def merge_megatron_ckpt_gptmodel(wrapped_models, config, dtype, is_value_model=F
     """
     start_time = time.time()
 
+    def _get_input_layernorm_weight(layer):
+        if hasattr(layer.self_attention.linear_qkv, "layer_norm_weight"):
+            return layer.self_attention.linear_qkv.layer_norm_weight
+        return layer.input_layernorm.weight
+
+    def _get_pre_mlp_layernorm_weight(layer):
+        if hasattr(layer.mlp.linear_fc1, "layer_norm_weight"):
+            return layer.mlp.linear_fc1.layer_norm_weight
+        return layer.pre_mlp_layernorm.weight
+
     def _get_gpt_model(model):
         return model
 
@@ -375,7 +385,7 @@ def merge_megatron_ckpt_gptmodel(wrapped_models, config, dtype, is_value_model=F
             sync_layer = gpt_model_module.decoder.layers[src_layer_idx]
 
             _broadcast_tensor(
-                sync_layer.self_attention.linear_qkv.layer_norm_weight,
+                _get_input_layernorm_weight(sync_layer),
                 f"{layer_name}.input_layernorm.weight",
                 src_pp_rank=src_pp_rank,
             )
@@ -417,7 +427,7 @@ def merge_megatron_ckpt_gptmodel(wrapped_models, config, dtype, is_value_model=F
             )
 
             _broadcast_tensor(
-                sync_layer.mlp.linear_fc1.layer_norm_weight,
+                _get_pre_mlp_layernorm_weight(sync_layer),
                 f"{layer_name}.post_attention_layernorm.weight",
                 src_pp_rank=src_pp_rank,
             )

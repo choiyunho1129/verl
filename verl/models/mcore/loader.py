@@ -65,6 +65,16 @@ def load_state_dict_to_megatron_gptmodel(state_dict, wrapped_models, config, par
 
     start_time = time.time()
 
+    def _get_input_layernorm_weight(layer):
+        if hasattr(layer.self_attention.linear_qkv, "layer_norm_weight"):
+            return layer.self_attention.linear_qkv.layer_norm_weight
+        return layer.input_layernorm.weight
+
+    def _get_pre_mlp_layernorm_weight(layer):
+        if hasattr(layer.mlp.linear_fc1, "layer_norm_weight"):
+            return layer.mlp.linear_fc1.layer_norm_weight
+        return layer.pre_mlp_layernorm.weight
+
     def _get_gpt_model(model):
         return model
 
@@ -403,7 +413,7 @@ def load_state_dict_to_megatron_gptmodel(state_dict, wrapped_models, config, par
             sync_layer = gpt_model_module.decoder.layers[dst_layer_idx]
 
             _broadcast_tensor(
-                sync_layer.self_attention.linear_qkv.layer_norm_weight if dst_pp_rank == pp_rank else None,
+                _get_input_layernorm_weight(sync_layer) if dst_pp_rank == pp_rank else None,
                 f"{layer_name}.input_layernorm.weight",
             )
 
@@ -438,7 +448,7 @@ def load_state_dict_to_megatron_gptmodel(state_dict, wrapped_models, config, par
                 chunk_dim=1,
             )
             _broadcast_tensor(
-                sync_layer.mlp.linear_fc1.layer_norm_weight if dst_pp_rank == pp_rank else None,
+                _get_pre_mlp_layernorm_weight(sync_layer) if dst_pp_rank == pp_rank else None,
                 f"{layer_name}.post_attention_layernorm.weight",
             )
 

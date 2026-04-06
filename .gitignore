@@ -1,4 +1,4 @@
-
+classifer_training/artifacts/*
 **/*.pt
 **/checkpoints
 **/logs

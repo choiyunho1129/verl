@@ -1,0 +1,10 @@
+datasets
+joblib
+math_verify
+numpy<2.0.0
+pandas
+pyarrow
+scikit-learn
+torch
+tqdm
+transformers

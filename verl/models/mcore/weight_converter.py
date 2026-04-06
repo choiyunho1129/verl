@@ -34,6 +34,7 @@ class McoreToHFWeightConverterBase:
 class McoreToHFWeightConverterDense(McoreToHFWeightConverterBase):
     def _convert_attention_param(self, name: str, params: list[torch.Tensor]) -> tuple[list[str], list[torch.Tensor]]:
         # 'decoder.layers.0.self_attention.linear_proj.weight'
+        # 'decoder.layers.0.input_layernorm.weight'
         # 'decoder.layers.0.self_attention.linear_qkv.layer_norm_weight'
         # 'decoder.layers.0.self_attention.linear_qkv.weight'
         # 'decoder.layers.0.self_attention.linear_qkv.bias'
@@ -49,6 +50,9 @@ class McoreToHFWeightConverterDense(McoreToHFWeightConverterBase):
         elif "self_attention.linear_proj.weight" in name:
             convert_names.append(f"model.layers.{layer_number}.self_attn.o_proj.weight")
             assert len(params) == 1
+        elif "input_layernorm.weight" in name:
+            convert_names.append(f"model.layers.{layer_number}.input_layernorm.weight")
+            assert len(params) == 1
         elif "self_attention.linear_qkv.layer_norm_weight" in name:
             convert_names.append(f"model.layers.{layer_number}.input_layernorm.weight")
             assert len(params) == 1
@@ -63,6 +67,7 @@ class McoreToHFWeightConverterDense(McoreToHFWeightConverterBase):
         return convert_names, params
 
     def _convert_mlp_param(self, name: str, params: list[torch.Tensor]) -> tuple[list[str], list[torch.Tensor]]:
+        # 'decoder.layers.0.pre_mlp_layernorm.weight'
         # 'decoder.layers.0.mlp.linear_fc1.layer_norm_weight'
         # 'decoder.layers.0.mlp.linear_fc1.weight'
         # 'decoder.layers.0.mlp.linear_fc2.weight'
@@ -73,6 +78,9 @@ class McoreToHFWeightConverterDense(McoreToHFWeightConverterBase):
             convert_names.append(f"model.layers.{layer_number}.mlp.gate_proj.weight")
             convert_names.append(f"model.layers.{layer_number}.mlp.up_proj.weight")
             assert len(params) == 2
+        elif "pre_mlp_layernorm.weight" in name:
+            convert_names.append(f"model.layers.{layer_number}.post_attention_layernorm.weight")
+            assert len(params) == 1
         elif "mlp.linear_fc1.layer_norm_weight" in name:
             convert_names.append(f"model.layers.{layer_number}.post_attention_layernorm.weight")
             assert len(params) == 1
@@ -92,9 +100,9 @@ class McoreToHFWeightConverterDense(McoreToHFWeightConverterBase):
         if name in direct_name_mapping:
             return [direct_name_mapping[name]], [params_one_group[0]]
 
-        if "self_attention" in name:
+        if "self_attention" in name or "input_layernorm.weight" in name:
             return self._convert_attention_param(name, params_one_group)
-        elif "mlp" in name:
+        elif "mlp" in name or "pre_mlp_layernorm.weight" in name:
             return self._convert_mlp_param(name, params_one_group)
         else:
             raise NotImplementedError(f"Unsupported parameter name: {name}")
@@ -163,9 +171,9 @@ class McoreToHFWeightConverterQwen2_5_VL(McoreToHFWeightConverterDense):
         if name in direct_name_mapping:
             return [direct_name_mapping[name]], [params_one_group[0]]
 
-        if "self_attention" in name:
+        if "self_attention" in name or "input_layernorm.weight" in name:
             return self._convert_attention_param(name, params_one_group)
-        elif "mlp" in name:
+        elif "mlp" in name or "pre_mlp_layernorm.weight" in name:
             return self._convert_mlp_param(name, params_one_group)
         else:
             raise NotImplementedError(f"Unsupported parameter name: {name}")
@@ -187,6 +195,7 @@ class McoreToHFWeightConverterQwen2_5_VL(McoreToHFWeightConverterDense):
                     "self_attn.v_proj.weight",
                 ],
                 "self_attention.linear_proj.weight": "self_attn.o_proj.weight",
+                "input_layernorm.weight": "input_layernorm.weight",
                 "self_attention.linear_qkv.layer_norm_weight": "input_layernorm.weight",
             }
             name_after_layer = ".".join(name.split(".")[-3:])
@@ -232,6 +241,7 @@ class McoreToHFWeightConverterQwen2_5_VL(McoreToHFWeightConverterDense):
                 "mlp.linear_fc1.bias": ["mlp.gate_proj.bias", "mlp.up_proj.bias"],
                 "mlp.linear_fc2.weight": "mlp.down_proj.weight",
                 "mlp.linear_fc2.bias": "mlp.down_proj.bias",
+                "pre_mlp_layernorm.weight": "post_attention_layernorm.weight",
                 "mlp.linear_fc1.layer_norm_weight": "post_attention_layernorm.weight",
             }
             name_after_layer = ".".join(name.split(".")[-3:])

@@ -15,13 +15,20 @@
 # limitations under the License.
 
 # use mcore transformer config to initialize the model
+import importlib.util
 import inspect
 from abc import ABC, abstractmethod
+from functools import lru_cache
 
 from megatron.core.models.gpt.gpt_layer_specs import get_gpt_decoder_block_spec, get_gpt_mtp_block_spec
 from megatron.core.models.gpt.gpt_model import GPTModel
 
 from .config_converter import PretrainedConfig, TransformerConfig
+
+
+@lru_cache(maxsize=1)
+def _has_transformer_engine() -> bool:
+    return importlib.util.find_spec("transformer_engine") is not None
 
 
 class BaseModelInitializer(ABC):
@@ -46,6 +53,9 @@ class BaseModelInitializer(ABC):
                 # assert self.hf_config.rope_scaling["type"] == "linear", "only linear scaling is supported for now"
                 rope_scaling_args["seq_len_interpolation_factor"] = self.hf_config.rope_scaling["factor"]
         return rope_scaling_args
+
+    def use_transformer_engine(self) -> bool:
+        return _has_transformer_engine()
 
     def initialize(
         self,
@@ -102,7 +112,9 @@ class DenseModel(BaseModelInitializer):
     def get_transformer_layer_spec(self, vp_stage=None):
         assert self.tfconfig.normalization == "RMSNorm", "only RMSNorm is supported for now"
         extra_kwargs = {} if not self.has_vp_stage else {"vp_stage": vp_stage}
-        return get_gpt_decoder_block_spec(self.tfconfig, use_transformer_engine=True, **extra_kwargs)
+        return get_gpt_decoder_block_spec(
+            self.tfconfig, use_transformer_engine=self.use_transformer_engine(), **extra_kwargs
+        )
 
 
 class Qwen2MoEModel(BaseModelInitializer):
@@ -111,7 +123,9 @@ class Qwen2MoEModel(BaseModelInitializer):
     def get_transformer_layer_spec(self, vp_stage=None):
         assert self.tfconfig.normalization == "RMSNorm", "only RMSNorm is supported for now"
         extra_kwargs = {} if not self.has_vp_stage else {"vp_stage": vp_stage}
-        transformer_layer_spec = get_gpt_decoder_block_spec(self.tfconfig, use_transformer_engine=True, **extra_kwargs)
+        transformer_layer_spec = get_gpt_decoder_block_spec(
+            self.tfconfig, use_transformer_engine=self.use_transformer_engine(), **extra_kwargs
+        )
 
         # Patch layer spec for shared experts
         for i in range(len(transformer_layer_spec.layer_specs)):
@@ -135,7 +149,9 @@ class MixtralModel(BaseModelInitializer):
     def get_transformer_layer_spec(self, vp_stage=None):
         assert self.tfconfig.normalization == "RMSNorm", "only RMSNorm is supported for now"
         extra_kwargs = {} if not self.has_vp_stage else {"vp_stage": vp_stage}
-        transformer_layer_spec = get_gpt_decoder_block_spec(self.tfconfig, use_transformer_engine=True, **extra_kwargs)
+        transformer_layer_spec = get_gpt_decoder_block_spec(
+            self.tfconfig, use_transformer_engine=self.use_transformer_engine(), **extra_kwargs
+        )
         return transformer_layer_spec
 
     def initialize(self, **kwargs):
@@ -153,7 +169,9 @@ class Qwen3MoEModel(BaseModelInitializer):
     def get_transformer_layer_spec(self, vp_stage=None):
         assert self.tfconfig.normalization == "RMSNorm", "only RMSNorm is supported for now"
         extra_kwargs = {} if not self.has_vp_stage else {"vp_stage": vp_stage}
-        transformer_layer_spec = get_gpt_decoder_block_spec(self.tfconfig, use_transformer_engine=True, **extra_kwargs)
+        transformer_layer_spec = get_gpt_decoder_block_spec(
+            self.tfconfig, use_transformer_engine=self.use_transformer_engine(), **extra_kwargs
+        )
         return transformer_layer_spec
 
     def initialize(self, **kwargs):
@@ -171,7 +189,9 @@ class DeepseekV3Model(BaseModelInitializer):
 
     def get_transformer_layer_spec(self, vp_stage=None):
         extra_kwargs = {} if not self.has_vp_stage else {"vp_stage": vp_stage}
-        transformer_layer_spec = get_gpt_decoder_block_spec(self.tfconfig, use_transformer_engine=True, **extra_kwargs)
+        transformer_layer_spec = get_gpt_decoder_block_spec(
+            self.tfconfig, use_transformer_engine=self.use_transformer_engine(), **extra_kwargs
+        )
         return transformer_layer_spec
 
     def get_rope_scaling_args(self) -> dict:
@@ -191,7 +211,10 @@ class DeepseekV3Model(BaseModelInitializer):
         if self.tfconfig.mtp_num_layers is not None and self.tfconfig.mtp_num_layers > 0:
             transformer_layer_spec = self.get_transformer_layer_spec(vp_stage=vp_stage)
             mtp_block_spec = get_gpt_mtp_block_spec(
-                self.tfconfig, transformer_layer_spec, use_transformer_engine=True, vp_stage=vp_stage
+                self.tfconfig,
+                transformer_layer_spec,
+                use_transformer_engine=self.use_transformer_engine(),
+                vp_stage=vp_stage,
             )
             kwargs["mtp_block_spec"] = mtp_block_spec
 
@@ -208,7 +231,9 @@ class Qwen25VLModel(BaseModelInitializer):
 
     def get_transformer_layer_spec(self, vp_stage=None):
         extra_kwargs = {} if not self.has_vp_stage else {"vp_stage": vp_stage}
-        transformer_layer_spec = get_gpt_decoder_block_spec(self.tfconfig, use_transformer_engine=True, **extra_kwargs)
+        transformer_layer_spec = get_gpt_decoder_block_spec(
+            self.tfconfig, use_transformer_engine=self.use_transformer_engine(), **extra_kwargs
+        )
         return transformer_layer_spec
 
     def initialize(
