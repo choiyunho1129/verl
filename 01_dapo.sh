@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+export WANDB_API_KEY=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
+export PYTHONPATH=$PYTHONPATH:$(pwd)
+
+ray stop --force
+
+PYTHONUNBUFFERED=1 python3 -m recipe.dapo.main_dapo \
+    data.train_files=/root/verl/data/MATH-500/train.parquet \
+    data.val_files=/root/verl/data/MATH-500/test.parquet \
+    data.max_prompt_length=512 \
+    data.max_response_length=512 \
+    data.train_batch_size=8 \
+    data.gen_batch_size=8 \
+    data.filter_overlong_prompts=True \
+    data.truncation='error' \
+    data.shuffle=False \
+    actor_rollout_ref.model.path="Qwen/Qwen2.5-0.5B-Instruct" \
+    actor_rollout_ref.model.lora_rank=16 \
+    actor_rollout_ref.model.lora_alpha=32 \
+    actor_rollout_ref.actor.optim.lr=1e-5 \
+    algorithm.adv_estimator=grpo \
+    actor_rollout_ref.actor.clip_ratio_low=0.2 \
+    actor_rollout_ref.actor.clip_ratio_high=0.28 \
+    algorithm.filter_groups.enable=True \
+    algorithm.filter_groups.metric=acc \
+    actor_rollout_ref.model.use_remove_padding=True \
+    actor_rollout_ref.model.enable_gradient_checkpointing=True \
+    actor_rollout_ref.actor.ppo_mini_batch_size=8 \
+    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=1 \
+    actor_rollout_ref.actor.use_kl_loss=True \
+    actor_rollout_ref.actor.kl_loss_coef=0.001 \
+    actor_rollout_ref.actor.kl_loss_type=low_var_kl \
+    actor_rollout_ref.actor.fsdp_config.param_offload=True \
+    actor_rollout_ref.actor.fsdp_config.optimizer_offload=True \
+    actor_rollout_ref.rollout.name=vllm \
+    actor_rollout_ref.rollout.n=4 \
+    actor_rollout_ref.rollout.gpu_memory_utilization=0.5 \
+    actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=2 \
+    actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
+    actor_rollout_ref.rollout.load_format=safetensors \
+    actor_rollout_ref.rollout.layered_summon=True \
+    actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=2 \
+    actor_rollout_ref.ref.fsdp_config.param_offload=True \
+    reward_model.use_reward_loop=False \
+    trainer.n_gpus_per_node=1 \
+    trainer.nnodes=1 \
+    trainer.logger='["console", "wandb"]' \
+    trainer.project_name="GRESO_DAPO_FIX" \
+    trainer.experiment_name="qwen0.5b_lora_final" \
+    trainer.test_freq=5 \
+    trainer.total_epochs=1 \
+    2>&1 | tee greso_dapo.log
