@@ -29,7 +29,7 @@ from verl.utils.device import auto_set_ascend_device_name, is_cuda_available
 from .GRESO_ray_trainer import RayGRESOTrainer
 
 
-@hydra.main(config_path="config", config_name="dapo_trainer", version_base=None)
+@hydra.main(config_path="config", config_name="GRESO_trainer", version_base=None)
 def main(config):
     # Automatically set `config.trainer.device = npu` when running on Ascend NPU.
     auto_set_ascend_device_name(config)
