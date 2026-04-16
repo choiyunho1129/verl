@@ -160,6 +160,15 @@ class RayGRESOTrainer(RayPPOTrainer):
         batch = None
         num_prompt_in_batch = 0
         num_gen_batches = 0
+
+        # =================================================================
+        # [GRESO] 추가: 거대한 Pool(버퍼) 및 초기 목표량 세팅
+        # =================================================================
+        pre_filter_buffer = None
+        default_batch = self.config.data.get('default_batch', 192)
+        target_accumulation_size = default_batch
+        # =================================================================
+
         for epoch in range(self.config.trainer.total_epochs):
             for batch_dict in self.train_dataloader:
                 if hasattr(self.actor_rollout_wg, "async_calls_finalize_fn_exec"):
@@ -292,127 +301,121 @@ class RayGRESOTrainer(RayPPOTrainer):
                         else:
                             new_batch.batch["token_level_rewards"] = new_batch.batch["token_level_scores"]
 
-                    if not self.config.algorithm.filter_groups.enable:
-                        batch = new_batch
-                    else:  # NOTE: When prompts after filtering is less than train batch size,
-                        # we skip to the next generation batch
-                        metric_name = self.config.algorithm.filter_groups.metric
-                        if metric_name == "seq_final_reward":
-                            # Turn to numpy for easier filtering
-                            new_batch.non_tensor_batch["seq_final_reward"] = (
-                                new_batch.batch["token_level_rewards"].sum(dim=-1).numpy()
-                            )
-                        elif metric_name == "seq_reward":
-                            new_batch.non_tensor_batch["seq_reward"] = (
-                                new_batch.batch["token_level_scores"].sum(dim=-1).numpy()
-                            )
+                    # =================================================================
+                    # [GRESO 1단계]: 8개(gen_batch)씩 뽑힌 데이터를 Pool에 무조건 붓는다
+                    # =================================================================
+                    if pre_filter_buffer is None:
+                        pre_filter_buffer = new_batch
+                    else:
+                        pre_filter_buffer = DataProto.concat([pre_filter_buffer, new_batch])
 
-                        # Collect the sequence reward for each trajectory
-                        prompt_uid2metric_vals = defaultdict(list)
-                        for uid, metric_val in zip(
-                            new_batch.non_tensor_batch["uid"], new_batch.non_tensor_batch[metric_name], strict=True
-                        ):
-                            prompt_uid2metric_vals[uid].append(metric_val)
+                    # 현재 Pool에 모인 "고유 질문(Prompt)"의 개수를 확인
+                    current_prompts = len(set(pre_filter_buffer.non_tensor_batch["uid"]))
 
-                        prompt_uid2metric_std = {}
-                        for prompt_uid, metric_vals in prompt_uid2metric_vals.items():
-                            std_val = np.std(metric_vals)
-                            mean_val = np.mean(metric_vals)
-                            prompt_uid2metric_std[prompt_uid] = std_val
-                            
-                            # =================================================================
-                            # [GRESO] 3. z_i 업데이트 및 Easy/Hard 판별 (논문 Eq 5)
-                            # =================================================================
-                            if std_val == 0:
-                                self.z_history[prompt_uid] += 1
-                                # 보상 평균이 0에 가까우면 Hard, 아니면(모두 정답) Easy로 분류
-                                is_hard_prompt = (mean_val <= 0.11) 
-                                self.is_hard[prompt_uid] = is_hard_prompt
-                                
-                                if is_hard_prompt:
-                                    self.n_hard_zero += 1
-                                else:
-                                    self.n_easy_zero += 1
-                            else:
-                                # 변별력이 생기면 z_i 초기화
-                                self.z_history[prompt_uid] = 0 
-                            # =================================================================
-
-                        kept_prompt_uids = [
-                            uid
-                            for uid, std in prompt_uid2metric_std.items()
-                            if std > 0 or len(prompt_uid2metric_vals[uid]) == 1
-                        ]
-                        num_prompt_in_batch += len(kept_prompt_uids)
-
-                        kept_traj_idxs = []
-                        for idx, traj_from_prompt_uid in enumerate(new_batch.non_tensor_batch["uid"]):
-                            if traj_from_prompt_uid in kept_prompt_uids:
-                                kept_traj_idxs.append(idx)
-
-                        new_batch = new_batch[kept_traj_idxs]
-                        batch = new_batch if batch is None else DataProto.concat([batch, new_batch])
-
-                        prompt_bsz = self.config.data.train_batch_size
-                        if num_prompt_in_batch < prompt_bsz:
-                            # 1. B_delta (부족한 양) 계산
-                            B_delta = prompt_bsz - num_prompt_in_batch
-                            
-                            # 2. alpha (현재 zero-variance ratio) 계산
-                            # n_total_seen 대비 필터링된(n_zero) 비율을 사용하여 alpha 추정
-                            total_zero = self.n_easy_zero + self.n_hard_zero
-                            alpha = total_zero / self.n_total_seen if self.n_total_seen > 0 else 0.2
-                            
-                            # 3. Br 계산 (논문 Equation 6 적용)
-                            beta = self.config.data.get('beta', 1.25) # 안전 계수 (기본 1.25)
-                            estimated_Br = int((beta * B_delta) / (1.0 - alpha + 1e-6))
-                            
-                            # 4. 최종 Br 결정 (기본 샘플링 배치 사이즈와 비교)
-                            # 다음 루프의 gen_batch 크기를 이 Br로 조절하도록 로직을 확장할 수 있습니다.
-                            sampling_limit = self.config.data.get('sampling_batch_size', 384)
-                            Br = min(sampling_limit, estimated_Br)
+                    # 우리가 원했던 거대한 Pool 크기(192개 또는 Br)에 도달 못했으면?
+                    if current_prompts < target_accumulation_size:
+                        continue # 필터링 하지 말고 계속 8개씩 더 뽑아와!
                         
-                            print(f"[DAPO] Status: {num_prompt_in_batch}/{prompt_bsz} collected. Alpha: {alpha:.2f}. Next Sampling Br: {Br}")
+                    # =================================================================
+                    # [GRESO 2단계]: Pool이 꽉 찼다! 이제 거대 Pool 전체를 대상으로 필터링!
+                    # =================================================================
+                    metric_name = self.config.algorithm.filter_groups.metric
+                    if metric_name == "seq_final_reward":
+                        pre_filter_buffer.non_tensor_batch["seq_final_reward"] = (
+                            pre_filter_buffer.batch["token_level_rewards"].sum(dim=-1).numpy()
+                        )
+                    elif metric_name == "seq_reward":
+                        pre_filter_buffer.non_tensor_batch["seq_reward"] = (
+                            pre_filter_buffer.batch["token_level_scores"].sum(dim=-1).numpy()
+                        )
+
+                    prompt_uid2metric_vals = defaultdict(list)
+                    for uid, metric_val in zip(
+                        pre_filter_buffer.non_tensor_batch["uid"], pre_filter_buffer.non_tensor_batch[metric_name], strict=True
+                    ):
+                        prompt_uid2metric_vals[uid].append(metric_val)
+
+                    prompt_uid2metric_std = {}
+                    for prompt_uid, metric_vals in prompt_uid2metric_vals.items():
+                        std_val = np.std(metric_vals)
+                        mean_val = np.mean(metric_vals)
+                        prompt_uid2metric_std[prompt_uid] = std_val
                         
-                            if max_num_gen_batches <= 0 or num_gen_batches < max_num_gen_batches:
-                                self.gen_steps += 1
-                                is_last_step = self.global_steps >= self.total_training_steps
-                                continue
-                            else:
-                                raise ValueError(
-                                    f"{num_gen_batches=} >= {max_num_gen_batches=}."
-                                    + " Generated too many. Please check if your data are too difficult."
-                                    + " You could also try set max_num_gen_batches=0 to enable endless trials."
-                                )
+                        # z_i 업데이트 및 Easy/Hard 판별
+                        if std_val == 0:
+                            self.z_history[prompt_uid] += 1
+                            is_hard_prompt = (mean_val <= 0.11) 
+                            self.is_hard[prompt_uid] = is_hard_prompt
+                            
+                            if is_hard_prompt: self.n_hard_zero += 1
+                            else: self.n_easy_zero += 1
                         else:
-                            # Align the batch
-                            traj_bsz = self.config.data.train_batch_size * self.config.actor_rollout_ref.rollout.n
-                            batch = batch[:traj_bsz]
+                            self.z_history[prompt_uid] = 0 
 
-                            # =================================================================
-                            # [GRESO] 4. 탐색 확률 자가 조절 (논문 Algorithm 1: Line 14-18)
-                            # =================================================================
-                            if self.n_total_seen > 0:
-                                actual_easy_ratio = self.n_easy_zero / self.n_total_seen
-                                actual_hard_ratio = self.n_hard_zero / self.n_total_seen
-                                
-                                # Easy 확률 조절
-                                if actual_easy_ratio >= self.alpha_easy:
-                                    self.p_easy = max(0.05, self.p_easy - self.delta_p)
-                                else:
-                                    self.p_easy = min(1.0, self.p_easy + self.delta_p)
-                                    
-                                # Hard 확률 조절
-                                if actual_hard_ratio >= self.alpha_hard:
-                                    self.p_hard = max(0.05, self.p_hard - self.delta_p)
-                                else:
-                                    self.p_hard = min(1.0, self.p_hard + self.delta_p)
+                    kept_prompt_uids = [
+                        uid for uid, std in prompt_uid2metric_std.items()
+                        if std > 0 or len(prompt_uid2metric_vals[uid]) == 1
+                    ]
+                    
+                    num_kept_prompts = len(kept_prompt_uids)
+                    kept_traj_idxs = [
+                        idx for idx, traj_uid in enumerate(pre_filter_buffer.non_tensor_batch["uid"])
+                        if traj_uid in kept_prompt_uids
+                    ]
+
+                    # 필터링이 완료된 알짜배기 데이터
+                    filtered_batch = pre_filter_buffer[kept_traj_idxs]
+                    prompt_bsz = self.config.data.train_batch_size # 목표치 (예: 128)
+
+                    # =================================================================
+                    # [GRESO 3단계]: 남은 데이터와 128(train_batch) 비교 및 Br 계산
+                    # =================================================================
+                    if num_kept_prompts < prompt_bsz:
+                        B_delta = prompt_bsz - num_kept_prompts
+                        
+                        total_zero = self.n_easy_zero + self.n_hard_zero
+                        alpha = total_zero / self.n_total_seen if self.n_total_seen > 0 else 0.2
+                        
+                        beta = self.config.data.get('beta', 1.25)
+                        estimated_Br = int((beta * B_delta) / (1.0 - alpha + 1e-6))
+                        
+                        default_br_size = self.config.data.get('default_br_size', 384)
+                        Br = min(default_br_size, estimated_Br)
+                        Br = max(Br, 64) # 최소 64개는 뽑아오도록 방어
+                    
+                        print(f"[GRESO] Status: {num_kept_prompts}/{prompt_bsz} valid. Need {B_delta} more. Next Pool Target: +{Br}")
+                    
+                        # 지금 살아남은 놈들은 들고 가되, 목표치를 늘려서 vLLM에 다시 다녀옴
+                        pre_filter_buffer = filtered_batch
+                        target_accumulation_size = num_kept_prompts + Br
+                        self.gen_steps += 1
+                        continue 
+                        
+                    else:
+                        # =================================================================
+                        # [GRESO 4단계]: 128개 꽉 찼음! 드디어 PPO 업데이트로 넘겨줌!
+                        # =================================================================
+                        traj_bsz = prompt_bsz * self.config.actor_rollout_ref.rollout.n
+                        batch = filtered_batch[:traj_bsz] # 딱 128개만큼 잘라냄
+
+                        # 탐색 확률 자가 조절
+                        if self.n_total_seen > 0:
+                            actual_easy_ratio = self.n_easy_zero / self.n_total_seen
+                            actual_hard_ratio = self.n_hard_zero / self.n_total_seen
                             
-                            # 다음 스텝을 위해 카운터 초기화
-                            self.n_easy_zero = 0
-                            self.n_hard_zero = 0
-                            self.n_total_seen = 0
-                            # =================================================================
+                            if actual_easy_ratio >= self.alpha_easy: self.p_easy = max(0.05, self.p_easy - self.delta_p)
+                            else: self.p_easy = min(1.0, self.p_easy + self.delta_p)
+                                
+                            if actual_hard_ratio >= self.alpha_hard: self.p_hard = max(0.05, self.p_hard - self.delta_p)
+                            else: self.p_hard = min(1.0, self.p_hard + self.delta_p)
+                        
+                        # 다음 거대 Pool 생성을 위해 싹 다 초기화
+                        self.n_easy_zero = 0
+                        self.n_hard_zero = 0
+                        self.n_total_seen = 0
+                        pre_filter_buffer = None 
+                        target_accumulation_size = default_batch 
+
 
                     # === Updating ===
                     # Balance the number of valid tokens across DP ranks.
