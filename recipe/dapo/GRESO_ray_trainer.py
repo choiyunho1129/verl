@@ -498,6 +498,16 @@ class RayGRESOTrainer(RayPPOTrainer):
                 # TODO: implement actual tflpo and theoretical tflpo
                 n_gpus = self.resource_pool_manager.get_n_gpus()
                 metrics.update(compute_throughout_metrics(batch=batch, timing_raw=timing_raw, n_gpus=n_gpus))
+                # [GRESO] 전용 로깅 지표 추가
+                ### 시점: 여기 ###
+                metrics.update({
+                    "greso/p_easy": self.p_easy,
+                    "greso/p_hard": self.p_hard,
+                    "greso/n_total_seen": self.n_total_seen,
+                    "greso/n_easy_zero": self.n_easy_zero,
+                    "greso/n_hard_zero": self.n_hard_zero,
+                })
+                
                 timing_raw = defaultdict(float)  # clear timing
 
                 metrics["train/num_gen_batches"] = num_gen_batches
