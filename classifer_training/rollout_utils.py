@@ -7,11 +7,12 @@ from classifer_training.utils import (
     coerce_float,
     get_nested_value,
     sanitize_name,
-    shannon_entropy_from_text,
 )
 
 _THINK_PATTERN = re.compile(r"<think>\s*(.*?)\s*</think>", re.IGNORECASE | re.DOTALL)
 _ANSWER_PATTERN = re.compile(r"<answer>\s*(.*?)\s*</answer>", re.IGNORECASE | re.DOTALL)
+_THINK_START_TAG_PATTERN = re.compile(r"<think>", re.IGNORECASE)
+_THINK_END_TAG_PATTERN = re.compile(r"</think>", re.IGNORECASE)
 
 
 def _tokenize_whitespace(text: str) -> list[str]:
@@ -56,6 +57,18 @@ def _terminal_punctuation_flag(text: str) -> float | None:
     return 1.0 if stripped[-1] in ".!?)]}" else 0.0
 
 
+def _numeric_rollout_features(record: dict[str, Any]) -> dict[str, float]:
+    numeric_features: dict[str, float] = {}
+    rollout_features = record.get("rollout_features")
+    if not isinstance(rollout_features, dict):
+        return numeric_features
+    for key, value in rollout_features.items():
+        numeric = coerce_float(value)
+        if numeric is not None:
+            numeric_features[str(key)] = numeric
+    return numeric_features
+
+
 def extract_rollout_numeric_features(
     record: dict[str, Any],
     extra_numeric_fields: list[str] | None = None,
@@ -74,9 +87,6 @@ def extract_rollout_numeric_features(
         "answer_tokens": coerce_float(token_stats.get("answer_tokens")),
         "has_complete_answer": 1.0 if record.get("has_complete_answer") else 0.0,
         "has_reasoning_content": 1.0 if reasoning_content.strip() else 0.0,
-        "output_text_entropy": shannon_entropy_from_text(generated_text),
-        "reasoning_text_entropy": shannon_entropy_from_text(reasoning_content),
-        "answer_text_entropy": shannon_entropy_from_text(answer_content),
         "output_unique_token_ratio": _unique_token_ratio(generated_text),
         "reasoning_unique_token_ratio": _unique_token_ratio(reasoning_content),
         "answer_unique_token_ratio": _unique_token_ratio(answer_content),
@@ -91,6 +101,7 @@ def extract_rollout_numeric_features(
         "answer_terminal_punctuation": _terminal_punctuation_flag(answer_content),
     }
     features.update({key: value for key, value in builtins.items() if value is not None})
+    features.update(_numeric_rollout_features(record))
 
     for field_path in extra_numeric_fields or []:
         numeric = coerce_float(get_nested_value(record, field_path, default=None))
@@ -115,8 +126,12 @@ def _trim_char_span(text: str, start: int, end: int) -> tuple[int, int] | None:
 def extract_response_char_spans(generated_text: str) -> dict[str, tuple[int, int] | None]:
     reasoning_match = _THINK_PATTERN.search(generated_text)
     answer_match = _ANSWER_PATTERN.search(generated_text)
+    think_start_match = _THINK_START_TAG_PATTERN.search(generated_text)
+    think_end_match = _THINK_END_TAG_PATTERN.search(generated_text)
 
     reasoning_span = _trim_char_span(generated_text, *reasoning_match.span(1)) if reasoning_match else None
+    think_start_tag_span = tuple(think_start_match.span(0)) if think_start_match else None
+    think_end_tag_span = tuple(think_end_match.span(0)) if think_end_match else None
 
     if answer_match:
         answer_span = _trim_char_span(generated_text, *answer_match.span(1))
@@ -129,6 +144,8 @@ def extract_response_char_spans(generated_text: str) -> dict[str, tuple[int, int
     return {
         "reasoning": reasoning_span,
         "answer": answer_span,
+        "think_start_tag": think_start_tag_span,
+        "think_end_tag": think_end_tag_span,
     }
 
 

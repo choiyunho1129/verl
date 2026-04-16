@@ -20,7 +20,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--labels_path", type=Path, required=True)
     parser.add_argument("--output_dir", type=Path, required=True)
-    parser.add_argument("--mode", choices=("single_stage", "two_stage"), default="single_stage")
+    parser.add_argument(
+        "--mode",
+        choices=("single_stage", "two_stage", "extreme_filters"),
+        default="single_stage",
+    )
     parser.add_argument("--train_splits", nargs="+", default=["train"])
     parser.add_argument("--eval_splits", nargs="+", default=["validation"])
     parser.add_argument("--test_splits", nargs="+", default=["test"])
@@ -101,6 +105,47 @@ def _plot_predictions(y_true: np.ndarray, y_pred: np.ndarray, output_path: Path,
     fig.savefig(output_path, dpi=200, bbox_inches="tight")
 
 
+def _plot_extreme_filters(
+    y_acc: np.ndarray,
+    p_zero: np.ndarray,
+    p_one: np.ndarray,
+    output_path: Path,
+    title: str,
+) -> None:
+    is_zero = y_acc == 0.0
+    is_one = y_acc == 1.0
+    is_mid = (~is_zero) & (~is_one)
+
+    fig, axes = plt.subplots(1, 3, figsize=(16, 4.5))
+
+    axes[0].hist(p_zero[~is_zero], bins=30, alpha=0.65, label="true != 0", color="#4c78a8")
+    axes[0].hist(p_zero[is_zero], bins=30, alpha=0.65, label="true = 0", color="#e45756")
+    axes[0].set_title("Zero Detector")
+    axes[0].set_xlabel("Predicted P(acc = 0)")
+    axes[0].set_ylabel("Count")
+    axes[0].legend(frameon=False)
+
+    axes[1].hist(p_one[~is_one], bins=30, alpha=0.65, label="true != 1", color="#72b7b2")
+    axes[1].hist(p_one[is_one], bins=30, alpha=0.65, label="true = 1", color="#f58518")
+    axes[1].set_title("One Detector")
+    axes[1].set_xlabel("Predicted P(acc = 1)")
+    axes[1].set_ylabel("Count")
+    axes[1].legend(frameon=False)
+
+    axes[2].scatter(p_zero[is_mid], p_one[is_mid], s=10, alpha=0.35, label="mid", color="#9c755f")
+    axes[2].scatter(p_zero[is_zero], p_one[is_zero], s=12, alpha=0.6, label="zero", color="#e45756")
+    axes[2].scatter(p_zero[is_one], p_one[is_one], s=12, alpha=0.6, label="one", color="#f58518")
+    axes[2].set_title("Extreme-Head Separation")
+    axes[2].set_xlabel("P(acc = 0)")
+    axes[2].set_ylabel("P(acc = 1)")
+    axes[2].legend(frameon=False)
+
+    fig.suptitle(title, fontsize=12)
+    fig.tight_layout()
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=200, bbox_inches="tight")
+
+
 def main(argv: list[str] | None = None) -> None:
     args = parse_args(argv)
     task_ids, splits, X, y_acc, y_diff = _load_rows(args.manifest, args.labels_path)
@@ -148,7 +193,7 @@ def main(argv: list[str] | None = None) -> None:
             for idx, pred in zip(test_idx, test_pred)
         ]
         plot_title = f"Prompt-level ET | test R2={summary['test']['r2']:.3f}"
-    else:
+    elif args.mode == "two_stage":
         gate = ExtraTreesClassifier(
             n_estimators=args.n_estimators,
             min_samples_leaf=args.min_samples_leaf,
@@ -207,14 +252,87 @@ def main(argv: list[str] | None = None) -> None:
             for idx, pred, p in zip(test_idx, expected_diff, p_pos)
         ]
         plot_title = f"Prompt-level two-stage ET | test R2={summary['overall_expected_difficulty']['test_r2']:.3f}"
+    else:
+        zero_clf = ExtraTreesClassifier(
+            n_estimators=args.n_estimators,
+            min_samples_leaf=args.min_samples_leaf,
+            max_features=args.max_features,
+            class_weight="balanced",
+            random_state=42,
+            n_jobs=-1,
+        )
+        one_clf = ExtraTreesClassifier(
+            n_estimators=args.n_estimators,
+            min_samples_leaf=args.min_samples_leaf,
+            max_features=args.max_features,
+            class_weight="balanced",
+            random_state=43,
+            n_jobs=-1,
+        )
+        y_zero_train = (y_acc[trainval_idx] == 0.0).astype(int)
+        y_one_train = (y_acc[trainval_idx] == 1.0).astype(int)
+        y_zero_test = (y_acc[test_idx] == 0.0).astype(int)
+        y_one_test = (y_acc[test_idx] == 1.0).astype(int)
+        zero_clf.fit(X[trainval_idx], y_zero_train)
+        one_clf.fit(X[trainval_idx], y_one_train)
+        p_zero = zero_clf.predict_proba(X[test_idx])[:, 1]
+        p_one = one_clf.predict_proba(X[test_idx])[:, 1]
+        pred_zero = (p_zero >= 0.5).astype(int)
+        pred_one = (p_one >= 0.5).astype(int)
+
+        summary = {
+            "mode": "extreme_filters",
+            "num_features": int(X.shape[1]),
+            "zero_detector": {
+                "positive_rate_test": float(y_zero_test.mean()),
+                "test_accuracy": float(accuracy_score(y_zero_test, pred_zero)),
+                "test_f1": float(f1_score(y_zero_test, pred_zero)),
+                "test_auc": float(roc_auc_score(y_zero_test, p_zero)),
+            },
+            "one_detector": {
+                "positive_rate_test": float(y_one_test.mean()),
+                "test_accuracy": float(accuracy_score(y_one_test, pred_one)),
+                "test_f1": float(f1_score(y_one_test, pred_one)),
+                "test_auc": float(roc_auc_score(y_one_test, p_one)),
+            },
+        }
+        pred_rows = [
+            {
+                "task_id": task_ids[idx],
+                "sampling_accuracy": float(y_acc[idx]),
+                "difficulty": float(y_diff[idx]),
+                "p_zero": float(pz),
+                "p_one": float(po),
+                "is_zero": bool(y_acc[idx] == 0.0),
+                "is_one": bool(y_acc[idx] == 1.0),
+            }
+            for idx, pz, po in zip(test_idx, p_zero, p_one)
+        ]
+        plot_title = (
+            "Prompt-level ET extreme filters | "
+            f"zero AUC={summary['zero_detector']['test_auc']:.3f}, "
+            f"one AUC={summary['one_detector']['test_auc']:.3f}"
+        )
 
     (args.output_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     with (args.output_dir / "predictions_test.jsonl").open("w", encoding="utf-8") as f:
         for row in pred_rows:
             f.write(json.dumps(row) + "\n")
-    y_plot_true = np.asarray([row["y_true"] for row in pred_rows], dtype=np.float32)
-    y_plot_pred = np.asarray([row["y_pred"] for row in pred_rows], dtype=np.float32)
-    _plot_predictions(y_plot_true, y_plot_pred, args.output_dir / "prediction_alignment.png", plot_title)
+    if args.mode == "extreme_filters":
+        y_plot_acc = np.asarray([row["sampling_accuracy"] for row in pred_rows], dtype=np.float32)
+        p_zero_plot = np.asarray([row["p_zero"] for row in pred_rows], dtype=np.float32)
+        p_one_plot = np.asarray([row["p_one"] for row in pred_rows], dtype=np.float32)
+        _plot_extreme_filters(
+            y_plot_acc,
+            p_zero_plot,
+            p_one_plot,
+            args.output_dir / "prediction_alignment.png",
+            plot_title,
+        )
+    else:
+        y_plot_true = np.asarray([row["y_true"] for row in pred_rows], dtype=np.float32)
+        y_plot_pred = np.asarray([row["y_pred"] for row in pred_rows], dtype=np.float32)
+        _plot_predictions(y_plot_true, y_plot_pred, args.output_dir / "prediction_alignment.png", plot_title)
     print(json.dumps(summary, indent=2))
 
 

@@ -11,7 +11,7 @@ classifer_training/artifacts/*
 **/playground
 **/wandb
 **/eval/results
-
+classifer_training/deprecated/artifacts/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -129,3 +129,5 @@ logs
 log
 outputs
 .history
+
+classifer_training/deprecated/code/*.jsonl

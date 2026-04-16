@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import time
 from pathlib import Path
@@ -177,6 +178,8 @@ def _build_experiment_row(
     input_length: int,
     output_length: int,
     generation_time: float,
+    sample_index: int = 0,
+    sample_count: int = 1,
 ) -> tuple[dict[str, Any], int]:
     reasoning_content, answer_content = _split_reasoning_and_answer(generated_text)
     correctness = _score_generated_answer(
@@ -201,6 +204,8 @@ def _build_experiment_row(
         "input_length": int(input_length),
         "output_length": int(output_length),
         "generation_time": float(generation_time),
+        "sample_index": int(sample_index),
+        "sample_count": int(sample_count),
         "has_complete_answer": bool(answer_content.strip()),
         "token_stats": {
             "think_tokens": int(think_tokens),
@@ -224,7 +229,8 @@ def _generate_with_transformers(
     trust_remote_code: bool,
     torch_dtype: str,
     seed: int,
-) -> tuple[list[str], list[int], list[float]]:
+    num_samples: int,
+) -> tuple[list[list[str]], list[list[int]], list[list[float]]]:
     if not prompts:
         return [], [], []
 
@@ -244,9 +250,9 @@ def _generate_with_transformers(
     if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    generated_texts: list[str] = []
-    output_lengths: list[int] = []
-    generation_times: list[float] = []
+    generated_groups: list[list[str]] = []
+    output_length_groups: list[list[int]] = []
+    generation_time_groups: list[list[float]] = []
     generation_kwargs = {
         "max_new_tokens": max_new_tokens,
         "pad_token_id": tokenizer.pad_token_id or tokenizer.eos_token_id,
@@ -261,6 +267,8 @@ def _generate_with_transformers(
         )
     else:
         generation_kwargs["do_sample"] = False
+    if num_samples > 1:
+        generation_kwargs["num_return_sequences"] = num_samples
 
     for prompt_batch in tqdm(list(_chunked(prompts, batch_size)), desc="Sampling", unit="batch"):
         tokenized = tokenizer(prompt_batch, return_tensors="pt", padding=True)
@@ -271,16 +279,24 @@ def _generate_with_transformers(
         with torch.inference_mode():
             generated = model.generate(**tokenized, **generation_kwargs)
         elapsed = time.perf_counter() - start_time
-        per_example_time = elapsed / max(len(prompt_batch), 1)
+        per_sample_time = elapsed / max(len(prompt_batch) * max(num_samples, 1), 1)
 
         for batch_idx, input_length in enumerate(input_lengths):
-            generated_ids = generated[batch_idx, int(input_length) :]
-            generated_text = tokenizer.decode(generated_ids, skip_special_tokens=True)
-            generated_texts.append(generated_text)
-            output_lengths.append(int(generated_ids.numel()))
-            generation_times.append(float(per_example_time))
+            prompt_group_texts: list[str] = []
+            prompt_group_lengths: list[int] = []
+            prompt_group_times: list[float] = []
+            for sample_idx in range(num_samples):
+                generated_idx = batch_idx * num_samples + sample_idx
+                generated_ids = generated[generated_idx, int(input_length) :]
+                generated_text = tokenizer.decode(generated_ids, skip_special_tokens=True)
+                prompt_group_texts.append(generated_text)
+                prompt_group_lengths.append(int(generated_ids.numel()))
+                prompt_group_times.append(float(per_sample_time))
+            generated_groups.append(prompt_group_texts)
+            output_length_groups.append(prompt_group_lengths)
+            generation_time_groups.append(prompt_group_times)
 
-    return generated_texts, output_lengths, generation_times
+    return generated_groups, output_length_groups, generation_time_groups
 
 
 def _generate_with_vllm(
@@ -297,7 +313,13 @@ def _generate_with_vllm(
     max_model_len: int | None,
     trust_remote_code: bool,
     seed: int,
-) -> tuple[list[str], list[int], list[float]]:
+    num_samples: int,
+    enforce_eager: bool,
+) -> tuple[list[list[str]], list[list[int]], list[list[float]]]:
+    # vLLM launches worker processes internally. In our environment, leaving this
+    # unset can make it inherit a fork-based start method and crash during CUDA init.
+    os.environ.setdefault("VLLM_WORKER_MULTIPROC_METHOD", "spawn")
+    os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
     try:
         from vllm import LLM, SamplingParams
     except ImportError as exc:  # pragma: no cover - depends on runtime env
@@ -315,34 +337,43 @@ def _generate_with_vllm(
         gpu_memory_utilization=gpu_memory_utilization,
         max_model_len=max_model_len,
         trust_remote_code=trust_remote_code,
+        enforce_eager=enforce_eager,
     )
     sampling_params = SamplingParams(
         temperature=temperature,
         top_p=top_p,
         max_tokens=max_new_tokens,
         seed=seed,
+        n=num_samples,
     )
 
-    generated_texts: list[str] = []
-    output_lengths: list[int] = []
-    generation_times: list[float] = []
+    generated_groups: list[list[str]] = []
+    output_length_groups: list[list[int]] = []
+    generation_time_groups: list[list[float]] = []
     for prompt_batch in tqdm(list(_chunked(prompts, batch_size)), desc="Sampling", unit="batch"):
         start_time = time.perf_counter()
         outputs = llm.generate(prompt_batch, sampling_params)
         elapsed = time.perf_counter() - start_time
-        per_example_time = elapsed / max(len(outputs), 1)
+        per_sample_time = elapsed / max(len(outputs) * max(num_samples, 1), 1)
         for output in outputs:
+            prompt_group_texts: list[str] = []
+            prompt_group_lengths: list[int] = []
+            prompt_group_times: list[float] = []
             if not output.outputs:
-                generated_texts.append("")
-                output_lengths.append(0)
-                generation_times.append(float(per_example_time))
-                continue
-            generated_text = output.outputs[0].text
-            token_count = _count_text_tokens(tokenizer, generated_text)
-            generated_texts.append(generated_text)
-            output_lengths.append(int(token_count))
-            generation_times.append(float(per_example_time))
-    return generated_texts, output_lengths, generation_times
+                prompt_group_texts.append("")
+                prompt_group_lengths.append(0)
+                prompt_group_times.append(float(per_sample_time))
+            else:
+                for candidate in output.outputs:
+                    generated_text = candidate.text
+                    token_count = _count_text_tokens(tokenizer, generated_text)
+                    prompt_group_texts.append(generated_text)
+                    prompt_group_lengths.append(int(token_count))
+                    prompt_group_times.append(float(per_sample_time))
+            generated_groups.append(prompt_group_texts)
+            output_length_groups.append(prompt_group_lengths)
+            generation_time_groups.append(prompt_group_times)
+    return generated_groups, output_length_groups, generation_time_groups
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -372,6 +403,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--max_new_tokens", type=int, default=8192)
     parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--seed", type=int, default=1)
+    parser.add_argument("--num_samples", type=int, default=1, help="Number of stochastic samples to draw per prompt.")
     parser.add_argument("--tensor_parallel_size", type=int, default=None)
     parser.add_argument("--gpu_memory_utilization", type=float, default=0.85)
     parser.add_argument("--max_model_len", type=int, default=None)
@@ -381,6 +413,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--torch_dtype", default="auto", choices=("auto", "float32", "float16", "bfloat16"))
     parser.add_argument("--disable_generation_prompt", action="store_true")
     parser.add_argument("--disable_thinking", action="store_true")
+    parser.add_argument("--disable_chat_template", action="store_true")
+    parser.add_argument("--enforce_eager", action="store_true", help="Force vLLM eager mode to avoid compile/cudagraph issues.")
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args(argv)
 
@@ -422,13 +456,14 @@ def main(argv: list[str] | None = None) -> None:
             messages,
             add_generation_prompt=not args.disable_generation_prompt,
             enable_thinking=not args.disable_thinking,
+            use_chat_template=not args.disable_chat_template,
         )
         prompts.append(prompt)
         encoded = tokenizer(prompt, return_tensors="pt")
         input_lengths.append(int(encoded["input_ids"].shape[1]))
 
     if args.backend == "vllm":
-        generated_texts, output_lengths, generation_times = _generate_with_vllm(
+        generated_groups, output_length_groups, generation_time_groups = _generate_with_vllm(
             prompts=prompts,
             tokenizer=tokenizer,
             model_name_or_path=args.model_name_or_path,
@@ -441,9 +476,11 @@ def main(argv: list[str] | None = None) -> None:
             max_model_len=args.max_model_len,
             trust_remote_code=args.trust_remote_code,
             seed=args.seed,
+            num_samples=args.num_samples,
+            enforce_eager=args.enforce_eager,
         )
     else:
-        generated_texts, output_lengths, generation_times = _generate_with_transformers(
+        generated_groups, output_length_groups, generation_time_groups = _generate_with_transformers(
             prompts=prompts,
             model_name_or_path=args.model_name_or_path,
             tokenizer=tokenizer,
@@ -454,9 +491,10 @@ def main(argv: list[str] | None = None) -> None:
             trust_remote_code=args.trust_remote_code,
             torch_dtype=args.torch_dtype,
             seed=args.seed,
+            num_samples=args.num_samples,
         )
 
-    if not (len(records) == len(generated_texts) == len(output_lengths) == len(generation_times)):
+    if not (len(records) == len(generated_groups) == len(output_length_groups) == len(generation_time_groups)):
         raise RuntimeError("Sampling outputs are misaligned with the dataset records.")
 
     config = {
@@ -468,33 +506,48 @@ def main(argv: list[str] | None = None) -> None:
         "top_p": args.top_p,
         "max_new_tokens": args.max_new_tokens,
         "seed": args.seed,
+        "num_samples": args.num_samples,
     }
 
     experiment_rows: list[dict[str, Any]] = []
     correctness: list[int] = []
     for row_idx, record in enumerate(records):
-        experiment_row, correct = _build_experiment_row(
-            record=record,
-            dataset_name=dataset_name,
-            config=config,
-            tokenizer=tokenizer,
-            generated_text=generated_texts[row_idx],
-            input_length=input_lengths[row_idx],
-            output_length=output_lengths[row_idx],
-            generation_time=generation_times[row_idx],
-        )
-        experiment_rows.append(experiment_row)
-        correctness.append(int(correct))
+        prompt_generated_texts = generated_groups[row_idx]
+        prompt_output_lengths = output_length_groups[row_idx]
+        prompt_generation_times = generation_time_groups[row_idx]
+        if not (
+            len(prompt_generated_texts)
+            == len(prompt_output_lengths)
+            == len(prompt_generation_times)
+        ):
+            raise RuntimeError(f"Prompt-level sampling outputs are misaligned for row {row_idx}.")
+        for sample_idx, generated_text in enumerate(prompt_generated_texts):
+            experiment_row, correct = _build_experiment_row(
+                record=record,
+                dataset_name=dataset_name,
+                config=config,
+                tokenizer=tokenizer,
+                generated_text=generated_text,
+                input_length=input_lengths[row_idx],
+                output_length=prompt_output_lengths[sample_idx],
+                generation_time=prompt_generation_times[sample_idx],
+                sample_index=sample_idx,
+                sample_count=len(prompt_generated_texts),
+            )
+            experiment_rows.append(experiment_row)
+            correctness.append(int(correct))
         print(
             f"Processed {row_idx + 1}/{len(records)} "
-            f"task_id={experiment_row['task_id']} "
-            f"split={experiment_row['split']} "
-            f"input_length={experiment_row['input_length']}"
+            f"task_id={record.get('task_id', '')} "
+            f"split={record.get('split', '')} "
+            f"input_length={input_lengths[row_idx]} "
+            f"samples={len(prompt_generated_texts)}"
         )
 
     evaluation_row = {
         "dataset_name": dataset_name,
         "num_examples": len(experiment_rows),
+        "num_prompts": len(records),
         "accuracy": float(sum(correctness) / len(correctness)),
         "correctness": correctness,
         "config": config,

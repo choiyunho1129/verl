@@ -60,6 +60,82 @@ def _extract_batched_token_vectors(output: Any, token_indices: list[int]) -> tor
     return tensor[batch_indices, positions, :].detach().to(dtype=torch.float32, device="cpu")
 
 
+def _extract_batched_group_pooled_vectors(
+    output: Any,
+    token_groups: list[list[int]],
+    fallback_indices: list[int],
+) -> torch.Tensor:
+    if isinstance(output, tuple):
+        output = output[0]
+    if isinstance(output, dict):
+        output = output.get("hidden_states", output.get("last_hidden_state", output))
+    if not torch.is_tensor(output):
+        raise TypeError(f"Unsupported hook output type: {type(output)!r}")
+
+    tensor = output
+    if tensor.ndim == 2:
+        tensor = tensor.unsqueeze(0)
+    if tensor.ndim != 3:
+        raise ValueError(f"Expected a 3D tensor, got shape {tuple(tensor.shape)}.")
+    if len(token_groups) != tensor.shape[0] or len(fallback_indices) != tensor.shape[0]:
+        raise ValueError("Batch size mismatch while pooling token groups.")
+
+    pooled_rows: list[torch.Tensor] = []
+    seq_len = tensor.shape[1]
+    for batch_idx, token_ids in enumerate(token_groups):
+        valid_ids = [int(idx) for idx in token_ids if 0 <= int(idx) < seq_len]
+        if valid_ids:
+            pooled = tensor[batch_idx, valid_ids, :].mean(dim=0)
+        else:
+            fallback = int(fallback_indices[batch_idx])
+            fallback = min(max(fallback, 0), seq_len - 1)
+            pooled = tensor[batch_idx, fallback, :]
+        pooled_rows.append(pooled.detach().to(dtype=torch.float32, device="cpu"))
+    return torch.stack(pooled_rows, dim=0)
+
+
+def _extract_batched_window_vectors(
+    output: Any,
+    token_windows: list[list[int]],
+    fallback_indices: list[int],
+    *,
+    window_size: int,
+) -> torch.Tensor:
+    if isinstance(output, tuple):
+        output = output[0]
+    if isinstance(output, dict):
+        output = output.get("hidden_states", output.get("last_hidden_state", output))
+    if not torch.is_tensor(output):
+        raise TypeError(f"Unsupported hook output type: {type(output)!r}")
+
+    tensor = output
+    if tensor.ndim == 2:
+        tensor = tensor.unsqueeze(0)
+    if tensor.ndim != 3:
+        raise ValueError(f"Expected a 3D tensor, got shape {tuple(tensor.shape)}.")
+    if len(token_windows) != tensor.shape[0] or len(fallback_indices) != tensor.shape[0]:
+        raise ValueError("Batch size mismatch while extracting token windows.")
+
+    window_rows: list[torch.Tensor] = []
+    seq_len = tensor.shape[1]
+    hidden_dim = tensor.shape[2]
+    for batch_idx, token_ids in enumerate(token_windows):
+        valid_ids = [int(idx) for idx in token_ids if 0 <= int(idx) < seq_len]
+        if not valid_ids:
+            fallback = int(fallback_indices[batch_idx])
+            fallback = min(max(fallback, 0), seq_len - 1)
+            valid_ids = [fallback]
+        valid_ids = valid_ids[-window_size:]
+        gathered = tensor[batch_idx, valid_ids, :].detach().to(dtype=torch.float32, device="cpu")
+        if gathered.ndim == 1:
+            gathered = gathered.unsqueeze(0)
+        if gathered.shape[0] < window_size:
+            pad = torch.zeros((window_size - gathered.shape[0], hidden_dim), dtype=torch.float32)
+            gathered = torch.cat([pad, gathered], dim=0)
+        window_rows.append(gathered.contiguous().clone())
+    return torch.stack(window_rows, dim=0)
+
+
 def _extract_token_vector(output: Any, token_index: int) -> torch.Tensor:
     if isinstance(output, tuple):
         output = output[0]
@@ -176,6 +252,7 @@ def _resolve_generated_token_indices(
             {
                 "answer_hidden": last_generated,
                 "reasoning_hidden": last_generated,
+                "think_end_hidden": last_generated,
                 "response_hidden": last_generated,
             },
             "last_generated",
@@ -183,6 +260,7 @@ def _resolve_generated_token_indices(
                 "last_generated": last_generated,
                 "answer_last_token": last_generated,
                 "reasoning_last_token": last_generated,
+                "think_end_last_token": last_generated,
                 "response_last_token": last_generated,
             },
             fallback,
@@ -196,6 +274,11 @@ def _resolve_generated_token_indices(
     reasoning_last_token = (
         _last_token_index_for_span(offset_mapping, local_spans["reasoning"][0], local_spans["reasoning"][1])
         if local_spans["reasoning"] is not None
+        else None
+    )
+    think_end_last_token = (
+        _last_token_index_for_span(offset_mapping, local_spans["think_end_tag"][0], local_spans["think_end_tag"][1])
+        if local_spans.get("think_end_tag") is not None
         else None
     )
     answer_last_token = (
@@ -214,12 +297,18 @@ def _resolve_generated_token_indices(
     token_positions = {
         "answer_hidden": answer_last_token if answer_last_token is not None else response_last_token,
         "reasoning_hidden": reasoning_last_token if reasoning_last_token is not None else response_last_token,
+        "think_end_hidden": think_end_last_token if think_end_last_token is not None else (
+            reasoning_last_token if reasoning_last_token is not None else response_last_token
+        ),
         "response_hidden": response_last_token,
     }
     metadata = {
         "last_generated": last_generated,
         "answer_last_token": answer_last_token if answer_last_token is not None else response_last_token,
         "reasoning_last_token": reasoning_last_token if reasoning_last_token is not None else response_last_token,
+        "think_end_last_token": think_end_last_token if think_end_last_token is not None else (
+            reasoning_last_token if reasoning_last_token is not None else response_last_token
+        ),
         "response_last_token": response_last_token,
     }
 
@@ -299,11 +388,10 @@ def _compute_token_level_confidence_features(
     target_ids = input_ids_row.index_select(0, target_positions)
 
     log_probs = torch.log_softmax(selected_logits, dim=-1)
+    probs = torch.exp(log_probs)
+    token_entropies = (-(probs * log_probs)).sum(dim=-1)
     token_log_probs = log_probs.gather(1, target_ids.unsqueeze(1)).squeeze(1)
 
-    last_log_probs = log_probs[-1]
-    last_probs = torch.exp(last_log_probs)
-    entropy = float((-(last_probs * last_log_probs)).sum().item())
     top2 = torch.topk(selected_logits[-1], k=2).values
     margin = float((top2[0] - top2[1]).item()) if top2.numel() >= 2 else 0.0
 
@@ -311,7 +399,10 @@ def _compute_token_level_confidence_features(
         f"{prefix}_mean_logprob": float(token_log_probs.mean().item()),
         f"{prefix}_min_logprob": float(token_log_probs.min().item()),
         f"{prefix}_last_token_logprob": float(token_log_probs[-1].item()),
-        f"{prefix}_last_token_entropy": entropy,
+        f"{prefix}_mean_token_entropy": float(token_entropies.mean().item()),
+        f"{prefix}_min_token_entropy": float(token_entropies.min().item()),
+        f"{prefix}_max_token_entropy": float(token_entropies.max().item()),
+        f"{prefix}_last_token_entropy": float(token_entropies[-1].item()),
         f"{prefix}_last_token_margin": margin,
     }
 
@@ -406,6 +497,7 @@ def _resolve_batch_token_metadata(
 
         reasoning_span = shift_span(local_spans["reasoning"])
         answer_span = shift_span(local_spans["answer"])
+        think_end_tag_span = shift_span(local_spans.get("think_end_tag"))
         response_span = shift_span(local_response_span)
         output_token_indices = _token_indices_after_char(normalized_offsets, prompt_char_count)
         reasoning_token_indices = (
@@ -422,6 +514,11 @@ def _resolve_batch_token_metadata(
         reasoning_last_token = (
             _last_token_index_for_span(normalized_offsets, reasoning_span[0], reasoning_span[1])
             if reasoning_span is not None
+            else None
+        )
+        think_end_last_token = (
+            _last_token_index_for_span(normalized_offsets, think_end_tag_span[0], think_end_tag_span[1])
+            if think_end_tag_span is not None
             else None
         )
         answer_last_token = (
@@ -441,8 +538,14 @@ def _resolve_batch_token_metadata(
             "prompt_hidden": prompt_last_token,
             "answer_hidden": answer_last_token if answer_last_token is not None else response_last_token,
             "reasoning_hidden": reasoning_last_token if reasoning_last_token is not None else response_last_token,
+            "think_end_hidden": think_end_last_token if think_end_last_token is not None else (
+                reasoning_last_token if reasoning_last_token is not None else response_last_token
+            ),
             "response_hidden": response_last_token,
         }
+        think_end_window = list(
+            range(max(0, int(token_positions["think_end_hidden"]) - 9), int(token_positions["think_end_hidden"]) + 1)
+        )
         generated_length = sum(
             1
             for token_start, token_end in normalized_offsets
@@ -455,6 +558,7 @@ def _resolve_batch_token_metadata(
                     "prompt_last_token": prompt_last_token,
                     "answer_last_token": token_positions["answer_hidden"],
                     "reasoning_last_token": token_positions["reasoning_hidden"],
+                    "think_end_last_token": token_positions["think_end_hidden"],
                     "response_last_token": token_positions["response_hidden"],
                     "last_generated": last_generated,
                 },
@@ -462,6 +566,7 @@ def _resolve_batch_token_metadata(
                     "output": output_token_indices,
                     "reasoning": reasoning_token_indices,
                     "answer": answer_token_indices,
+                    "think_end_last10": think_end_window,
                 },
                 "prompt_length": max(prompt_last_token + 1, 0),
                 "generated_length": generated_length,
@@ -492,7 +597,17 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--components",
         nargs="*",
         default=["prompt_hidden", "response_hidden"],
-        choices=("prompt_hidden", "reasoning_hidden", "answer_hidden", "response_hidden"),
+        choices=(
+            "prompt_hidden",
+            "reasoning_hidden",
+            "think_end_hidden",
+            "think_end_last10_hidden",
+            "answer_hidden",
+            "response_hidden",
+            "reasoning_mean_hidden",
+            "answer_mean_hidden",
+            "output_mean_hidden",
+        ),
     )
     parser.add_argument("--layers", type=str, default="27")
     parser.add_argument(
@@ -524,6 +639,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--torch_dtype", default="auto", choices=("auto", "float32", "float16", "bfloat16"))
     parser.add_argument("--disable_generation_prompt", action="store_true")
     parser.add_argument("--disable_thinking", action="store_true")
+    parser.add_argument("--disable_chat_template", action="store_true")
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args(argv)
 
@@ -590,7 +706,7 @@ def main(argv: list[str] | None = None) -> None:
     selected_layers = parse_layer_spec(args.layers, len(blocks))
     selected_set = set(selected_layers)
 
-    current_batch_token_positions: dict[str, list[int]] = {}
+    current_batch_component_specs: dict[str, dict[str, Any]] = {}
     current_batch_vectors: list[dict[str, dict[int, torch.Tensor | None]]] = []
     hook_handles = []
 
@@ -598,10 +714,25 @@ def main(argv: list[str] | None = None) -> None:
         def hook(_module, _inputs, output):
             if layer_idx not in selected_set:
                 return
-            gathered_by_component = {
-                component_name: _extract_batched_token_vectors(output, token_indices)
-                for component_name, token_indices in current_batch_token_positions.items()
-            }
+            gathered_by_component = {}
+            for component_name, spec in current_batch_component_specs.items():
+                if spec["kind"] == "position":
+                    gathered_by_component[component_name] = _extract_batched_token_vectors(output, spec["values"])
+                elif spec["kind"] == "group_mean":
+                    gathered_by_component[component_name] = _extract_batched_group_pooled_vectors(
+                        output,
+                        spec["groups"],
+                        spec["fallback"],
+                    )
+                elif spec["kind"] == "window":
+                    gathered_by_component[component_name] = _extract_batched_window_vectors(
+                        output,
+                        spec["windows"],
+                        spec["fallback"],
+                        window_size=int(spec["window_size"]),
+                    )
+                else:
+                    raise ValueError(f"Unsupported component spec kind: {spec['kind']}")
             for component_name, gathered_vectors in gathered_by_component.items():
                 for batch_idx, vector in enumerate(gathered_vectors):
                     current_batch_vectors[batch_idx][component_name][layer_idx] = vector.contiguous().clone()
@@ -623,6 +754,7 @@ def main(argv: list[str] | None = None) -> None:
                 messages,
                 add_generation_prompt=not args.disable_generation_prompt,
                 enable_thinking=not args.disable_thinking,
+                use_chat_template=not args.disable_chat_template,
             )
             generated_text = str(record.get("generated_text", ""))
             prepared_records.append(
@@ -666,10 +798,40 @@ def main(argv: list[str] | None = None) -> None:
                 }
                 for _ in batch
             ]
-            current_batch_token_positions = {
-                component_name: metadata_rows[0]["component_positions"][component_name]
-                for component_name in args.components
-            }
+            current_batch_component_specs = {}
+            for component_name in args.components:
+                if component_name in ("prompt_hidden", "reasoning_hidden", "think_end_hidden", "answer_hidden", "response_hidden"):
+                    current_batch_component_specs[component_name] = {
+                        "kind": "position",
+                        "values": metadata_rows[0]["component_positions"][component_name],
+                    }
+                elif component_name == "reasoning_mean_hidden":
+                    current_batch_component_specs[component_name] = {
+                        "kind": "group_mean",
+                        "groups": [list(row["token_groups"].get("reasoning", [])) for row in metadata_rows],
+                        "fallback": metadata_rows[0]["component_positions"]["reasoning_hidden"],
+                    }
+                elif component_name == "answer_mean_hidden":
+                    current_batch_component_specs[component_name] = {
+                        "kind": "group_mean",
+                        "groups": [list(row["token_groups"].get("answer", [])) for row in metadata_rows],
+                        "fallback": metadata_rows[0]["component_positions"]["answer_hidden"],
+                    }
+                elif component_name == "output_mean_hidden":
+                    current_batch_component_specs[component_name] = {
+                        "kind": "group_mean",
+                        "groups": [list(row["token_groups"].get("output", [])) for row in metadata_rows],
+                        "fallback": metadata_rows[0]["component_positions"]["response_hidden"],
+                    }
+                elif component_name == "think_end_last10_hidden":
+                    current_batch_component_specs[component_name] = {
+                        "kind": "window",
+                        "windows": [list(row["token_groups"].get("think_end_last10", [])) for row in metadata_rows],
+                        "fallback": metadata_rows[0]["component_positions"]["think_end_hidden"],
+                        "window_size": 10,
+                    }
+                else:
+                    raise ValueError(f"Unsupported component: {component_name}")
             tokenized = {key: value.to(input_device) for key, value in tokenized.items()}
             with torch.inference_mode():
                 model_outputs = model(**tokenized, use_cache=False)

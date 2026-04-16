@@ -7,7 +7,6 @@ from pathlib import Path
 from typing import Any
 
 from classifer_training.rollout_utils import extract_rollout_numeric_features
-from classifer_training.utils import shannon_entropy_from_text
 
 _NONSPACE_RE = re.compile(r"\S+")
 _WORD_RE = re.compile(r"\b\w+\b")
@@ -16,7 +15,7 @@ _FRAC_RE = re.compile(r"\\frac")
 _SQRT_RE = re.compile(r"\\sqrt")
 _BOXED_RE = re.compile(r"\\boxed")
 _BULLET_RE = re.compile(r"(?m)^\s*[-*]\s+")
-_SECTION_RE = re.compile(r"(?m)^\s*#+|(?m)^\s*Step\s+\d+")
+_SECTION_RE = re.compile(r"^\s*#+|^\s*Step\s+\d+", re.M)
 _FINAL_RE = re.compile(r"final\s+answer|answer\s*:", re.I)
 _NUMERIC_TAIL_RE = re.compile(r"[-+]?\d+(?:\.\d+)?\s*$")
 _SINGLE_NUM_RE = re.compile(r"^\$?[-+]?\d+(?:\.\d+)?\$?$")
@@ -227,7 +226,6 @@ def _single_run_features(row: dict[str, Any]) -> dict[str, float]:
             "prompt_number_jaccard_output": _jaccard(prompt_numbers, output_numbers),
             "prompt_number_jaccard_answer": _jaccard(prompt_numbers, answer_numbers),
             "prompt_number_jaccard_final_answer": _jaccard(prompt_numbers, final_answer_numbers),
-            "final_answer_entropy": shannon_entropy_from_text(final_answer),
             "final_answer_exists": 1.0 if final_answer else 0.0,
             "final_answer_matches_answer_text": 1.0 if final_answer and final_answer == answer_content.strip() else 0.0,
             "heuristic_reasoning_shorter_than_output": 1.0 if heuristic_reasoning and len(heuristic_reasoning) < len(generated_text) else 0.0,

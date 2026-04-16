@@ -14,6 +14,7 @@ MAX_NEW_TOKENS="${MAX_NEW_TOKENS:-8192}"
 BATCH_SIZE="${BATCH_SIZE:-64}"
 BACKEND="${BACKEND:-vllm}"
 MAX_MODEL_LEN="${MAX_MODEL_LEN:-}"
+GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-0.85}"
 if [ "$#" -gt 0 ]; then
   SEEDS=("$@")
 else
@@ -35,6 +36,7 @@ for SEED in "${SEEDS[@]}"; do
     --max_new_tokens "${MAX_NEW_TOKENS}" \
     --batch_size "${BATCH_SIZE}" \
     --seed "${SEED}" \
+    --gpu_memory_utilization "${GPU_MEMORY_UTILIZATION}" \
     ${MAX_MODEL_LEN:+--max_model_len "${MAX_MODEL_LEN}"} \
     --trust_remote_code \
     --overwrite

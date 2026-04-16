@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import csv
 import json
-import math
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -78,24 +77,6 @@ def coerce_float(value: Any) -> float | None:
 
 def sanitize_name(name: str) -> str:
     return name.replace(".", "_").replace("/", "_").replace(" ", "_")
-
-
-def shannon_entropy_from_text(text: str) -> float:
-    tokens = [token for token in text.split() if token]
-    if not tokens:
-        return 0.0
-
-    counts: dict[str, int] = {}
-    for token in tokens:
-        counts[token] = counts.get(token, 0) + 1
-
-    total = float(len(tokens))
-    entropy = 0.0
-    for count in counts.values():
-        probability = count / total
-        entropy -= probability * math.log(probability, 2)
-    return entropy
-
 
 def parse_layer_spec(spec: str | None, num_layers: int) -> list[int]:
     if num_layers <= 0:
