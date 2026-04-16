@@ -576,3 +576,32 @@ def _save_checkpoint(self):
     greso_path = os.path.join(local_global_step_folder, 'greso_states.pt')
     torch.save(greso_states, greso_path)
     print(f"[GRESO] Custom states saved at {greso_path}")
+    
+def _load_checkpoint(self):
+        # 1. 부모 클래스의 기존 로드 로직 실행
+        # (이 과정에서 self.global_steps가 업데이트됩니다)
+        super()._load_checkpoint()
+        
+        # 2. 로드할 폴더 찾기 (부모 로직과 동일한 규칙)
+        checkpoint_folder = self.config.trainer.default_local_dir
+        from verl.utils.checkpoint.checkpoint_manager import find_latest_ckpt_path
+        global_step_folder = find_latest_ckpt_path(checkpoint_folder)
+        
+        # 3. GRESO 상태 파일이 있으면 복구
+        if global_step_folder:
+            greso_path = os.path.join(global_step_folder, 'greso_states.pt')
+            if os.path.exists(greso_path):
+                states = torch.load(greso_path)
+                
+                # 기존 defaultdict에 값 업데이트
+                self.z_history.update(states.get('z_history', {}))
+                self.is_hard.update(states.get('is_hard', {}))
+                
+                # 확률값 복구 (저장된 게 없으면 현재 설정값 유지)
+                self.p_easy = states.get('p_easy', self.p_easy)
+                self.p_hard = states.get('p_hard', self.p_hard)
+                
+                print(f"[GRESO] Successfully restored states from {greso_path}")
+                print(f"[GRESO] Restored Z-history count: {len(self.z_history)}")
+            else:
+                print(f"[GRESO] Warning: No greso_states.pt found in {global_step_folder}")
