@@ -49,4 +49,12 @@ PYTHONUNBUFFERED=1 python3 -m recipe.dapo.main_GRESO \
     trainer.experiment_name="qwen0.5b_lora_greso" \
     trainer.test_freq=1 \
     trainer.total_epochs=1 \
+    data.dynamic_filtering=True \
+    data.dynamic_filtering_strategy=all_probabilistic \
+    data.p_easy=0.5 \
+    data.p_hard=0.5 \
+    data.target_zero_variance=0.25 \
+    data.sampling_batch_size=128 \
+    data.min_p=0.05 \
+    data.max_p=0.95 \
     2>&1 | tee greso_dapo.log
