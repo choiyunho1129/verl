@@ -355,10 +355,26 @@ class RayGRESOTrainer(RayPPOTrainer):
 
                         prompt_bsz = self.config.data.train_batch_size
                         if num_prompt_in_batch < prompt_bsz:
-                            print(f"{num_prompt_in_batch=} < {prompt_bsz=}")
-                            max_num_gen_batches = self.config.algorithm.filter_groups.max_num_gen_batches
+                            # 1. B_delta (부족한 양) 계산
+                            B_delta = prompt_bsz - num_prompt_in_batch
+                            
+                            # 2. alpha (현재 zero-variance ratio) 계산
+                            # n_total_seen 대비 필터링된(n_zero) 비율을 사용하여 alpha 추정
+                            total_zero = self.n_easy_zero + self.n_hard_zero
+                            alpha = total_zero / self.n_total_seen if self.n_total_seen > 0 else 0.2
+                            
+                            # 3. Br 계산 (논문 Equation 6 적용)
+                            beta = self.config.data.get('beta', 1.25) # 안전 계수 (기본 1.25)
+                            estimated_Br = int((beta * B_delta) / (1.0 - alpha + 1e-6))
+                            
+                            # 4. 최종 Br 결정 (기본 샘플링 배치 사이즈와 비교)
+                            # 다음 루프의 gen_batch 크기를 이 Br로 조절하도록 로직을 확장할 수 있습니다.
+                            sampling_limit = self.config.data.get('sampling_batch_size', 384)
+                            Br = min(sampling_limit, estimated_Br)
+                        
+                            print(f"[DAPO] Status: {num_prompt_in_batch}/{prompt_bsz} collected. Alpha: {alpha:.2f}. Next Sampling Br: {Br}")
+                        
                             if max_num_gen_batches <= 0 or num_gen_batches < max_num_gen_batches:
-                                print(f"{num_gen_batches=}. Keep generating...")
                                 self.gen_steps += 1
                                 is_last_step = self.global_steps >= self.total_training_steps
                                 continue
