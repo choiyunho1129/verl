@@ -6,11 +6,12 @@ ray stop --force
 
 PYTHONUNBUFFERED=1 python3 -m recipe.dapo.main_GRESO \
     data.train_files=/root/verl/data/MATH-500/train.parquet \
-    data.val_files=/root/verl/data/MATH-500/test.parquet \
+    data.val_files=/root/verl/data/MATH-500/test_mini.parquet \
     data.max_prompt_length=512 \
     data.max_response_length=512 \
     data.train_batch_size=1 \
     data.gen_batch_size=2 \
+    data.val_batch_size=8 \
     data.filter_overlong_prompts=True \
     data.truncation='error' \
     data.shuffle=False \
@@ -45,7 +46,7 @@ PYTHONUNBUFFERED=1 python3 -m recipe.dapo.main_GRESO \
     trainer.n_gpus_per_node=1 \
     trainer.nnodes=1 \
     trainer.logger='["console", "wandb"]' \
-    trainer.project_name="GRESO_DAPO_FIX" \
+    trainer.project_name="GRESO_DAPO_FINAL" \
     trainer.experiment_name="qwen0.5b_lora_greso" \
     trainer.test_freq=1 \
     trainer.total_epochs=1 \
@@ -57,3 +58,7 @@ PYTHONUNBUFFERED=1 python3 -m recipe.dapo.main_GRESO \
     data.min_p=0.05 \
     data.max_p=0.95 \
     2>&1 | tee greso_dapo.log
+
+# val 파일 바꿔야돼요
+# 배치사이즈도 키워야돼요
+# lr값도 다시 원래는 1e-6 => 지금 100배 (디버깅용)
