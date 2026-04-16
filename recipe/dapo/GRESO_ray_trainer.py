@@ -326,7 +326,7 @@ class RayGRESOTrainer(RayPPOTrainer):
                             if std_val == 0:
                                 self.z_history[prompt_uid] += 1
                                 # 보상 평균이 0에 가까우면 Hard, 아니면(모두 정답) Easy로 분류
-                                is_hard_prompt = (mean_val <= 0.01) 
+                                is_hard_prompt = (mean_val <= 0.11) 
                                 self.is_hard[prompt_uid] = is_hard_prompt
                                 
                                 if is_hard_prompt:
