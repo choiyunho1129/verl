@@ -548,7 +548,11 @@ class RayGRESOTrainer(RayPPOTrainer):
                     "greso/p_hard": self.p_hard,
                     "greso/n_total_seen": temp_total,
                     "greso/n_easy_zero": temp_easy,
-                    "greso/n_hard_zero": temp_hard
+                    "greso/n_hard_zero": temp_hard,
+                    "greso/alpha_easy": actual_easy_ratio,
+                    "greso/alpha_hard": actual_hard_ratio,
+                    "greso/target_alpha_easy": self.alpha_easy,
+                    "greso/target_alpha_hard": self.alpha_hard,
                 })
                 if self.n_total_seen > 0:
                     metrics["greso/total_skip_ratio"] = (self.n_easy_zero + self.n_hard_zero) / self.n_total_seen
