@@ -555,3 +555,67 @@ class RayGRESOTrainer(RayPPOTrainer):
                 self._save_checkpoint()
             metrics = {f"timing/{k}": v for k, v in timing_raw.items()}
             logger.log(data=metrics, step=self.global_steps)
+    # -------------------------------------------------------------------------
+    # [GRESO] Override: Checkpoint Save / Load
+    # -------------------------------------------------------------------------
+    def _save_checkpoint(self):
+        # 1. 부모 클래스(RayPPOTrainer)의 기존 저장 로직 먼저 실행
+        super()._save_checkpoint()
+        
+        # 2. 부모가 폴더를 생성했으므로, 같은 경로에 greso 상태를 추가로 저장
+        local_global_step_folder = os.path.join(
+            self.config.trainer.default_local_dir, 
+            f'global_step_{self.global_steps}'
+        )
+        
+        # 3. 저장할 데이터 구성
+        greso_states = {
+            'z_history': dict(self.z_history),  # defaultdict를 일반 dict로 변환
+            'is_hard': dict(self.is_hard),
+            'p_easy': self.p_easy,
+            'p_hard': self.p_hard,
+        }
+        
+        # 4. 파일로 저장
+        greso_path = os.path.join(local_global_step_folder, 'greso_states.pt')
+        torch.save(greso_states, greso_path)
+        print(f"[GRESO] Custom states saved at {greso_path}")
+        
+    def _load_checkpoint(self):
+        # 1. 부모 클래스의 기존 로드 로직 실행 (성공 시 self.global_steps 업데이트 됨)
+        super()._load_checkpoint()
+        
+        # 2. 처음부터 학습하는 경우 (로드된 게 없으면) 안전하게 스킵
+        if self.global_steps == 0:
+            return
+            
+        # 3. 로드할 폴더 찾기 (부모 로직과 완벽히 동일한 규칙 적용)
+        if self.config.trainer.resume_mode == 'auto':
+            from verl.utils.checkpoint.checkpoint_manager import find_latest_ckpt_path
+            checkpoint_folder = self.config.trainer.default_local_dir
+            if not os.path.isabs(checkpoint_folder):
+                checkpoint_folder = os.path.join(os.getcwd(), checkpoint_folder)
+            global_step_folder = find_latest_ckpt_path(checkpoint_folder)
+        else:
+            global_step_folder = self.config.trainer.resume_mode
+            if not os.path.isabs(global_step_folder):
+                global_step_folder = os.path.join(os.getcwd(), global_step_folder)
+        
+        # 4. GRESO 상태 파일이 있으면 복구
+        if global_step_folder:
+            greso_path = os.path.join(global_step_folder, 'greso_states.pt')
+            if os.path.exists(greso_path):
+                states = torch.load(greso_path)
+                
+                # 기존 defaultdict에 값 업데이트 (기존 초기화된 객체를 덮어쓰지 않고 update)
+                self.z_history.update(states.get('z_history', {}))
+                self.is_hard.update(states.get('is_hard', {}))
+                
+                # 확률값 복구 (저장된 게 없으면 현재 설정값 유지)
+                self.p_easy = states.get('p_easy', self.p_easy)
+                self.p_hard = states.get('p_hard', self.p_hard)
+                
+                print(f"[GRESO] Successfully restored states from {greso_path}")
+                print(f"[GRESO] Restored Z-history count: {len(self.z_history)}")
+            else:
+                print(f"[GRESO] Warning: No greso_states.pt found in {global_step_folder}")
