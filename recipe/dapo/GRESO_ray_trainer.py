@@ -160,13 +160,16 @@ class RayGRESOTrainer(RayPPOTrainer):
         batch = None
         num_prompt_in_batch = 0
         num_gen_batches = 0
-
+        
         # =================================================================
         # [GRESO] 추가: 거대한 Pool(버퍼) 및 초기 목표량 세팅
         # =================================================================
         pre_filter_buffer = None
-        default_batch = self.config.data.get('default_batch', 192)
+        default_batch = self.config.data.get('default_br_size', 192)
         target_accumulation_size = default_batch
+        # 1. 합격자들을 담을 별도의 '금고' 변수를 하나 만듭니다 (함수 시작할 때 초기화)
+        if 'final_accumulation' not in locals(): 
+            final_accumulation = None
         # =================================================================
 
         for epoch in range(self.config.trainer.total_epochs):
@@ -197,17 +200,12 @@ class RayGRESOTrainer(RayPPOTrainer):
                 # 2) 확률적 스킵 (p_f = 1 - p_e^z_i)
                 kept_indices = []
                 for idx, uid in enumerate(uids):
-                    self.n_total_seen += 1
                     z_i = self.z_history[uid]
                     if z_i > 0:
                         p_e = self.p_hard if self.is_hard[uid] else self.p_easy
                         p_f = 1.0 - (p_e ** z_i)
                         
                         if random.random() < p_f: # 스킵 확률에 당첨되면 롤아웃 건너뜀
-                            if self.is_hard[uid]:
-                                self.n_hard_zero += 1
-                            else:
-                                self.n_easy_zero += 1
                             continue 
                             
                     kept_indices.append(idx)
@@ -314,6 +312,7 @@ class RayGRESOTrainer(RayPPOTrainer):
 
                     # 우리가 원했던 거대한 Pool 크기(192개 또는 Br)에 도달 못했으면?
                     if current_prompts < target_accumulation_size:
+                        print(f"{current_prompts:} / {target_accumulation_size:} generated. Repeat.")
                         continue # 필터링 하지 말고 계속 8개씩 더 뽑아와!
                         
                     # =================================================================
@@ -337,6 +336,7 @@ class RayGRESOTrainer(RayPPOTrainer):
 
                     prompt_uid2metric_std = {}
                     for prompt_uid, metric_vals in prompt_uid2metric_vals.items():
+                        self.n_total_seen += 1 # 실제로 생성해서 확인한 표본 개수
                         std_val = np.std(metric_vals)
                         mean_val = np.mean(metric_vals)
                         prompt_uid2metric_std[prompt_uid] = std_val
@@ -368,10 +368,22 @@ class RayGRESOTrainer(RayPPOTrainer):
                     prompt_bsz = self.config.data.train_batch_size # 목표치 (예: 128)
 
                     # =================================================================
-                    # [GRESO 3단계]: 남은 데이터와 128(train_batch) 비교 및 Br 계산
+                    # [GRESO 3단계]: 합격자를 금고에 넣고, 임시 버퍼는 비우기
                     # =================================================================
-                    if num_kept_prompts < prompt_bsz:
-                        B_delta = prompt_bsz - num_kept_prompts
+                    # 1. 합격자를 final_accumulation(금고)에 추가
+                    if final_accumulation is None:
+                        final_accumulation = filtered_batch
+                    else:
+                        final_accumulation = DataProto.concat([final_accumulation, filtered_batch])
+                    
+                    # 2. 임시 바구니는 임무를 다했으니 무조건 초기화 (메모리 누수 방지)
+                    pre_filter_buffer = None
+
+                    # 3. 금고에 모인 고유 프롬프트 개수 확인
+                    num_final_prompts = len(set(final_accumulation.non_tensor_batch["uid"]))
+
+                    if num_final_prompts < prompt_bsz:
+                        B_delta = prompt_bsz - num_final_prompts
                         
                         total_zero = self.n_easy_zero + self.n_hard_zero
                         alpha = total_zero / self.n_total_seen if self.n_total_seen > 0 else 0.2
@@ -381,41 +393,53 @@ class RayGRESOTrainer(RayPPOTrainer):
                         
                         default_br_size = self.config.data.get('default_br_size', 384)
                         Br = min(default_br_size, estimated_Br)
-                        Br = max(Br, 64) # 최소 64개는 뽑아오도록 방어
+                        Br = max(Br, default_batch/3) # 최소 64개는 뽑아오도록 방어
                     
-                        print(f"[GRESO] Status: {num_kept_prompts}/{prompt_bsz} valid. Need {B_delta} more. Next Pool Target: +{Br}")
+                        print(f"[GRESO] Status: {num_final_prompts}/{prompt_bsz} valid. Need {B_delta} more. Next Pool Target: +{Br}")
                     
-                        # 지금 살아남은 놈들은 들고 가되, 목표치를 늘려서 vLLM에 다시 다녀옴
-                        pre_filter_buffer = filtered_batch
-                        target_accumulation_size = num_kept_prompts + Br
+                        # 다음 목표치는 '새로 뽑아올 양(Br)'으로만 설정하고 루프 상단으로 이동
+                        target_accumulation_size = Br
                         self.gen_steps += 1
                         continue 
                         
                     else:
                         # =================================================================
-                        # [GRESO 4단계]: 128개 꽉 찼음! 드디어 PPO 업데이트로 넘겨줌!
+                        # [GRESO 4단계]: 금고에 128개 이상 꽉 찼음! PPO 업데이트로 넘겨줌!
                         # =================================================================
                         traj_bsz = prompt_bsz * self.config.actor_rollout_ref.rollout.n
-                        batch = filtered_batch[:traj_bsz] # 딱 128개만큼 잘라냄
+                        batch = final_accumulation[:traj_bsz] # 금고에서 딱 필요한 만큼만 잘라냄
+
+                        # [수정] Config에서 상한/하한값 가져오기
+                        min_p = self.config.data.get('min_p', 0.05)
+                        max_p = self.config.data.get('max_p', 0.95)
 
                         # 탐색 확률 자가 조절
                         if self.n_total_seen > 0:
                             actual_easy_ratio = self.n_easy_zero / self.n_total_seen
                             actual_hard_ratio = self.n_hard_zero / self.n_total_seen
                             
-                            if actual_easy_ratio >= self.alpha_easy: self.p_easy = max(0.05, self.p_easy - self.delta_p)
-                            else: self.p_easy = min(1.0, self.p_easy + self.delta_p)
+                            # Easy 확률 조절 (하드코딩 제거, min_p/max_p 연동)
+                            if actual_easy_ratio >= self.alpha_easy:
+                                self.p_easy = max(min_p, self.p_easy - self.delta_p)
+                            else:
+                                self.p_easy = min(max_p, self.p_easy + self.delta_p)
                                 
-                            if actual_hard_ratio >= self.alpha_hard: self.p_hard = max(0.05, self.p_hard - self.delta_p)
-                            else: self.p_hard = min(1.0, self.p_hard + self.delta_p)
+                            # Hard 확률 조절 (하드코딩 제거, min_p/max_p 연동)
+                            if actual_hard_ratio >= self.alpha_hard:
+                                self.p_hard = max(min_p, self.p_hard - self.delta_p)
+                            else:
+                                self.p_hard = min(max_p, self.p_hard + self.delta_p)
                         
-                        # 다음 거대 Pool 생성을 위해 싹 다 초기화
+                        # [중요] 초기화 전 WandB 로깅용 임시 저장 (차트 0 방지)
+                        temp_easy = self.n_easy_zero
+                        temp_hard = self.n_hard_zero
+                        temp_total = self.n_total_seen
+                        
                         self.n_easy_zero = 0
                         self.n_hard_zero = 0
                         self.n_total_seen = 0
-                        pre_filter_buffer = None 
-                        target_accumulation_size = default_batch 
-
+                        final_accumulation = None # 업데이트로 넘어가므로 금고도 비워줌
+                        target_accumulation_size = default_batch
 
                     # === Updating ===
                     # Balance the number of valid tokens across DP ranks.
@@ -522,9 +546,9 @@ class RayGRESOTrainer(RayPPOTrainer):
                 metrics.update({
                     "greso/p_easy": self.p_easy,
                     "greso/p_hard": self.p_hard,
-                    "greso/n_total_seen": self.n_total_seen,
-                    "greso/n_easy_zero": self.n_easy_zero,
-                    "greso/n_hard_zero": self.n_hard_zero,
+                    "greso/n_total_seen": temp_total,
+                    "greso/n_easy_zero": temp_easy,
+                    "greso/n_hard_zero": temp_hard
                 })
                 if self.n_total_seen > 0:
                     metrics["greso/total_skip_ratio"] = (self.n_easy_zero + self.n_hard_zero) / self.n_total_seen
