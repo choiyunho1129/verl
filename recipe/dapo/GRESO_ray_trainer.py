@@ -507,6 +507,8 @@ class RayGRESOTrainer(RayPPOTrainer):
                     "greso/n_easy_zero": self.n_easy_zero,
                     "greso/n_hard_zero": self.n_hard_zero,
                 })
+                if self.n_total_seen > 0:
+                    metrics["greso/total_skip_ratio"] = (self.n_easy_zero + self.n_hard_zero) / self.n_total_seen
                 
                 timing_raw = defaultdict(float)  # clear timing
 
