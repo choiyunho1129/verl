@@ -87,15 +87,21 @@ class RayGRESOTrainer(RayPPOTrainer):
         """
 
         # =================================================================
-        # [GRESO] 1. 상태 저장 변수 초기화 (논문 Algorithm 1: Line 1)
+        # [GRESO] 1. 상태 저장 변수 초기화 (스크립트 config 연동 버전)
         # =================================================================
-        self.z_history = defaultdict(int)         # 각 프롬프트의 연속 분산 0 횟수 (z_i)
-        self.is_hard = defaultdict(lambda: True)  # Hard(0점) vs Easy(만점) 기록
-        self.p_easy = 0.5                         # 기본 탐색 확률 (초기값 0.5)
-        self.p_hard = 0.5
-        self.alpha_easy = 0.083                   # 목표 Zero-variance 비율 (Easy 8.3%)
-        self.alpha_hard = 0.167                   # 목표 Zero-variance 비율 (Hard 16.7%)
-        self.delta_p = 0.01                       # 확률 조정 스텝 사이즈
+        self.z_history = defaultdict(int)
+        self.is_hard = defaultdict(lambda: True)
+        
+        # 하드코딩(0.5) 대신 스크립트의 +data 값을 가져옵니다.
+        self.p_easy = self.config.data.get('p_easy', 0.5)
+        self.p_hard = self.config.data.get('p_hard', 0.5)
+        
+        # target_zero_variance=0.25 설정을 이용해 논문의 Alpha 값 계산
+        target_zv = self.config.data.get('target_zero_variance', 0.25)
+        self.alpha_easy = target_zv / 3      # 약 0.083
+        self.alpha_hard = target_zv * 2 / 3  # 약 0.167
+        
+        self.delta_p = 0.01  # 확률 조정 보폭
         
         # 확률 조정을 위한 통계 카운터
         self.n_easy_zero = 0
