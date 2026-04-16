@@ -13,7 +13,7 @@ data:
   p_easy: 0.5
   p_hard: 0.5
   target_zero_variance: 0.25
-  sampling_batch_size: 128
+  default_br_size: 192
   min_p: 0.05
   max_p: 0.95
   beta: 1.25  # 코드에서 참조할 수 있으므로 유지
