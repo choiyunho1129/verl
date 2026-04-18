@@ -1,4 +1,5 @@
 classifer_training/artifacts/*
+classifer_training/external/*
 **/*.pt
 **/checkpoints
 **/logs

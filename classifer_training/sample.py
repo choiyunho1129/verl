@@ -224,6 +224,7 @@ def _generate_with_transformers(
     tokenizer,
     temperature: float,
     top_p: float,
+    top_k: int | None,
     max_new_tokens: int,
     batch_size: int,
     trust_remote_code: bool,
@@ -265,6 +266,8 @@ def _generate_with_transformers(
                 "top_p": top_p,
             }
         )
+        if top_k is not None and top_k > 0:
+            generation_kwargs["top_k"] = top_k
     else:
         generation_kwargs["do_sample"] = False
     if num_samples > 1:
@@ -306,6 +309,7 @@ def _generate_with_vllm(
     model_name_or_path: str,
     temperature: float,
     top_p: float,
+    top_k: int | None,
     max_new_tokens: int,
     batch_size: int,
     tensor_parallel_size: int | None,
@@ -342,6 +346,7 @@ def _generate_with_vllm(
     sampling_params = SamplingParams(
         temperature=temperature,
         top_p=top_p,
+        top_k=top_k if top_k is not None and top_k > 0 else -1,
         max_tokens=max_new_tokens,
         seed=seed,
         n=num_samples,
@@ -400,6 +405,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--grader", choices=("math_verify", "exact"), default="math_verify")
     parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument("--top_p", type=float, default=1.0)
+    parser.add_argument("--top_k", type=int, default=0, help="Use <=0 to disable top-k filtering.")
     parser.add_argument("--max_new_tokens", type=int, default=8192)
     parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--seed", type=int, default=1)
@@ -446,6 +452,7 @@ def main(argv: list[str] | None = None) -> None:
         args.model_name_or_path,
         trust_remote_code=args.trust_remote_code,
     )
+    tokenizer.padding_side = "left"
 
     prompts: list[str] = []
     input_lengths: list[int] = []
@@ -469,6 +476,7 @@ def main(argv: list[str] | None = None) -> None:
             model_name_or_path=args.model_name_or_path,
             temperature=args.temperature,
             top_p=args.top_p,
+            top_k=args.top_k,
             max_new_tokens=args.max_new_tokens,
             batch_size=args.batch_size,
             tensor_parallel_size=args.tensor_parallel_size,
@@ -486,6 +494,7 @@ def main(argv: list[str] | None = None) -> None:
             tokenizer=tokenizer,
             temperature=args.temperature,
             top_p=args.top_p,
+            top_k=args.top_k,
             max_new_tokens=args.max_new_tokens,
             batch_size=args.batch_size,
             trust_remote_code=args.trust_remote_code,
@@ -504,6 +513,7 @@ def main(argv: list[str] | None = None) -> None:
         "grader": args.grader,
         "temperature": args.temperature,
         "top_p": args.top_p,
+        "top_k": args.top_k,
         "max_new_tokens": args.max_new_tokens,
         "seed": args.seed,
         "num_samples": args.num_samples,

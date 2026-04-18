@@ -11,4 +11,4 @@ Main buckets:
 - `artifacts/sweeps/`: old sweep outputs
 - `artifacts/predictions/`: old prediction dumps
 
-Nothing here is treated as active or cleaned-up code.
+This also includes compatibility wrappers and one-off helpers that still exist for reference but are no longer treated as active entrypoints.

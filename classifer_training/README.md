@@ -1,77 +1,164 @@
 # classifer_training
 
-This folder now only keeps the weak single-trajectory PCA + Ridge pipeline.
+This folder is for one line of work only:
 
-If a script or result does not belong to that pipeline, it has been moved to `deprecated/`.
+- input: a single trajectory
+- target: prompt-level `value = 1 - difficulty`
+- model family: Ridge on prompt hidden, response hidden, and optional rollout scalars
 
-## What is kept
+If code or results do not belong to that line, they go in `deprecated/`.
 
-Active scripts:
+## Active workflow
+
+There are two active paths.
+
+1. Weak training on DAPO weak4
+- build prompt-level labels
+- extract prompt hidden states
+- extract response hidden states and rollout index features
+- train a Ridge value model
+
+2. Transfer evaluation on another dataset or another Qwen3-4B checkpoint
+- generate rollouts
+- score each trajectory if a `reward` feature is needed
+- extract prompt/response hidden states
+- run the saved model on the new artifacts
+
+## Main scripts
+
+Core weak-training scripts:
 
 - `build_weak_prompt_dataset_and_labels.py`
-  - build weak prompt splits and weak prompt-level labels from existing sampled run directories
 - `prepare_weak4_shards.py`
-  - shard the weak prompt dataset for hidden-state extraction
 - `extract_hidden_states.py`
-  - extract prompt hidden states from the weak prompt dataset
 - `extract_rollout_hidden_states.py`
-  - extract response-side hidden states from sampled weak rollouts
-- `enrich_rollout_index.py`
-  - add rollout scalar features, including actual token-entropy summaries, to an index JSONL
 - `train_weak_only_single_rollout_hidden.py`
-  - current training script for the weak single-trajectory Ridge models
+- `eval_single_rollout_hidden_transfer.py`
 
-Small helpers that are still used by the active pipeline:
+Supporting utilities:
 
-- `data.py`
+- `single_rollout_hidden_utils.py`
 - `rollout_utils.py`
-- `utils.py`
 
-## Data layout
+Transfer helpers:
 
-Only the weak prompt datasets stay in `artifacts/datasets/`:
+- `prepare_ifbench_dataset.py`
+- `rescore_ifbench_run.py`
 
-- `dapo_math_17k_weak4`
-- `dapo_math_17k_weak4_shards`
-- `dapo_math_17k_weak4_v2`
-- `dapo_math_17k_weak4_val20`
+Current generation entrypoint is `sample.py`.
 
-Older datasets were moved to `deprecated/artifacts/datasets/`.
+## Recommended entrypoints
 
-## Current model results kept here
+Weak end-to-end rerun:
 
-Only weak single-trajectory model results stay in `artifacts/models/`.
-Everything else was moved to `deprecated/artifacts/models/`.
+- `examples/run_weak_single_trajectory_e2e.sh`
 
-The main current search directories are:
+Transfer chains:
 
-- `weak4_val20_feature_growth_search`
-- `weak4_val20_feature_ablation_pca16`
-- `weak4_val20_feature_ablation_pca16_fast`
-- `weak4_val20_prompt_hidden_small_search`
-- `weak4_val20_prompt_plus_thinkend_small_search`
+- `examples/run_math_transfer_gpu_chain.sh`
+- `examples/run_ifbench_transfer_gpu_chain.sh`
+- `examples/run_transfer_gpu_chain.sh`
+- `examples/run_dapo_weak4_trained_transfer_gpu_chain.sh`
+- `examples/run_dapo_trained_transfer_gpu_chain.sh`
 
-## Minimal pipeline
+## Model contract
 
-1. Build the weak prompt dataset and weak labels.
-2. Extract prompt hidden states from the weak prompt dataset.
-3. Extract response-side hidden states from sampled weak rollouts.
-4. Enrich the rollout index with scalar rollout features.
-5. Train the single-trajectory Ridge model.
+The active target is always prompt-level `value`.
 
-## Example scripts
+One prompt can have multiple sampled trajectories.
+Each trajectory becomes one row, but all rows from the same prompt share the same target value.
 
-The active examples are:
+If `reward` is included as a feature, it means per-trajectory correctness (`0/1`) and is only a feature.
+It is not the training target.
 
-- `examples/run_extract_dapo_math_17k_weak4_hidden_4gpu.sh`
-- `examples/run_extract_dapo_math_17k_weak4_hidden_one.sh`
-- `examples/run_single_trajectory_actual_entropy_refresh.sh`
-- `examples/run_response_hidden_extract_after_sampling.sh`
+## PCA contract
 
-Other old example scripts were moved to `deprecated/examples/`.
+If PCA is enabled, it is part of the trained model state.
 
-## Notes
+That means:
 
-- `train_weak_only_single_rollout_hidden.py` is now self-contained. It no longer imports helper functions from the old two-rollout or prompt-only experiment scripts.
-- `deprecated/` is for old code, old datasets, and old results that we are not actively maintaining.
-- New work in this folder should stay inside the weak single-trajectory PCA + Ridge line.
+- PCA is fit on the training split only
+- the fitted PCA objects are saved inside `model.joblib`
+- transfer evaluation must reuse those saved PCA objects
+- transfer code must not refit PCA on the target dataset
+
+Older bundle-patching helpers were moved to `deprecated/`.
+
+## Weak training
+
+For a full rerun:
+
+```bash
+GPU_IDS="0 1 2 3" \
+ROLLOUT_COMPONENT="think_end_hidden" \
+PROMPT_HIDDEN_PCA_DIM=0 \
+ROLLOUT_HIDDEN_PCA_DIM=32 \
+bash classifer_training/examples/run_weak_single_trajectory_e2e.sh
+```
+
+That script does:
+
+1. weak labels
+2. weak prompt shards
+3. prompt hidden extraction
+4. response hidden extraction and rollout-index writing
+5. optional clean feature collection
+6. weak-only Ridge training
+
+If step 4 is interrupted, rerun the same command with `OVERWRITE=0`.
+The response extractor resumes from shard checkpoints.
+
+## Transfer evaluation
+
+`eval_single_rollout_hidden_transfer.py` evaluates an already-trained bundle on another dataset.
+
+Expected artifacts:
+
+- prompt hidden tensors
+- prompt hidden index files
+- response hidden tensors
+- response rollout index files
+- prompt-level labels
+
+Outputs per split:
+
+- `predictions_<split>.jsonl`
+- `prediction_diagnostics_<split>.png`
+- `summary.json`
+
+## What belongs where
+
+`artifacts/`
+- local results only
+- hidden states, rollout indexes, labels, plots, models
+
+`external/`
+- local clones such as IFBench
+- not meant to be committed
+
+`deprecated/`
+- old experiments
+- old datasets
+- old scripts
+- old model families
+
+## What is intentionally ignored
+
+The repository ignores heavy local-only content under:
+
+- `classifer_training/artifacts/`
+- `classifer_training/external/`
+- checkpoint directories
+- cached tensors such as `*.pt`
+
+This folder should stay light in git. Large generated outputs should stay under ignored paths only.
+
+## Moved out of active tree
+
+These are no longer treated as active entrypoints:
+
+- one-off extraction helpers
+- old sampling-coupled shell scripts
+- old JSONL-to-run conversion helpers
+
+They were moved to `deprecated/examples/` or `deprecated/code/`.

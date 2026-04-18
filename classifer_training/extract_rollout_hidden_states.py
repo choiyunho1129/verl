@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 from pathlib import Path
 from typing import Any
 
@@ -34,6 +35,102 @@ def _append_shard_suffix(filename: str, shard_index: int, num_shards: int) -> st
     path = Path(filename)
     suffix = f".shard{shard_index:02d}of{num_shards:02d}"
     return f"{path.stem}{suffix}{path.suffix}"
+
+
+def _checkpoint_dir_for_output(hidden_output_path: Path) -> Path:
+    return hidden_output_path.parent / f"{hidden_output_path.name}.partial"
+
+
+def _checkpoint_metadata_path(checkpoint_dir: Path) -> Path:
+    return checkpoint_dir / "metadata.json"
+
+
+def _checkpoint_chunk_path(checkpoint_dir: Path, chunk_index: int) -> Path:
+    return checkpoint_dir / f"chunk_{chunk_index:06d}.pt"
+
+
+def _write_checkpoint_metadata(
+    checkpoint_dir: Path,
+    *,
+    processed_examples: int,
+    total_examples: int,
+    next_chunk_index: int,
+) -> None:
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+    metadata = {
+        "processed_examples": int(processed_examples),
+        "total_examples": int(total_examples),
+        "next_chunk_index": int(next_chunk_index),
+    }
+    _checkpoint_metadata_path(checkpoint_dir).write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+
+
+def _load_checkpoint_chunks(
+    checkpoint_dir: Path,
+    *,
+    drop_incomplete_last_chunk: bool = True,
+) -> list[tuple[Path, dict[str, Any]]]:
+    chunk_paths = sorted(checkpoint_dir.glob("chunk_*.pt"))
+    loaded_chunks: list[tuple[Path, dict[str, Any]]] = []
+    for chunk_idx, chunk_path in enumerate(chunk_paths):
+        try:
+            payload = torch.load(chunk_path, map_location="cpu")
+        except Exception:
+            is_last_chunk = chunk_idx == len(chunk_paths) - 1
+            if drop_incomplete_last_chunk and is_last_chunk:
+                chunk_path.unlink(missing_ok=True)
+                break
+            raise
+        loaded_chunks.append((chunk_path, payload))
+    return loaded_chunks
+
+
+def _resume_state_from_checkpoint(checkpoint_dir: Path) -> tuple[int, int]:
+    if not checkpoint_dir.exists():
+        return 0, 0
+
+    loaded_chunks = _load_checkpoint_chunks(checkpoint_dir)
+    processed_examples = 0
+    next_chunk_index = 0
+    for chunk_path, payload in loaded_chunks:
+        hidden_examples = payload.get("hidden_examples")
+        index_records = payload.get("index_records")
+        if not isinstance(hidden_examples, list) or not isinstance(index_records, list):
+            raise ValueError(f"Invalid checkpoint chunk format: {chunk_path}")
+        if len(hidden_examples) != len(index_records):
+            raise ValueError(f"Mismatched checkpoint chunk sizes: {chunk_path}")
+        processed_examples += len(hidden_examples)
+        next_chunk_index += 1
+    return processed_examples, next_chunk_index
+
+
+def _finalize_from_checkpoint(
+    checkpoint_dir: Path,
+    *,
+    hidden_output_path: Path,
+    index_output_path: Path,
+    metadata: dict[str, Any],
+) -> None:
+    hidden_examples: list[dict[str, Any]] = []
+    index_records: list[dict[str, Any]] = []
+    for _chunk_path, payload in _load_checkpoint_chunks(checkpoint_dir, drop_incomplete_last_chunk=False):
+        hidden_examples.extend(payload["hidden_examples"])
+        index_records.extend(payload["index_records"])
+
+    hidden_output_path.parent.mkdir(parents=True, exist_ok=True)
+    index_output_path.parent.mkdir(parents=True, exist_ok=True)
+    torch.save(
+        {
+            "metadata": {
+                **metadata,
+                "num_examples": len(hidden_examples),
+            },
+            "examples": hidden_examples,
+        },
+        hidden_output_path,
+    )
+    write_jsonl(index_output_path, index_records)
+    shutil.rmtree(checkpoint_dir, ignore_errors=True)
 
 
 def _extract_batched_token_vectors(output: Any, token_indices: list[int]) -> torch.Tensor:
@@ -657,9 +754,23 @@ def main(argv: list[str] | None = None) -> None:
     records: list[tuple[int, Path, int, dict[str, Any]]] = []
     for run_dir in run_dirs:
         experiments_path = run_dir / "all_experiments.jsonl"
+        evaluations_path = run_dir / "evaluation_results.jsonl"
         if not experiments_path.exists():
             raise FileNotFoundError(f"Expected sampled run file at {experiments_path}.")
-        for row_idx, record in enumerate(load_records(experiments_path)):
+        experiment_rows = load_records(experiments_path)
+        correctness: list[int] | None = None
+        if evaluations_path.exists():
+            evaluation_rows = load_records(evaluations_path)
+            if evaluation_rows:
+                raw_correctness = evaluation_rows[-1].get("correctness")
+                if isinstance(raw_correctness, list):
+                    correctness = [int(value) for value in raw_correctness]
+        usable = min(len(experiment_rows), len(correctness)) if correctness is not None else len(experiment_rows)
+        for row_idx, record in enumerate(experiment_rows[:usable]):
+            if correctness is not None:
+                record = dict(record)
+                record["reward"] = int(correctness[row_idx])
+                record["score"] = int(correctness[row_idx])
             records.append((len(records), run_dir, row_idx, record))
 
     if args.max_examples is not None:
@@ -680,9 +791,19 @@ def main(argv: list[str] | None = None) -> None:
     index_output_path = (
         args.index_root.expanduser().resolve() / dataset_name / model_slug / index_filename
     )
+    checkpoint_dir = _checkpoint_dir_for_output(hidden_output_path)
     if (hidden_output_path.exists() or index_output_path.exists()) and not args.overwrite:
         raise FileExistsError(
             f"Output already exists at {hidden_output_path} or {index_output_path}. Pass --overwrite to replace."
+        )
+    if args.overwrite:
+        shutil.rmtree(checkpoint_dir, ignore_errors=True)
+
+    resumed_examples, next_chunk_index = _resume_state_from_checkpoint(checkpoint_dir)
+    if resumed_examples:
+        print(
+            f"Resuming from checkpoint {checkpoint_dir} "
+            f"at {resumed_examples}/{len(records)} examples."
         )
 
     tokenizer = AutoTokenizer.from_pretrained(
@@ -743,8 +864,19 @@ def main(argv: list[str] | None = None) -> None:
             continue
         hook_handles.append(block.register_forward_hook(make_hidden_hook(layer_idx)))
 
-    hidden_examples = []
-    index_records = []
+    final_metadata = {
+        "dataset_name": dataset_name,
+        "model_name_or_path": args.model_name_or_path,
+        "components": args.components,
+        "selected_layers": selected_layers,
+        "num_source_examples": total_source_records,
+        "response_anchor": args.response_anchor,
+        "num_shards": args.num_shards,
+        "shard_index": args.shard_index,
+        "batch_size": args.batch_size,
+        "max_batch_tokens": args.max_batch_tokens,
+        "length_sorted": not args.disable_length_sort,
+    }
     try:
         prepared_records = []
         for global_idx, run_dir, row_idx, record in records:
@@ -773,7 +905,15 @@ def main(argv: list[str] | None = None) -> None:
         if not args.disable_length_sort:
             prepared_records.sort(key=lambda item: item["estimated_total_tokens"], reverse=True)
 
-        processed_examples = 0
+        if resumed_examples > len(prepared_records):
+            raise ValueError(
+                f"Checkpoint has {resumed_examples} processed examples, "
+                f"but only {len(prepared_records)} records are available."
+            )
+        if resumed_examples:
+            prepared_records = prepared_records[resumed_examples:]
+
+        processed_examples = resumed_examples
         for batch in _iter_dynamic_batches(
             prepared_records,
             batch_size=args.batch_size,
@@ -841,6 +981,8 @@ def main(argv: list[str] | None = None) -> None:
                 metadata_rows=metadata_rows,
             )
 
+            batch_hidden_examples = []
+            batch_index_records = []
             for batch_idx, prepared in enumerate(batch):
                 record = prepared["record"]
                 run_dir = prepared["run_dir"]
@@ -866,7 +1008,7 @@ def main(argv: list[str] | None = None) -> None:
                     example_payload[component_name] = [
                         current_batch_vectors[batch_idx][component_name][layer_idx] for layer_idx in selected_layers
                     ]
-                hidden_examples.append(example_payload)
+                batch_hidden_examples.append(example_payload)
 
                 index_record = dict(record)
                 index_record["dataset_name"] = str(record.get("dataset_name", dataset_name))
@@ -883,7 +1025,7 @@ def main(argv: list[str] | None = None) -> None:
                 rollout_features = extract_rollout_numeric_features(record)
                 rollout_features.update(confidence_feature_rows[batch_idx])
                 index_record["rollout_features"] = rollout_features
-                index_records.append(index_record)
+                batch_index_records.append(index_record)
 
                 processed_examples += 1
                 print(
@@ -894,40 +1036,40 @@ def main(argv: list[str] | None = None) -> None:
                     f"shard={args.shard_index + 1}/{args.num_shards} "
                     f"batch={len(batch)}"
                 )
+
+            chunk_path = _checkpoint_chunk_path(checkpoint_dir, next_chunk_index)
+            checkpoint_dir.mkdir(parents=True, exist_ok=True)
+            torch.save(
+                {
+                    "hidden_examples": batch_hidden_examples,
+                    "index_records": batch_index_records,
+                },
+                chunk_path,
+            )
+            next_chunk_index += 1
+            _write_checkpoint_metadata(
+                checkpoint_dir,
+                processed_examples=processed_examples,
+                total_examples=len(records),
+                next_chunk_index=next_chunk_index,
+            )
     finally:
         for handle in hook_handles:
             handle.remove()
 
-    hidden_output_path.parent.mkdir(parents=True, exist_ok=True)
-    index_output_path.parent.mkdir(parents=True, exist_ok=True)
-    torch.save(
-        {
-            "metadata": {
-                "dataset_name": dataset_name,
-                "model_name_or_path": args.model_name_or_path,
-                "components": args.components,
-                "selected_layers": selected_layers,
-                "num_examples": len(hidden_examples),
-                "num_source_examples": total_source_records,
-                "response_anchor": args.response_anchor,
-                "num_shards": args.num_shards,
-                "shard_index": args.shard_index,
-                "batch_size": args.batch_size,
-                "max_batch_tokens": args.max_batch_tokens,
-                "length_sorted": not args.disable_length_sort,
-            },
-            "examples": hidden_examples,
-        },
-        hidden_output_path,
+    _finalize_from_checkpoint(
+        checkpoint_dir,
+        hidden_output_path=hidden_output_path,
+        index_output_path=index_output_path,
+        metadata=final_metadata,
     )
-    write_jsonl(index_output_path, index_records)
 
     print(
         json.dumps(
             {
                 "hidden_output_path": str(hidden_output_path),
                 "index_output_path": str(index_output_path),
-                "num_examples": len(hidden_examples),
+                "num_examples": int(processed_examples),
             },
             indent=2,
         )

@@ -69,6 +69,15 @@ def _numeric_rollout_features(record: dict[str, Any]) -> dict[str, float]:
     return numeric_features
 
 
+def split_reasoning_and_answer(generated_text: str) -> tuple[str, str]:
+    spans = extract_response_char_spans(generated_text)
+    reasoning_span = spans["reasoning"]
+    answer_span = spans["answer"]
+    reasoning_content = generated_text[reasoning_span[0] : reasoning_span[1]].strip() if reasoning_span else ""
+    answer_content = generated_text[answer_span[0] : answer_span[1]].strip() if answer_span else ""
+    return reasoning_content, answer_content
+
+
 def extract_rollout_numeric_features(
     record: dict[str, Any],
     extra_numeric_fields: list[str] | None = None,
@@ -77,6 +86,12 @@ def extract_rollout_numeric_features(
     generated_text = str(record.get("generated_text", ""))
     reasoning_content = str(record.get("reasoning_content", ""))
     answer_content = str(record.get("answer_content", ""))
+    if generated_text and (not reasoning_content.strip() or not answer_content.strip()):
+        derived_reasoning, derived_answer = split_reasoning_and_answer(generated_text)
+        if not reasoning_content.strip():
+            reasoning_content = derived_reasoning
+        if not answer_content.strip():
+            answer_content = derived_answer
 
     features: dict[str, float] = {}
     builtins = {
@@ -132,12 +147,23 @@ def extract_response_char_spans(generated_text: str) -> dict[str, tuple[int, int
     reasoning_span = _trim_char_span(generated_text, *reasoning_match.span(1)) if reasoning_match else None
     think_start_tag_span = tuple(think_start_match.span(0)) if think_start_match else None
     think_end_tag_span = tuple(think_end_match.span(0)) if think_end_match else None
+    if reasoning_span is None and think_start_match:
+        reasoning_start = think_start_match.end(0)
+        if answer_match:
+            reasoning_end = answer_match.start(0)
+        elif think_end_match:
+            reasoning_end = think_end_match.start(0)
+        else:
+            reasoning_end = len(generated_text)
+        reasoning_span = _trim_char_span(generated_text, reasoning_start, reasoning_end)
 
     if answer_match:
         answer_span = _trim_char_span(generated_text, *answer_match.span(1))
     elif reasoning_match and "</think>" in generated_text:
         answer_start = generated_text.index("</think>") + len("</think>")
         answer_span = _trim_char_span(generated_text, answer_start, len(generated_text))
+    elif think_start_match:
+        answer_span = None
     else:
         answer_span = _trim_char_span(generated_text, 0, len(generated_text))
 
