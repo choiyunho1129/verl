@@ -7,6 +7,18 @@ from pathlib import Path
 import joblib
 import numpy as np
 
+from classifer_training.train_weak_only_single_rollout_hidden import (
+    LogitRidgeValueEstimator,
+    PromptMiddleGatedRidgeValueEstimator,
+    PromptPriorBlendRidgeValueEstimator,
+    PromptResidualRidgeValueEstimator,
+    PromptTrajectoryMeanRidgeValueEstimator,
+    PromptTrajectoryScoreMLPValueEstimator,
+    PromptTrajectoryScoreStackRidgeValueEstimator,
+    PromptTrajectoryStackedRidgeValueEstimator,
+    PromptValuePriorResidualRidgeValueEstimator,
+    TwoHeadBinaryValueEstimator,
+)
 from classifer_training.single_rollout_hidden_utils import (
     apply_prompt_hidden_pca,
     apply_rollout_hidden_pca,
@@ -22,6 +34,7 @@ from classifer_training.single_rollout_hidden_utils import (
     select_single_rollout,
     write_predictions,
 )
+from classifer_training.utils import write_jsonl
 
 
 def parse_args() -> argparse.Namespace:
@@ -36,7 +49,42 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--eval_rollout_hidden_paths", nargs="+", type=Path)
     parser.add_argument("--output_dir", type=Path, required=True)
     parser.add_argument("--allowed_splits", nargs="+", default=["validation", "test"])
+    parser.add_argument(
+        "--rollout_component_override",
+        type=str,
+        default="",
+        help="Use this hidden component from eval rollout hidden files instead of the component stored in the bundle.",
+    )
+    parser.add_argument(
+        "--allow_missing_entropy_scalars",
+        action="store_true",
+        help="Fill missing entropy scalar features with 0 instead of failing.",
+    )
     return parser.parse_args()
+
+
+def _write_row_predictions(
+    output_path: Path,
+    y_true: np.ndarray,
+    y_pred: np.ndarray,
+    metadata_rows: list[dict],
+    labels_by_task: dict[str, dict],
+) -> None:
+    rows = []
+    for true_value, pred_value, meta in zip(y_true.tolist(), y_pred.tolist(), metadata_rows, strict=True):
+        label_row = labels_by_task[str(meta["task_id"])]
+        rows.append(
+            {
+                "task_id": str(meta["task_id"]),
+                "user_input": str(label_row.get("user_input", "")),
+                "value_true": float(true_value),
+                "value_pred": float(pred_value),
+                "rollout_row_index": int(meta.get("rollout_row_index", -1)),
+                "sample_index": int(meta.get("sample_index", -1)),
+                "num_rows": 1,
+            }
+        )
+    write_jsonl(output_path, rows)
 
 
 def main() -> None:
@@ -68,13 +116,16 @@ def main() -> None:
     prompt_lookup = apply_prompt_hidden_pca(prompt_lookup, bundle.get("prompt_hidden_pca"))
 
     rollout_hidden_lookup = None
+    effective_rollout_component = str(bundle["rollout_component"])
+    if args.rollout_component_override:
+        effective_rollout_component = str(args.rollout_component_override)
     if feature_mode == "prompt_plus_rollout":
         if not args.eval_rollout_hidden_paths:
             raise ValueError("Prompt+rollout models require --eval_rollout_hidden_paths.")
         rollout_hidden_lookup = build_rollout_hidden_lookup(
             [path.expanduser().resolve() for path in args.eval_rollout_hidden_paths],
             [path.expanduser().resolve() for path in args.eval_rollout_index_paths],
-            component_name=str(bundle["rollout_component"]),
+            component_name=effective_rollout_component,
             layer_index=0,
             pool_mode=str(bundle.get("rollout_pool_mode", "mean")),
         )
@@ -87,6 +138,7 @@ def main() -> None:
         derived_rollout_scalar_keys=derived_rollout_scalar_keys,
         extra_rollout_scalar_field_paths=extra_rollout_scalar_field_paths,
         allowed_splits=set(args.allowed_splits),
+        strict_missing_entropy=not bool(args.allow_missing_entropy_scalars),
     )
     rows = select_single_rollout(grouped_rows, single_rollout_strategy)
     rows = apply_rollout_hidden_pca(rows, bundle.get("rollout_hidden_pca"))
@@ -115,6 +167,13 @@ def main() -> None:
         split_row_metrics = reg_metrics(y_split, split_pred)
         split_prompt_metrics, split_prompt_rows = prompt_mean_metrics(y_split, split_pred, split_meta)
 
+        _write_row_predictions(
+            args.output_dir / f"predictions_{split_name}_rows.jsonl",
+            y_split,
+            split_pred,
+            split_meta,
+            labels_by_task,
+        )
         write_predictions(args.output_dir / f"predictions_{split_name}.jsonl", split_prompt_rows, labels_by_task)
         save_diagnostics_plot(
             args.output_dir / f"prediction_diagnostics_{split_name}.png",
@@ -127,6 +186,11 @@ def main() -> None:
         summary[f"{split_name}_prompt_mean_metrics"] = split_prompt_metrics
         summary[f"num_{split_name}_rows"] = int(x_split.shape[0])
         summary[f"num_{split_name}_prompts"] = int(len(split_prompt_rows))
+
+    summary["bundle_rollout_component"] = str(bundle.get("rollout_component", ""))
+    summary["effective_rollout_component"] = effective_rollout_component
+    summary["rollout_component_override"] = str(args.rollout_component_override)
+    summary["allow_missing_entropy_scalars"] = bool(args.allow_missing_entropy_scalars)
 
     (args.output_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2), flush=True)

@@ -16,7 +16,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 from classifer_training.data import load_hidden_rows
 from classifer_training.rollout_utils import extract_rollout_numeric_features
-from classifer_training.utils import load_records, write_jsonl
+from classifer_training.utils import coerce_float, load_records, write_jsonl
 from verl.utils.single_trajectory_estimator import (
     REQUIRED_ACTUAL_TOKEN_ENTROPY_KEYS,
     extract_derived_rollout_features,
@@ -64,6 +64,12 @@ def label_to_value(label_row: dict[str, Any]) -> float:
     if "value" in label_row:
         return float(label_row["value"])
     return 1.0 - float(label_row["difficulty"])
+
+
+def rollout_to_correctness(row: dict[str, Any]) -> float:
+    reward = coerce_float(row.get("reward"))
+    score = coerce_float(row.get("score"))
+    return 1.0 if (reward is not None and reward >= 1.0) or (score is not None and score >= 1.0) else 0.0
 
 
 def build_split_lookup(prompt_dataset_dir: Path) -> dict[str, str]:
@@ -242,10 +248,12 @@ def extract_rollout_scalar_vec(
     feature_keys: list[str],
     derived_feature_keys: list[str],
     extra_field_paths: list[str],
+    *,
+    strict_missing_entropy: bool = True,
 ) -> np.ndarray:
     feature_map = extract_rollout_numeric_features(record, extra_numeric_fields=extra_field_paths)
     missing_entropy_keys = sorted(REQUIRED_ACTUAL_TOKEN_ENTROPY_KEYS.intersection(feature_keys) - feature_map.keys())
-    if missing_entropy_keys:
+    if missing_entropy_keys and strict_missing_entropy:
         raise ValueError(
             f"Missing actual token entropy features {missing_entropy_keys} in rollout record. "
             "Re-extract rollout index with the updated extractor."
@@ -351,12 +359,14 @@ def group_weak_rollouts(
     rollout_scalar_keys: list[str],
     derived_rollout_scalar_keys: list[str],
     extra_rollout_scalar_field_paths: list[str],
+    strict_missing_entropy: bool = True,
 ) -> list[dict[str, Any]]:
     grouped: dict[str, dict[str, Any]] = {}
     for run_dir in weak_run_dirs:
         rows = load_records(run_dir.expanduser().resolve() / "all_experiments.jsonl")
-        run_dir_str = normalize_run_dir(str(run_dir.expanduser().resolve()))
+        fallback_run_dir_str = normalize_run_dir(str(run_dir.expanduser().resolve()))
         for row_idx, row in enumerate(rows):
+            run_dir_str = normalize_run_dir(str(row.get("run_dir") or fallback_run_dir_str))
             task_id = str(row["task_id"])
             label_row = labels_by_task.get(task_id)
             if label_row is None:
@@ -398,6 +408,7 @@ def group_weak_rollouts(
                     rollout_scalar_keys,
                     derived_rollout_scalar_keys,
                     extra_rollout_scalar_field_paths,
+                    strict_missing_entropy=strict_missing_entropy,
                 )
                 if (rollout_scalar_keys or derived_rollout_scalar_keys or extra_rollout_scalar_field_paths)
                 else None
@@ -407,6 +418,7 @@ def group_weak_rollouts(
                     "run_dir": run_dir_str,
                     "rollout_row_index": rollout_row_index,
                     "sample_index": sample_index,
+                    "rollout_correctness": rollout_to_correctness(row),
                     "rollout_hidden_vec": None
                     if rollout_hidden is None
                     else np.asarray(rollout_hidden, dtype=np.float32).reshape(-1),
@@ -425,6 +437,7 @@ def group_eval_rollouts(
     derived_rollout_scalar_keys: list[str],
     extra_rollout_scalar_field_paths: list[str],
     allowed_splits: set[str] | None = None,
+    strict_missing_entropy: bool = True,
 ) -> list[dict[str, Any]]:
     grouped: dict[str, dict[str, Any]] = {}
     allowed = allowed_splits or {"validation", "test"}
@@ -450,6 +463,7 @@ def group_eval_rollouts(
                     rollout_scalar_keys,
                     derived_rollout_scalar_keys,
                     extra_rollout_scalar_field_paths,
+                    strict_missing_entropy=strict_missing_entropy,
                 )
                 if (rollout_scalar_keys or derived_rollout_scalar_keys or extra_rollout_scalar_field_paths)
                 else None
@@ -496,6 +510,9 @@ def select_single_rollout(grouped_rows: list[dict[str, Any]], strategy: str) -> 
                     "run_dir": str(chosen.get("run_dir", "")),
                     "rollout_hidden_vec": chosen.get("rollout_hidden_vec"),
                     "rollout_scalar_vec": chosen.get("rollout_scalar_vec"),
+                    "rollout_correctness": float(chosen["rollout_correctness"])
+                    if chosen.get("rollout_correctness") is not None
+                    else None,
                     "rollout_row_index": int(chosen["rollout_row_index"]),
                     "sample_index": int(chosen.get("sample_index", -1)),
                 }
@@ -539,6 +556,7 @@ def build_matrix(
                 "task_id": task_id,
                 "split": str(row["split"]),
                 "value_true": float(row["value_true"]),
+                "prompt_value_true": float(row.get("prompt_value_true", row["value_true"])),
                 "rollout_row_index": int(row.get("rollout_row_index", -1)),
                 "sample_index": int(row.get("sample_index", -1)),
             }

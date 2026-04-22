@@ -3,6 +3,7 @@
 __all__ = [
     # Data prep
     "build_weak_prompt_dataset_and_labels",
+    "import_spo_rollouts",
     "prepare_ifbench_dataset",
     "prepare_weak4_shards",
     "sample",

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 from pathlib import Path
 from typing import Any
@@ -738,6 +739,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--disable_thinking", action="store_true")
     parser.add_argument("--disable_chat_template", action="store_true")
     parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument("--cuda_device", type=int, default=None, help="CUDA device index (e.g. 3). If set, bypasses CUDA_VISIBLE_DEVICES.")
     return parser.parse_args(argv)
 
 
@@ -813,9 +815,14 @@ def main(argv: list[str] | None = None) -> None:
     )
     if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
         tokenizer.pad_token = tokenizer.eos_token
+    if args.cuda_device is not None:
+        _device_map = {"": f"cuda:{args.cuda_device}"}
+    else:
+        _cvd = os.environ.get("CUDA_VISIBLE_DEVICES", "")
+        _device_map = {"": "cuda:0"} if _cvd else "auto"
     model = AutoModelForCausalLM.from_pretrained(
         args.model_name_or_path,
-        device_map="auto",
+        device_map=_device_map,
         torch_dtype=_resolve_torch_dtype(args.torch_dtype),
         trust_remote_code=args.trust_remote_code,
         local_files_only=args.local_files_only,

@@ -31,11 +31,29 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Recompute train/validation assignments from task_id hashes instead of preserving split values already stored in the run rows.",
     )
+    parser.add_argument(
+        "--train_run_dir_names",
+        nargs="*",
+        default=[],
+        help="Run directory basenames whose prompts should be assigned to the train split.",
+    )
+    parser.add_argument(
+        "--validation_run_dir_names",
+        nargs="*",
+        default=[],
+        help="Run directory basenames whose prompts should be assigned to the validation split.",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
+    train_run_dir_names = set(args.train_run_dir_names)
+    validation_run_dir_names = set(args.validation_run_dir_names)
+    overlapping_run_dir_names = sorted(train_run_dir_names & validation_run_dir_names)
+    if overlapping_run_dir_names:
+        raise ValueError(f"Run dirs cannot be both train and validation: {overlapping_run_dir_names}")
+
     prompt_rows: dict[str, dict[str, Any]] = {}
     label_buckets: dict[tuple[str, str], dict[str, Any]] = {}
     inputs_summary: list[dict[str, Any]] = []
@@ -56,16 +74,29 @@ def main() -> None:
                 "num_prompts": int(len({str(row["task_id"]) for row in experiments})),
             }
         )
+        run_dir_split = None
+        if run_dir.name in train_run_dir_names:
+            run_dir_split = "train"
+        elif run_dir.name in validation_run_dir_names:
+            run_dir_split = "validation"
 
         for row_idx, (row, correct) in enumerate(zip(experiments, correctness)):
             dataset_name = str(row.get("dataset_name", ""))
             task_id = str(row["task_id"])
-            if args.ignore_existing_split:
+            if run_dir_split is not None:
+                split = run_dir_split
+            elif args.ignore_existing_split:
                 split = _stable_split(task_id, float(args.val_ratio))
             else:
                 split = str(row.get("split") or _stable_split(task_id, float(args.val_ratio)))
             user_input = str(row.get("user_input", ""))
 
+            existing_prompt_row = prompt_rows.get(task_id)
+            if existing_prompt_row is not None and existing_prompt_row["split"] != split:
+                raise ValueError(
+                    f"Conflicting split assignment for task_id={task_id}: "
+                    f"{existing_prompt_row['split']} vs {split}"
+                )
             prompt_rows.setdefault(
                 task_id,
                 {
@@ -145,6 +176,8 @@ def main() -> None:
         "num_label_rows": int(len(label_rows)),
         "val_ratio": float(args.val_ratio),
         "ignore_existing_split": bool(args.ignore_existing_split),
+        "train_run_dir_names": sorted(train_run_dir_names),
+        "validation_run_dir_names": sorted(validation_run_dir_names),
         "prompt_dataset_dir": str(prompt_dataset_dir),
         "labels_path": str(args.labels_path.expanduser().resolve()),
         "inputs": inputs_summary,
