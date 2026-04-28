@@ -31,6 +31,40 @@ def _normalize_messages(value: Any) -> list[dict[str, str]]:
     return normalized
 
 
+def _has_usable_messages(value: Any) -> bool:
+    items = value.tolist() if hasattr(value, "tolist") else value
+    if not isinstance(items, list) or not items:
+        return False
+    for item in items:
+        if not isinstance(item, dict):
+            return False
+        if item.get("content") in (None, ""):
+            return False
+    return True
+
+
+def _has_usable_ground_truth(record: dict[str, Any]) -> bool:
+    reward_model = record.get("reward_model")
+    if not isinstance(reward_model, dict):
+        return False
+    ground_truth = reward_model.get("ground_truth")
+    return ground_truth not in (None, "")
+
+
+def _filter_usable_records(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
+    usable: list[dict[str, Any]] = []
+    skipped = 0
+    for record in records:
+        if not _has_usable_messages(record.get("prompt")):
+            skipped += 1
+            continue
+        if not _has_usable_ground_truth(record):
+            skipped += 1
+            continue
+        usable.append(record)
+    return usable, skipped
+
+
 def _build_task_id(record: dict[str, Any], split_name: str, row_idx: int) -> str:
     extra_info = record.get("extra_info")
     if isinstance(extra_info, dict):
@@ -80,18 +114,23 @@ def _select_records(
     source_path: Path,
     sample_count: int,
     sample_seed: int,
-) -> list[dict[str, Any]]:
+) -> tuple[list[dict[str, Any]], int]:
     if sample_count < 1:
         raise ValueError(f"{split_name} sample_count must be positive.")
-    if len(records) < sample_count:
-        raise ValueError(f"Requested {sample_count} {split_name} prompts but only found {len(records)}.")
-    shuffled = list(records)
+    usable_records, skipped_count = _filter_usable_records(records)
+    if len(usable_records) < sample_count:
+        raise ValueError(
+            f"Requested {sample_count} {split_name} prompts but only found {len(usable_records)} usable rows "
+            f"after skipping {skipped_count} invalid rows."
+        )
+    shuffled = list(usable_records)
     random.Random(sample_seed).shuffle(shuffled)
     selected = shuffled[:sample_count]
-    return [
+    normalized_rows = [
         _normalize_record(record, dataset_name=dataset_name, split_name=split_name, row_idx=row_idx, source_path=source_path)
         for row_idx, record in enumerate(selected)
     ]
+    return normalized_rows, skipped_count
 
 
 def _write_generation_shards(rows: list[dict[str, Any]], *, output_dir: Path, shard_size: int) -> list[Path]:
@@ -139,7 +178,7 @@ def main() -> None:
     train_records = load_records(train_input_path)
     validation_records = load_records(validation_input_path)
 
-    train_rows = _select_records(
+    train_rows, train_skipped = _select_records(
         train_records,
         split_name="train",
         dataset_name=args.dataset_name,
@@ -147,7 +186,7 @@ def main() -> None:
         sample_count=args.train_prompts,
         sample_seed=args.sample_seed,
     )
-    validation_rows = _select_records(
+    validation_rows, validation_skipped = _select_records(
         validation_records,
         split_name="validation",
         dataset_name=args.dataset_name,
@@ -181,6 +220,10 @@ def main() -> None:
         "sample_seed": int(args.sample_seed),
         "train_prompts": int(len(train_rows)),
         "validation_prompts": int(len(validation_rows)),
+        "train_source_rows_total": int(len(train_records)),
+        "validation_source_rows_total": int(len(validation_records)),
+        "train_source_rows_skipped_invalid": int(train_skipped),
+        "validation_source_rows_skipped_invalid": int(validation_skipped),
         "train_generation_shard_size": int(args.train_generation_shard_size),
         "validation_generation_shard_size": int(args.validation_generation_shard_size),
         "train_generation_num_shards": int(len(train_shard_paths)),
