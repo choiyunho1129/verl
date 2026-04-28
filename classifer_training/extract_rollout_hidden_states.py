@@ -631,6 +631,13 @@ def _resolve_batch_token_metadata(
         )
         if response_last_token is None:
             response_last_token = last_generated
+        response_token_indices = (
+            _token_indices_for_span(normalized_offsets, response_span[0], response_span[1])
+            if response_span is not None
+            else []
+        )
+        if not response_token_indices:
+            response_token_indices = list(output_token_indices)
 
         token_positions = {
             "prompt_hidden": prompt_last_token,
@@ -662,6 +669,7 @@ def _resolve_batch_token_metadata(
                 },
                 "token_groups": {
                     "output": output_token_indices,
+                    "response": response_token_indices,
                     "reasoning": reasoning_token_indices,
                     "answer": answer_token_indices,
                     "think_end_last10": think_end_window,
@@ -688,6 +696,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
         help="Hugging Face model id or local path.",
     )
+    parser.add_argument(
+        "--load_model_name_or_path",
+        default=None,
+        help="Optional model id/path used only for loading. Keeps --model_name_or_path for metadata and artifact naming.",
+    )
     parser.add_argument("--run_dirs", nargs="*", default=[])
     parser.add_argument("--run_glob", type=str, default=None)
     parser.add_argument("--dataset_name", default=None)
@@ -702,6 +715,9 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
             "think_end_last10_hidden",
             "answer_hidden",
             "response_hidden",
+            "response_last5_mean_hidden",
+            "response_last10_mean_hidden",
+            "response_last15_mean_hidden",
             "reasoning_mean_hidden",
             "answer_mean_hidden",
             "output_mean_hidden",
@@ -717,6 +733,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--index_root", type=Path, default=DEFAULT_INDEX_ROOT)
     parser.add_argument("--hidden_filename", default="rollout_hidden_states.pt")
     parser.add_argument("--index_filename", default="rollout_index.jsonl")
+    parser.add_argument("--model_slug", default=None, help="Optional override for artifact directory naming.")
     parser.add_argument("--max_examples", type=int, default=None)
     parser.add_argument("--num_shards", type=int, default=1)
     parser.add_argument("--shard_index", type=int, default=0)
@@ -734,6 +751,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--trust_remote_code", action="store_true")
     parser.add_argument("--local_files_only", action="store_true")
+    parser.add_argument("--cache_dir", type=Path, default=None)
     parser.add_argument("--torch_dtype", default="auto", choices=("auto", "float32", "float16", "bfloat16"))
     parser.add_argument("--disable_generation_prompt", action="store_true")
     parser.add_argument("--disable_thinking", action="store_true")
@@ -784,7 +802,7 @@ def main(argv: list[str] | None = None) -> None:
         raise ValueError("No rollout records were loaded from the provided run directories.")
 
     dataset_name = args.dataset_name or str(records[0][3].get("dataset_name") or "rollouts")
-    model_slug = sanitize_name(args.model_name_or_path)
+    model_slug = args.model_slug or sanitize_name(args.model_name_or_path)
     hidden_filename = _append_shard_suffix(args.hidden_filename, args.shard_index, args.num_shards)
     index_filename = _append_shard_suffix(args.index_filename, args.shard_index, args.num_shards)
     hidden_output_path = (
@@ -808,10 +826,17 @@ def main(argv: list[str] | None = None) -> None:
             f"at {resumed_examples}/{len(records)} examples."
         )
 
+    load_model_name_or_path = args.load_model_name_or_path or args.model_name_or_path
+    hf_load_kwargs = {
+        "trust_remote_code": args.trust_remote_code,
+        "local_files_only": args.local_files_only,
+    }
+    if args.cache_dir is not None:
+        hf_load_kwargs["cache_dir"] = str(args.cache_dir.expanduser())
+
     tokenizer = AutoTokenizer.from_pretrained(
-        args.model_name_or_path,
-        trust_remote_code=args.trust_remote_code,
-        local_files_only=args.local_files_only,
+        load_model_name_or_path,
+        **hf_load_kwargs,
     )
     if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -821,11 +846,10 @@ def main(argv: list[str] | None = None) -> None:
         _cvd = os.environ.get("CUDA_VISIBLE_DEVICES", "")
         _device_map = {"": "cuda:0"} if _cvd else "auto"
     model = AutoModelForCausalLM.from_pretrained(
-        args.model_name_or_path,
+        load_model_name_or_path,
         device_map=_device_map,
         torch_dtype=_resolve_torch_dtype(args.torch_dtype),
-        trust_remote_code=args.trust_remote_code,
-        local_files_only=args.local_files_only,
+        **hf_load_kwargs,
     )
     model.eval()
     input_device = _infer_input_device(model)
@@ -968,6 +992,20 @@ def main(argv: list[str] | None = None) -> None:
                     current_batch_component_specs[component_name] = {
                         "kind": "group_mean",
                         "groups": [list(row["token_groups"].get("output", [])) for row in metadata_rows],
+                        "fallback": metadata_rows[0]["component_positions"]["response_hidden"],
+                    }
+                elif component_name in (
+                    "response_last5_mean_hidden",
+                    "response_last10_mean_hidden",
+                    "response_last15_mean_hidden",
+                ):
+                    last_n = int(component_name.removeprefix("response_last").removesuffix("_mean_hidden"))
+                    current_batch_component_specs[component_name] = {
+                        "kind": "group_mean",
+                        "groups": [
+                            list(row["token_groups"].get("response", []))[-last_n:]
+                            for row in metadata_rows
+                        ],
                         "fallback": metadata_rows[0]["component_positions"]["response_hidden"],
                     }
                 elif component_name == "think_end_last10_hidden":

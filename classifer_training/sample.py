@@ -319,6 +319,7 @@ def _generate_with_vllm(
     seed: int,
     num_samples: int,
     enforce_eager: bool,
+    disable_custom_all_reduce: bool,
 ) -> tuple[list[list[str]], list[list[int]], list[list[float]]]:
     # vLLM launches worker processes internally. In our environment, leaving this
     # unset can make it inherit a fork-based start method and crash during CUDA init.
@@ -342,6 +343,7 @@ def _generate_with_vllm(
         max_model_len=max_model_len,
         trust_remote_code=trust_remote_code,
         enforce_eager=enforce_eager,
+        disable_custom_all_reduce=disable_custom_all_reduce,
     )
     sampling_params = SamplingParams(
         temperature=temperature,
@@ -421,6 +423,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--disable_thinking", action="store_true")
     parser.add_argument("--disable_chat_template", action="store_true")
     parser.add_argument("--enforce_eager", action="store_true", help="Force vLLM eager mode to avoid compile/cudagraph issues.")
+    parser.add_argument(
+        "--disable_custom_all_reduce",
+        action="store_true",
+        help="Disable vLLM's custom all-reduce kernels. Useful when TP startup fails in custom_all_reduce.cuh.",
+    )
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args(argv)
 
@@ -486,6 +493,7 @@ def main(argv: list[str] | None = None) -> None:
             seed=args.seed,
             num_samples=args.num_samples,
             enforce_eager=args.enforce_eager,
+            disable_custom_all_reduce=args.disable_custom_all_reduce,
         )
     else:
         generated_groups, output_length_groups, generation_time_groups = _generate_with_transformers(

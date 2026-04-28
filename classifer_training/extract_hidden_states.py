@@ -9,7 +9,7 @@ from typing import Any, Iterable
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from classifer_training.utils import load_records, sanitize_name, write_jsonl
+from classifer_training.utils import load_records, parse_layer_spec, sanitize_name, write_jsonl
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DATASET_ROOT = REPO_ROOT / "classifer_training" / "artifacts" / "datasets"
@@ -207,6 +207,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Hugging Face model id or local path.",
     )
     parser.add_argument(
+        "--load_model_name_or_path",
+        default=None,
+        help="Optional model id/path used only for loading. Keeps --model_name_or_path for metadata and artifact naming.",
+    )
+    parser.add_argument(
         "--input_path",
         type=Path,
         required=True,
@@ -227,9 +232,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--model_slug", default=None, help="Optional override for artifact directory naming.")
     parser.add_argument("--max_examples", type=int, default=None)
     parser.add_argument("--trust_remote_code", action="store_true")
+    parser.add_argument("--local_files_only", action="store_true")
+    parser.add_argument("--cache_dir", type=Path, default=None)
     parser.add_argument("--torch_dtype", default="auto", choices=("auto", "float32", "float16", "bfloat16"))
     parser.add_argument("--token_pooling", default="last", choices=("last", "lastn_mean", "last5_mean", "last10_mean", "mean", "max"))
     parser.add_argument("--last_n", type=int, default=10, help="Token count used when --token_pooling=lastn_mean.")
+    parser.add_argument("--last_n_values", nargs="*", type=int, default=None, help="Save multiple hidden components using last-N mean pooling, e.g. --last_n_values 5 10 15.")
+    parser.add_argument("--layers", type=str, default="all", help="Layer spec to save for hidden components, e.g. '18:35'. Uses 0-indexed transformer layers.")
     parser.add_argument("--batch_size", type=int, default=1)
     parser.add_argument("--disable_generation_prompt", action="store_true")
     parser.add_argument("--disable_thinking", action="store_true")
@@ -247,6 +256,18 @@ def _resolve_torch_dtype(dtype_name: str):
         "float16": torch.float16,
         "bfloat16": torch.bfloat16,
     }[dtype_name]
+
+
+def _resolve_hidden_pooling_specs(args: argparse.Namespace) -> list[tuple[str, str, int]]:
+    if args.last_n_values:
+        specs: list[tuple[str, str, int]] = []
+        for value in args.last_n_values:
+            last_n = int(value)
+            if last_n <= 0:
+                raise ValueError("--last_n_values must contain positive integers.")
+            specs.append((f"hidden_last{last_n}_mean", "lastn_mean", last_n))
+        return specs
+    return [("hidden", args.token_pooling, int(args.last_n))]
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -267,9 +288,17 @@ def main(argv: list[str] | None = None) -> None:
             f"Output already exists at {hidden_output_path} or {index_output_path}. Pass --overwrite to replace."
         )
 
+    load_model_name_or_path = args.load_model_name_or_path or args.model_name_or_path
+    hf_load_kwargs = {
+        "trust_remote_code": args.trust_remote_code,
+        "local_files_only": args.local_files_only,
+    }
+    if args.cache_dir is not None:
+        hf_load_kwargs["cache_dir"] = str(args.cache_dir.expanduser())
+
     tokenizer = AutoTokenizer.from_pretrained(
-        args.model_name_or_path,
-        trust_remote_code=args.trust_remote_code,
+        load_model_name_or_path,
+        **hf_load_kwargs,
     )
     if args.cuda_device is not None:
         _device_map = {"": f"cuda:{args.cuda_device}"}
@@ -277,16 +306,18 @@ def main(argv: list[str] | None = None) -> None:
         _cvd = os.environ.get("CUDA_VISIBLE_DEVICES", "")
         _device_map = {"": "cuda:0"} if _cvd else "auto"
     model = AutoModelForCausalLM.from_pretrained(
-        args.model_name_or_path,
+        load_model_name_or_path,
         device_map=_device_map,
         dtype=_resolve_torch_dtype(args.torch_dtype),
-        trust_remote_code=args.trust_remote_code,
+        **hf_load_kwargs,
     )
     model.eval()
     input_device = _infer_input_device(model)
 
     blocks = list(_get_transformer_blocks(model))
     num_layers = len(blocks)
+    selected_layers = parse_layer_spec(args.layers, num_layers)
+    hidden_pooling_specs = _resolve_hidden_pooling_specs(args)
     save_attn = "attn" in args.components
     save_ffn = "ffn" in args.components
     save_hidden = "hidden" in args.components
@@ -366,22 +397,24 @@ def main(argv: list[str] | None = None) -> None:
                     **tokenized,
                     output_hidden_states=save_hidden,
                     use_cache=False,
+                    logits_to_keep=1,
                 )
 
-            pooled_hidden_by_layer: list[torch.Tensor] = []
+            pooled_hidden_by_component: dict[str, list[torch.Tensor]] = {}
             if save_hidden:
                 hidden_states = outputs.hidden_states
                 if hidden_states is None:
                     raise RuntimeError("Model did not return hidden_states even though output_hidden_states=True.")
-                pooled_hidden_by_layer = [
-                    _extract_pooled_batch(
-                        hidden_state,
-                        attention_mask=attention_mask_cpu,
-                        pooling=args.token_pooling,
-                        last_n=args.last_n,
-                    )
-                    for hidden_state in hidden_states[1:]
-                ]
+                for component_name, pooling, last_n in hidden_pooling_specs:
+                    pooled_hidden_by_component[component_name] = [
+                        _extract_pooled_batch(
+                            hidden_states[layer_idx + 1],
+                            attention_mask=attention_mask_cpu,
+                            pooling=pooling,
+                            last_n=last_n,
+                        )
+                        for layer_idx in selected_layers
+                    ]
 
             for batch_idx, record in enumerate(batch_records):
                 row_idx = batch_start + batch_idx
@@ -391,7 +424,10 @@ def main(argv: list[str] | None = None) -> None:
                     "task_id": str(record.get("task_id", row_idx)),
                 }
                 if save_hidden:
-                    example_payload["hidden"] = [layer_batch[batch_idx].clone() for layer_batch in pooled_hidden_by_layer]
+                    for component_name, layer_batches in pooled_hidden_by_component.items():
+                        example_payload[component_name] = [
+                            layer_batch[batch_idx].clone() for layer_batch in layer_batches
+                        ]
                 if save_attn:
                     if any(value is None for value in attn_outs):
                         raise RuntimeError(f"Attention hooks did not fire for every layer on row {row_idx}.")
@@ -406,6 +442,7 @@ def main(argv: list[str] | None = None) -> None:
                 index_record["dataset_name"] = str(record.get("dataset_name", dataset_name))
                 index_record["task_id"] = str(record.get("task_id", row_idx))
                 index_record["input_length"] = prompt_length
+                index_record["selected_layers"] = list(selected_layers)
                 index_records.append(index_record)
 
                 print(
@@ -425,6 +462,11 @@ def main(argv: list[str] | None = None) -> None:
                 "model_name_or_path": args.model_name_or_path,
                 "components": args.components,
                 "token_pooling": args.token_pooling,
+                "hidden_pooling_components": [
+                    {"component_name": component_name, "pooling": pooling, "last_n": last_n}
+                    for component_name, pooling, last_n in hidden_pooling_specs
+                ],
+                "selected_layers": selected_layers,
                 "num_layers": num_layers,
                 "num_examples": len(hidden_examples),
             },
