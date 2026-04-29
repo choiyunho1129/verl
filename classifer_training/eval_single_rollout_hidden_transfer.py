@@ -50,6 +50,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output_dir", type=Path, required=True)
     parser.add_argument("--allowed_splits", nargs="+", default=["validation", "test"])
     parser.add_argument(
+        "--prompt_hidden_component_override",
+        type=str,
+        default="",
+        help="Use this prompt hidden component from eval prompt hidden files instead of the component stored in the bundle.",
+    )
+    parser.add_argument(
         "--rollout_component_override",
         type=str,
         default="",
@@ -99,12 +105,16 @@ def main() -> None:
 
     feature_mode = str(bundle["feature_mode"])
     single_rollout_strategy = str(bundle.get("single_rollout_strategy", "first"))
+    prompt_hidden_component = str(estimator_config.get("prompt", {}).get("hidden_component", "hidden"))
+    if args.prompt_hidden_component_override:
+        prompt_hidden_component = str(args.prompt_hidden_component_override)
     prompt_layer_index = int(estimator_config["prompt"]["hidden_layer_index"])
     prompt_feature_keys = list(estimator_config["prompt"].get("prompt_scalar_keys", []))
     response_config = estimator_config["response"]
     rollout_scalar_keys = list(response_config.get("scalar_keys", []))
     derived_rollout_scalar_keys = list(response_config.get("derived_scalar_keys", []))
     extra_rollout_scalar_field_paths = list(response_config.get("extra_scalar_field_paths", []))
+    rollout_layer_index = int(response_config.get("hidden_layer_index", 0) or 0)
 
     labels_by_task = load_labels_by_task(args.labels_path)
     prompt_scalar_lookup = build_prompt_scalar_lookup(labels_by_task, prompt_feature_keys)
@@ -112,6 +122,7 @@ def main() -> None:
         [path.expanduser().resolve() for path in args.prompt_hidden_paths],
         [path.expanduser().resolve() for path in args.prompt_index_paths],
         layer_index=prompt_layer_index,
+        component_name=prompt_hidden_component,
     )
     prompt_lookup = apply_prompt_hidden_pca(prompt_lookup, bundle.get("prompt_hidden_pca"))
 
@@ -126,7 +137,7 @@ def main() -> None:
             [path.expanduser().resolve() for path in args.eval_rollout_hidden_paths],
             [path.expanduser().resolve() for path in args.eval_rollout_index_paths],
             component_name=effective_rollout_component,
-            layer_index=0,
+            layer_index=rollout_layer_index,
             pool_mode=str(bundle.get("rollout_pool_mode", "mean")),
         )
 
@@ -188,7 +199,10 @@ def main() -> None:
         summary[f"num_{split_name}_prompts"] = int(len(split_prompt_rows))
 
     summary["bundle_rollout_component"] = str(bundle.get("rollout_component", ""))
+    summary["effective_prompt_hidden_component"] = prompt_hidden_component
+    summary["prompt_hidden_component_override"] = str(args.prompt_hidden_component_override)
     summary["effective_rollout_component"] = effective_rollout_component
+    summary["effective_rollout_layer_index"] = int(rollout_layer_index)
     summary["rollout_component_override"] = str(args.rollout_component_override)
     summary["allow_missing_entropy_scalars"] = bool(args.allow_missing_entropy_scalars)
 

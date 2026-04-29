@@ -146,11 +146,33 @@ def build_prompt_scalar_lookup(
     return lookup
 
 
+def _resolve_layer_position(
+    layers: list[np.ndarray],
+    *,
+    layer_index: int,
+    index_row: dict[str, Any],
+    context: str,
+) -> int:
+    selected_layers = index_row.get("selected_layers")
+    if isinstance(selected_layers, list):
+        resolved_layers = [int(value) for value in selected_layers]
+        if int(layer_index) in resolved_layers:
+            return resolved_layers.index(int(layer_index))
+    if 0 <= int(layer_index) < len(layers):
+        return int(layer_index)
+    selected_text = f" selected_layers={selected_layers}" if selected_layers is not None else ""
+    raise ValueError(
+        f"Requested {context} layer index {layer_index}, but only {len(layers)} stored layers are present."
+        f"{selected_text}"
+    )
+
+
 def load_prompt_hidden_lookup(
     hidden_paths: list[Path],
     index_paths: list[Path],
     *,
     layer_index: int,
+    component_name: str = "hidden",
 ) -> dict[str, np.ndarray]:
     if len(hidden_paths) != len(index_paths):
         raise ValueError("Prompt hidden/index path counts must match.")
@@ -161,15 +183,22 @@ def load_prompt_hidden_lookup(
             hidden_path.expanduser().resolve(),
             index_path=index_path.expanduser().resolve(),
             dataset_name="dapo_math_17k",
-            default_component_name="hidden",
+            default_component_name=component_name,
         )
         for row in rows:
-            layers = row["components"]["hidden"]
-            if layer_index >= len(layers):
+            if component_name not in row["components"]:
                 raise ValueError(
-                    f"Requested prompt layer index {layer_index}, but only {len(layers)} layers are present."
+                    f"Prompt hidden component {component_name!r} is missing from {hidden_path}. "
+                    f"Available components: {sorted(row['components'])}"
                 )
-            lookup[str(row["task_id"])] = np.asarray(layers[layer_index], dtype=np.float32).reshape(-1)
+            layers = row["components"][component_name]
+            layer_position = _resolve_layer_position(
+                layers,
+                layer_index=layer_index,
+                index_row=row["index_row"],
+                context="prompt",
+            )
+            lookup[str(row["task_id"])] = np.asarray(layers[layer_position], dtype=np.float32).reshape(-1)
     return lookup
 
 
@@ -199,11 +228,13 @@ def build_rollout_hidden_lookup(
             if rollout_row_index < 0 or not run_dir:
                 continue
             layers = row["components"][component_name]
-            if layer_index >= len(layers):
-                raise ValueError(
-                    f"Requested rollout layer index {layer_index}, but only {len(layers)} layers are present."
-                )
-            value = np.asarray(layers[layer_index], dtype=np.float32)
+            layer_position = _resolve_layer_position(
+                layers,
+                layer_index=layer_index,
+                index_row=index_row,
+                context="rollout",
+            )
+            value = np.asarray(layers[layer_position], dtype=np.float32)
             if value.ndim > 1:
                 if pool_mode == "mean":
                     value = value.mean(axis=0)

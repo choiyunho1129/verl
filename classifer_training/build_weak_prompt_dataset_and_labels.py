@@ -64,9 +64,18 @@ def main() -> None:
         experiments = load_records(experiments_path)
         evaluations = load_records(evaluation_path)
         correctness = list(evaluations[-1]["correctness"])
-        usable = min(len(experiments), len(correctness))
+        raw_scores = evaluations[-1].get("scores")
+        if not isinstance(raw_scores, list):
+            raw_scores = evaluations[-1].get("constraint_scores")
+        scores = list(raw_scores) if isinstance(raw_scores, list) else None
+        usable_lengths = [len(experiments), len(correctness)]
+        if scores is not None:
+            usable_lengths.append(len(scores))
+        usable = min(usable_lengths)
         experiments = experiments[:usable]
         correctness = correctness[:usable]
+        if scores is not None:
+            scores = scores[:usable]
         inputs_summary.append(
             {
                 "run_dir": str(run_dir),
@@ -116,12 +125,15 @@ def main() -> None:
                     "task_id": task_id,
                     "user_input": user_input,
                     "correctness": [],
+                    "scores": [],
                     "temperatures": [],
                     "feature_values": defaultdict(list),
                     "source_run_dirs": set(),
                 },
             )
             bucket["correctness"].append(int(correct))
+            if scores is not None:
+                bucket["scores"].append(float(scores[row_idx]))
             temperature = row.get("config", {}).get("temperature") if isinstance(row.get("config"), dict) else None
             if temperature is not None:
                 bucket["temperatures"].append(float(temperature))
@@ -143,6 +155,8 @@ def main() -> None:
     label_rows: list[dict[str, Any]] = []
     for bucket in label_buckets.values():
         correctness = np.asarray(bucket["correctness"], dtype=np.float32)
+        scores = np.asarray(bucket["scores"], dtype=np.float32) if bucket["scores"] else correctness
+        sampling_score = float(scores.mean()) if len(scores) else 0.0
         aggregated_features: dict[str, float] = {}
         for feature_name, values in sorted(bucket["feature_values"].items()):
             values_array = np.asarray(values, dtype=np.float32)
@@ -160,6 +174,9 @@ def main() -> None:
                 "wrong_count": int(len(correctness) - correctness.sum()),
                 "sampling_accuracy": float(correctness.mean()) if len(correctness) else 0.0,
                 "difficulty": float(1.0 - correctness.mean()) if len(correctness) else 1.0,
+                "sampling_score": sampling_score,
+                "value": sampling_score,
+                "difficulty_score": float(1.0 - sampling_score),
                 "temperatures": sorted({round(temp, 8) for temp in bucket["temperatures"]}),
                 "aggregated_features": aggregated_features,
                 "source_run_dirs": sorted(bucket["source_run_dirs"]),

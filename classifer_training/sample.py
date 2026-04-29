@@ -10,7 +10,7 @@ from typing import Any, Iterable
 
 import torch
 from tqdm import tqdm
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
 from classifer_training.extract_hidden_states import (
     _extract_messages,
@@ -135,14 +135,80 @@ def _count_text_tokens(tokenizer, text: str) -> int:
     return 0
 
 
-def _score_generated_answer(generated_text: str, answer_content: str, ground_truth: str, grader: str) -> int:
+def _resolve_max_prompt_len(
+    *,
+    tokenizer,
+    model_name_or_path: str,
+    explicit_max_model_len: int | None,
+    trust_remote_code: bool,
+) -> int | None:
+    if explicit_max_model_len is not None and explicit_max_model_len > 0:
+        return int(explicit_max_model_len)
+
+    for attr_owner in (
+        AutoConfig.from_pretrained(
+            model_name_or_path,
+            trust_remote_code=trust_remote_code,
+        ),
+        tokenizer,
+    ):
+        for attr_name in ("max_position_embeddings", "seq_length", "n_positions", "model_max_length"):
+            value = getattr(attr_owner, attr_name, None)
+            if isinstance(value, int) and 0 < value < 1_000_000_000:
+                return int(value)
+    return None
+
+
+def _score_generated_answer(
+    record: dict[str, Any],
+    generated_text: str,
+    answer_content: str,
+    ground_truth: str,
+    grader: str,
+) -> tuple[int, dict[str, Any]]:
     normalized_ground_truth = str(ground_truth or "").strip()
     if not normalized_ground_truth:
-        return 0
+        return 0, {}
 
     candidate_text = answer_content if answer_content.strip() else generated_text
+    if grader == "ifeval":
+        from classifer_training.ifevalg_official import evaluate_ifevalg_response
+
+        result = evaluate_ifevalg_response(generated_text, normalized_ground_truth)
+        verification = {
+            "grader": "ifeval",
+            "score": float(result["score"]),
+            "follow_all": bool(result["follow_all"]),
+            "num_followed": int(result["num_followed"]),
+            "num_instructions": int(result["num_instructions"]),
+            "per_instruction": result["per_instruction"],
+        }
+        return int(bool(result["follow_all"])), verification
+
+    if grader == "acecode":
+        from classifer_training.acecoder_official import evaluate_acecode_response, normalize_test_cases
+
+        tests = normalize_test_cases(record.get("test_cases"))
+        if not tests:
+            tests = normalize_test_cases(ground_truth)
+        result = evaluate_acecode_response(candidate_text, tests)
+        verification = {
+            "grader": "acecode",
+            "score": float(result["score"]),
+            "pass_rate": float(result["pass_rate"]),
+            "passed_all": bool(result["passed_all"]),
+            "num_passed": int(result["num_passed"]),
+            "num_tests": int(result["num_tests"]),
+            "status": result.get("status"),
+            "code_error": result.get("code_error"),
+            "per_test": result.get("per_test", []),
+        }
+        if result.get("error"):
+            verification["error"] = result["error"]
+        return int(bool(result["passed_all"])), verification
+
     if grader == "exact":
-        return int(candidate_text.strip() == normalized_ground_truth)
+        return int(candidate_text.strip() == normalized_ground_truth), {}
 
     if math_parse is not None and math_verify is not None:
         try:
@@ -153,7 +219,7 @@ def _score_generated_answer(generated_text: str, answer_content: str, ground_tru
                 try:
                     predicted = math_parse(text)
                     if bool(math_verify(gold, predicted)):
-                        return 1
+                        return 1, {}
                 except Exception:
                     continue
         except Exception:
@@ -161,11 +227,11 @@ def _score_generated_answer(generated_text: str, answer_content: str, ground_tru
 
     if local_math_verify_score is not None:
         try:
-            return int(float(local_math_verify_score(candidate_text, normalized_ground_truth)) >= 1.0)
+            return int(float(local_math_verify_score(candidate_text, normalized_ground_truth)) >= 1.0), {}
         except Exception:
             pass
 
-    return int(candidate_text.strip() == normalized_ground_truth)
+    return int(candidate_text.strip() == normalized_ground_truth), {}
 
 
 def _build_experiment_row(
@@ -182,7 +248,8 @@ def _build_experiment_row(
     sample_count: int = 1,
 ) -> tuple[dict[str, Any], int]:
     reasoning_content, answer_content = _split_reasoning_and_answer(generated_text)
-    correctness = _score_generated_answer(
+    correctness, verification = _score_generated_answer(
+        record=record,
         generated_text=generated_text,
         answer_content=answer_content,
         ground_truth=str(record.get("ground_truth", "")),
@@ -197,6 +264,7 @@ def _build_experiment_row(
         "split": str(record.get("split", "train")),
         "user_input": str(record.get("user_input", "")),
         "ground_truth": str(record.get("ground_truth", "")),
+        "test_cases": record.get("test_cases"),
         "messages": record.get("messages", []),
         "generated_text": generated_text,
         "reasoning_content": reasoning_content,
@@ -214,6 +282,11 @@ def _build_experiment_row(
         },
         "config": dict(config),
     }
+    if verification:
+        experiment_row["verification"] = verification
+        if "score" in verification:
+            experiment_row["score"] = float(verification["score"])
+            experiment_row["reward"] = float(verification["score"])
     return experiment_row, correctness
 
 
@@ -404,7 +477,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--dataset_name", default=None, help="Optional override for dataset_name in the output rows.")
     parser.add_argument("--output_dir", type=Path, required=True, help="Run directory to write.")
     parser.add_argument("--backend", choices=("vllm", "transformers"), default="vllm")
-    parser.add_argument("--grader", choices=("math_verify", "exact"), default="math_verify")
+    parser.add_argument("--grader", choices=("math_verify", "exact", "ifeval", "acecode"), default="math_verify")
     parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument("--top_p", type=float, default=1.0)
     parser.add_argument("--top_k", type=int, default=0, help="Use <=0 to disable top-k filtering.")
@@ -417,6 +490,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--max_model_len", type=int, default=None)
     parser.add_argument("--max_examples", type=int, default=None)
     parser.add_argument("--split_filter", nargs="*", default=None, help="Optional split names to keep, for example: train validation test")
+    parser.add_argument(
+        "--skip_overlong_prompts",
+        "--skip-overlong-prompts",
+        action="store_true",
+        help="Skip prompts whose tokenized length exceeds the model context window instead of failing the shard.",
+    )
     parser.add_argument("--trust_remote_code", action="store_true")
     parser.add_argument("--torch_dtype", default="auto", choices=("auto", "float32", "float16", "bfloat16"))
     parser.add_argument("--disable_generation_prompt", action="store_true")
@@ -476,6 +555,48 @@ def main(argv: list[str] | None = None) -> None:
         encoded = tokenizer(prompt, return_tensors="pt")
         input_lengths.append(int(encoded["input_ids"].shape[1]))
 
+    skipped_overlong_rows: list[dict[str, Any]] = []
+    if args.skip_overlong_prompts:
+        max_prompt_len = _resolve_max_prompt_len(
+            tokenizer=tokenizer,
+            model_name_or_path=args.model_name_or_path,
+            explicit_max_model_len=args.max_model_len,
+            trust_remote_code=args.trust_remote_code,
+        )
+        if max_prompt_len is None:
+            print("Could not resolve model context length; overlong prompt skipping is disabled.")
+        else:
+            kept_records: list[dict[str, Any]] = []
+            kept_prompts: list[str] = []
+            kept_input_lengths: list[int] = []
+            for row_idx, (record, prompt, input_length) in enumerate(zip(records, prompts, input_lengths)):
+                if input_length > max_prompt_len:
+                    skipped_overlong_rows.append(
+                        {
+                            "row_idx": int(row_idx),
+                            "task_id": str(record.get("task_id", "")),
+                            "split": str(record.get("split", "")),
+                            "input_length": int(input_length),
+                            "max_prompt_len": int(max_prompt_len),
+                            "reason": "input_length_exceeds_model_context",
+                        }
+                    )
+                    continue
+                kept_records.append(record)
+                kept_prompts.append(prompt)
+                kept_input_lengths.append(input_length)
+            records = kept_records
+            prompts = kept_prompts
+            input_lengths = kept_input_lengths
+            if skipped_overlong_rows:
+                write_jsonl(output_dir / "skipped_overlong_prompts.jsonl", skipped_overlong_rows)
+                print(
+                    f"Skipped {len(skipped_overlong_rows)} overlong prompt(s) "
+                    f"with input_length > {max_prompt_len}."
+                )
+            if not records:
+                raise ValueError("All records were skipped as overlong prompts.")
+
     if args.backend == "vllm":
         generated_groups, output_length_groups, generation_time_groups = _generate_with_vllm(
             prompts=prompts,
@@ -525,10 +646,13 @@ def main(argv: list[str] | None = None) -> None:
         "max_new_tokens": args.max_new_tokens,
         "seed": args.seed,
         "num_samples": args.num_samples,
+        "skip_overlong_prompts": bool(args.skip_overlong_prompts),
+        "num_skipped_overlong_prompts": int(len(skipped_overlong_rows)),
     }
 
     experiment_rows: list[dict[str, Any]] = []
     correctness: list[int] = []
+    scores: list[float] = []
     for row_idx, record in enumerate(records):
         prompt_generated_texts = generated_groups[row_idx]
         prompt_output_lengths = output_length_groups[row_idx]
@@ -554,6 +678,8 @@ def main(argv: list[str] | None = None) -> None:
             )
             experiment_rows.append(experiment_row)
             correctness.append(int(correct))
+            row_score = experiment_row.get("score")
+            scores.append(float(row_score) if row_score is not None else float(correct))
         print(
             f"Processed {row_idx + 1}/{len(records)} "
             f"task_id={record.get('task_id', '')} "
@@ -566,10 +692,17 @@ def main(argv: list[str] | None = None) -> None:
         "dataset_name": dataset_name,
         "num_examples": len(experiment_rows),
         "num_prompts": len(records),
+        "num_skipped_overlong_prompts": int(len(skipped_overlong_rows)),
         "accuracy": float(sum(correctness) / len(correctness)),
         "correctness": correctness,
         "config": config,
     }
+    if args.grader in {"ifeval", "acecode"}:
+        evaluation_row["scores"] = scores
+        evaluation_row["mean_score"] = float(sum(scores) / len(scores))
+        if args.grader == "ifeval":
+            evaluation_row["constraint_scores"] = scores
+            evaluation_row["mean_constraint_score"] = float(sum(scores) / len(scores))
     write_jsonl(experiments_path, experiment_rows)
     write_jsonl(evaluations_path, [evaluation_row])
     print(

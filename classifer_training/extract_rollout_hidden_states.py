@@ -779,18 +779,35 @@ def main(argv: list[str] | None = None) -> None:
             raise FileNotFoundError(f"Expected sampled run file at {experiments_path}.")
         experiment_rows = load_records(experiments_path)
         correctness: list[int] | None = None
+        scores: list[float] | None = None
         if evaluations_path.exists():
             evaluation_rows = load_records(evaluations_path)
             if evaluation_rows:
                 raw_correctness = evaluation_rows[-1].get("correctness")
                 if isinstance(raw_correctness, list):
                     correctness = [int(value) for value in raw_correctness]
-        usable = min(len(experiment_rows), len(correctness)) if correctness is not None else len(experiment_rows)
+                raw_scores = evaluation_rows[-1].get("scores")
+                if not isinstance(raw_scores, list):
+                    raw_scores = evaluation_rows[-1].get("constraint_scores")
+                if isinstance(raw_scores, list):
+                    scores = [float(value) for value in raw_scores]
+        lengths = [len(experiment_rows)]
+        if correctness is not None:
+            lengths.append(len(correctness))
+        if scores is not None:
+            lengths.append(len(scores))
+        usable = min(lengths)
         for row_idx, record in enumerate(experiment_rows[:usable]):
-            if correctness is not None:
+            if correctness is not None or scores is not None:
                 record = dict(record)
-                record["reward"] = int(correctness[row_idx])
-                record["score"] = int(correctness[row_idx])
+                if correctness is not None:
+                    record["correctness"] = int(correctness[row_idx])
+                if scores is not None:
+                    record["reward"] = float(scores[row_idx])
+                    record["score"] = float(scores[row_idx])
+                elif correctness is not None:
+                    record["reward"] = int(correctness[row_idx])
+                    record["score"] = int(correctness[row_idx])
             records.append((len(records), run_dir, row_idx, record))
 
     if args.max_examples is not None:

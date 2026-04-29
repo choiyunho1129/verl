@@ -1159,8 +1159,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--weak_rollout_hidden_paths", nargs="+", type=Path)
     parser.add_argument("--weak_rollout_index_paths", nargs="+", type=Path)
     parser.add_argument("--output_dir", type=Path, required=True)
+    parser.add_argument("--prompt_hidden_component", type=str, default="hidden")
     parser.add_argument("--prompt_layer_index", type=int, default=26)
     parser.add_argument("--rollout_component", type=str, default="think_end_last10_hidden")
+    parser.add_argument("--rollout_layer_index", type=int, default=26)
     parser.add_argument("--rollout_pool_mode", type=str, default="mean")
     parser.add_argument("--feature_mode", choices=["prompt_only", "prompt_plus_rollout"], required=True)
     parser.add_argument("--prompt_feature_keys", nargs="*", default=[])
@@ -1277,6 +1279,7 @@ def main() -> None:
         [path.expanduser().resolve() for path in args.weak_prompt_hidden_paths],
         [path.expanduser().resolve() for path in args.weak_prompt_index_paths],
         layer_index=args.prompt_layer_index,
+        component_name=args.prompt_hidden_component,
     )
     prompt_hidden_pca = fit_prompt_hidden_pca(prompt_lookup, split_lookup, int(args.prompt_hidden_pca_dim))
     prompt_lookup = apply_prompt_hidden_pca(prompt_lookup, prompt_hidden_pca)
@@ -1289,7 +1292,7 @@ def main() -> None:
             [path.expanduser().resolve() for path in args.weak_rollout_hidden_paths],
             [path.expanduser().resolve() for path in args.weak_rollout_index_paths],
             component_name=args.rollout_component,
-            layer_index=0,
+            layer_index=args.rollout_layer_index,
             pool_mode=args.rollout_pool_mode,
         )
 
@@ -1653,6 +1656,7 @@ def main() -> None:
         "selection_metric": args.selection_metric,
         "selection_score": best_bundle["selection_score"],
         "prompt": {
+            "hidden_component": args.prompt_hidden_component,
             "hidden_layer_index": int(args.prompt_layer_index),
             "hidden_projection": {
                 "type": None if prompt_hidden_pca is None else "pca",
@@ -1663,6 +1667,7 @@ def main() -> None:
         },
         "response": {
             "hidden_component": args.rollout_component if args.feature_mode == "prompt_plus_rollout" else None,
+            "hidden_layer_index": int(args.rollout_layer_index) if args.feature_mode == "prompt_plus_rollout" else None,
             "hidden_pool_mode": args.rollout_pool_mode if args.feature_mode == "prompt_plus_rollout" else None,
             "hidden_projection": {
                 "type": None if rollout_hidden_pca is None else "pca",
@@ -1727,6 +1732,7 @@ def main() -> None:
         "selection_score": best_bundle["selection_score"],
         "single_rollout_strategy": args.single_rollout_strategy,
         "rollout_component": args.rollout_component if args.feature_mode == "prompt_plus_rollout" else None,
+        "rollout_layer_index": int(args.rollout_layer_index) if args.feature_mode == "prompt_plus_rollout" else None,
         "rollout_pool_mode": args.rollout_pool_mode if args.feature_mode == "prompt_plus_rollout" else None,
         "estimator": estimator_pipeline,
         "prompt_hidden_pca": prompt_hidden_pca,
@@ -1758,6 +1764,7 @@ def main() -> None:
         "prediction_target": "value",
         "feature_mode": args.feature_mode,
         "model_family": args.model_family,
+        "prompt_hidden_component": args.prompt_hidden_component,
         "prompt_layer_index": int(args.prompt_layer_index),
         "prompt_hidden_pca_dim": int(args.prompt_hidden_pca_dim),
         "rollout_hidden_pca_dim": int(args.rollout_hidden_pca_dim),
@@ -1767,6 +1774,7 @@ def main() -> None:
         "extra_rollout_scalar_field_paths": list(args.extra_rollout_scalar_field_paths),
         "allow_missing_entropy_scalars": bool(args.allow_missing_entropy_scalars),
         "rollout_component": args.rollout_component if args.feature_mode == "prompt_plus_rollout" else None,
+        "rollout_layer_index": int(args.rollout_layer_index) if args.feature_mode == "prompt_plus_rollout" else None,
         "rollout_pool_mode": args.rollout_pool_mode if args.feature_mode == "prompt_plus_rollout" else None,
         "train_target_mode": args.train_target_mode,
         "train_target_summary": train_target_summary,

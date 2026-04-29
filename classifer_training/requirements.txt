@@ -1,10 +1,17 @@
+absl-py
 datasets
+evalplus
+immutabledict
 joblib
+langdetect
 math_verify
+nltk
 numpy<2.0.0
 pandas
+psutil
 pyarrow
 scikit-learn
+termcolor
 torch
 tqdm
 transformers

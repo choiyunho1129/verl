@@ -9,7 +9,10 @@
 #
 # Useful overrides:
 #   ROOT=/path/to/verl PYTHON=/path/to/python MODEL_NAME=/local/Qwen3-4B \
+#   MODEL_CACHE_DIR=/path/to/writable/hf-cache \
 #   bash classifer_training/run_temp1_extract_qwen3_4b_base_4gpu.sh --local-files-only
+#   bash classifer_training/run_temp1_extract_qwen3_4b_base_4gpu.sh --model-load-path /local/Qwen3-4B
+#   bash classifer_training/run_temp1_extract_qwen3_4b_base_4gpu.sh --model-cache-dir /path/to/hf-cache
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -18,7 +21,8 @@ PYTHON="${PYTHON:-python3}"
 
 DATASET_NAME="${DATASET_NAME:-spo_temp1_subset0to4}"
 MODEL_NAME="${MODEL_NAME:-Qwen/Qwen3-4B}"
-PROMPT_MODEL_SLUG="${PROMPT_MODEL_SLUG:-qwen3_4b_base_last6mean}"
+MODEL_LOAD_NAME_OR_PATH="${MODEL_LOAD_NAME_OR_PATH:-}"
+PROMPT_MODEL_SLUG="${PROMPT_MODEL_SLUG:-qwen3_4b_base_l18_35_last5_10_15mean}"
 GPU_IDS_CSV="${GPU_IDS:-0,1,2,3}"
 
 DATASET_DIR_ENV_PROVIDED="${DATASET_DIR+x}"
@@ -29,13 +33,14 @@ DATASET_DIR="${DATASET_DIR:-${ROOT}/classifer_training/artifacts/datasets/${DATA
 PROMPT_SHARDS_DIR="${PROMPT_SHARDS_DIR:-${ROOT}/classifer_training/artifacts/datasets/${DATASET_NAME}_qwen3_4b_base_shards}"
 IMPORTED_ROOT="${IMPORTED_ROOT:-${ROOT}/classifer_training/artifacts/runs/${DATASET_NAME}/imported_runs}"
 RUN_DIR_NAMES_CSV="${RUN_DIR_NAMES_CSV:-offline_value_estimation_subset_0,offline_value_estimation_subset_1,offline_value_estimation_subset_2,offline_value_estimation_subset_3,offline_value_estimation_subset_4}"
+MODEL_CACHE_DIR="${MODEL_CACHE_DIR:-}"
 
-PROMPT_BATCH_SIZE="${PROMPT_BATCH_SIZE:-64}"
-ROLLOUT_BATCH_SIZE="${ROLLOUT_BATCH_SIZE:-8}"
+PROMPT_BATCH_SIZE="${PROMPT_BATCH_SIZE:-32}"
+ROLLOUT_BATCH_SIZE="${ROLLOUT_BATCH_SIZE:-4}"
 ROLLOUT_MAX_BATCH_TOKENS="${ROLLOUT_MAX_BATCH_TOKENS:-24000}"
-PROMPT_LAST_N="${PROMPT_LAST_N:-6}"
-LAYERS="${LAYERS:-26}"
-ROLLOUT_COMPONENTS="${ROLLOUT_COMPONENTS:-response_hidden}"
+PROMPT_LAST_N_VALUES_CSV="${PROMPT_LAST_N_VALUES:-5,10,15}"
+LAYERS="${LAYERS:-18:35}"
+ROLLOUT_COMPONENTS="${ROLLOUT_COMPONENTS:-response_last5_mean_hidden response_last10_mean_hidden response_last15_mean_hidden}"
 
 MIN_FREE_MIB="${MIN_FREE_MIB:-20000}"
 MAX_GPU_UTIL="${MAX_GPU_UTIL:-20}"
@@ -48,19 +53,23 @@ TRUST_REMOTE_CODE="${TRUST_REMOTE_CODE:-0}"
 LOCAL_FILES_ONLY="${LOCAL_FILES_ONLY:-0}"
 
 LOG_DIR="${LOG_DIR:-${ROOT}/classifer_training/artifacts/logs/${DATASET_NAME}_qwen3_4b_base_extract_4gpu}"
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --root) shift; ROOT="$1" ;;
     --python) shift; PYTHON="$1" ;;
     --model) shift; MODEL_NAME="$1" ;;
+    --model-load-path|--load-model-name-or-path) shift; MODEL_LOAD_NAME_OR_PATH="$1" ;;
     --dataset-name) shift; DATASET_NAME="$1" ;;
     --gpu-ids) shift; GPU_IDS_CSV="$1" ;;
     --prompt-batch-size) shift; PROMPT_BATCH_SIZE="$1" ;;
+    --prompt-last-n-values) shift; PROMPT_LAST_N_VALUES_CSV="$1" ;;
     --rollout-batch-size) shift; ROLLOUT_BATCH_SIZE="$1" ;;
     --rollout-max-batch-tokens) shift; ROLLOUT_MAX_BATCH_TOKENS="$1" ;;
     --layers) shift; LAYERS="$1" ;;
     --rollout-components) shift; ROLLOUT_COMPONENTS="$1" ;;
+    --model-cache-dir) shift; MODEL_CACHE_DIR="$1" ;;
     --overwrite) OVERWRITE=1 ;;
     --skip-prompt) SKIP_PROMPT=1 ;;
     --skip-rollout) SKIP_ROLLOUT=1 ;;
@@ -90,6 +99,17 @@ if [[ -z "$IMPORTED_ROOT_ENV_PROVIDED" ]]; then
 fi
 if [[ -z "$LOG_DIR_ENV_PROVIDED" ]]; then
   LOG_DIR="${ROOT}/classifer_training/artifacts/logs/${DATASET_NAME}_qwen3_4b_base_extract_4gpu"
+fi
+if [[ -z "$MODEL_CACHE_DIR" ]]; then
+  MODEL_CACHE_DIR="${ROOT}/classifer_training/artifacts/hf_cache"
+fi
+if [[ -z "$MODEL_LOAD_NAME_OR_PATH" ]]; then
+  DEFAULT_MERGED_MODEL_PATH="${ROOT}/classifer_training/artifacts/models/Qwen_Qwen3-4B_merged_snapshot"
+  if [[ "$LOCAL_FILES_ONLY" == "1" && "$MODEL_NAME" == "Qwen/Qwen3-4B" && -f "${DEFAULT_MERGED_MODEL_PATH}/config.json" && -f "${DEFAULT_MERGED_MODEL_PATH}/model.safetensors.index.json" ]]; then
+    MODEL_LOAD_NAME_OR_PATH="$DEFAULT_MERGED_MODEL_PATH"
+  else
+    MODEL_LOAD_NAME_OR_PATH="$MODEL_NAME"
+  fi
 fi
 
 IFS=',' read -r -a GPU_IDS <<< "$GPU_IDS_CSV"
@@ -131,7 +151,10 @@ print(sanitize_name(sys.argv[1]))
 PY
 }
 
-ROLLOUT_MODEL_SLUG="$(py_sanitize_model_slug)"
+BASE_MODEL_SLUG="$(py_sanitize_model_slug)"
+ROLLOUT_MODEL_SLUG="${ROLLOUT_MODEL_SLUG:-${BASE_MODEL_SLUG}_l18_35_last5_10_15mean}"
+IFS=',' read -r -a PROMPT_LAST_N_VALUES <<< "$PROMPT_LAST_N_VALUES_CSV"
+PROMPT_LAST_N_VALUES_FLAG=(--last_n_values "${PROMPT_LAST_N_VALUES[@]}")
 
 OVERWRITE_FLAG=()
 if [[ "$OVERWRITE" == "1" ]]; then
@@ -149,6 +172,9 @@ if [[ "$LOCAL_FILES_ONLY" == "1" ]]; then
   export TRANSFORMERS_OFFLINE=1
   export HF_HUB_OFFLINE=1
 fi
+
+CACHE_DIR_FLAG=(--cache_dir "$MODEL_CACHE_DIR")
+mkdir -p "$MODEL_CACHE_DIR"
 
 if [[ "$MODEL_NAME" == *Instruct* || "$MODEL_NAME" == *instruct* ]]; then
   log "WARNING: MODEL_NAME contains 'Instruct': ${MODEL_NAME}"
@@ -231,16 +257,20 @@ run_prompt_shard() {
   PYTHONPATH="$ROOT" "$PYTHON" -m classifer_training.extract_hidden_states \
     --input_path "${PROMPT_SHARDS_DIR}/shard${shard}.jsonl" \
     --model_name_or_path "$MODEL_NAME" \
+    --load_model_name_or_path "$MODEL_LOAD_NAME_OR_PATH" \
     --model_slug "$PROMPT_MODEL_SLUG" \
     --dataset_name "$dataset_shard" \
     --components hidden \
+    --layers "$LAYERS" \
     --token_pooling lastn_mean \
-    --last_n "$PROMPT_LAST_N" \
+    "${PROMPT_LAST_N_VALUES_FLAG[@]}" \
     --batch_size "$PROMPT_BATCH_SIZE" \
     --cuda_device "$gpu" \
     --hidden_root "${ROOT}/classifer_training/artifacts/hidden" \
     --index_root "${ROOT}/classifer_training/artifacts/index" \
     "${TRUST_FLAG[@]}" \
+    "${LOCAL_ONLY_FLAG[@]}" \
+    "${CACHE_DIR_FLAG[@]}" \
     "${OVERWRITE_FLAG[@]}" \
     > "$log_path" 2>&1
 }
@@ -268,6 +298,8 @@ run_rollout_shard() {
   log "[rollout][shard${shard}][gpu${gpu}] extracting hidden + entropy/logprob features -> ${log_path}"
   PYTHONPATH="$ROOT" "$PYTHON" -m classifer_training.extract_rollout_hidden_states \
     --model_name_or_path "$MODEL_NAME" \
+    --load_model_name_or_path "$MODEL_LOAD_NAME_OR_PATH" \
+    --model_slug "$ROLLOUT_MODEL_SLUG" \
     --run_dirs "${RUN_DIRS[@]}" \
     --dataset_name "$DATASET_NAME" \
     --components $ROLLOUT_COMPONENTS \
@@ -281,6 +313,7 @@ run_rollout_shard() {
     --max_batch_tokens "$ROLLOUT_MAX_BATCH_TOKENS" \
     "${TRUST_FLAG[@]}" \
     "${LOCAL_ONLY_FLAG[@]}" \
+    "${CACHE_DIR_FLAG[@]}" \
     "${OVERWRITE_FLAG[@]}" \
     > "$log_path" 2>&1
 }
@@ -317,6 +350,9 @@ write_manifest() {
   PROMPT_MODEL_SLUG="$PROMPT_MODEL_SLUG" \
   ROLLOUT_MODEL_SLUG="$ROLLOUT_MODEL_SLUG" \
   MODEL_NAME="$MODEL_NAME" \
+  LAYERS="$LAYERS" \
+  PROMPT_LAST_N_VALUES="$PROMPT_LAST_N_VALUES_CSV" \
+  ROLLOUT_COMPONENTS="$ROLLOUT_COMPONENTS" \
   PROMPT_SHARDS_DIR="$PROMPT_SHARDS_DIR" \
   "$PYTHON" - <<'PY'
 import json
@@ -352,6 +388,9 @@ manifest = {
     "prompt_model_slug": prompt_model_slug,
     "rollout_model_slug": rollout_model_slug,
     "num_shards": num_shards,
+    "selected_layers": os.environ["LAYERS"],
+    "prompt_last_n_values": os.environ["PROMPT_LAST_N_VALUES"],
+    "rollout_components": os.environ["ROLLOUT_COMPONENTS"].split(),
     "prompt_shard_paths": prompt_shard_paths,
     "prompt_hidden_paths": prompt_hidden_paths,
     "prompt_index_paths": prompt_index_paths,
@@ -375,10 +414,16 @@ PY
 log "ROOT=${ROOT}"
 log "PYTHON=${PYTHON}"
 log "MODEL_NAME=${MODEL_NAME}"
+log "MODEL_LOAD_NAME_OR_PATH=${MODEL_LOAD_NAME_OR_PATH}"
+log "MODEL_CACHE_DIR=${MODEL_CACHE_DIR}"
+log "PYTORCH_CUDA_ALLOC_CONF=${PYTORCH_CUDA_ALLOC_CONF}"
 log "PROMPT_MODEL_SLUG=${PROMPT_MODEL_SLUG}"
 log "ROLLOUT_MODEL_SLUG=${ROLLOUT_MODEL_SLUG}"
 log "DATASET_NAME=${DATASET_NAME}"
 log "NUM_SHARDS=${NUM_SHARDS}"
+log "LAYERS=${LAYERS}"
+log "PROMPT_LAST_N_VALUES=${PROMPT_LAST_N_VALUES_CSV}"
+log "ROLLOUT_COMPONENTS=${ROLLOUT_COMPONENTS}"
 log "LOG_DIR=${LOG_DIR}"
 
 prepare_prompt_shards
