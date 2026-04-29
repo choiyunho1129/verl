@@ -80,6 +80,17 @@ def _split_reasoning_and_answer(generated_text: str) -> tuple[str, str]:
         heuristic_reasoning, heuristic_answer = _extract_final_answer(generated_text)
         reasoning_content = heuristic_reasoning
         answer_content = heuristic_answer or generated_text.strip()
+
+    # When the model emits a long post-think explanation, prefer the final boxed
+    # or "Final Answer:" span over the whole answer block.
+    _, heuristic_answer = _extract_final_answer(answer_content or generated_text)
+    if heuristic_answer:
+        _, nested_heuristic_answer = _extract_final_answer(heuristic_answer)
+        if nested_heuristic_answer:
+            heuristic_answer = nested_heuristic_answer
+    if heuristic_answer:
+        answer_content = heuristic_answer
+
     return reasoning_content, answer_content
 
 
@@ -170,52 +181,36 @@ def _score_generated_answer(
     if not normalized_ground_truth:
         return 0, {}
 
-    candidate_text = answer_content if answer_content.strip() else generated_text
-    if grader == "ifeval":
-        from classifer_training.ifevalg_official import evaluate_ifevalg_response
+    candidate_texts: list[str] = []
+    seen_candidates: set[str] = set()
+    for text in (answer_content, generated_text):
+        normalized_text = str(text or "").strip()
+        if not normalized_text:
+            continue
+        _, heuristic_answer = _extract_final_answer(normalized_text)
+        if heuristic_answer:
+            _, nested_heuristic_answer = _extract_final_answer(heuristic_answer)
+            if nested_heuristic_answer:
+                heuristic_answer = nested_heuristic_answer
+        for candidate in (heuristic_answer, normalized_text):
+            normalized_candidate = str(candidate or "").strip()
+            if not normalized_candidate or normalized_candidate in seen_candidates:
+                continue
+            seen_candidates.add(normalized_candidate)
+            candidate_texts.append(normalized_candidate)
 
-        result = evaluate_ifevalg_response(generated_text, normalized_ground_truth)
-        verification = {
-            "grader": "ifeval",
-            "score": float(result["score"]),
-            "follow_all": bool(result["follow_all"]),
-            "num_followed": int(result["num_followed"]),
-            "num_instructions": int(result["num_instructions"]),
-            "per_instruction": result["per_instruction"],
-        }
-        return int(bool(result["follow_all"])), verification
-
-    if grader == "acecode":
-        from classifer_training.acecoder_official import evaluate_acecode_response, normalize_test_cases
-
-        tests = normalize_test_cases(record.get("test_cases"))
-        if not tests:
-            tests = normalize_test_cases(ground_truth)
-        result = evaluate_acecode_response(candidate_text, tests)
-        verification = {
-            "grader": "acecode",
-            "score": float(result["score"]),
-            "pass_rate": float(result["pass_rate"]),
-            "passed_all": bool(result["passed_all"]),
-            "num_passed": int(result["num_passed"]),
-            "num_tests": int(result["num_tests"]),
-            "status": result.get("status"),
-            "code_error": result.get("code_error"),
-            "per_test": result.get("per_test", []),
-        }
-        if result.get("error"):
-            verification["error"] = result["error"]
-        return int(bool(result["passed_all"])), verification
+    if not candidate_texts:
+        return 0
 
     if grader == "exact":
-        return int(candidate_text.strip() == normalized_ground_truth), {}
+        return int(any(candidate_text == normalized_ground_truth for candidate_text in candidate_texts))
 
     if math_parse is not None and math_verify is not None:
         try:
             gold = math_parse(f"${normalized_ground_truth}$")
             # Prefer answer-only parsing first. For long reasoning traces this tends
             # to be more stable than feeding the entire completion into Math-Verify.
-            for text in (candidate_text, generated_text):
+            for text in candidate_texts:
                 try:
                     predicted = math_parse(text)
                     if bool(math_verify(gold, predicted)):
@@ -226,12 +221,14 @@ def _score_generated_answer(
             pass
 
     if local_math_verify_score is not None:
-        try:
-            return int(float(local_math_verify_score(candidate_text, normalized_ground_truth)) >= 1.0), {}
-        except Exception:
-            pass
+        for text in candidate_texts:
+            try:
+                if float(local_math_verify_score(text, normalized_ground_truth)) >= 1.0:
+                    return 1
+            except Exception:
+                continue
 
-    return int(candidate_text.strip() == normalized_ground_truth), {}
+    return int(any(candidate_text == normalized_ground_truth for candidate_text in candidate_texts))
 
 
 def _build_experiment_row(

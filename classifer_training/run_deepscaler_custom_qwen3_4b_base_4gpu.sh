@@ -28,6 +28,10 @@ TRAIN_NUM_SAMPLES="${TRAIN_NUM_SAMPLES:-2}"
 VALIDATION_NUM_SAMPLES="${VALIDATION_NUM_SAMPLES:-16}"
 TRAIN_GENERATION_SHARD_SIZE="${TRAIN_GENERATION_SHARD_SIZE:-500}"
 VALIDATION_GENERATION_SHARD_SIZE="${VALIDATION_GENERATION_SHARD_SIZE:-250}"
+GENERATION_PARALLELISM="${GENERATION_PARALLELISM:-tp}"
+REUSE_TRAIN_FROM_VALIDATION_PROMPTS="${REUSE_TRAIN_FROM_VALIDATION_PROMPTS:-}"
+REUSE_TRAIN_DATASET_DIR="${REUSE_TRAIN_DATASET_DIR:-}"
+REUSE_TRAIN_RUN_ROOT="${REUSE_TRAIN_RUN_ROOT:-}"
 
 SEED="${SEED:-1}"
 TEMPERATURE="${TEMPERATURE:-1}"
@@ -69,13 +73,16 @@ usage() {
 Usage:
   bash classifer_training/run_deepscaler_custom_qwen3_4b_base_4gpu.sh \
     --gpu-ids 0,1 \
+    --generation-parallelism shard \
     --local-files-only \
-    --model-cache-dir /data2/sangjunsong/.cache/transformers
+    --model-cache-dir /data2/sangjunsong/.cache/transformers \
+    --reuse-train-from-validation-prompts 2048
 
 Defaults:
   - train prompts: 5500, num_samples: 2
   - validation prompts: 2000, num_samples: 16
-  - generation is sharded so completed shards are preserved on rerun
+  - generation parallelism: tp
+  - generation shards are preserved on rerun
 EOF
 }
 
@@ -93,6 +100,7 @@ while [[ $# -gt 0 ]]; do
     --validation-num-samples) shift; VALIDATION_NUM_SAMPLES="$1" ;;
     --train-generation-shard-size) shift; TRAIN_GENERATION_SHARD_SIZE="$1" ;;
     --validation-generation-shard-size) shift; VALIDATION_GENERATION_SHARD_SIZE="$1" ;;
+    --generation-parallelism) shift; GENERATION_PARALLELISM="$1" ;;
     --seed) shift; SEED="$1" ;;
     --temperature) shift; TEMPERATURE="$1" ;;
     --top-p) shift; TOP_P="$1" ;;
@@ -106,6 +114,9 @@ while [[ $# -gt 0 ]]; do
     --layers) shift; LAYERS="$1" ;;
     --prompt-last-n-values) shift; PROMPT_LAST_N_VALUES_CSV="$1" ;;
     --rollout-components) shift; ROLLOUT_COMPONENTS="$1" ;;
+    --reuse-train-from-validation-prompts) shift; REUSE_TRAIN_FROM_VALIDATION_PROMPTS="$1" ;;
+    --reuse-train-dataset-dir) shift; REUSE_TRAIN_DATASET_DIR="$1" ;;
+    --reuse-train-run-root) shift; REUSE_TRAIN_RUN_ROOT="$1" ;;
     --deepscaler-dataset-dir) shift; DEEPSCALER_DATASET_DIR="$1"; DATASET_DIR_ENV_PROVIDED=1 ;;
     --deepscaler-prompt-shard-dir) shift; DEEPSCALER_PROMPT_SHARD_DIR="$1"; PROMPT_SHARD_DIR_ENV_PROVIDED=1 ;;
     --log-root) shift; LOG_ROOT="$1"; LOG_ROOT_ENV_PROVIDED=1 ;;
@@ -138,11 +149,55 @@ export VLLM_USE_FLASHINFER_SAMPLER="${VLLM_USE_FLASHINFER_SAMPLER:-0}"
 export VLLM_WORKER_MULTIPROC_METHOD="${VLLM_WORKER_MULTIPROC_METHOD:-spawn}"
 export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 
+normalize_gpu_ids_csv() {
+  local raw="$1"
+  local raw_spaces="${raw//,/ }"
+  local ids=()
+  local gpu_id
+  read -r -a ids <<< "$raw_spaces"
+  if [[ "${#ids[@]}" -lt 1 ]]; then
+    echo "" >&2
+    return 1
+  fi
+  local normalized=""
+  for gpu_id in "${ids[@]}"; do
+    [[ -n "$normalized" ]] && normalized+=","
+    normalized+="$gpu_id"
+  done
+  printf '%s\n' "$normalized"
+}
+
+GPU_IDS_CSV="$(normalize_gpu_ids_csv "$GPU_IDS_CSV")"
 IFS=',' read -r -a GPU_IDS <<< "$GPU_IDS_CSV"
 NUM_SHARDS="${NUM_SHARDS:-${#GPU_IDS[@]}}"
-TP_SIZE="${TP_SIZE:-${#GPU_IDS[@]}}"
 if [[ "${#GPU_IDS[@]}" -lt 1 ]]; then
   echo "At least one GPU id is required." >&2
+  exit 2
+fi
+if [[ "$NUM_SHARDS" -lt 1 ]]; then
+  echo "NUM_SHARDS must be at least 1." >&2
+  exit 2
+fi
+
+if [[ -z "${TP_SIZE:-}" ]]; then
+  if [[ "$GENERATION_PARALLELISM" == "shard" ]]; then
+    TP_SIZE=1
+  else
+    TP_SIZE="${#GPU_IDS[@]}"
+  fi
+fi
+
+case "$GENERATION_PARALLELISM" in
+  tp|shard)
+    ;;
+  *)
+    echo "GENERATION_PARALLELISM must be one of: tp, shard" >&2
+    exit 2
+    ;;
+esac
+
+if [[ "$GENERATION_PARALLELISM" == "shard" && "$TP_SIZE" != "1" ]]; then
+  echo "GENERATION_PARALLELISM=shard currently requires TP_SIZE=1. Use tp mode for multi-GPU tensor parallel generation." >&2
   exit 2
 fi
 
@@ -179,6 +234,17 @@ PROMPT_MODEL_SLUG="${PROMPT_MODEL_SLUG:-qwen3_4b_base_l18_35_last5_10_15mean}"
 ROLLOUT_MODEL_SLUG="${ROLLOUT_MODEL_SLUG:-${MODEL_SLUG}_l18_35_last5_10_15mean}"
 RUN_SUFFIX="${RUN_SUFFIX:-temp${TEMPERATURE}_topp${TOP_P}_topk${TOP_K}_train${TRAIN_PROMPTS}x${TRAIN_NUM_SAMPLES}_validation${VALIDATION_PROMPTS}x${VALIDATION_NUM_SAMPLES}_vllm_tp${TP_SIZE}_seed${SEED}}"
 
+if [[ -n "$REUSE_TRAIN_FROM_VALIDATION_PROMPTS" ]]; then
+  if [[ -z "$REUSE_TRAIN_DATASET_DIR" ]]; then
+    REUSE_TRAIN_DATASET_SLUG="deepscaler_train${TRAIN_PROMPTS}_validation${REUSE_TRAIN_FROM_VALIDATION_PROMPTS}_seed${SEED}"
+    REUSE_TRAIN_DATASET_DIR="${ROOT}/classifer_training/artifacts/datasets/${REUSE_TRAIN_DATASET_SLUG}"
+  fi
+  if [[ -z "$REUSE_TRAIN_RUN_ROOT" ]]; then
+    REUSE_TRAIN_RUN_SUFFIX="temp${TEMPERATURE}_topp${TOP_P}_topk${TOP_K}_train${TRAIN_PROMPTS}x${TRAIN_NUM_SAMPLES}_validation${REUSE_TRAIN_FROM_VALIDATION_PROMPTS}x${VALIDATION_NUM_SAMPLES}_vllm_tp${TP_SIZE}_seed${SEED}"
+    REUSE_TRAIN_RUN_ROOT="${ROOT}/classifer_training/artifacts/runs/deepscaler/${MODEL_SLUG}/${REUSE_TRAIN_RUN_SUFFIX}/train_runs"
+  fi
+fi
+
 if [[ -z "$DATASET_DIR_ENV_PROVIDED" ]]; then
   DEEPSCALER_DATASET_DIR="${ROOT}/classifer_training/artifacts/datasets/${DATASET_SLUG}"
 fi
@@ -194,7 +260,8 @@ PIPELINE_LOG="${LOG_ROOT}/pipeline.log"
 exec > >(tee -a "$PIPELINE_LOG") 2>&1
 
 RUN_ROOT="${ROOT}/classifer_training/artifacts/runs/deepscaler/${MODEL_SLUG}/${RUN_SUFFIX}"
-TRAIN_RUN_ROOT="${RUN_ROOT}/train_runs"
+DEFAULT_TRAIN_RUN_ROOT="${RUN_ROOT}/train_runs"
+TRAIN_RUN_ROOT="${REUSE_TRAIN_RUN_ROOT:-$DEFAULT_TRAIN_RUN_ROOT}"
 VALIDATION_RUN_ROOT="${RUN_ROOT}/validation_runs"
 LABELS_PATH="${ROOT}/classifer_training/artifacts/labels/deepscaler/${MODEL_SLUG}/${DATASET_SLUG}_${RUN_SUFFIX}_labels.jsonl"
 LABELS_SUMMARY="${ROOT}/classifer_training/artifacts/labels/deepscaler/${MODEL_SLUG}/${DATASET_SLUG}_${RUN_SUFFIX}_summary.json"
@@ -273,7 +340,18 @@ wait_for_all_gpus() {
   done
 }
 
+wait_for_gpu_group() {
+  local gpu_csv="$1"
+  local gpu_group=()
+  local gpu
+  IFS=',' read -r -a gpu_group <<< "$gpu_csv"
+  for gpu in "${gpu_group[@]}"; do
+    wait_for_gpu "$gpu"
+  done
+}
+
 prepare_custom_dataset() {
+  local reuse_train_flag=()
   if [[ "$SKIP_PREPARE" == "1" ]]; then
     log "[prepare] skipping custom dataset prep"
     return 0
@@ -281,6 +359,9 @@ prepare_custom_dataset() {
   if [[ "$OVERWRITE" != "1" && -f "${DEEPSCALER_DATASET_DIR}/summary.json" ]]; then
     log "[prepare] custom dataset already exists: ${DEEPSCALER_DATASET_DIR}"
     return 0
+  fi
+  if [[ -n "$REUSE_TRAIN_DATASET_DIR" ]]; then
+    reuse_train_flag=(--reuse_train_dataset_dir "$REUSE_TRAIN_DATASET_DIR")
   fi
   log "[prepare] custom DeepScaleR dataset -> ${DEEPSCALER_DATASET_DIR}"
   PYTHONPATH="$ROOT" "$PYTHON" -u -m classifer_training.prepare_custom_deepscaler_dataset \
@@ -291,6 +372,7 @@ prepare_custom_dataset() {
     --train_generation_shard_size "$TRAIN_GENERATION_SHARD_SIZE" \
     --validation_generation_shard_size "$VALIDATION_GENERATION_SHARD_SIZE" \
     --sample_seed "$SEED" \
+    "${reuse_train_flag[@]}" \
     "${OVERWRITE_FLAG[@]}"
 }
 
@@ -369,6 +451,8 @@ run_generation_shard() {
   local run_dir="$3"
   local num_samples="$4"
   local log_path="$5"
+  local visible_gpu_csv="${6:-$GPU_IDS_CSV}"
+  local shard_tp_size="${7:-$TP_SIZE}"
 
   if [[ "$SKIP_GENERATION" == "1" ]]; then
     log "[${split_label}] skipping generation"
@@ -379,10 +463,10 @@ run_generation_shard() {
     return 0
   fi
 
-  wait_for_all_gpus
+  wait_for_gpu_group "$visible_gpu_csv"
   mkdir -p "$(dirname "$log_path")"
-  log "[${split_label}] generation -> ${log_path}"
-  CUDA_VISIBLE_DEVICES="$GPU_IDS_CSV" PYTHONPATH="$ROOT" "$PYTHON" -u -m classifer_training.sample \
+  log "[${split_label}][gpus=${visible_gpu_csv}][tp=${shard_tp_size}] generation -> ${log_path}"
+  CUDA_VISIBLE_DEVICES="$visible_gpu_csv" PYTHONPATH="$ROOT" "$PYTHON" -u -m classifer_training.sample \
     --model_name_or_path "$MODEL_LOAD_NAME_OR_PATH" \
     --input_path "$input_path" \
     --dataset_name "$DATASET_SLUG" \
@@ -396,7 +480,7 @@ run_generation_shard() {
     --batch_size "$GEN_BATCH_SIZE" \
     --seed "$SEED" \
     --num_samples "$num_samples" \
-    --tensor_parallel_size "$TP_SIZE" \
+    --tensor_parallel_size "$shard_tp_size" \
     --gpu_memory_utilization "$GPU_MEMORY_UTILIZATION" \
     "${TRUST_FLAG[@]}" \
     "${ENFORCE_EAGER_FLAG[@]}" \
@@ -417,7 +501,30 @@ collect_run_dirs() {
   done < <(find "$run_root" -mindepth 1 -maxdepth 1 -type d | sort)
 }
 
-run_generation_split() {
+verify_reused_train_run_root() {
+  if [[ -z "$REUSE_TRAIN_RUN_ROOT" ]]; then
+    return 0
+  fi
+
+  require_dir "$TRAIN_RUN_ROOT"
+  local train_run_dirs=()
+  collect_run_dirs "$TRAIN_RUN_ROOT" train_run_dirs
+  if [[ "${#train_run_dirs[@]}" -eq 0 ]]; then
+    echo "No train generation run dirs found under ${TRAIN_RUN_ROOT}" >&2
+    exit 1
+  fi
+
+  local run_dir
+  for run_dir in "${train_run_dirs[@]}"; do
+    if [[ ! -f "${run_dir}/all_experiments.jsonl" || ! -f "${run_dir}/evaluation_results.jsonl" ]]; then
+      echo "Incomplete reused train run dir: ${run_dir}" >&2
+      exit 1
+    fi
+  done
+  log "[train] reusing generation run dirs from ${TRAIN_RUN_ROOT}"
+}
+
+run_generation_split_tp() {
   local split_name="$1"
   local shard_dir="$2"
   local run_root="$3"
@@ -430,8 +537,67 @@ run_generation_split() {
     run_dir="${run_root}/${split_name}_${shard_base}"
     log_path="${LOG_ROOT}/${split_name}_generation.${shard_base}.log"
     split_label="${split_name}:${shard_base}"
-    run_generation_shard "$split_label" "$shard_path" "$run_dir" "$num_samples" "$log_path"
+    run_generation_shard "$split_label" "$shard_path" "$run_dir" "$num_samples" "$log_path" "$GPU_IDS_CSV" "$TP_SIZE"
   done
+}
+
+run_generation_split_shard() {
+  local split_name="$1"
+  local shard_dir="$2"
+  local run_root="$3"
+  local num_samples="$4"
+
+  local shard_paths=()
+  local shard_path
+  for shard_path in "$shard_dir"/shard*.jsonl; do
+    [[ -f "$shard_path" ]] || continue
+    shard_paths+=("$shard_path")
+  done
+  if [[ "${#shard_paths[@]}" -eq 0 ]]; then
+    return 0
+  fi
+
+  local start_index=0
+  local total_shards="${#shard_paths[@]}"
+  while [[ "$start_index" -lt "$total_shards" ]]; do
+    local pids=()
+    local launched=0
+    local gpu shard_index shard_base run_dir log_path split_label
+    for gpu in "${GPU_IDS[@]}"; do
+      shard_index=$((start_index + launched))
+      if [[ "$shard_index" -ge "$total_shards" ]]; then
+        break
+      fi
+      shard_path="${shard_paths[$shard_index]}"
+      shard_base="$(basename "${shard_path%.jsonl}")"
+      run_dir="${run_root}/${split_name}_${shard_base}"
+      log_path="${LOG_ROOT}/${split_name}_generation.${shard_base}.log"
+      split_label="${split_name}:${shard_base}"
+      run_generation_shard "$split_label" "$shard_path" "$run_dir" "$num_samples" "$log_path" "$gpu" "1" &
+      pids+=("$!")
+      launched=$((launched + 1))
+    done
+    wait_for_pids "${split_name} generation" "${pids[@]}"
+    start_index=$((start_index + launched))
+  done
+}
+
+run_generation_split() {
+  local split_name="$1"
+  local shard_dir="$2"
+  local run_root="$3"
+  local num_samples="$4"
+
+  if [[ "$split_name" == "train" && -n "$REUSE_TRAIN_RUN_ROOT" ]]; then
+    verify_reused_train_run_root
+    return 0
+  fi
+
+  if [[ "$GENERATION_PARALLELISM" == "shard" ]]; then
+    run_generation_split_shard "$split_name" "$shard_dir" "$run_root" "$num_samples"
+  else
+    run_generation_split_tp "$split_name" "$shard_dir" "$run_root" "$num_samples"
+  fi
 }
 
 run_labels() {
@@ -688,6 +854,7 @@ log "MODEL_SLUG=${MODEL_SLUG}"
 log "MODEL_CACHE_DIR=${MODEL_CACHE_DIR}"
 log "GPU_IDS=${GPU_IDS_CSV}"
 log "NUM_SHARDS=${NUM_SHARDS}"
+log "GENERATION_PARALLELISM=${GENERATION_PARALLELISM}"
 log "TP_SIZE=${TP_SIZE}"
 log "TRAIN_PROMPTS=${TRAIN_PROMPTS}"
 log "VALIDATION_PROMPTS=${VALIDATION_PROMPTS}"
@@ -695,6 +862,9 @@ log "TRAIN_NUM_SAMPLES=${TRAIN_NUM_SAMPLES}"
 log "VALIDATION_NUM_SAMPLES=${VALIDATION_NUM_SAMPLES}"
 log "TRAIN_GENERATION_SHARD_SIZE=${TRAIN_GENERATION_SHARD_SIZE}"
 log "VALIDATION_GENERATION_SHARD_SIZE=${VALIDATION_GENERATION_SHARD_SIZE}"
+log "REUSE_TRAIN_FROM_VALIDATION_PROMPTS=${REUSE_TRAIN_FROM_VALIDATION_PROMPTS:-}"
+log "REUSE_TRAIN_DATASET_DIR=${REUSE_TRAIN_DATASET_DIR:-}"
+log "REUSE_TRAIN_RUN_ROOT=${REUSE_TRAIN_RUN_ROOT:-}"
 log "LAYERS=${LAYERS}"
 log "PROMPT_LAST_N_VALUES=${PROMPT_LAST_N_VALUES_CSV}"
 log "ROLLOUT_COMPONENTS=${ROLLOUT_COMPONENTS}"

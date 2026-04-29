@@ -2,8 +2,12 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from classifer_training.aggregate_labels import load_run_examples
-from classifer_training.sample import _build_experiment_row, _split_reasoning_and_answer
+from classifer_training.deprecated.code.aggregate_labels import load_run_examples
+from classifer_training.sample import (
+    _build_experiment_row,
+    _score_generated_answer,
+    _split_reasoning_and_answer,
+)
 from classifer_training.utils import write_jsonl
 
 
@@ -17,7 +21,23 @@ def test_split_reasoning_and_answer_parses_tagged_output() -> None:
         "<think>\nstep one\nstep two\n</think>\n<answer>\\boxed{4}</answer>"
     )
     assert reasoning == "step one\nstep two"
-    assert answer == "\\boxed{4}"
+    assert answer == "4"
+
+
+def test_split_reasoning_and_answer_prefers_final_boxed_answer_after_think() -> None:
+    reasoning, answer = _split_reasoning_and_answer(
+        "<think>\nstep one\nstep two\n</think>\nDetailed explanation.\n\nFinal Answer:\n\\boxed{97}\n"
+    )
+    assert reasoning == "step one\nstep two"
+    assert answer == "97"
+
+
+def test_score_generated_answer_uses_final_boxed_answer_from_long_answer_block() -> None:
+    generated_text = (
+        "<think>\nstep one\nstep two\n</think>\n"
+        "Detailed explanation.\n\nFinal Answer:\n\\boxed{97}\n"
+    )
+    assert _score_generated_answer(generated_text, "Detailed explanation.\n\nFinal Answer:\n\\boxed{97}", "97", "exact") == 1
 
 
 def test_sample_row_matches_aggregate_input_contract(tmp_path: Path) -> None:
@@ -37,7 +57,7 @@ def test_sample_row_matches_aggregate_input_contract(tmp_path: Path) -> None:
         "task_id": "42",
         "split": "validation",
         "user_input": "What is 2 + 2?",
-        "ground_truth": "\\boxed{4}",
+        "ground_truth": "4",
         "messages": [{"role": "user", "content": "What is 2 + 2?"}],
     }
 

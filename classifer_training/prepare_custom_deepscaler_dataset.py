@@ -146,6 +146,45 @@ def _write_generation_shards(rows: list[dict[str, Any]], *, output_dir: Path, sh
     return shard_paths
 
 
+def _load_reused_train_rows(
+    reuse_dir: Path,
+    *,
+    dataset_name: str,
+    train_prompts: int,
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    train_path = reuse_dir / "train.jsonl"
+    if not train_path.exists():
+        raise FileNotFoundError(f"Missing reused train dataset file: {train_path}")
+
+    train_rows = load_records(train_path)
+    if len(train_rows) != train_prompts:
+        raise ValueError(
+            f"Requested {train_prompts} train prompts but reused dataset has {len(train_rows)} rows: {train_path}"
+        )
+
+    normalized_rows: list[dict[str, Any]] = []
+    for row_idx, row in enumerate(train_rows):
+        task_id = str(row.get("task_id", "")).strip()
+        messages = row.get("messages")
+        if not task_id:
+            raise ValueError(f"Reused train row {row_idx} is missing task_id: {train_path}")
+        if not isinstance(messages, list) or not messages:
+            raise ValueError(f"Reused train row {row_idx} is missing messages: {train_path}")
+        normalized_rows.append(
+            {
+                **row,
+                "dataset_name": dataset_name,
+                "split": "train",
+            }
+        )
+
+    summary: dict[str, Any] = {}
+    summary_path = reuse_dir / "summary.json"
+    if summary_path.exists():
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    return normalized_rows, summary
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Prepare a custom DeepScaleR train/validation dataset and generation shards."
@@ -159,6 +198,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--train_generation_shard_size", type=int, default=500)
     parser.add_argument("--validation_generation_shard_size", type=int, default=250)
     parser.add_argument("--sample_seed", type=int, default=1)
+    parser.add_argument(
+        "--reuse_train_dataset_dir",
+        type=Path,
+        default=None,
+        help="Reuse normalized train rows from an existing prepared dataset dir instead of resampling train prompts.",
+    )
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args()
 
@@ -173,19 +218,32 @@ def main() -> None:
         print(summary_path.read_text(encoding="utf-8"))
         return
 
-    train_input_path = args.train_input_path.expanduser().resolve()
     validation_input_path = args.validation_input_path.expanduser().resolve()
-    train_records = load_records(train_input_path)
     validation_records = load_records(validation_input_path)
+    reuse_train_dataset_dir = args.reuse_train_dataset_dir.expanduser().resolve() if args.reuse_train_dataset_dir else None
+    reused_train_summary: dict[str, Any] = {}
+    if reuse_train_dataset_dir is None:
+        train_input_path = args.train_input_path.expanduser().resolve()
+        train_records = load_records(train_input_path)
+        train_rows, train_skipped = _select_records(
+            train_records,
+            split_name="train",
+            dataset_name=args.dataset_name,
+            source_path=train_input_path,
+            sample_count=args.train_prompts,
+            sample_seed=args.sample_seed,
+        )
+        train_source_rows_total = int(len(train_records))
+    else:
+        train_rows, reused_train_summary = _load_reused_train_rows(
+            reuse_train_dataset_dir,
+            dataset_name=args.dataset_name,
+            train_prompts=args.train_prompts,
+        )
+        train_input_path = Path(str(reused_train_summary.get("train_input_path", reuse_train_dataset_dir / "train.jsonl")))
+        train_skipped = int(reused_train_summary.get("train_source_rows_skipped_invalid", 0))
+        train_source_rows_total = int(reused_train_summary.get("train_source_rows_total", len(train_rows)))
 
-    train_rows, train_skipped = _select_records(
-        train_records,
-        split_name="train",
-        dataset_name=args.dataset_name,
-        source_path=train_input_path,
-        sample_count=args.train_prompts,
-        sample_seed=args.sample_seed,
-    )
     validation_rows, validation_skipped = _select_records(
         validation_records,
         split_name="validation",
@@ -220,7 +278,7 @@ def main() -> None:
         "sample_seed": int(args.sample_seed),
         "train_prompts": int(len(train_rows)),
         "validation_prompts": int(len(validation_rows)),
-        "train_source_rows_total": int(len(train_records)),
+        "train_source_rows_total": int(train_source_rows_total),
         "validation_source_rows_total": int(len(validation_records)),
         "train_source_rows_skipped_invalid": int(train_skipped),
         "validation_source_rows_skipped_invalid": int(validation_skipped),
@@ -230,6 +288,7 @@ def main() -> None:
         "validation_generation_num_shards": int(len(validation_shard_paths)),
         "train_generation_shard_sizes": [sum(1 for _ in path.open("r", encoding="utf-8")) for path in train_shard_paths],
         "validation_generation_shard_sizes": [sum(1 for _ in path.open("r", encoding="utf-8")) for path in validation_shard_paths],
+        "reused_train_dataset_dir": str(reuse_train_dataset_dir) if reuse_train_dataset_dir is not None else None,
     }
     summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2))

@@ -9,6 +9,7 @@ __all__ = [
     "prepare_ifbench_dataset",
     "prepare_if_multi_constraints_dataset",
     "prepare_weak4_shards",
+    "rescore_sample_run",
     "sample",
     # Feature / index utilities
     "data",
