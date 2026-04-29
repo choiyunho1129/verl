@@ -6,6 +6,7 @@ __all__ = [
     "import_spo_rollouts",
     "prepare_ifbench_dataset",
     "prepare_weak4_shards",
+    "rescore_sample_run",
     "sample",
     # Feature / index utilities
     "data",

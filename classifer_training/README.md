@@ -108,6 +108,96 @@ That script does:
 If step 4 is interrupted, rerun the same command with `OVERWRITE=0`.
 The response extractor resumes from shard checkpoints.
 
+## DeepScaleR custom pipeline
+
+Main entrypoint:
+
+- `run_deepscaler_custom_qwen3_4b_base_4gpu.sh`
+
+This script now supports two generation modes:
+
+- `GENERATION_PARALLELISM=tp`
+  - one vLLM worker uses all visible GPUs together
+  - `TP_SIZE` defaults to the number of visible GPUs
+  - use this when the model does not fit on one GPU
+- `GENERATION_PARALLELISM=shard`
+  - one vLLM worker per GPU
+  - generation shards run in parallel in waves
+  - `TP_SIZE` must stay `1`
+  - use this when the model fits on one GPU and you want faster wall-clock generation
+
+`GPU_IDS` accepts either `0,1,2,3` or `0 1 2 3`.
+
+Single-GPU run:
+
+```bash
+PYTHON=/home/jongwonlim/miniconda/envs/jongwon/bin/python \
+GPU_IDS=0 \
+TRAIN_PROMPTS=4096 \
+VALIDATION_PROMPTS=1024 \
+TRAIN_NUM_SAMPLES=2 \
+VALIDATION_NUM_SAMPLES=16 \
+LAYERS=19 \
+PROMPT_LAST_N_VALUES=10 \
+ROLLOUT_COMPONENTS=response_last10_mean_hidden \
+bash classifer_training/run_deepscaler_custom_qwen3_4b_base_4gpu.sh
+```
+
+Multi-GPU tensor-parallel generation:
+
+```bash
+PYTHON=/home/jongwonlim/miniconda/envs/jongwon/bin/python \
+GPU_IDS=0,1,2,3 \
+GENERATION_PARALLELISM=tp \
+TRAIN_PROMPTS=4096 \
+VALIDATION_PROMPTS=1024 \
+TRAIN_NUM_SAMPLES=2 \
+VALIDATION_NUM_SAMPLES=16 \
+LAYERS=19 \
+PROMPT_LAST_N_VALUES=10 \
+ROLLOUT_COMPONENTS=response_last10_mean_hidden \
+bash classifer_training/run_deepscaler_custom_qwen3_4b_base_4gpu.sh
+```
+
+Multi-GPU shard-parallel generation:
+
+```bash
+PYTHON=/home/jongwonlim/miniconda/envs/jongwon/bin/python \
+GPU_IDS=0,1,2,3 \
+GENERATION_PARALLELISM=shard \
+TRAIN_PROMPTS=4096 \
+VALIDATION_PROMPTS=1024 \
+TRAIN_NUM_SAMPLES=2 \
+VALIDATION_NUM_SAMPLES=16 \
+LAYERS=19 \
+PROMPT_LAST_N_VALUES=10 \
+ROLLOUT_COMPONENTS=response_last10_mean_hidden \
+bash classifer_training/run_deepscaler_custom_qwen3_4b_base_4gpu.sh
+```
+
+If you already finished the `4096/2048` train generation and only want a new validation split, reuse the old train run:
+
+```bash
+PYTHON=/home/jongwonlim/miniconda/envs/jongwon/bin/python \
+GPU_IDS=0,1,2,3 \
+GENERATION_PARALLELISM=shard \
+TRAIN_PROMPTS=4096 \
+VALIDATION_PROMPTS=1024 \
+TRAIN_NUM_SAMPLES=2 \
+VALIDATION_NUM_SAMPLES=16 \
+LAYERS=19 \
+PROMPT_LAST_N_VALUES=10 \
+ROLLOUT_COMPONENTS=response_last10_mean_hidden \
+REUSE_TRAIN_FROM_VALIDATION_PROMPTS=2048 \
+bash classifer_training/run_deepscaler_custom_qwen3_4b_base_4gpu.sh
+```
+
+Notes:
+
+- `GENERATION_PARALLELISM=shard` only changes the generation stage.
+- prompt hidden extraction and rollout hidden extraction were already sharded by `NUM_SHARDS`.
+- rerunning the same command with `OVERWRITE=0` still reuses finished shard outputs.
+
 ## Transfer evaluation
 
 `eval_single_rollout_hidden_transfer.py` evaluates an already-trained bundle on another dataset.
