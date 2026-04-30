@@ -13,9 +13,10 @@ from verl.utils.reward_score.math_dapo import compute_score
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT_ROOT = ROOT / "classifer_training/artifacts/datasets/spo_offline_subset0_1_validation_data"
+DEFAULT_SPO_ROOT = ROOT.parent / "spo"
 DEFAULT_SUBSET_DIRS = [
-    Path("/home/jongwonlim/verl/yoonho/spo/offline_value_estimation_subset_0"),
-    Path("/home/jongwonlim/verl/yoonho/spo/offline_value_estimation_subset_1"),
+    DEFAULT_SPO_ROOT / "offline_value_estimation_subset_0",
+    DEFAULT_SPO_ROOT / "offline_value_estimation_subset_1",
 ]
 
 
@@ -43,6 +44,16 @@ def _subset_id_from_path(path: Path, fallback: int) -> int:
     return int(fallback)
 
 
+def _validation_jsonl_path(subset_dir: Path) -> Path:
+    if subset_dir.is_file():
+        return subset_dir
+    direct = subset_dir / "0.jsonl"
+    if direct.exists():
+        return direct
+    nested = subset_dir / "validation_data" / "0.jsonl"
+    return nested
+
+
 def _dapo_score(output: str, ground_truth: str) -> dict[str, Any]:
     # Match the DAPO relabeling used for the existing L19/last10 probe.
     solution = str(output or "").split("</think>", maxsplit=1)[0]
@@ -57,9 +68,13 @@ def _normalize_run(
     rescore_with_math_dapo: bool,
     max_prompts: int | None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    source_path = subset_dir / "validation_data" / "0.jsonl"
+    source_path = _validation_jsonl_path(subset_dir)
     if not source_path.exists():
-        raise FileNotFoundError(f"Expected validation data at {source_path}")
+        raise FileNotFoundError(
+            f"Expected validation data at {source_path}. "
+            "Pass --subset-dirs with either offline_value_estimation_subset_* dirs, "
+            "validation_data dirs, or direct 0.jsonl paths."
+        )
 
     source_rows = _load_jsonl(source_path)
     prompt_seen_order: list[str] = []

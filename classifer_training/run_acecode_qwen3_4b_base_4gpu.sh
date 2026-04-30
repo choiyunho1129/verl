@@ -49,7 +49,7 @@ GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-0.7}"
 
 LAYERS="${LAYERS:-19}"
 PROMPT_LAST_N_VALUES_CSV="${PROMPT_LAST_N_VALUES:-10}"
-ROLLOUT_COMPONENTS="${ROLLOUT_COMPONENTS:-response_last10_mean_hidden}"
+ROLLOUT_COMPONENTS="${ROLLOUT_COMPONENTS:-think_end_last10_hidden}"
 
 MIN_FREE_MIB="${MIN_FREE_MIB:-20000}"
 MAX_GPU_UTIL="${MAX_GPU_UTIL:-20}"
@@ -85,7 +85,7 @@ Defaults:
   - train prompts: 4096, train rollouts/prompt: 2
   - validation prompts: 2048, validation rollouts/prompt: 16
   - sampling: temperature=1, top_p=1, top_k=-1
-  - hidden extraction: layer 19, prompt last-10 mean, response last-10 mean
+  - hidden extraction: layer 19, prompt last-10 mean, think-end last-10 hidden
   - reward: official AceCoder test-case pass rate
 
 Key options:
@@ -97,7 +97,7 @@ Key options:
   --no-skip-overlong-prompts
   --layers 19
   --prompt-last-n-values 10
-  --rollout-components "response_last10_mean_hidden"
+  --rollout-components "think_end_last10_hidden"
   --acecoder-root PATH
   --skip-generation|--skip-labels|--skip-prompt|--skip-rollout
   --local-files-only --model-cache-dir PATH
@@ -232,7 +232,7 @@ LAYER_SLUG="$(slug_text "$LAYERS")"
 LASTN_SLUG="$(slug_text "$PROMPT_LAST_N_VALUES_CSV")"
 DATASET_SLUG="${DATASET_SLUG:-${DATASET_NAME}_train${TRAIN_PROMPTS}_validation${VALIDATION_PROMPTS}_seed${SEED}}"
 PROMPT_MODEL_SLUG="${PROMPT_MODEL_SLUG:-qwen3_4b_base_l${LAYER_SLUG}_last${LASTN_SLUG}mean}"
-ROLLOUT_MODEL_SLUG="${ROLLOUT_MODEL_SLUG:-${MODEL_SLUG}_l${LAYER_SLUG}_last${LASTN_SLUG}mean}"
+ROLLOUT_MODEL_SLUG="${ROLLOUT_MODEL_SLUG:-${MODEL_SLUG}_l${LAYER_SLUG}_thinkendlast10}"
 RUN_SUFFIX="${RUN_SUFFIX:-temp${TEMPERATURE}_topp${TOP_P}_topk${TOP_K}_train${TRAIN_PROMPTS}x${TRAIN_NUM_SAMPLES}_validation${VALIDATION_PROMPTS}x${VALIDATION_NUM_SAMPLES}_vllm_tp${TP_SIZE}_seed${SEED}}"
 
 if [[ -z "$DATASET_DIR_ENV_PROVIDED" ]]; then
@@ -251,7 +251,7 @@ VALIDATION_RUN_ROOT="${RUN_ROOT}/validation_runs"
 LABELS_PATH="${ROOT}/classifer_training/artifacts/labels/acecode/${MODEL_SLUG}/${DATASET_SLUG}_${RUN_SUFFIX}_labels.jsonl"
 LABELS_SUMMARY="${ROOT}/classifer_training/artifacts/labels/acecode/${MODEL_SLUG}/${DATASET_SLUG}_${RUN_SUFFIX}_summary.json"
 LABELS_SCRATCH="${ROOT}/classifer_training/artifacts/datasets/${DATASET_SLUG}_${RUN_SUFFIX}_${MODEL_SLUG}_labels_scratch"
-RESPONSE_DATASET_NAME="${DATASET_SLUG}_${RUN_SUFFIX}_response_l${LAYER_SLUG}_last${LASTN_SLUG}mean"
+RESPONSE_DATASET_NAME="${DATASET_SLUG}_${RUN_SUFFIX}_thinkendlast10_l${LAYER_SLUG}"
 
 IFS=',' read -r -a PROMPT_LAST_N_VALUES <<< "$PROMPT_LAST_N_VALUES_CSV"
 PROMPT_LAST_N_VALUES_FLAG=(--last_n_values "${PROMPT_LAST_N_VALUES[@]}")

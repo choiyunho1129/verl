@@ -177,6 +177,24 @@ def _score_generated_answer(
     ground_truth: str,
     grader: str,
 ) -> tuple[int, dict[str, Any]]:
+    if grader == "ifeval":
+        from classifer_training.ifevalg_official import evaluate_ifevalg_response
+
+        result = evaluate_ifevalg_response(
+            generated_text,
+            record.get("ground_truth", ground_truth),
+        )
+        return int(bool(result.get("follow_all"))), result
+
+    if grader == "acecode":
+        from classifer_training.acecoder_official import evaluate_acecode_response
+
+        result = evaluate_acecode_response(
+            generated_text,
+            record.get("test_cases"),
+        )
+        return int(bool(result.get("passed_all"))), result
+
     normalized_ground_truth = str(ground_truth or "").strip()
     if not normalized_ground_truth:
         return 0, {}
@@ -200,10 +218,10 @@ def _score_generated_answer(
             candidate_texts.append(normalized_candidate)
 
     if not candidate_texts:
-        return 0
+        return 0, {}
 
     if grader == "exact":
-        return int(any(candidate_text == normalized_ground_truth for candidate_text in candidate_texts))
+        return int(any(candidate_text == normalized_ground_truth for candidate_text in candidate_texts)), {}
 
     if math_parse is not None and math_verify is not None:
         try:
@@ -224,11 +242,11 @@ def _score_generated_answer(
         for text in candidate_texts:
             try:
                 if float(local_math_verify_score(text, normalized_ground_truth)) >= 1.0:
-                    return 1
+                    return 1, {}
             except Exception:
                 continue
 
-    return int(any(candidate_text == normalized_ground_truth for candidate_text in candidate_texts))
+    return int(any(candidate_text == normalized_ground_truth for candidate_text in candidate_texts)), {}
 
 
 def _build_experiment_row(
