@@ -64,7 +64,9 @@ def _normalize_run(
     subset_dir: Path,
     *,
     output_run_dir: Path,
+    dataset_name: str,
     subset_id: int,
+    output_split: str,
     rescore_with_math_dapo: bool,
     max_prompts: int | None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
@@ -101,9 +103,9 @@ def _normalize_run(
         ground_truth = str(rows[0].get("gts", ""))
         prompt_records.append(
             {
-                "dataset_name": "spo_offline_subset0_1_validation_data",
+                "dataset_name": dataset_name,
                 "task_id": task_id,
-                "split": "train",
+                "split": output_split,
                 "user_input": prompt,
                 "ground_truth": ground_truth,
                 "source_subset_id": int(subset_id),
@@ -126,9 +128,9 @@ def _normalize_run(
                 score_source = "source_validation_data"
 
             experiment_row = {
-                "dataset_name": "spo_offline_subset0_1_validation_data",
+                "dataset_name": dataset_name,
                 "task_id": task_id,
-                "split": "train",
+                "split": output_split,
                 "user_input": prompt,
                 "messages": [{"role": "user", "content": prompt}],
                 "ground_truth": ground_truth,
@@ -169,6 +171,7 @@ def _normalize_run(
     )
     return prompt_records, {
         "subset_id": int(subset_id),
+        "split": output_split,
         "source_path": str(source_path),
         "run_dir": str(output_run_dir),
         "num_prompts": int(len(prompt_records)),
@@ -182,6 +185,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--subset-dirs", nargs="+", type=Path, default=DEFAULT_SUBSET_DIRS)
     parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
     parser.add_argument("--dataset-name", default="spo_offline_subset0_1_validation_data")
+    parser.add_argument(
+        "--validation-subset-ids",
+        nargs="*",
+        type=int,
+        default=[],
+        help="Subset ids to write to prompt_dataset/validation.jsonl. Unlisted subsets remain train.",
+    )
     parser.add_argument("--keep-source-labels", action="store_true")
     parser.add_argument("--max-prompts-per-subset", type=int, default=None)
     parser.add_argument("--overwrite", action="store_true")
@@ -201,14 +211,18 @@ def main() -> None:
 
     all_prompt_records: list[dict[str, Any]] = []
     run_summaries = []
+    validation_subset_ids = {int(value) for value in args.validation_subset_ids}
     for idx, subset_dir in enumerate(args.subset_dirs):
         subset_dir = subset_dir.expanduser().resolve()
         subset_id = _subset_id_from_path(subset_dir, idx)
+        output_split = "validation" if subset_id in validation_subset_ids else "train"
         run_dir = run_root / f"offline_value_estimation_subset_{subset_id}"
         prompt_records, run_summary = _normalize_run(
             subset_dir,
             output_run_dir=run_dir,
+            dataset_name=str(args.dataset_name),
             subset_id=subset_id,
+            output_split=output_split,
             rescore_with_math_dapo=not bool(args.keep_source_labels),
             max_prompts=args.max_prompts_per_subset,
         )
@@ -216,13 +230,18 @@ def main() -> None:
         run_summaries.append(run_summary)
 
     prompt_dataset_dir.mkdir(parents=True, exist_ok=True)
-    write_jsonl(prompt_dataset_dir / "train.jsonl", all_prompt_records)
+    prompt_records_by_split: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for record in all_prompt_records:
+        prompt_records_by_split[str(record.get("split", "train"))].append(record)
+    for split_name, split_records in sorted(prompt_records_by_split.items()):
+        write_jsonl(prompt_dataset_dir / f"{split_name}.jsonl", split_records)
     manifest = {
         "dataset_name": args.dataset_name,
         "output_root": str(output_root),
         "prompt_dataset_dir": str(prompt_dataset_dir),
         "run_dirs": [row["run_dir"] for row in run_summaries],
         "runs": run_summaries,
+        "split_counts": {split: len(rows) for split, rows in sorted(prompt_records_by_split.items())},
         "num_prompts": int(len(all_prompt_records)),
         "num_rollouts": int(sum(row["num_rollouts"] for row in run_summaries)),
         "label_source": "source_validation_data" if args.keep_source_labels else "math_dapo.compute_score",
