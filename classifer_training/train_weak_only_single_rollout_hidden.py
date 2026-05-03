@@ -13,6 +13,7 @@ from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.linear_model import LogisticRegression, Ridge
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
+from scipy.stats import spearmanr
 
 from classifer_training.single_rollout_hidden_utils import (
     apply_prompt_hidden_pca,
@@ -1042,14 +1043,20 @@ def _selection_score(
     prompt_metrics: dict[str, float],
     row_subset_metrics: dict[str, dict[str, float]],
     prompt_subset_metrics: dict[str, dict[str, float]],
+    row_spearman: float,
+    prompt_spearman: float,
 ) -> float:
     metrics = {
         "row_r2": float(row_metrics["r2"]),
+        "row_pearson": float(row_metrics["pearson"]),
         "row_mae": -float(row_metrics["mae"]),
         "row_rmse": -float(row_metrics["rmse"]),
+        "row_mae_plus_spearman": -float(row_metrics["mae"]) + float(row_spearman),
         "prompt_mean_r2": float(prompt_metrics["r2"]),
+        "prompt_mean_pearson": float(prompt_metrics["pearson"]),
         "prompt_mean_mae": -float(prompt_metrics["mae"]),
         "prompt_mean_rmse": -float(prompt_metrics["rmse"]),
+        "prompt_mean_mae_plus_spearman": -float(prompt_metrics["mae"]) + float(prompt_spearman),
         "row_half_mae": -float(row_subset_metrics["half"]["mae"]),
         "row_mid_mae": -float(row_subset_metrics["mid"]["mae"]),
         "row_non_extreme_mae": -float(row_subset_metrics["non_extreme"]["mae"]),
@@ -1102,6 +1109,22 @@ def _safe_subset_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, di
             "frac_pred_0.4_0.6": float(np.mean((subset_pred >= 0.4) & (subset_pred <= 0.6))),
         }
     return output
+
+
+def _safe_spearman_corr(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    y_true_array = np.asarray(y_true, dtype=np.float32).reshape(-1)
+    y_pred_array = np.asarray(y_pred, dtype=np.float32).reshape(-1)
+    if (
+        y_true_array.shape != y_pred_array.shape
+        or y_true_array.size < 2
+        or np.allclose(np.std(y_true_array), 0.0)
+        or np.allclose(np.std(y_pred_array), 0.0)
+    ):
+        return 0.0
+    result = spearmanr(y_true_array, y_pred_array)
+    if np.ndim(result.statistic) == 0:
+        return float(result.statistic)
+    return float(np.asarray(result.statistic)[0, 1])
 
 
 def _subsample_validation_rollouts(
@@ -1217,14 +1240,18 @@ def parse_args() -> argparse.Namespace:
         "--selection_metric",
         choices=[
             "row_r2",
+            "row_pearson",
             "row_mae",
             "row_rmse",
+            "row_mae_plus_spearman",
             "row_half_mae",
             "row_mid_mae",
             "row_non_extreme_mae",
             "prompt_mean_r2",
+            "prompt_mean_pearson",
             "prompt_mean_mae",
             "prompt_mean_rmse",
+            "prompt_mean_mae_plus_spearman",
             "prompt_half_mae",
             "prompt_mid_mae",
             "prompt_non_extreme_mae",
@@ -1603,11 +1630,15 @@ def main() -> None:
         weak_val_prompt_true = np.asarray([float(row["value_true"]) for row in weak_val_prompt_rows], dtype=np.float32)
         weak_val_prompt_pred = np.asarray([float(row["value_pred"]) for row in weak_val_prompt_rows], dtype=np.float32)
         weak_val_prompt_subset_metrics = _safe_subset_metrics(weak_val_prompt_true, weak_val_prompt_pred)
+        weak_val_row_spearman = _safe_spearman_corr(y_weak_val, weak_val_pred)
+        weak_val_prompt_spearman = _safe_spearman_corr(weak_val_prompt_true, weak_val_prompt_pred)
         result = {
             "name": model_name,
             "weak_val_row_metrics": weak_val_row_metrics,
+            "weak_val_row_spearman": float(weak_val_row_spearman),
             "weak_val_row_subset_metrics": weak_val_row_subset_metrics,
             "weak_val_prompt_mean_metrics": weak_val_prompt_metrics,
+            "weak_val_prompt_spearman": float(weak_val_prompt_spearman),
             "weak_val_prompt_subset_metrics": weak_val_prompt_subset_metrics,
             "selection_metric": args.selection_metric,
             "selection_score": _selection_score(
@@ -1616,6 +1647,8 @@ def main() -> None:
                 prompt_metrics=weak_val_prompt_metrics,
                 row_subset_metrics=weak_val_row_subset_metrics,
                 prompt_subset_metrics=weak_val_prompt_subset_metrics,
+                row_spearman=weak_val_row_spearman,
+                prompt_spearman=weak_val_prompt_spearman,
             ),
         }
         with results_path.open("a", encoding="utf-8") as f:
@@ -1631,6 +1664,8 @@ def main() -> None:
                 "weak_val_prompt_subset_metrics": weak_val_prompt_subset_metrics,
                 "selection_metric": args.selection_metric,
                 "selection_score": float(result["selection_score"]),
+                "weak_val_row_spearman": float(weak_val_row_spearman),
+                "weak_val_prompt_spearman": float(weak_val_prompt_spearman),
                 "weak_val_row_rows": _row_prediction_rows(y_weak_val, weak_val_pred, weak_val_meta),
                 "weak_val_prompt_rows": weak_val_prompt_rows,
                 "feature_dim": int(x_train.shape[1]),
@@ -1655,6 +1690,8 @@ def main() -> None:
         "validation_rollout_summary": validation_rollout_summary,
         "selection_metric": args.selection_metric,
         "selection_score": best_bundle["selection_score"],
+        "weak_val_row_spearman": best_bundle.get("weak_val_row_spearman", 0.0),
+        "weak_val_prompt_spearman": best_bundle.get("weak_val_prompt_spearman", 0.0),
         "prompt": {
             "hidden_component": args.prompt_hidden_component,
             "hidden_layer_index": int(args.prompt_layer_index),
@@ -1819,6 +1856,8 @@ def main() -> None:
         "weak_val_row_subset_metrics": best_bundle["weak_val_row_subset_metrics"],
         "weak_val_prompt_mean_metrics": best_bundle["weak_val_prompt_mean_metrics"],
         "weak_val_prompt_subset_metrics": best_bundle["weak_val_prompt_subset_metrics"],
+        "weak_val_row_spearman": best_bundle.get("weak_val_row_spearman", 0.0),
+        "weak_val_prompt_spearman": best_bundle.get("weak_val_prompt_spearman", 0.0),
     }
     (args.output_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2), flush=True)
