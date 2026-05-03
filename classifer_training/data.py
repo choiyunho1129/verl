@@ -38,6 +38,8 @@ def _vectorize_last_token(value: Any) -> np.ndarray:
         return tensor.reshape(1).numpy()
     if tensor.ndim == 1:
         return tensor.numpy()
+    if tensor.ndim == 2:
+        return tensor.numpy()
     return tensor.reshape(-1, tensor.shape[-1])[-1].numpy()
 
 

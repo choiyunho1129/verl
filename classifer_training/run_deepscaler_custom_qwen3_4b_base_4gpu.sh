@@ -266,7 +266,7 @@ VALIDATION_RUN_ROOT="${RUN_ROOT}/validation_runs"
 LABELS_PATH="${ROOT}/classifer_training/artifacts/labels/deepscaler/${MODEL_SLUG}/${DATASET_SLUG}_${RUN_SUFFIX}_labels.jsonl"
 LABELS_SUMMARY="${ROOT}/classifer_training/artifacts/labels/deepscaler/${MODEL_SLUG}/${DATASET_SLUG}_${RUN_SUFFIX}_summary.json"
 LABELS_SCRATCH="${ROOT}/classifer_training/artifacts/datasets/${DATASET_SLUG}_${RUN_SUFFIX}_${MODEL_SLUG}_labels_scratch"
-RESPONSE_DATASET_NAME="${DATASET_SLUG}_${RUN_SUFFIX}_response_l18_35_last5_10_15mean"
+RESPONSE_DATASET_NAME="${RESPONSE_DATASET_NAME:-${DATASET_SLUG}_${RUN_SUFFIX}_response_l18_35_last5_10_15mean}"
 
 IFS=',' read -r -a PROMPT_LAST_N_VALUES <<< "$PROMPT_LAST_N_VALUES_CSV"
 PROMPT_LAST_N_VALUES_FLAG=(--last_n_values "${PROMPT_LAST_N_VALUES[@]}")

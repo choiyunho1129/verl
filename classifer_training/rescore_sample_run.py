@@ -83,7 +83,8 @@ def _rescore_run_dir(run_dir: Path, tokenizer_cache: dict[str, Any], trust_remot
     for row in experiment_rows:
         generated_text = str(row.get("generated_text", ""))
         reasoning_content, answer_content = _split_reasoning_and_answer(generated_text)
-        correct = _score_generated_answer(
+        correct, _verification = _score_generated_answer(
+            record=row,
             generated_text=generated_text,
             answer_content=answer_content,
             ground_truth=str(row.get("ground_truth", "")),

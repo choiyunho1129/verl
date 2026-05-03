@@ -11,8 +11,9 @@ MODEL_CACHE_DIR="${MODEL_CACHE_DIR:-/data2/sangjunsong/.cache/transformers}"
 GPU_ID="${GPU_ID:-0}"
 DATASET_NAME="${DATASET_NAME:-spo_offline_subset0_1_validation_data}"
 WORK_ROOT="${WORK_ROOT:-${ROOT}/classifer_training/artifacts/datasets/${DATASET_NAME}}"
-SUBSET0_DIR="${SUBSET0_DIR:-/home/jongwonlim/verl/yoonho/spo/offline_value_estimation_subset_0}"
-SUBSET1_DIR="${SUBSET1_DIR:-/home/jongwonlim/verl/yoonho/spo/offline_value_estimation_subset_1}"
+SPO_ROOT="${SPO_ROOT:-$(cd "${ROOT}/.." && pwd)/spo}"
+SUBSET0_DIR="${SUBSET0_DIR:-${SPO_ROOT}/offline_value_estimation_subset_0}"
+SUBSET1_DIR="${SUBSET1_DIR:-${SPO_ROOT}/offline_value_estimation_subset_1}"
 PROMPT_MODEL_SLUG="${PROMPT_MODEL_SLUG:-qwen3_4b_base_l19_last10mean}"
 ROLLOUT_MODEL_SLUG="${ROLLOUT_MODEL_SLUG:-Qwen_Qwen3-4B_l19_thinkendlast10}"
 RESPONSE_DATASET_NAME="${RESPONSE_DATASET_NAME:-${DATASET_NAME}_response_l19_thinkendlast10}"
@@ -46,6 +47,7 @@ Options:
   --model NAME                  Display model id. Default: Qwen/Qwen3-4B.
   --load-model PATH             Load model path/id. Default: same as --model.
   --model-cache-dir PATH        HF model cache dir.
+  --spo-root PATH               Directory containing offline_value_estimation_subset_*.
   --subset0-dir PATH            offline_value_estimation_subset_0 dir.
   --subset1-dir PATH            offline_value_estimation_subset_1 dir.
   --work-root PATH              Prepared dataset/run root.
@@ -67,6 +69,7 @@ while [[ $# -gt 0 ]]; do
     --model) MODEL_NAME="$2"; shift 2 ;;
     --load-model) MODEL_LOAD_NAME_OR_PATH="$2"; shift 2 ;;
     --model-cache-dir) MODEL_CACHE_DIR="$2"; shift 2 ;;
+    --spo-root) SPO_ROOT="$2"; SUBSET0_DIR="${SPO_ROOT}/offline_value_estimation_subset_0"; SUBSET1_DIR="${SPO_ROOT}/offline_value_estimation_subset_1"; shift 2 ;;
     --subset0-dir) SUBSET0_DIR="$2"; shift 2 ;;
     --subset1-dir) SUBSET1_DIR="$2"; shift 2 ;;
     --work-root) WORK_ROOT="$2"; shift 2 ;;

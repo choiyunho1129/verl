@@ -595,12 +595,29 @@ def build_matrix(
     return np.stack(x_rows), np.asarray(y_rows, dtype=np.float32), np.asarray(split_rows), metadata_rows
 
 
+def _safe_pearson_corr(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    y_true_array = np.asarray(y_true, dtype=np.float64).reshape(-1)
+    y_pred_array = np.asarray(y_pred, dtype=np.float64).reshape(-1)
+    mask = np.isfinite(y_true_array) & np.isfinite(y_pred_array)
+    y_true_array = y_true_array[mask]
+    y_pred_array = y_pred_array[mask]
+    if (
+        y_true_array.shape != y_pred_array.shape
+        or y_true_array.size < 2
+        or np.allclose(np.std(y_true_array), 0.0)
+        or np.allclose(np.std(y_pred_array), 0.0)
+    ):
+        return 0.0
+    return float(np.corrcoef(y_true_array, y_pred_array)[0, 1])
+
+
 def reg_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
     mse = mean_squared_error(y_true, y_pred)
     return {
         "r2": float(r2_score(y_true, y_pred)),
         "mae": float(mean_absolute_error(y_true, y_pred)),
         "rmse": float(math.sqrt(mse)),
+        "pearson": _safe_pearson_corr(y_true, y_pred),
     }
 
 

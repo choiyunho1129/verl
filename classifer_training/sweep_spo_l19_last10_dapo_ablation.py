@@ -204,6 +204,33 @@ def _balance_ablation_tasks(
     }
 
 
+def _max_total_prompts_for_ratio(groups: dict[float, list[str]], hard_to_mid_ratio: float) -> int:
+    if hard_to_mid_ratio <= 0:
+        raise ValueError("--balance-hard-to-mid-ratios values must be positive.")
+    available_zero = len(groups.get(0.0, []))
+    available_mid = len(groups.get(0.5, []))
+    available_one = len(groups.get(1.0, []))
+
+    # In _balance_ablation_tasks:
+    # mid ~= total / (1 + ratio), zero ~= ratio*total / (2*(1+ratio)),
+    # one ~= ratio*total / (2*(1+ratio)).
+    max_by_mid = int(np.floor(available_mid * (1.0 + hard_to_mid_ratio)))
+    max_by_zero = int(np.floor(available_zero * 2.0 * (1.0 + hard_to_mid_ratio) / hard_to_mid_ratio))
+    max_by_one = int(np.floor(available_one * 2.0 * (1.0 + hard_to_mid_ratio) / hard_to_mid_ratio))
+    candidate = max(1, min(max_by_mid, max_by_zero, max_by_one))
+
+    # Step down until rounding in _balance_ablation_tasks is feasible.
+    while candidate > 0:
+        mid_count = int(round(candidate / (1.0 + hard_to_mid_ratio)))
+        hard_count = candidate - mid_count
+        zero_count = hard_count // 2
+        one_count = hard_count - zero_count
+        if zero_count <= available_zero and mid_count <= available_mid and one_count <= available_one:
+            return int(candidate)
+        candidate -= 1
+    raise ValueError(f"Could not find a feasible total prompt count for hard:mid={hard_to_mid_ratio}.")
+
+
 def _train_one(
     *,
     name: str,
@@ -293,6 +320,11 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--size-fractions", default="1,0.5,0.25,0.125")
     parser.add_argument("--balance-total-prompts", type=int, default=1200)
     parser.add_argument("--balance-hard-to-mid-ratios", default="0.5,1,2,4,8")
+    parser.add_argument(
+        "--balance-use-max-feasible",
+        action="store_true",
+        help="For each hard:mid ratio, use as many prompts as possible instead of --balance-total-prompts.",
+    )
     parser.add_argument("--skip-count-ablation", action="store_true")
     parser.add_argument("--skip-balance-ablation", action="store_true")
     return parser.parse_args()
@@ -365,17 +397,23 @@ def main() -> None:
 
         for ratio in _parse_csv_floats(args.balance_hard_to_mid_ratios):
             rng = np.random.default_rng(args.seed + 5000 + int(round(ratio * 1000)))
+            total_prompts = (
+                _max_total_prompts_for_ratio(groups, ratio)
+                if args.balance_use_max_feasible
+                else args.balance_total_prompts
+            )
             selected_tasks, ablation = _balance_ablation_tasks(
                 groups,
                 hard_to_mid_ratio=ratio,
-                total_prompts=args.balance_total_prompts,
+                total_prompts=total_prompts,
                 rng=rng,
             )
             ablation["type"] = "label_balance"
+            ablation["balance_use_max_feasible"] = bool(args.balance_use_max_feasible)
             ratio_name = f"{ratio:g}".replace(".", "p")
             summaries.append(
                 _train_one(
-                    name=f"balance_hardmid{ratio_name}_prompts{args.balance_total_prompts}",
+                    name=f"balance_hardmid{ratio_name}_prompts{total_prompts}",
                     ablation=ablation,
                     selected_tasks=selected_tasks,
                     all_rows=rows,
