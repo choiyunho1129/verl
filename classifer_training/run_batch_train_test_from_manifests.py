@@ -47,6 +47,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--alphas", nargs="+", type=float, default=[0.01, 0.1, 1.0, 10.0, 100.0])
     parser.add_argument("--single-rollout-strategy", type=str, default="first", choices=["first", "all"])
     parser.add_argument(
+        "--split-mode",
+        choices=["auto", "validation_half"],
+        default="auto",
+        help=(
+            "auto uses existing train/validation split hints. validation_half ignores the original train split "
+            "and splits validation prompts 50/50 into synthetic train and validation sets."
+        ),
+    )
+    parser.add_argument(
         "--prompt-component",
         type=str,
         default="",
@@ -376,6 +385,7 @@ def _build_split_dataset(
     run_dirs: list[Path],
     out_root: Path,
     dataset_name: str,
+    split_mode: str = "auto",
 ) -> Path:
     out_root = out_root / f"{dataset_name}_split"
     out_root.mkdir(parents=True, exist_ok=True)
@@ -387,34 +397,44 @@ def _build_split_dataset(
     for tid in task_ids:
         mapped[tid] = run_split.get(tid, "")
 
-    # prefer explicit run-split signals
-    train_ids = [tid for tid, sp in mapped.items() if sp == "train"]
-    val_ids = [tid for tid, sp in mapped.items() if sp in {"validation", "valid"}]
-    test_ids = [tid for tid, sp in mapped.items() if sp == "test"]
+    if split_mode == "validation_half":
+        candidate_ids = [tid for tid, sp in mapped.items() if sp in {"validation", "valid"}]
+        if not candidate_ids:
+            candidate_ids = sorted(task_ids)
+        candidate_ids = sorted(set(candidate_ids))
+        midpoint = max(1, len(candidate_ids) // 2)
+        train_ids = candidate_ids[:midpoint]
+        val_ids = candidate_ids[midpoint:]
+        test_ids = []
+    else:
+        # prefer explicit run-split signals
+        train_ids = [tid for tid, sp in mapped.items() if sp == "train"]
+        val_ids = [tid for tid, sp in mapped.items() if sp in {"validation", "valid"}]
+        test_ids = [tid for tid, sp in mapped.items() if sp == "test"]
 
-    if not train_ids and not val_ids and test_ids:
-        # if only test split exists (e.g., ifbench), split by task id.
-        midpoint = max(1, int(len(test_ids) * 0.5))
-        val_ids = sorted(test_ids)[:midpoint]
-        train_ids = sorted(test_ids)[midpoint:]
-    elif not train_ids and val_ids:
-        # use validation as synthetic train and test as synthetic valid
-        train_ids = sorted(val_ids)
-        if test_ids:
-            val_ids = sorted(test_ids)
-    elif not val_ids and train_ids:
-        # if only train exists, reserve small validation set from train.
-        shuffled = sorted(train_ids)
-        random.Random(42).shuffle(shuffled)
-        k = max(1, max(1, int(len(shuffled) * 0.2)))
-        val_ids = shuffled[:k]
-    elif not val_ids and not train_ids and not test_ids:
-        # no split hints anywhere: 80/20 random split
-        shuffled = sorted(task_ids)
-        random.Random(42).shuffle(shuffled)
-        k = max(1, int(len(shuffled) * 0.8))
-        train_ids = shuffled[:k]
-        val_ids = shuffled[k:]
+        if not train_ids and not val_ids and test_ids:
+            # if only test split exists (e.g., ifbench), split by task id.
+            midpoint = max(1, int(len(test_ids) * 0.5))
+            val_ids = sorted(test_ids)[:midpoint]
+            train_ids = sorted(test_ids)[midpoint:]
+        elif not train_ids and val_ids:
+            # use validation as synthetic train and test as synthetic valid
+            train_ids = sorted(val_ids)
+            if test_ids:
+                val_ids = sorted(test_ids)
+        elif not val_ids and train_ids:
+            # if only train exists, reserve small validation set from train.
+            shuffled = sorted(train_ids)
+            random.Random(42).shuffle(shuffled)
+            k = max(1, max(1, int(len(shuffled) * 0.2)))
+            val_ids = shuffled[:k]
+        elif not val_ids and not train_ids and not test_ids:
+            # no split hints anywhere: 80/20 random split
+            shuffled = sorted(task_ids)
+            random.Random(42).shuffle(shuffled)
+            k = max(1, int(len(shuffled) * 0.8))
+            train_ids = shuffled[:k]
+            val_ids = shuffled[k:]
 
     # keep order deterministic
     train_ids = sorted(set(train_ids))
@@ -443,6 +463,19 @@ def _build_split_dataset(
         "\n".join(json.dumps(r, ensure_ascii=False) for r in val_rows) + ("\n" if val_rows else ""),
         encoding="utf-8",
     )
+    (out_root / "split_summary.json").write_text(
+        json.dumps(
+            {
+                "split_mode": split_mode,
+                "num_total_label_tasks": len(task_ids),
+                "num_train": len(train_rows),
+                "num_validation": len(val_rows),
+                "num_test": len(test_ids),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
     if test_ids:
         test_rows = [{"task_id": tid} for tid in sorted(test_ids)]
         (out_root / "test.jsonl").write_text(
@@ -457,7 +490,23 @@ def _split_dataset_is_ready(dataset_dir: Path) -> bool:
     return (dataset_dir / "train.jsonl").exists() and (dataset_dir / "validation.jsonl").exists()
 
 
-def _resolve_dataset_dir(manifest_dir: Path, dataset_key: str | None, ds: dict[str, Any], run_dirs: list[Path], labels_path: Path) -> Path:
+def _resolve_dataset_dir(
+    manifest_dir: Path,
+    dataset_key: str | None,
+    ds: dict[str, Any],
+    run_dirs: list[Path],
+    labels_path: Path,
+    split_mode: str = "auto",
+) -> Path:
+    if split_mode != "auto":
+        return _build_split_dataset(
+            labels_path,
+            run_dirs,
+            manifest_dir / f"_tmp_split_dataset_{split_mode}",
+            f"{manifest_dir.name}_{(dataset_key or 'dataset')}",
+            split_mode,
+        )
+
     # 1) explicit dataset_dir in manifest
     explicit = ds.get("dataset_dir")
     if isinstance(explicit, str) and explicit:
@@ -606,7 +655,14 @@ def main() -> None:
                 print(f"[skip] {base_run_name}: no all_experiments.jsonl under inferred run dirs")
                 continue
 
-            dataset_dir = _resolve_dataset_dir(manifest_path.parent, dataset_key, ds, active_run_dirs, labels_path)
+            dataset_dir = _resolve_dataset_dir(
+                manifest_path.parent,
+                dataset_key,
+                ds,
+                active_run_dirs,
+                labels_path,
+                args.split_mode,
+            )
             if not _split_dataset_is_ready(dataset_dir):
                 print(f"[skip] {base_run_name}: cannot resolve train/validation split dataset")
                 continue
