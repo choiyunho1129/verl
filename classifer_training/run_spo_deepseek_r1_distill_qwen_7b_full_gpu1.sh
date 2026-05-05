@@ -3,10 +3,10 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-SPO_REPO_ROOT="${SPO_REPO_ROOT:-/home/jongwonlim/verl/yoonho/spo/spo}"
+SPO_REPO_ROOT="${SPO_REPO_ROOT:-/home/yohan.jo/yunhochoi/crrl}"
 SPO_ESTIMATE_DIR="${SPO_ESTIMATE_DIR:-${SPO_REPO_ROOT}/recipe/spo/estimate_offline_values}"
 
-PYTHON="${PYTHON:-/home/jongwonlim/anaconda3/envs/CB/bin/python}"
+PYTHON="${PYTHON:-$(command -v python)}"
 GPU_ID="${GPU_ID:-1}"
 MODEL_NAME="${MODEL_NAME:-deepseek-ai/DeepSeek-R1-Distill-Qwen-7B}"
 MODEL_CACHE_DIR="${MODEL_CACHE_DIR:-${ROOT}/classifer_training/artifacts/hf_models}"
@@ -14,7 +14,7 @@ HF_HOME_DIR="${HF_HOME_DIR:-${MODEL_CACHE_DIR}}"
 
 RUN_SLUG="${RUN_SLUG:-deepseek_r1_distill_qwen_7b}"
 ROLLOUT_OUTPUT_DIR="${ROLLOUT_OUTPUT_DIR:-${SPO_REPO_ROOT}/spo_verl_pr_temp1_${RUN_SLUG}}"
-DATA_DIR="${DATA_DIR:-${SPO_REPO_ROOT}/data/DAPO-Math-17k-Processed_Splits}"
+DATA_DIR="${DATA_DIR:-${ROOT}}"
 SUBSET_START="${SUBSET_START:-0}"
 SUBSET_END="${SUBSET_END:-3}"
 TARGET_TRAJECTORIES="${TARGET_TRAJECTORIES:-16}"
