@@ -403,6 +403,8 @@ def _generate_with_vllm(
     tensor_parallel_size: int | None,
     gpu_memory_utilization: float,
     max_model_len: int | None,
+    max_num_batched_tokens: int | None,
+    max_num_seqs: int | None,
     trust_remote_code: bool,
     seed: int,
     num_samples: int,
@@ -429,6 +431,8 @@ def _generate_with_vllm(
         tensor_parallel_size=resolved_tp,
         gpu_memory_utilization=gpu_memory_utilization,
         max_model_len=max_model_len,
+        max_num_batched_tokens=max_num_batched_tokens,
+        max_num_seqs=max_num_seqs,
         trust_remote_code=trust_remote_code,
         enforce_eager=enforce_eager,
         disable_custom_all_reduce=disable_custom_all_reduce,
@@ -503,6 +507,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--tensor_parallel_size", type=int, default=None)
     parser.add_argument("--gpu_memory_utilization", type=float, default=0.85)
     parser.add_argument("--max_model_len", type=int, default=None)
+    parser.add_argument("--max_num_batched_tokens", type=int, default=None)
+    parser.add_argument("--max_num_seqs", type=int, default=None)
     parser.add_argument("--max_examples", type=int, default=None)
     parser.add_argument("--split_filter", nargs="*", default=None, help="Optional split names to keep, for example: train validation test")
     parser.add_argument(
@@ -625,6 +631,8 @@ def main(argv: list[str] | None = None) -> None:
             tensor_parallel_size=args.tensor_parallel_size,
             gpu_memory_utilization=args.gpu_memory_utilization,
             max_model_len=args.max_model_len,
+            max_num_batched_tokens=args.max_num_batched_tokens,
+            max_num_seqs=args.max_num_seqs,
             trust_remote_code=args.trust_remote_code,
             seed=args.seed,
             num_samples=args.num_samples,

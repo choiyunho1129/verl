@@ -753,6 +753,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--local_files_only", action="store_true")
     parser.add_argument("--cache_dir", type=Path, default=None)
     parser.add_argument("--torch_dtype", default="auto", choices=("auto", "float32", "float16", "bfloat16"))
+    parser.add_argument(
+        "--attn_implementation",
+        "--attn-implementation",
+        default=os.environ.get("ATTN_IMPLEMENTATION"),
+        help="Optional Transformers attention backend, e.g. flash_attention_2, sdpa, or eager. Can also be set via ATTN_IMPLEMENTATION.",
+    )
     parser.add_argument("--disable_generation_prompt", action="store_true")
     parser.add_argument("--disable_thinking", action="store_true")
     parser.add_argument("--disable_chat_template", action="store_true")
@@ -850,6 +856,9 @@ def main(argv: list[str] | None = None) -> None:
     }
     if args.cache_dir is not None:
         hf_load_kwargs["cache_dir"] = str(args.cache_dir.expanduser())
+    attn_implementation = str(args.attn_implementation or "").strip()
+    if attn_implementation and attn_implementation != "auto":
+        hf_load_kwargs["attn_implementation"] = attn_implementation
 
     tokenizer = AutoTokenizer.from_pretrained(
         load_model_name_or_path,

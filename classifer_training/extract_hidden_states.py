@@ -235,6 +235,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--local_files_only", action="store_true")
     parser.add_argument("--cache_dir", type=Path, default=None)
     parser.add_argument("--torch_dtype", default="auto", choices=("auto", "float32", "float16", "bfloat16"))
+    parser.add_argument(
+        "--attn_implementation",
+        "--attn-implementation",
+        default=os.environ.get("ATTN_IMPLEMENTATION"),
+        help="Optional Transformers attention backend, e.g. flash_attention_2, sdpa, or eager. Can also be set via ATTN_IMPLEMENTATION.",
+    )
     parser.add_argument("--token_pooling", default="last", choices=("last", "lastn_mean", "last5_mean", "last10_mean", "mean", "max"))
     parser.add_argument("--last_n", type=int, default=10, help="Token count used when --token_pooling=lastn_mean.")
     parser.add_argument("--last_n_values", nargs="*", type=int, default=None, help="Save multiple hidden components using last-N mean pooling, e.g. --last_n_values 5 10 15.")
@@ -295,6 +301,9 @@ def main(argv: list[str] | None = None) -> None:
     }
     if args.cache_dir is not None:
         hf_load_kwargs["cache_dir"] = str(args.cache_dir.expanduser())
+    attn_implementation = str(args.attn_implementation or "").strip()
+    if attn_implementation and attn_implementation != "auto":
+        hf_load_kwargs["attn_implementation"] = attn_implementation
 
     tokenizer = AutoTokenizer.from_pretrained(
         load_model_name_or_path,
