@@ -13,6 +13,7 @@ classifer_training/external/*
 **/wandb
 **/eval/results
 classifer_training/deprecated/artifacts/*
+offline_critic/runs/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

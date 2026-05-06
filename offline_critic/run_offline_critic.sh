@@ -5,11 +5,13 @@ set -euo pipefail
 # saving one checkpoint per global_step so we can compare critic predictions
 # against CRRL's adaptive estimator at every step.
 
-CRRL_RUN_DIR="/NHNHOME/WORKSPACE/26msit006_A/kisti/snu/yunhochoi/crrl/crrl_verl_pr/Qwen3-4B_CRRL_batch_1024_B200_dynamicsampling"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+CRRL_RUN_DIR="${CRRL_RUN_DIR:-/NHNHOME/WORKSPACE/26msit006_A/kisti/snu/yunhochoi/crrl/crrl_verl_pr/Qwen3-4B_CRRL_batch_1024_B200_dynamicsampling}"
 PROMPT_LOGS="${CRRL_RUN_DIR}/checkpoints/prompt_reward_logs"
 VALIDATION="${CRRL_RUN_DIR}/validation_data"
 
-OUTPUT_DIR="${OUTPUT_DIR:-/NHNHOME/WORKSPACE/26msit006_A/kisti/snu/jongwon/offline_critic/runs/qwen3-4b-replay}"
+OUTPUT_DIR="${OUTPUT_DIR:-${SCRIPT_DIR}/runs/qwen3-4b-replay}"
 BASE_MODEL="${BASE_MODEL:-Qwen/Qwen3-4B}"
 
 # Saving the full 4B base every step costs ~8GB/ckpt. With 91 steps that's
@@ -18,7 +20,7 @@ BASE_MODEL="${BASE_MODEL:-Qwen/Qwen3-4B}"
 SAVE_EVERY="${SAVE_EVERY:-10}"
 
 CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}" \
-python3 /NHNHOME/WORKSPACE/26msit006_A/kisti/snu/jongwon/offline_critic/train_offline_critic.py \
+python3 "${SCRIPT_DIR}/train_offline_critic.py" \
     --prompt_reward_logs "${PROMPT_LOGS}" \
     --validation_data "${VALIDATION}" \
     --base_model "${BASE_MODEL}" \
